@@ -330,14 +330,37 @@ MIT License. See [LICENSE](LICENSE) file.
 
 ---
 
-## Star History
+## To pull from the **main** branch of the original repository (the upstream repository), follow these steps after forking it and cloning it to your local machine:
 
-[![Star History Chart](https://api.star-history.com/svg?repos=CoplayDev/unity-mcp&type=Date)](https://www.star-history.com/#CoplayDev/unity-mcp&Date)
+1. **Add the original repository as a remote** (if you haven't already):
 
-## Sponsor
+   ```bash
+   git remote add upstream https://github.com/CoplayDev/unity-mcp
+   ```
 
-<p align="center">
-  <a href="https://www.coplay.dev/?ref=unity-mcp" target="_blank" rel="noopener noreferrer">
-    <img src="logo.png" alt="Coplay Logo" width="100%">
-  </a>
-</p>
+2. **Fetch the latest changes from the upstream repository**:
+
+   ```bash
+   git fetch upstream
+   ```
+
+3. **Merge or rebase the `main` branch of the upstream repository**:
+
+   * If you want to **merge** changes:
+
+     ```bash
+     git checkout main  # or master, depending on the branch name
+     git merge upstream/main
+     ```
+   * Or, if you prefer **rebase** (to keep a cleaner history):
+
+     ```bash
+     git checkout main
+     git rebase upstream/main
+     ```
+
+4. **Push changes to your fork on GitHub** (if needed):
+
+   ```bash
+   git push origin main
+   ```
