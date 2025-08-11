@@ -1,0 +1,3453 @@
+fileFormatVersion: 2
+guid: 1f0c10729f1e19b4b9bead78eb5f916c
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 674
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39a4880dc32138448a98f52579c2290a
+      internalID: 403281708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_1
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 674
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0492a554672bffe4488241fd9f908f4c
+      internalID: -101713141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_2
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 674
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b146d1073a1f2ff4fb7916c16053090c
+      internalID: 1640706769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_3
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 674
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7ac75af17d54c949b1e34623e33ae6a
+      internalID: 1869460960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_4
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 674
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8a8ea8b035304141b1d97a3bde1670d
+      internalID: 2064826024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_5
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 674
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48f585a456aba4746b0f2c6e0baf94e8
+      internalID: -1778540385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_6
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 674
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c893722f2f218d241a13e573472d0f95
+      internalID: 2144785855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_7
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 674
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb6cffc6d7e2fc1499c3fd9d86278c63
+      internalID: 1728789542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_8
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 674
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef274e266f2b658428a6065ecc81a235
+      internalID: -465585434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_9
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 674
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9db84eb037e0f3d46a1880ee1ca2aece
+      internalID: -312146119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_10
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 626
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bbbac484bb7d594ba139d96ed23b3fc
+      internalID: -861300979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_11
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 626
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8685a19bb294f644a1ceb3391b67bb2
+      internalID: -1158760886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_12
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 626
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9879f02952c69d44b89d8f48240cd110
+      internalID: 1004884509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_13
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 626
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c7b48ce2ee27f94687b43125965d598
+      internalID: 1260923303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_14
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 626
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 161ab56f75758e942922e6c8f47895e3
+      internalID: -124387153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_15
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 626
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ddfc3ca8d0715e48bae3be18b23ec65
+      internalID: -1858550937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_16
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 626
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: add9b591ffb22d140bba341796d8cf0a
+      internalID: -2038308596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_17
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 626
+        width: 46
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff592d5fd54c0b740b231485a19b04f9
+      internalID: -2117880652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_18
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 626
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef222d2f2660edd4a8a693dcbcd0357b
+      internalID: -1478994195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_19
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 626
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e541fd8540e5c14685c85df82137802
+      internalID: -1189183363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_20
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 577
+        width: 47
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b414032881b5b8e49b1339637a16c70c
+      internalID: 1144960397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_21
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 577
+        width: 47
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f90f61a937308d84ebf581f051dff4b1
+      internalID: 1735500371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_22
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 577
+        width: 47
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61998df468a0dfa469e6393522984faf
+      internalID: 491622516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_23
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 578
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab111e45c7bae2e4d8f5596a1bcbd456
+      internalID: -712332338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_24
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 577
+        width: 47
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1872b08d8d57d844b81797287368c602
+      internalID: 1379365157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_25
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 577
+        width: 47
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9edd4b3c5d462c44aec760c5b1933b1
+      internalID: -333907660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_26
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 577
+        width: 47
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c25680ebb7c24bc44ba567ad6690e79a
+      internalID: 1291631877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_27
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 577
+        width: 46
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b25b082e044121f46901ff73ecc5f0ad
+      internalID: -2117322753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_28
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 577
+        width: 47
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31e8ff17c065efc4c84a29900fe6904b
+      internalID: 49774823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_29
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 577
+        width: 47
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5665fc01ee3944948bf99fe8f6673217
+      internalID: -1917608688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_30
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 529
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61b9a265db94df94b83b93228c0bcfac
+      internalID: -2012409836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_31
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 529
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9e52b70541ae944394a36f479cc9fff
+      internalID: -1658110769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_32
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 529
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: feee1cfa7e3c94e46be3ef68e777780e
+      internalID: 267095460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_33
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 529
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4b114f830353eb44a0ce05608faabf8
+      internalID: 2032256152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_34
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 529
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8feec19b3d6ec3e408eb4bc01a44f662
+      internalID: -1095542878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_35
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 529
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7257f3fe4e5a5e144b65df8160f98d46
+      internalID: -1232913539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_36
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 529
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 687bcb3b752ae764e8d29911224b9087
+      internalID: 1210889965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_37
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 529
+        width: 46
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46fa23dc4a30ffd40bb1aeb5fe5c4227
+      internalID: -523310929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_38
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 529
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3d24f98e2d366341a34e2d3508f40b8
+      internalID: 105779721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_39
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 529
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 404d48210ef007f46878042c790a7d5d
+      internalID: -738657075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_40
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 481
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: def73b3e498d08c46b5f61ee65d86c88
+      internalID: 460317909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_41
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 481
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 850a59b156e02f2498ec829d312c66ab
+      internalID: -1649658973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_42
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 481
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9aa74ceb5635d254abe69ab6552ef711
+      internalID: 817413079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_43
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 481
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a11c67a805e97be498a7a721612b612b
+      internalID: 107215329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_44
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 481
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 571a361723d79b04289bebc0766f5e32
+      internalID: 1921578438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_45
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 481
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fce6b0c7f579a244480edad6bc15edd5
+      internalID: -1106000445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_46
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 481
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b840be85708039479a4dd376dee40bc
+      internalID: 240730445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_47
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 481
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ba38ba2ff611ad45958f77c1c09ad8d
+      internalID: 1280088922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_48
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 481
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fd587525baecb84782a563ff67053a0
+      internalID: -915241631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_49
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 481
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16c7d1f42bd72a04292498a566304454
+      internalID: -786089557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_50
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 433
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6439496c7d1669e4e93113443a0357b4
+      internalID: -933131268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_51
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 433
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f7e54b9afba70044a2e2969603e9636
+      internalID: -10428657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_52
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 433
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 269b5f193f602054384b24abe46102cc
+      internalID: -1193716816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_53
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 433
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7118584373bdd14f82ffc7f3526dfa1
+      internalID: 1727904863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_54
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 433
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4e773d249423ce438e92fa5d7a1ef2c
+      internalID: 1512195012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_55
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 433
+        width: 46
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9d207c625cb4d9428770dad258d60e2
+      internalID: -1156708730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_56
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 433
+        width: 46
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b7725c0f55aa1a4397123494efbc54a
+      internalID: 917161432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_57
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 433
+        width: 46
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bed55ba65a4f24144817fa82a04df7fa
+      internalID: -127993340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_58
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 433
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d54a4046bc6a0da49a0f73d8da88daef
+      internalID: -1262549590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_59
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 433
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1132f833c3e2d8a488394f9afb1b810e
+      internalID: 18797726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_60
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 385
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a22ee182659175e49bb241048b134ba5
+      internalID: 1253420929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_61
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 385
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 210d1c9f77417cf40b8d7ee330027bf3
+      internalID: 1123958198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_62
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 385
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6695f6c332cd7bd4e8a8b929a540363e
+      internalID: 580169633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_63
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 385
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec5de1677a606094f9b96d86b41e0651
+      internalID: 1496747985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_64
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 385
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7509a4ea271be7d46a70865d5a8cd358
+      internalID: -858649694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_65
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 385
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 034fda73638619a478b8043416be9fe6
+      internalID: -1382604396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_66
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 385
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8498bea346c3ff409c9db2180530e8b
+      internalID: 855008194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_67
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 385
+        width: 46
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bfbf01e64fef984eb56bd2788441b7d
+      internalID: 1349242448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_68
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 385
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: decd21d0bccc63741a1005ff59acea6b
+      internalID: -10461270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_69
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 385
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 189fcdc11ac92ea45801ca626a665264
+      internalID: 201467331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_70
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 336
+        width: 47
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9696cc7a20cb7e64a9f453a132144a4d
+      internalID: -554996322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_71
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 337
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3a54dba5e2b77d499244e2253e74eaa
+      internalID: -569809542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_72
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 337
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c963920c217e37e46b1026f8748d97bd
+      internalID: -519162793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_73
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 337
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c76377d1fee070469a3e234f2a1cc2e
+      internalID: 68286990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_74
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 337
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4447b85f8112c5c4f9942c752bf42aa7
+      internalID: -790065739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_75
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 337
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 743ef5f7c6d3dab44b07170c4d793acf
+      internalID: 1876403815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_76
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 337
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73797f88edd224b45b2d192b38fbc28f
+      internalID: -1397176361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_77
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 337
+        width: 46
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d019da814399fac45a7ab0d7d11e7614
+      internalID: -1254349647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_78
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 337
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a13d0844a446db469cafec617e36f97
+      internalID: 1670157857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_79
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 337
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1dbeed7eaf19cd547bacf93bed12ea93
+      internalID: 1607965378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_80
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 288
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bd02189dda413946a76d269c6436bf5
+      internalID: 1015703115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_81
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 288
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58effbcfb259e844690310255903793a
+      internalID: -667265039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_82
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 288
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 204e85de13816ec4395c94ae27f7a249
+      internalID: -1106746754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_83
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 288
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be8a85e33fe6a544ab0b73e48ee947f5
+      internalID: 1436500662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_84
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 288
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fbb4502f6ea8334fb292dcbfd77491a
+      internalID: 2000316569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_85
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 288
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d8ed5d6d390e114eb6f6c216b5488e0
+      internalID: 819370348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_86
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 288
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7559b41c8d0a162449989581652c2c79
+      internalID: -1373536143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_87
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 288
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 757b1b3dfeca7f04885affb0b5596765
+      internalID: -385400617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_88
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 288
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1daefb08d78f4442b1b7810361a3783
+      internalID: 1385952240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_89
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 288
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a8d27c4715081c40829e75b2b25d8f9
+      internalID: 1930402003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_90
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 240
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8af643f13724b7459728bc1abfd9337
+      internalID: 1495728499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_91
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 240
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 940ff8a9e50e18b4caa6b5ca68b349d5
+      internalID: 1026139233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_92
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 240
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78d5e59f2d263074fa27bbaeee7a0a9b
+      internalID: -1320923140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_93
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 240
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b859b14ee462ee4c9756662d594c321
+      internalID: -360560625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_94
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 240
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a90d9e7a04f799441a78eacd097cbcd5
+      internalID: 593347935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_95
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 240
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2255e32e9e3c911418ac64aa7a9a8e17
+      internalID: -580030951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_96
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 240
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ea4bb7ad000b5848ae064e3bac4263f
+      internalID: 1124137222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_97
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 240
+        width: 46
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 861ef8eed0dda4841afd2bb60fd96d7a
+      internalID: -84882224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_98
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 240
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbc57a3617b45604abbedf8019531fa5
+      internalID: -1351969907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_99
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 240
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cf04750a9e75784498bc39139d8819e
+      internalID: 2102599960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_100
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 192
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31313dfe09bf15d4d829e405065ca9ed
+      internalID: 911227998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_101
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 192
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d3c034e66f3a2e4ab5c8accfdc59edd
+      internalID: -1862167644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_102
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 192
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 950dfa8349d7c1147b87f2f253a3e307
+      internalID: 1422365015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_103
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 192
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f61989808166b8c40929ad9160678592
+      internalID: -2060543835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_104
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 192
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dbd0939c60d5de4faa4ca6c3b8383d0
+      internalID: -301862899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_105
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 192
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e20793b1d7ceeda4b9293d79362a3fe6
+      internalID: 253052359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_106
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 192
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ad7efa814d56a7409d2523e6e719a1c
+      internalID: -1886957022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_107
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 192
+        width: 46
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70dad1a9c35ba7e418e9a38a1dd5c35c
+      internalID: 1533181859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_108
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 192
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de47b6f75f9277245840b83b67e76f46
+      internalID: -209204285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_109
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 192
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7be89631f2e12ca4fae2ef5b532e7f82
+      internalID: 1920827210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_110
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 144
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f41067e427a46714db67c8e0ab4849ce
+      internalID: 1898056890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_111
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 144
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd0be6c65d140d44f83bd61b25418f0d
+      internalID: 1922765087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_112
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 144
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adf1d0cc34c3a3347bf96751b8165c4c
+      internalID: -732144727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_113
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 144
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac532cb9003abc148aa1b91560122229
+      internalID: 1191060812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_114
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 144
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8523f9078110134fb2c440b21dc86ea
+      internalID: -1233299086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_115
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 144
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcce2d14ad6308843b4cd409960e4bdd
+      internalID: -545445677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_116
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 144
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94091362255ed1041b2028b7ef6fb9ea
+      internalID: 1460779644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_117
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 144
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b0e7a5b628d4944fbc90411005aa13f
+      internalID: 1618104510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_118
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 144
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2f536a295e03f84086ed095506f8e43
+      internalID: 1112937551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_119
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 144
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e921800f501b0a4e880c795d1066b2c
+      internalID: 1739105488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_120
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 96
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cef3088abcf8b142b50d7395f8efbe9
+      internalID: -1585354389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_121
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 96
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 201e2e6a2f7341e40aefcb33428b553b
+      internalID: -1994992276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_122
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 96
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a970da0827312334d93aa847248948fc
+      internalID: 1066574427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_123
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 96
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59c64837dca499f4d84734edd211c365
+      internalID: -424415616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_124
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 96
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ecbeeb7fdc873b45925bc8630cbd18b
+      internalID: 870098315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_125
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 96
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e422f29f41c763e4b82275769c526e16
+      internalID: 871716468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_126
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 96
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56beb7b7de9f0504c8e1862cac55cac5
+      internalID: 344292570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_127
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 96
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff0f8ffb4d919224aab43a5dae8963cd
+      internalID: -1926852489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_128
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 96
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad85587644435f74d9200c9d8825eaa1
+      internalID: -1840033297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_129
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 96
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a82f57bb78f99d14999220d49dac5e75
+      internalID: 1031511073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_130
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 47
+        width: 47
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43b9d8cba9006c9449f2b865afed06e0
+      internalID: -123416848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_131
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 47
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88034e87e585f954eb07135c70e9ed6d
+      internalID: -59069305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_132
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 47
+        width: 47
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bfb3a911de4c3d4893c547cc6fcbeb6
+      internalID: 2068230752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_133
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 47
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83e8d2b479f77d74984399968504f13d
+      internalID: 1353838810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_134
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 48
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83b6327bae9d72e439084f2e3066dd1f
+      internalID: -1945997882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_135
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 48
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e35d7c6f6c9d7ad46804430cb54ea36e
+      internalID: -1246523403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_136
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 48
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d861750d632725449658dfe51d37a19
+      internalID: 1286764884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_137
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 48
+        width: 46
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00b614ca5512aa94b87f076157ef1a5a
+      internalID: 26263527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_138
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 48
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b702914416f4bcd4d995fd0d32d07fa6
+      internalID: -789560644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_139
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 48
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d46c6f8750bb5354db6960fdf6a75803
+      internalID: -1946341342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_140
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 0
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2b3d7c5f82a5ff42aa18441b2151354
+      internalID: -1836330131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_141
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 0
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83691d0850a991941b9b5c75f2b37907
+      internalID: 700114503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_142
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 0
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fed98f62a79e09049bd4d8a1cbdad363
+      internalID: -1163364944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_143
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 0
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13fa5774a77a41849b9321e85fdcb47e
+      internalID: -79225713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_144
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 0
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4aa09f44a344faa46a59089766a7a74a
+      internalID: 785457942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_145
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 0
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb9bc216e3828014a96294cffd9d965a
+      internalID: -1950293659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_146
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 0
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0232c88a5a3ace54a84c20f4f02846b3
+      internalID: -1833702336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_147
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 0
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bca04b1497317984a94bc087bce78f46
+      internalID: -986722913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_148
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 0
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 817525a60ca76f4479d2428f56484e07
+      internalID: 1563532838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_149
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 0
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ccf7e252c9ab1e41a18e12bbe9ca548
+      internalID: -2004670007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 9fcb0e559a2d9514ba1e5592c9759b7d
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_0: 403281708
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_1: -101713141
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_10: -861300979
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_100: 911227998
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_101: -1862167644
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_102: 1422365015
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_103: -2060543835
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_104: -301862899
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_105: 253052359
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_106: -1886957022
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_107: 1533181859
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_108: -209204285
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_109: 1920827210
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_11: -1158760886
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_110: 1898056890
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_111: 1922765087
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_112: -732144727
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_113: 1191060812
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_114: -1233299086
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_115: -545445677
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_116: 1460779644
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_117: 1618104510
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_118: 1112937551
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_119: 1739105488
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_12: 1004884509
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_120: -1585354389
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_121: -1994992276
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_122: 1066574427
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_123: -424415616
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_124: 870098315
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_125: 871716468
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_126: 344292570
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_127: -1926852489
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_128: -1840033297
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_129: 1031511073
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_13: 1260923303
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_130: -123416848
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_131: -59069305
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_132: 2068230752
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_133: 1353838810
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_134: -1945997882
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_135: -1246523403
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_136: 1286764884
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_137: 26263527
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_138: -789560644
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_139: -1946341342
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_14: -124387153
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_140: -1836330131
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_141: 700114503
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_142: -1163364944
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_143: -79225713
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_144: 785457942
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_145: -1950293659
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_146: -1833702336
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_147: -986722913
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_148: 1563532838
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_149: -2004670007
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_15: -1858550937
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_16: -2038308596
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_17: -2117880652
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_18: -1478994195
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_19: -1189183363
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_2: 1640706769
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_20: 1144960397
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_21: 1735500371
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_22: 491622516
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_23: -712332338
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_24: 1379365157
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_25: -333907660
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_26: 1291631877
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_27: -2117322753
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_28: 49774823
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_29: -1917608688
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_3: 1869460960
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_30: -2012409836
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_31: -1658110769
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_32: 267095460
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_33: 2032256152
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_34: -1095542878
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_35: -1232913539
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_36: 1210889965
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_37: -523310929
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_38: 105779721
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_39: -738657075
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_4: 2064826024
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_40: 460317909
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_41: -1649658973
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_42: 817413079
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_43: 107215329
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_44: 1921578438
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_45: -1106000445
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_46: 240730445
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_47: 1280088922
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_48: -915241631
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_49: -786089557
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_5: -1778540385
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_50: -933131268
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_51: -10428657
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_52: -1193716816
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_53: 1727904863
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_54: 1512195012
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_55: -1156708730
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_56: 917161432
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_57: -127993340
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_58: -1262549590
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_59: 18797726
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_6: 2144785855
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_60: 1253420929
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_61: 1123958198
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_62: 580169633
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_63: 1496747985
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_64: -858649694
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_65: -1382604396
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_66: 855008194
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_67: 1349242448
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_68: -10461270
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_69: 201467331
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_7: 1728789542
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_70: -554996322
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_71: -569809542
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_72: -519162793
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_73: 68286990
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_74: -790065739
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_75: 1876403815
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_76: -1397176361
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_77: -1254349647
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_78: 1670157857
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_79: 1607965378
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_8: -465585434
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_80: 1015703115
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_81: -667265039
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_82: -1106746754
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_83: 1436500662
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_84: 2000316569
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_85: 819370348
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_86: -1373536143
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_87: -385400617
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_88: 1385952240
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_89: 1930402003
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_9: -312146119
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_90: 1495728499
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_91: 1026139233
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_92: -1320923140
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_93: -360560625
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_94: 593347935
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_95: -580030951
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_96: 1124137222
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_97: -84882224
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_98: -1351969907
+      translucent-glass-energy-futur-unscreen-ezgif.com-optipng_720_99: 2102599960
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

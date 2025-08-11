@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1237533622490412815
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8515992087168597404}
+  - component: {fileID: 8409330306935733258}
+  - component: {fileID: 1078057711182417881}
+  - component: {fileID: 2392606399670186520}
+  m_Layer: 0
+  m_Name: DeviceMenuBuilder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8515992087168597404
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237533622490412815}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8409330306935733258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237533622490412815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b175c3b3666da463e82df70e590fc51e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _canvasTransform: {fileID: 8515992087168597404}
+  _deviceMenuCanvasPrefab: {fileID: 4358217622452907907, guid: 6f30df64450254fa18a70f5684df1c65,
+    type: 3}
+  _tabDynamicComponentSpawner: {fileID: 1078057711182417881}
+--- !u!114 &1078057711182417881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237533622490412815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a7ea3698a8b54cc19b04c7c2bf91711, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sideMenuComponentResources: {fileID: 11400000, guid: 71eec6223954947e6944741aae4b2b4a,
+    type: 2}
+--- !u!114 &2392606399670186520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237533622490412815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a2ca6cfb06e54144af037ec499a81f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: 
+  <TabTypes>k__BackingField: 5
+  <DescriptionTitle>k__BackingField: 
+  <DescriptionBody>k__BackingField: 
+  <SafetyProceduresTitle>k__BackingField: 
+  <SafetyProceduresBody>k__BackingField: 
+  <ReadingsComponents>k__BackingField: []
+  <ControlsComponents>k__BackingField: []
+  references:
+    version: 2
+    RefIds: []

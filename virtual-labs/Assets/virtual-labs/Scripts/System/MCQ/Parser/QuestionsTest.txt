@@ -1,0 +1,157 @@
+{
+    "1": {
+        "QuestionTxt": "Was the experience good?",
+        "IsMultipleChoice": false,
+        "TriggerType": "SubmitFeedback",
+        "ResponseType": "SimpleFeedbackQuestion",
+        "CorrectAnswer": [
+            {
+                "Answer": "Yes",
+                "Explanation": "This is the positive feedback."
+            }
+        ],
+        "WrongAnswers": [
+            {
+                "Answer": "No",
+                "Explanation": "This is the negative feedback."
+            },
+            {
+                "Answer": "Not Sure",
+                "Explanation": "Uncertainty doesn't provide actionable feedback."
+            }
+        ]
+    },
+    "2": {
+        "QuestionTxt": "Do you like our new design?",
+        "IsMultipleChoice": false,
+        "TriggerType": "SubmitFeedback",
+        "ResponseType": "SimpleFeedbackQuestion",
+        "CorrectAnswer": [
+            {
+                "Answer": "Yes",
+                "Explanation": "Thank you for appreciating our design."
+            }
+        ],
+        "WrongAnswers": [
+            {
+                "Answer": "No",
+                "Explanation": "We are sorry the design did not meet your expectations."
+            },
+            {
+                "Answer": "Neutral",
+                "Explanation": "Neutral feedback is noted but less actionable."
+            }
+        ]
+    },
+    "3": {
+        "QuestionTxt": "How satisfied are you with the service?",
+        "IsMultipleChoice": false,
+        "TriggerType": "SubmitFeedback",
+        "ResponseType": "UnifiedFeedbackQuestion",
+        "CorrectAnswer": [
+            {
+                "Answer": "Very Satisfied"
+            }
+        ],
+        "WrongAnswers": [
+            {
+                "Answer": "Unsatisfied"
+            },
+            {
+                "Answer": "Neutral"
+            },
+            {
+                "Answer": "Very Unsatisfied"
+            }
+        ],
+        "UnifiedData": {
+            "CorrectExplanation": "Thank you for your positive feedback! We strive to offer great service.",
+            "IncorrectExplanation": "We apologize for your experience and will work to improve."
+        }
+    },
+    "4": {
+        "QuestionTxt": "Would you recommend our service?",
+        "IsMultipleChoice": false,
+        "TriggerType": "SubmitFeedback",
+        "ResponseType": "UnifiedFeedbackQuestion",
+        "CorrectAnswer": [
+            {
+                "Answer": "Yes"
+            }
+        ],
+        "WrongAnswers": [
+            {
+                "Answer": "No"
+            },
+            {
+                "Answer": "Not Sure"
+            },
+            {
+                "Answer": "Nope"
+            },
+            {
+                "Answer": "Nah"
+            }
+        ],
+        "UnifiedData": {
+            "CorrectExplanation": "Thank you for the recommendation!",
+            "IncorrectExplanation": "We will strive to improve."
+        }
+    },
+    "5": {
+        "QuestionTxt": "What feature do you like the most?",
+        "IsMultipleChoice": false,
+        "TriggerType": "SubmitFeedback",
+        "ResponseType": "SpecificFeedbackQuestion",
+        "CorrectAnswer": [
+            {
+                "Answer": "Ease of Use",
+                "Explanation": "Thank you for recognizing our focus on user-friendly design."
+            }
+        ],
+        "WrongAnswers": [
+            {
+                "Answer": "Complex Interface",
+                "Explanation": "We aim to reduce complexity in future updates."
+            },
+            {
+                "Answer": "Unintuitive Design",
+                "Explanation": "We will focus on making the design more intuitive."
+            },
+            {
+                "Answer": "Unintuitive Design",
+                "Explanation": "We will focus on making the design more intuitive."
+            },
+            {
+                "Answer": "Unintuitive Design",
+                "Explanation": "We will focus on making the design more intuitive."
+            },
+            {
+                "Answer": "Unintuitive Design",
+                "Explanation": "We will focus on making the design more intuitive."
+            }
+        ]
+    },
+    "6": {
+        "QuestionTxt": "What could we improve?",
+        "IsMultipleChoice": false,
+        "TriggerType": "SubmitFeedback",
+        "ResponseType": "SpecificFeedbackQuestion",
+        "CorrectAnswer": [
+            {
+                "Answer": "Faster Load Times",
+                "Explanation": "Thank you for pointing out performance as an improvement area."
+            }
+        ],
+        "WrongAnswers": [
+            {
+                "Answer": "Nothing",
+                "Explanation": "We appreciate your confidence but strive for constant improvement."
+            },
+            {
+                "Answer": "Not Sure",
+                "Explanation": "Feedback helps us improve, so any input is valuable."
+            }
+        ]
+    }
+}

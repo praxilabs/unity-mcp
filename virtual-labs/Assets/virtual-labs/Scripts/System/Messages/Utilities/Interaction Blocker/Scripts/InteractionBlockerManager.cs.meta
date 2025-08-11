@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: b46e3e555b7ddf14a89c0ca3ee16ff0e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - interactionBlockerPrefab: {fileID: 8556183195338843548, guid: e2d98187f1e20904596493bae058f6db,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

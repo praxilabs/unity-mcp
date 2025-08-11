@@ -1,0 +1,654 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7716678248047823455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 887dff5612468b84a8f641cdf7b4b6b7, type: 3}
+  m_Name: xyz
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 712, y: 232}
+  size: {x: 260, y: 110}
+  ports:
+    keys:
+    - get
+    - set
+    values:
+    - _fieldName: get
+      _node: {fileID: -7716678248047823455}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: set
+      _node: {fileID: -7716678248047823455}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  nodeCollapsed: 0
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: s
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  data:
+    name: xyz
+    previousType: 2
+    type: 2
+    intValue: 0
+    floatValue: 0
+    stringValue: 
+    boolValue: 0
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    vector2Value: {x: 0, y: 0}
+    vector3Value: {x: 0, y: 0, z: 0}
+    objectValue: {fileID: 0}
+--- !u!114 &-5168191093898193103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74a2950c661a8574e82355c9a74c840b, type: 3}
+  m_Name: Tools Input Fiel
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 1432, y: -264}
+  size: {x: 300, y: 281}
+  ports:
+    keys:
+    - entry
+    - exit
+    - desiredValueInput
+    values:
+    - _fieldName: entry
+      _node: {fileID: -5168191093898193103}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: -3204012136075344346}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -5168191093898193103}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -3447472079674979901}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: desiredValueInput
+      _node: {fileID: -5168191093898193103}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: hS9GbLpT
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _targetName:
+    prefabName: ToolsStage1Tools
+    childName: CubeTool
+  clickableObject: {fileID: 0}
+  desiredValueInput: 3.5
+  unit: 0
+  uiPosition: {x: 5.1, y: 1.8, z: -0.8}
+--- !u!114 &-3447472079674979901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a492ae8e9b865a4e8a4d119e6297208, type: 3}
+  m_Name: Composite Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 1560, y: 200}
+  size: {x: 300, y: 201}
+  ports:
+    keys:
+    - entry
+    - routes
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: -3447472079674979901}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: -5168191093898193103}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: routes
+      _node: {fileID: -3447472079674979901}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -2502134993977972687}
+        reroutePoints: []
+      - fieldName: entry
+        node: {fileID: 7385170501467991526}
+        reroutePoints: []
+      - fieldName: entry
+        node: {fileID: 8862220330896517965}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -3447472079674979901}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: SMTEzlJg
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  resetSwitch: 0
+  executeOnce: 0
+--- !u!114 &-3204012136075344346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83ae8cc27a1e401448dd189fea91337d, type: 3}
+  m_Name: Tools Interactions Menu Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 584, y: -184}
+  size: {x: 300, y: 241}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: -3204012136075344346}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: -627687175386110470}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -3204012136075344346}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -5168191093898193103}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: 5E0eTk1P
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _targetName:
+    prefabName: ToolsStage1Tools
+    childName: CubeTool
+  clickableObject: {fileID: 0}
+  ButtonToEnable: 0
+  ButtonToActivate: Shake
+--- !u!114 &-2502134993977972687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83ae8cc27a1e401448dd189fea91337d, type: 3}
+  m_Name: Tools Interactions Menu Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 776, y: 616}
+  size: {x: 300, y: 241}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: -2502134993977972687}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: routes
+        node: {fileID: -3447472079674979901}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -2502134993977972687}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: HTA8KJiO
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _targetName:
+    prefabName: ToolsStage1Tools
+    childName: SphereTool
+  clickableObject: {fileID: 0}
+  ButtonToEnable: 1
+  ButtonToActivate: Wash
+--- !u!114 &-627687175386110470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd05017c65f99594b8342ee749a4ba14, type: 3}
+  m_Name: Click Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 180, y: 263}
+  size: {x: 300, y: 201}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: -627687175386110470}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: 7143210925620659542}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -627687175386110470}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -3204012136075344346}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: fB2FSh1b
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _targetName:
+    prefabName: ToolsStage1
+    childName: CubeTool
+  clickableObject: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23517ab23585b6d4daf29240f75364e5, type: 3}
+  m_Name: ToolsStage1Steps
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 7143210925620659542}
+  - {fileID: -3204012136075344346}
+  - {fileID: 7851590811370384432}
+  - {fileID: -627687175386110470}
+  - {fileID: -3447472079674979901}
+  - {fileID: 7385170501467991526}
+  - {fileID: 8862220330896517965}
+  - {fileID: -2502134993977972687}
+  - {fileID: -5168191093898193103}
+  - {fileID: -7716678248047823455}
+  dataRegistries:
+  - {fileID: 11400000, guid: 174e314a91df67b429bd2632e991689b, type: 2}
+  groups: []
+  runningGraphs: []
+  originalInputColors: []
+  originalOutputColors: []
+  hiddenPortsColor: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 0.11764706}
+  graphID: uCjMV8lD
+  globalVariables:
+  - name: xyz
+    previousType: 2
+    type: 2
+    intValue: 0
+    floatValue: 0
+    stringValue: 
+    boolValue: 0
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    vector2Value: {x: 0, y: 0}
+    vector3Value: {x: 0, y: 0, z: 0}
+    objectValue: {fileID: 0}
+  firstStep: {fileID: 7851590811370384432}
+  isOpenedFromNode: 0
+--- !u!114 &7143210925620659542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83ae8cc27a1e401448dd189fea91337d, type: 3}
+  m_Name: Tools Interactions Menu Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: -232, y: 88}
+  size: {x: 300, y: 241}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 7143210925620659542}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: 7851590811370384432}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 7143210925620659542}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -627687175386110470}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: e9Wt3Gln
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _targetName:
+    prefabName: ToolsStage1Tools
+    childName: SphereTool
+  clickableObject: {fileID: 0}
+  ButtonToEnable: 2
+  ButtonToActivate: Discard
+--- !u!114 &7385170501467991526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83ae8cc27a1e401448dd189fea91337d, type: 3}
+  m_Name: Tools Interactions Menu Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 1256, y: 584}
+  size: {x: 300, y: 241}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 7385170501467991526}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: routes
+        node: {fileID: -3447472079674979901}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 7385170501467991526}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: yRk6YbID
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _targetName:
+    prefabName: ToolsStage1Tools
+    childName: SphereTool
+  clickableObject: {fileID: 0}
+  ButtonToEnable: 0
+  ButtonToActivate: Shake
+--- !u!114 &7851590811370384432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd05017c65f99594b8342ee749a4ba14, type: 3}
+  m_Name: Click Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: -680, y: -88}
+  size: {x: 300, y: 201}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 7851590811370384432}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 7851590811370384432}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 7143210925620659542}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: 1gk2SYZW
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _targetName:
+    prefabName: ToolsStage1
+    childName: SphereTool
+  clickableObject: {fileID: 0}
+--- !u!114 &8862220330896517965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83ae8cc27a1e401448dd189fea91337d, type: 3}
+  m_Name: Tools Interactions Menu Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 1800, y: 568}
+  size: {x: 300, y: 241}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 8862220330896517965}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: routes
+        node: {fileID: -3447472079674979901}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 8862220330896517965}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: bJsLOid8
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _targetName:
+    prefabName: ToolsStage1Tools
+    childName: CubeTool
+  clickableObject: {fileID: 0}
+  ButtonToEnable: 2
+  ButtonToActivate: Discard

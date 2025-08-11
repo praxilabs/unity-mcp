@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a2ca6cfb06e54144af037ec499a81f2, type: 3}
+  m_Name: DSLR
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: DSLR
+  <TabTypes>k__BackingField: 10
+  <ReadingsComponents>k__BackingField: []
+  <ControlsComponents>k__BackingField:
+  - rid: 7312685397763948550
+  - rid: 7312685397763948551
+  - rid: 7312685397763948552
+  - rid: 5114808298731732992
+  - rid: 5114808298731732993
+  references:
+    version: 2
+    RefIds:
+    - rid: 5114808298731732992
+      type: {class: CheckboxControlsComponent, ns: Praxilabs.DeviceSideMenu, asm: Assembly-CSharp}
+      data:
+        <Name>k__BackingField: Checkbox_Lol
+        <ComponentLabel>k__BackingField: 
+        <IsTrue>k__BackingField: 1
+    - rid: 5114808298731732993
+      type: {class: CheckboxControlsComponent, ns: Praxilabs.DeviceSideMenu, asm: Assembly-CSharp}
+      data:
+        <Name>k__BackingField: Checkbox_DSLR
+        <ComponentLabel>k__BackingField: 
+        <IsTrue>k__BackingField: 1
+    - rid: 7312685397763948550
+      type: {class: SliderControlsComponent, ns: Praxilabs.DeviceSideMenu, asm: Assembly-CSharp}
+      data:
+        <Name>k__BackingField: Unique_Slider
+        <ComponentLabel>k__BackingField: Text
+        <Symbol>k__BackingField: N
+        <MinValue>k__BackingField: 0
+        <MaxValue>k__BackingField: 0
+        <ShouldDispayScreenValue>k__BackingField: 0
+    - rid: 7312685397763948551
+      type: {class: DropdownControlsComponent, ns: Praxilabs.DeviceSideMenu, asm: Assembly-CSharp}
+      data:
+        <Name>k__BackingField: Dropdown_Unique
+        <ComponentLabel>k__BackingField: 
+        <Options>k__BackingField:
+        - OptionA
+        - OptionB
+    - rid: 7312685397763948552
+      type: {class: TextInputFieldControlsComponent, ns: Praxilabs.DeviceSideMenu,
+        asm: Assembly-CSharp}
+      data:
+        <Name>k__BackingField: Txt
+        <ComponentLabel>k__BackingField: 

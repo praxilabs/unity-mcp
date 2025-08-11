@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df835ed6817804c4baab5d9f76257ae3, type: 3}
+  m_Name: Informative Messages Data
+  m_EditorClassIdentifier: 
+  _headerMessageImage: {fileID: 21300000, guid: 9154f1c0814d6470683311026c74b5e1,
+    type: 3}
+  _headerMessageTitleText: This Message Requires Action
+  _headerMessageBodyText: Test Header ASDWER / Test Header ASDWERTest Header ASDWER
+    / Test Header ASDWER
+  _moreInfoText: Kindly watch steps carefully / Kindly watch steps carefullyKindly
+    watch steps carefully / Kindly watch steps carefullyKindly watch steps carefully
+    / Kindly watch steps carefullyKindly watch steps carefully / Kindly watch steps
+    carefullyKindly watch steps carefully / Kindly watch steps carefully
+  _moreInfoTitleImage: {fileID: 0}
+  _moreInfoBodyVideo: {fileID: 5381493257548529835, guid: e8a53b2fdec7faa4c84b55f2ccb680cc,
+    type: 3}
+  _acceptButtonText: OK
+  _ignoreButtonText: Dismiss
+  _sliderText: I've watched the video

@@ -1,36 +1,17 @@
-# AI-related files
-.cursorrules
-.cursorignore
-.windsurf
-.codeiumignore
-CLAUDE.md
+# Minimal Unity ignores for embedded `virtual-labs`
 
-# Code-copy related files
-.clipignore
+# Unity generated folders
+virtual-labs/Library/
+virtual-labs/Temp/
+virtual-labs/Logs/
+virtual-labs/Obj/
+virtual-labs/Build/
+virtual-labs/UserSettings/
 
-# Python-generated files
-__pycache__/
-__pycache__.meta
-build/
-dist/
-wheels/
-*.egg-info
-UnityMcpServer/**/*.meta
-UnityMcpServer.meta
+# Lock files
+virtual-labs/Packages/packages-lock.json
 
-# Virtual environments
-.venv
+# Long-path plugin content causing add failures on Windows
+virtual-labs/Assets/Plugins/UltimateCleanGUIPack/**
 
-# Unity Editor
-*.unitypackage
-*.asset
-UnityMcpBridge.meta
-LICENSE.meta
-README.md.meta
-CONTRIBUTING.md.meta
 
-# IDE
-.idea/
-.vscode/
-.aider*
-.DS_Store*

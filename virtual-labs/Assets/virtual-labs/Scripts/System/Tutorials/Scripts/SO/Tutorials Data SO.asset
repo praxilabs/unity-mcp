@@ -1,0 +1,651 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23afc91d8b9f9a54aa5b1a7b7c972301, type: 3}
+  m_Name: Tutorials Data SO
+  m_EditorClassIdentifier: 
+  _tutorialModules:
+  - _title: Exploring Interfaces
+    Status: 1
+    _data:
+    - _title: Lab Controls
+      _info: Use the lab controls to move around the virtual lab. You can easily
+        explore different areas and interact with key points to make sure you're
+        completing each part of the experiment.
+      _cardPositionPlaceholder: {x: 0, y: 0}
+      _cardAnchorMin: {x: 0.5, y: 0.5}
+      _cardAnchorMax: {x: 0.5, y: 0.5}
+      _imageData:
+        _image: {fileID: 0}
+        _imageDimensions: {x: 0, y: 0}
+        _imagePlaceholderPosition: {x: 0, y: 0}
+        _imageAnchorMin: {x: 0, y: 0}
+        _imageAnchorMax: {x: 0, y: 0}
+        _arrowImagePosition: {x: 0, y: -38.8}
+        _arrowImageAngle: 0
+      _animationData:
+        _canAnimate: 1
+        _isReversed: 0
+        _animationStartPosition: {x: 0, y: 20}
+    - _title: Oxi
+      _info: "Oxi is your helpful lab companion! It provides clear instructions and
+        hints, offering feedback along the way. Helping you understand if you\u2019re
+        on the right track or if something needs adjustment."
+      _cardPositionPlaceholder: {x: 360, y: 525}
+      _cardAnchorMin: {x: 0, y: 0}
+      _cardAnchorMax: {x: 0, y: 0}
+      _imageData:
+        _image: {fileID: 0}
+        _imageDimensions: {x: 0, y: 0}
+        _imagePlaceholderPosition: {x: 0, y: 0}
+        _imageAnchorMin: {x: 0, y: 0}
+        _imageAnchorMax: {x: 0, y: 0}
+        _arrowImagePosition: {x: -223, y: -38.8}
+        _arrowImageAngle: 0
+      _animationData:
+        _canAnimate: 1
+        _isReversed: 0
+        _animationStartPosition: {x: 360, y: 545}
+    - _title: Settings
+      _info: "The progress bar keeps you informed about your progress in both the
+        current stage and the entire experiment. It gives you a quick visual of how
+        far you\u2019ve come and how much is left to do."
+      _cardPositionPlaceholder: {x: 360, y: -474}
+      _cardAnchorMin: {x: 0, y: 1}
+      _cardAnchorMax: {x: 0, y: 1}
+      _imageData:
+        _image: {fileID: 0}
+        _imageDimensions: {x: 0, y: 0}
+        _imagePlaceholderPosition: {x: 0, y: 0}
+        _imageAnchorMin: {x: 0, y: 0}
+        _imageAnchorMax: {x: 0, y: 0}
+        _arrowImagePosition: {x: -223, y: 448}
+        _arrowImageAngle: 180
+      _animationData:
+        _canAnimate: 1
+        _isReversed: 0
+        _animationStartPosition: {x: 360, y: -494}
+    - _title: Stages/Progress bar
+      _info: The settings menu lets you adjust experiment options like sound and
+        blinking to suit your preferences. You can also access helpful documents
+        to guide you through the experiment, and easily restart or exit if needed.
+      _cardPositionPlaceholder: {x: -566, y: -269}
+      _cardAnchorMin: {x: 1, y: 1}
+      _cardAnchorMax: {x: 1, y: 1}
+      _imageData:
+        _image: {fileID: 0}
+        _imageDimensions: {x: 0, y: 0}
+        _imagePlaceholderPosition: {x: 0, y: 0}
+        _imageAnchorMin: {x: 0, y: 0}
+        _imageAnchorMax: {x: 0, y: 0}
+        _arrowImagePosition: {x: 319, y: 367}
+        _arrowImageAngle: 90
+      _animationData:
+        _canAnimate: 1
+        _isReversed: 1
+        _animationStartPosition: {x: -546, y: -269}
+    - _title: Side elements
+      _info: The side menu is your tool hub, where you can find a stopwatch to track
+        time accurately, a button to record your data, and a table to view and manage
+        everything you've recorded throughout the experiment.
+      _cardPositionPlaceholder: {x: -461, y: -135}
+      _cardAnchorMin: {x: 1, y: 0.5}
+      _cardAnchorMax: {x: 1, y: 0.5}
+      _imageData:
+        _image: {fileID: 21300000, guid: 0a152a9f691b9a1429a4f920a11a3a4f, type: 3}
+        _imageDimensions: {x: 123, y: 263}
+        _imagePlaceholderPosition: {x: -65, y: -27}
+        _imageAnchorMin: {x: 1, y: 0.5}
+        _imageAnchorMax: {x: 1, y: 0.5}
+        _arrowImagePosition: {x: 319, y: 367}
+        _arrowImageAngle: 90
+      _animationData:
+        _canAnimate: 1
+        _isReversed: 1
+        _animationStartPosition: {x: -441, y: -135}
+  - _title: Settings
+    Status: 1
+    _data:
+    - _title: Open the Settings Menu
+      _info: 'Click the gear icon to access:  Lab Manual: Experiment guide. Enrichment
+        Materials: Extra learning resources. Animated Video: Visual overview. Walkthrough:
+        Step-by-step help.'
+      _cardPositionPlaceholder: {x: 351, y: -474}
+      _cardAnchorMin: {x: 0, y: 1}
+      _cardAnchorMax: {x: 0, y: 1}
+      _imageData:
+        _image: {fileID: 0}
+        _imageDimensions: {x: 0, y: 0}
+        _imagePlaceholderPosition: {x: 0, y: 0}
+        _imageAnchorMin: {x: 0, y: 0}
+        _imageAnchorMax: {x: 0, y: 0}
+        _arrowImagePosition: {x: -223, y: 448}
+        _arrowImageAngle: 180
+      _animationData:
+        _canAnimate: 1
+        _isReversed: 1
+        _animationStartPosition: {x: 351, y: -454}
+  - _title: Lab Controls
+    Status: 0
+    _data:
+    - _title: Default View
+      _info: '"Click the ""Default View"" button to reset the camera. "'
+      _cardPositionPlaceholder: {x: 0, y: 0}
+      _cardAnchorMin: {x: 0.5, y: 0.5}
+      _cardAnchorMax: {x: 0.5, y: 0.5}
+      _imageData:
+        _image: {fileID: 21300000, guid: 85d24f0f5eae44b1589331f3af2808a3, type: 3}
+        _imageDimensions: {x: 96, y: 96}
+        _imagePlaceholderPosition: {x: 0, y: -426.36}
+        _imageAnchorMin: {x: 0.5, y: 0.5}
+        _imageAnchorMax: {x: 0.5, y: 0.5}
+        _arrowImagePosition: {x: 0, y: -35}
+        _arrowImageAngle: 0
+      _animationData:
+        _canAnimate: 1
+        _isReversed: 0
+        _animationStartPosition: {x: 0, y: 20}
+    - _title: 'Camera Movement:'
+      _info: Use the right and left arrows to move the camera.
+      _cardPositionPlaceholder: {x: 0, y: 0}
+      _cardAnchorMin: {x: 0.5, y: 0.5}
+      _cardAnchorMax: {x: 0.5, y: 0.5}
+      _imageData:
+        _image: {fileID: 0}
+        _imageDimensions: {x: 0, y: 0}
+        _imagePlaceholderPosition: {x: 0, y: 0}
+        _imageAnchorMin: {x: 0, y: 0}
+        _imageAnchorMax: {x: 0, y: 0}
+        _arrowImagePosition: {x: 0, y: -35}
+        _arrowImageAngle: 0
+      _animationData:
+        _canAnimate: 0
+        _isReversed: 0
+        _animationStartPosition: {x: 0, y: 20}
+    - _title: Zoom Controls
+      _info: Use the plus (+) and minus (-) signs to zoom in or out.
+      _cardPositionPlaceholder: {x: 0, y: 0}
+      _cardAnchorMin: {x: 0.5, y: 0.5}
+      _cardAnchorMax: {x: 0.5, y: 0.5}
+      _imageData:
+        _image: {fileID: 0}
+        _imageDimensions: {x: 0, y: 0}
+        _imagePlaceholderPosition: {x: 0, y: 0}
+        _imageAnchorMin: {x: 0, y: 0}
+        _imageAnchorMax: {x: 0, y: 0}
+        _arrowImagePosition: {x: 0, y: -35}
+        _arrowImageAngle: 0
+      _animationData:
+        _canAnimate: 0
+        _isReversed: 0
+        _animationStartPosition: {x: 0, y: 20}
+    - _title: Wide Lab View
+      _info: Click the man icon to access a wide lab view with points of interest.
+      _cardPositionPlaceholder: {x: 0, y: 0}
+      _cardAnchorMin: {x: 0.5, y: 0.5}
+      _cardAnchorMax: {x: 0.5, y: 0.5}
+      _imageData:
+        _image: {fileID: 0}
+        _imageDimensions: {x: 0, y: 0}
+        _imagePlaceholderPosition: {x: 0, y: 0}
+        _imageAnchorMin: {x: 0, y: 0}
+        _imageAnchorMax: {x: 0, y: 0}
+        _arrowImagePosition: {x: 0, y: -35}
+        _arrowImageAngle: 0
+      _animationData:
+        _canAnimate: 0
+        _isReversed: 0
+        _animationStartPosition: {x: 0, y: 20}
+    - _title: Free Movement
+      _info: Move forward, backward, left, or right using the arrows around the Default
+        View button.
+      _cardPositionPlaceholder: {x: 0, y: 0}
+      _cardAnchorMin: {x: 0.5, y: 0.5}
+      _cardAnchorMax: {x: 0.5, y: 0.5}
+      _imageData:
+        _image: {fileID: 0}
+        _imageDimensions: {x: 0, y: 0}
+        _imagePlaceholderPosition: {x: 0, y: 0}
+        _imageAnchorMin: {x: 0, y: 0}
+        _imageAnchorMax: {x: 0, y: 0}
+        _arrowImagePosition: {x: 0, y: -35}
+        _arrowImageAngle: 0
+      _animationData:
+        _canAnimate: 0
+        _isReversed: 0
+        _animationStartPosition: {x: 0, y: 20}
+    - _title: Rotating the View
+      _info: Hold right-click and drag to freely rotate the view.
+      _cardPositionPlaceholder: {x: 0, y: 0}
+      _cardAnchorMin: {x: 0.5, y: 0.5}
+      _cardAnchorMax: {x: 0.5, y: 0.5}
+      _imageData:
+        _image: {fileID: 0}
+        _imageDimensions: {x: 0, y: 0}
+        _imagePlaceholderPosition: {x: 0, y: 0}
+        _imageAnchorMin: {x: 0, y: 0}
+        _imageAnchorMax: {x: 0, y: 0}
+        _arrowImagePosition: {x: 0, y: -35}
+        _arrowImageAngle: 0
+      _animationData:
+        _canAnimate: 0
+        _isReversed: 0
+        _animationStartPosition: {x: 0, y: 20}
+  - _title: Hints
+    Status: 1
+    _data:
+    - _title: Access Instructions and Hints
+      _info: Click on Oxi for step-specific instructions and hints.
+      _cardPositionPlaceholder: {x: 355.66, y: 525}
+      _cardAnchorMin: {x: 0, y: 0}
+      _cardAnchorMax: {x: 0, y: 0}
+      _imageData:
+        _image: {fileID: 0}
+        _imageDimensions: {x: 0, y: 0}
+        _imagePlaceholderPosition: {x: 0, y: 0}
+        _imageAnchorMin: {x: 0, y: 0}
+        _imageAnchorMax: {x: 0, y: 0}
+        _arrowImagePosition: {x: -219, y: -41}
+        _arrowImageAngle: 0
+      _animationData:
+        _canAnimate: 1
+        _isReversed: 0
+        _animationStartPosition: {x: 355.66, y: 545}
+    - _title: View All Steps
+      _info: Click "All Steps" to view a list of steps and hints. Select a step to
+        navigate directly to it.
+      _cardPositionPlaceholder: {x: -443, y: 552}
+      _cardAnchorMin: {x: 0.5, y: 0}
+      _cardAnchorMax: {x: 0.5, y: 0}
+      _imageData:
+        _image: {fileID: 21300000, guid: ac57205381ead4643bb7c81888478ab8, type: 3}
+        _imageDimensions: {x: 1158, y: 256}
+        _imagePlaceholderPosition: {x: -35, y: 167}
+        _imageAnchorMin: {x: 0.5, y: 0}
+        _imageAnchorMax: {x: 0.5, y: 0}
+        _arrowImagePosition: {x: 0, y: -38}
+        _arrowImageAngle: 0
+      _animationData:
+        _canAnimate: 1
+        _isReversed: 0
+        _animationStartPosition: {x: -443, y: 572}
+    - _title: Hints Checkpoints
+      _info: '"Completed steps: solid dark purple circle with a checkmark. Current
+        step: dotted circle. Upcoming steps: empty circles. Click any step to navigate
+        directly."'
+      _cardPositionPlaceholder: {x: -443, y: 552}
+      _cardAnchorMin: {x: 0.5, y: 0}
+      _cardAnchorMax: {x: 0.5, y: 0}
+      _imageData:
+        _image: {fileID: 21300000, guid: ac57205381ead4643bb7c81888478ab8, type: 3}
+        _imageDimensions: {x: 1158, y: 256}
+        _imagePlaceholderPosition: {x: -35, y: 167}
+        _imageAnchorMin: {x: 0.5, y: 0}
+        _imageAnchorMax: {x: 0.5, y: 0}
+        _arrowImagePosition: {x: 0, y: -38}
+        _arrowImageAngle: 0
+      _animationData:
+        _canAnimate: 0
+        _isReversed: 1
+        _animationStartPosition: {x: -443, y: 532}
+    - _title: Next and Back Buttons
+      _info: Use Next and Back buttons to navigate between steps.
+      _cardPositionPlaceholder: {x: -443, y: 552}
+      _cardAnchorMin: {x: 0.5, y: 0}
+      _cardAnchorMax: {x: 0.5, y: 0}
+      _imageData:
+        _image: {fileID: 21300000, guid: ac57205381ead4643bb7c81888478ab8, type: 3}
+        _imageDimensions: {x: 1158, y: 256}
+        _imagePlaceholderPosition: {x: -35, y: 167}
+        _imageAnchorMin: {x: 0.5, y: 0}
+        _imageAnchorMax: {x: 0.5, y: 0}
+        _arrowImagePosition: {x: 0, y: -38}
+        _arrowImageAngle: 0
+      _animationData:
+        _canAnimate: 0
+        _isReversed: 1
+        _animationStartPosition: {x: -443, y: 532}
+  - _title: Stages Progress
+    Status: 0
+    _data:
+    - _title: Circular Progress Bar
+      _info: The Progress Circle in the upper-right corner dynamically tracks your
+        experiment advancement.
+      _cardPositionPlaceholder: {x: -566, y: -269}
+      _cardAnchorMin: {x: 1, y: 1}
+      _cardAnchorMax: {x: 1, y: 1}
+      _imageData:
+        _image: {fileID: 0}
+        _imageDimensions: {x: 0, y: 0}
+        _imagePlaceholderPosition: {x: 0, y: 0}
+        _imageAnchorMin: {x: 1, y: 1}
+        _imageAnchorMax: {x: 1, y: 1}
+        _arrowImagePosition: {x: 319, y: 367}
+        _arrowImageAngle: 90
+      _animationData:
+        _canAnimate: 1
+        _isReversed: 0
+        _animationStartPosition: {x: -586, y: -269}
+    - _title: Orange Ring
+      _info: The Orange Ring shows progress within the current stage.
+      _cardPositionPlaceholder: {x: -566, y: -269}
+      _cardAnchorMin: {x: 1, y: 1}
+      _cardAnchorMax: {x: 1, y: 1}
+      _imageData:
+        _image: {fileID: 0}
+        _imageDimensions: {x: 0, y: 0}
+        _imagePlaceholderPosition: {x: 0, y: 0}
+        _imageAnchorMin: {x: 1, y: 1}
+        _imageAnchorMax: {x: 1, y: 1}
+        _arrowImagePosition: {x: 319, y: 367}
+        _arrowImageAngle: 90
+      _animationData:
+        _canAnimate: 0
+        _isReversed: 0
+        _animationStartPosition: {x: 0, y: 0}
+    - _title: Indigo Ring
+      _info: The Indigo Ring displays your total progress across all stages.
+      _cardPositionPlaceholder: {x: -566, y: -269}
+      _cardAnchorMin: {x: 1, y: 1}
+      _cardAnchorMax: {x: 1, y: 1}
+      _imageData:
+        _image: {fileID: 0}
+        _imageDimensions: {x: 0, y: 0}
+        _imagePlaceholderPosition: {x: 0, y: 0}
+        _imageAnchorMin: {x: 1, y: 1}
+        _imageAnchorMax: {x: 1, y: 1}
+        _arrowImagePosition: {x: 319, y: 367}
+        _arrowImageAngle: 90
+      _animationData:
+        _canAnimate: 0
+        _isReversed: 0
+        _animationStartPosition: {x: 0, y: 0}
+    - _title: Detailed Percentages
+      _info: Hover over the center ratio to view exact percentages for the current
+        stage and overall progress.
+      _cardPositionPlaceholder: {x: -739, y: -269}
+      _cardAnchorMin: {x: 1, y: 1}
+      _cardAnchorMax: {x: 1, y: 1}
+      _imageData:
+        _image: {fileID: 21300000, guid: a92ec9776da86c54dae8f18f3781fb85, type: 3}
+        _imageDimensions: {x: 347, y: 176}
+        _imagePlaceholderPosition: {x: -218, y: -109}
+        _imageAnchorMin: {x: 1, y: 1}
+        _imageAnchorMax: {x: 1, y: 1}
+        _arrowImagePosition: {x: 319, y: 367}
+        _arrowImageAngle: 90
+      _animationData:
+        _canAnimate: 1
+        _isReversed: 0
+        _animationStartPosition: {x: -759, y: -269}
+    - _title: Expanded View
+      _info: Click the Progress Bar to see a breakdown of stages and substages.
+      _cardPositionPlaceholder: {x: -782, y: -269}
+      _cardAnchorMin: {x: 1, y: 1}
+      _cardAnchorMax: {x: 1, y: 1}
+      _imageData:
+        _image: {fileID: 21300000, guid: 96f37ad5948d43f438187ac68a69d459, type: 3}
+        _imageDimensions: {x: 410, y: 351}
+        _imagePlaceholderPosition: {x: -237, y: -191}
+        _imageAnchorMin: {x: 1, y: 1}
+        _imageAnchorMax: {x: 1, y: 1}
+        _arrowImagePosition: {x: 319, y: 367}
+        _arrowImageAngle: 90
+      _animationData:
+        _canAnimate: 1
+        _isReversed: 0
+        _animationStartPosition: {x: -802, y: -269}
+    - _title: Completed Stages
+      _info: Completed Stages are marked with a Checkmark.
+      _cardPositionPlaceholder: {x: -782, y: -269}
+      _cardAnchorMin: {x: 1, y: 1}
+      _cardAnchorMax: {x: 1, y: 1}
+      _imageData:
+        _image: {fileID: 21300000, guid: 96f37ad5948d43f438187ac68a69d459, type: 3}
+        _imageDimensions: {x: 410, y: 351}
+        _imagePlaceholderPosition: {x: -237, y: -191}
+        _imageAnchorMin: {x: 1, y: 1}
+        _imageAnchorMax: {x: 1, y: 1}
+        _arrowImagePosition: {x: 319, y: 367}
+        _arrowImageAngle: 90
+      _animationData:
+        _canAnimate: 0
+        _isReversed: 0
+        _animationStartPosition: {x: 0, y: 0}
+    - _title: Current Stage
+      _info: Current Stage is highlighted with a Dotted Circle
+      _cardPositionPlaceholder: {x: -782, y: -269}
+      _cardAnchorMin: {x: 1, y: 1}
+      _cardAnchorMax: {x: 1, y: 1}
+      _imageData:
+        _image: {fileID: 21300000, guid: 96f37ad5948d43f438187ac68a69d459, type: 3}
+        _imageDimensions: {x: 410, y: 351}
+        _imagePlaceholderPosition: {x: -237, y: -191}
+        _imageAnchorMin: {x: 1, y: 1}
+        _imageAnchorMax: {x: 1, y: 1}
+        _arrowImagePosition: {x: 319, y: 367}
+        _arrowImageAngle: 90
+      _animationData:
+        _canAnimate: 0
+        _isReversed: 0
+        _animationStartPosition: {x: 0, y: 0}
+    - _title: Upcoming Stages
+      _info: Upcoming Stages are shown as Empty Circles.
+      _cardPositionPlaceholder: {x: -782, y: -269}
+      _cardAnchorMin: {x: 1, y: 1}
+      _cardAnchorMax: {x: 1, y: 1}
+      _imageData:
+        _image: {fileID: 21300000, guid: 96f37ad5948d43f438187ac68a69d459, type: 3}
+        _imageDimensions: {x: 410, y: 351}
+        _imagePlaceholderPosition: {x: -237, y: -191}
+        _imageAnchorMin: {x: 1, y: 1}
+        _imageAnchorMax: {x: 1, y: 1}
+        _arrowImagePosition: {x: 319, y: 367}
+        _arrowImageAngle: 90
+      _animationData:
+        _canAnimate: 0
+        _isReversed: 0
+        _animationStartPosition: {x: 0, y: 0}
+    - _title: Substages
+      _info: Use the Substages Checkmarks Bar for detailed substage tracking
+      _cardPositionPlaceholder: {x: -782, y: -269}
+      _cardAnchorMin: {x: 1, y: 1}
+      _cardAnchorMax: {x: 1, y: 1}
+      _imageData:
+        _image: {fileID: 21300000, guid: 96f37ad5948d43f438187ac68a69d459, type: 3}
+        _imageDimensions: {x: 410, y: 351}
+        _imagePlaceholderPosition: {x: -237, y: -191}
+        _imageAnchorMin: {x: 1, y: 1}
+        _imageAnchorMax: {x: 1, y: 1}
+        _arrowImagePosition: {x: 319, y: 367}
+        _arrowImageAngle: 90
+      _animationData:
+        _canAnimate: 0
+        _isReversed: 0
+        _animationStartPosition: {x: 0, y: 0}
+    - _title: Jump to button
+      _info: Select a stage using the Jump To Button and click to revisit or skip
+        ahead.
+      _cardPositionPlaceholder: {x: -782, y: -269}
+      _cardAnchorMin: {x: 1, y: 1}
+      _cardAnchorMax: {x: 1, y: 1}
+      _imageData:
+        _image: {fileID: 21300000, guid: 96f37ad5948d43f438187ac68a69d459, type: 3}
+        _imageDimensions: {x: 410, y: 351}
+        _imagePlaceholderPosition: {x: -237, y: -191}
+        _imageAnchorMin: {x: 1, y: 1}
+        _imageAnchorMax: {x: 1, y: 1}
+        _arrowImagePosition: {x: 319, y: 367}
+        _arrowImageAngle: 90
+      _animationData:
+        _canAnimate: 0
+        _isReversed: 0
+        _animationStartPosition: {x: 0, y: 0}
+  - _title: Table
+    Status: 0
+    _data:
+    - _title: Opening the Table
+      _info: Click the Note Icon in the side menu to access the table.
+      _cardPositionPlaceholder: {x: -448, y: -32}
+      _cardAnchorMin: {x: 1, y: 0.5}
+      _cardAnchorMax: {x: 1, y: 0.5}
+      _imageData:
+        _image: {fileID: 21300000, guid: 1a9cb2a76cf40fd4faca5b15b0fa7d41, type: 3}
+        _imageDimensions: {x: 77, y: 77}
+        _imagePlaceholderPosition: {x: -60, y: 87}
+        _imageAnchorMin: {x: 1, y: 0.5}
+        _imageAnchorMax: {x: 1, y: 0.5}
+        _arrowImagePosition: {x: 319, y: 317}
+        _arrowImageAngle: 90
+      _animationData:
+        _canAnimate: 1
+        _isReversed: 0
+        _animationStartPosition: {x: -468, y: -32}
+    - _title: Recording Data
+      _info: Click the Record Button to log readings directly into the table.
+      _cardPositionPlaceholder: {x: -1026, y: -40}
+      _cardAnchorMin: {x: 1, y: 0.5}
+      _cardAnchorMax: {x: 1, y: 0.5}
+      _imageData:
+        _image: {fileID: 21300000, guid: 6126641ebcc10314c84432a4c80bf02d, type: 3}
+        _imageDimensions: {x: 562, y: 772}
+        _imagePlaceholderPosition: {x: -363, y: -83}
+        _imageAnchorMin: {x: 1, y: 0.5}
+        _imageAnchorMax: {x: 1, y: 0.5}
+        _arrowImagePosition: {x: 319, y: 317}
+        _arrowImageAngle: 90
+      _animationData:
+        _canAnimate: 1
+        _isReversed: 0
+        _animationStartPosition: {x: -1046, y: -40}
+    - _title: Options Menu Download
+      _info: Click the Download Icon to export the table as an EXCEL file.
+      _cardPositionPlaceholder: {x: -1026, y: -40}
+      _cardAnchorMin: {x: 1, y: 0.5}
+      _cardAnchorMax: {x: 1, y: 0.5}
+      _imageData:
+        _image: {fileID: 21300000, guid: 2053def44752dfe4385936615d5ae393, type: 3}
+        _imageDimensions: {x: 597, y: 680}
+        _imagePlaceholderPosition: {x: -363, y: -83}
+        _imageAnchorMin: {x: 1, y: 0.5}
+        _imageAnchorMax: {x: 1, y: 0.5}
+        _arrowImagePosition: {x: 319, y: 317}
+        _arrowImageAngle: 90
+      _animationData:
+        _canAnimate: 0
+        _isReversed: 0
+        _animationStartPosition: {x: 0, y: 0}
+    - _title: Editing
+      _info: Hover over a recorded cell to reveal the Edit Icon. Click to modify
+        the values.
+      _cardPositionPlaceholder: {x: -1026, y: -40}
+      _cardAnchorMin: {x: 1, y: 0.5}
+      _cardAnchorMax: {x: 1, y: 0.5}
+      _imageData:
+        _image: {fileID: 21300000, guid: 2053def44752dfe4385936615d5ae393, type: 3}
+        _imageDimensions: {x: 597, y: 680}
+        _imagePlaceholderPosition: {x: -363, y: -83}
+        _imageAnchorMin: {x: 1, y: 0.5}
+        _imageAnchorMax: {x: 1, y: 0.5}
+        _arrowImagePosition: {x: 319, y: 317}
+        _arrowImageAngle: 90
+      _animationData:
+        _canAnimate: 0
+        _isReversed: 0
+        _animationStartPosition: {x: 0, y: 0}
+    - _title: Deleting
+      _info: Hover over a row number to reveal the Recycle Bin Icon. Click to delete
+        the row.
+      _cardPositionPlaceholder: {x: -1026, y: -40}
+      _cardAnchorMin: {x: 1, y: 0.5}
+      _cardAnchorMax: {x: 1, y: 0.5}
+      _imageData:
+        _image: {fileID: 21300000, guid: 2053def44752dfe4385936615d5ae393, type: 3}
+        _imageDimensions: {x: 597, y: 680}
+        _imagePlaceholderPosition: {x: -363, y: -83}
+        _imageAnchorMin: {x: 1, y: 0.5}
+        _imageAnchorMax: {x: 1, y: 0.5}
+        _arrowImagePosition: {x: 319, y: 317}
+        _arrowImageAngle: 90
+      _animationData:
+        _canAnimate: 0
+        _isReversed: 0
+        _animationStartPosition: {x: 0, y: 0}
+    - _title: Creating New Rows
+      _info: Click the New Row Button at the bottom of the table to create empty
+        rows for more data.
+      _cardPositionPlaceholder: {x: -1026, y: -40}
+      _cardAnchorMin: {x: 1, y: 0.5}
+      _cardAnchorMax: {x: 1, y: 0.5}
+      _imageData:
+        _image: {fileID: 21300000, guid: 2053def44752dfe4385936615d5ae393, type: 3}
+        _imageDimensions: {x: 597, y: 680}
+        _imagePlaceholderPosition: {x: -363, y: -83}
+        _imageAnchorMin: {x: 1, y: 0.5}
+        _imageAnchorMax: {x: 1, y: 0.5}
+        _arrowImagePosition: {x: 319, y: 317}
+        _arrowImageAngle: 90
+      _animationData:
+        _canAnimate: 0
+        _isReversed: 0
+        _animationStartPosition: {x: 0, y: 0}
+    - _title: Adding a new Table
+      _info: Click the Add Trial Button to create a new table for recording data.
+      _cardPositionPlaceholder: {x: -1026, y: -40}
+      _cardAnchorMin: {x: 1, y: 0.5}
+      _cardAnchorMax: {x: 1, y: 0.5}
+      _imageData:
+        _image: {fileID: 21300000, guid: 2053def44752dfe4385936615d5ae393, type: 3}
+        _imageDimensions: {x: 597, y: 680}
+        _imagePlaceholderPosition: {x: -363, y: -83}
+        _imageAnchorMin: {x: 1, y: 0.5}
+        _imageAnchorMax: {x: 1, y: 0.5}
+        _arrowImagePosition: {x: 319, y: 317}
+        _arrowImageAngle: 90
+      _animationData:
+        _canAnimate: 0
+        _isReversed: 0
+        _animationStartPosition: {x: 0, y: 0}
+    - _title: Accessing Tables
+      _info: '"Access other tables by clicking their name or icon in the side menu.
+        "'
+      _cardPositionPlaceholder: {x: -1026, y: -40}
+      _cardAnchorMin: {x: 1, y: 0.5}
+      _cardAnchorMax: {x: 1, y: 0.5}
+      _imageData:
+        _image: {fileID: 21300000, guid: 2053def44752dfe4385936615d5ae393, type: 3}
+        _imageDimensions: {x: 597, y: 680}
+        _imagePlaceholderPosition: {x: -363, y: -83}
+        _imageAnchorMin: {x: 1, y: 0.5}
+        _imageAnchorMax: {x: 1, y: 0.5}
+        _arrowImagePosition: {x: 319, y: 317}
+        _arrowImageAngle: 90
+      _animationData:
+        _canAnimate: 0
+        _isReversed: 0
+        _animationStartPosition: {x: 0, y: 0}
+    - _title: Downloading Tables
+      _info: Use each table's Download Excel Button to save it as an excel file.
+      _cardPositionPlaceholder: {x: -1026, y: -40}
+      _cardAnchorMin: {x: 1, y: 0.5}
+      _cardAnchorMax: {x: 1, y: 0.5}
+      _imageData:
+        _image: {fileID: 21300000, guid: 2053def44752dfe4385936615d5ae393, type: 3}
+        _imageDimensions: {x: 597, y: 680}
+        _imagePlaceholderPosition: {x: -363, y: -83}
+        _imageAnchorMin: {x: 1, y: 0.5}
+        _imageAnchorMax: {x: 1, y: 0.5}
+        _arrowImagePosition: {x: 319, y: 317}
+        _arrowImageAngle: 90
+      _animationData:
+        _canAnimate: 0
+        _isReversed: 0
+        _animationStartPosition: {x: 0, y: 0}

@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe6dfd1a6abd46adbae118b8c287f20, type: 3}
+  m_Name: SideMenuComponentResources
+  m_EditorClassIdentifier: 
+  componentStringPrefabPairs:
+  - <Name>k__BackingField: CheckboxControlsComponent
+    <Prefab>k__BackingField: {fileID: 3021607682568376290, guid: 0eb3df7bdce9c4e0ca3f19da831f3283,
+      type: 3}
+  - <Name>k__BackingField: DropdownControlsComponent
+    <Prefab>k__BackingField: {fileID: 7357761456325877515, guid: 18cd11eb9454a440b881c61eb3cdae2a,
+      type: 3}
+  - <Name>k__BackingField: SliderControlsComponent
+    <Prefab>k__BackingField: {fileID: 9139644682693403882, guid: 719abe5c2b7fe48669d326395279db09,
+      type: 3}
+  - <Name>k__BackingField: TextInputFieldControlsComponent
+    <Prefab>k__BackingField: {fileID: 549184092549385856, guid: b79c6ee7358034a51aaf66fe09d39188,
+      type: 3}
+  - <Name>k__BackingField: DisplayFieldReadingsComponent
+    <Prefab>k__BackingField: {fileID: 8420403001104275884, guid: 51592a564774f4069a24ed1208085862,
+      type: 3}
+  - <Name>k__BackingField: DeviceScreenReadingsComponent
+    <Prefab>k__BackingField: {fileID: 4201449412752627941, guid: ccb68481bd93e45abacc9a6cfefb2281,
+      type: 3}
+  - <Name>k__BackingField: CameraViewReadingsComponent
+    <Prefab>k__BackingField: {fileID: 3007880785286050655, guid: c2005df4cfbb348f7b46aa48255b4b29,
+      type: 3}

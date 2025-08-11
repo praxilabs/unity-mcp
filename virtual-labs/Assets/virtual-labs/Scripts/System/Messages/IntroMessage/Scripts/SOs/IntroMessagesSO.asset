@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f299ac608997abc4592f29f54f22443b, type: 3}
+  m_Name: IntroMessagesSO
+  m_EditorClassIdentifier: 
+  messages:
+  - headerText: 'By the end of this experiment, you will gain valuable insights and
+      achieve the following instructional learning objectives:'
+    bodyText: Investigate the law of conservation of charge and different ways of
+      charging. Investigate how charge distributes on the outer surfaces of a spherical
+      conductor and on the outer surface of a non-spherical conductor. Investigate
+      how the charge distribution inside the spherical conductor
+    footerText: Get ready to embark on an exciting journey into the captivating realm
+      of electrostatics!
+  - headerText: This is a Test message
+    bodyText: Message Number 2
+    footerText: H2
+  - headerText: This is a Test message
+    bodyText: Message Number 2
+    footerText: H3
+  - headerText: This is a Test message
+    bodyText: Message Number 2
+    footerText: H4
+  - headerText: This is a Test message
+    bodyText: Message Number 2
+    footerText: H5

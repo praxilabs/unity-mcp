@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c76123014eae4384894d08aea3f8f4d9, type: 3}
+  m_Name: DemoToolsInteractionsMenuExpData
+  m_EditorClassIdentifier: 
+  labType: 1
+  experimentCameras: {fileID: 6954028830982602615, guid: 933392141ddb6574a900ef6c4f7294fa,
+    type: 3}
+  progressMapJson: {fileID: 0}
+  experimentStages:
+  - isDependent: 0
+    experimentGraph: {fileID: 11400000, guid: 8c30a9e3f8fa6db4f80dc53c530daf2a, type: 2}
+    experimentTools: {fileID: 5413314742826372530, guid: c632816a3a238a246a7364b646d00b16,
+      type: 3}
+    devicesInfo: []
+  tableStages: []
