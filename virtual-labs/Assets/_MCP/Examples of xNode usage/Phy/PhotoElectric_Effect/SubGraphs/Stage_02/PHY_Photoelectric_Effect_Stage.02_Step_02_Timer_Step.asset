@@ -1,0 +1,862 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7549418777435750121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90861f7f5d031b24ebd107c91d213834, type: 3}
+  m_Name: Toggle Device Colliders Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 2216, y: 760}
+  size: {x: 300, y: 221}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: -7549418777435750121}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: -6978757637000151005}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -7549418777435750121}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 6328038552481342269}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: eScIJ7iE
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _toolName:
+    prefabName: PHY_Photoelectric_Effect_Stage_02
+    childName: Photodiode_Enclosure_Device_Interaciton
+  toggle: 1
+--- !u!114 &-6978757637000151005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90861f7f5d031b24ebd107c91d213834, type: 3}
+  m_Name: Toggle Device Colliders Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 2216, y: 520}
+  size: {x: 300, y: 221}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: -6978757637000151005}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: -5668689322048536283}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -6978757637000151005}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -7549418777435750121}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: fMlvaZ6x
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _toolName:
+    prefabName: PHY_Photoelectric_Effect_Stage_02
+    childName: Photodiode_Enclosure_Device_Interaciton
+  toggle: 1
+--- !u!114 &-6277631540245937591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a30e68a1158386e45b26c05b2c230c5b, type: 3}
+  m_Name: Function Call Coroutine Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 1832, y: 440}
+  size: {x: 300, y: 345}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: -6277631540245937591}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: -2465052259203623950}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -6277631540245937591}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -3102263477329045035}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: ixBzKbwO
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _calledObjectName:
+    prefabName: PHY_Photoelectric_Effect_Stage_02
+    childName: Mercury_Light_Source_Enclosure
+  previousCalledObjectName: PHY_Photoelectric_Effect_Stage_02
+  selectedChild: {fileID: 0}
+  selectedComponent: LightSourceEnclosure
+  selectedFunction: UpdateLightIntensity
+  parameterValues: []
+  _canGoToNextStep: 1
+--- !u!114 &-5668689322048536283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90861f7f5d031b24ebd107c91d213834, type: 3}
+  m_Name: Toggle Device Colliders Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 2216, y: 280}
+  size: {x: 300, y: 221}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: -5668689322048536283}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: -3102263477329045035}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -5668689322048536283}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -6978757637000151005}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: UDv5qgKP
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _toolName:
+    prefabName: PHY_Photoelectric_Effect_Stage_02
+    childName: Photodiode_Enclosure_Device_Interaciton
+  toggle: 1
+--- !u!114 &-3102263477329045035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e606aae20b6328458aa0ae0e42ced1f, type: 3}
+  m_Name: Timer Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 1832, y: 792}
+  size: {x: 300, y: 259}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: -3102263477329045035}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: -6277631540245937591}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -3102263477329045035}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -5668689322048536283}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: sKpv6PNM
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _title: Mercury Light Source Enclosure
+  _initialSpeedFactor: 1
+  _speedFactors:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 100
+  _time:
+    hours: 0
+    minutes: 10
+    seconds: 0
+  _isSkippable: 0
+--- !u!114 &-2465052259203623950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a30e68a1158386e45b26c05b2c230c5b, type: 3}
+  m_Name: Function Call Coroutine Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 1480, y: 792}
+  size: {x: 300, y: 345}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: -2465052259203623950}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: 5415618649743742896}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -2465052259203623950}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -6277631540245937591}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: CBaKmkEf
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _calledObjectName:
+    prefabName: PHY_Photoelectric_Effect_Stage_02
+    childName: PHY_Photoelectric_Effect_Stage_02
+  previousCalledObjectName: PHY_Photoelectric_Effect_Stage_02
+  selectedChild: {fileID: 0}
+  selectedComponent: PhotoElectricController
+  selectedFunction: TimerSideMessages
+  parameterValues: []
+  _canGoToNextStep: 1
+--- !u!114 &-2103974784951863497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90861f7f5d031b24ebd107c91d213834, type: 3}
+  m_Name: Toggle Device Colliders Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 1096, y: 280}
+  size: {x: 300, y: 221}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: -2103974784951863497}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -2103974784951863497}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 4844259536960390368}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: CKnQYj2V
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _toolName:
+    prefabName: PHY_Photoelectric_Effect_Stage_02
+    childName: Photodiode_Enclosure_Device_Interaciton
+  toggle: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23517ab23585b6d4daf29240f75364e5, type: 3}
+  m_Name: PHY_Photoelectric_Effect_Stage.02_Step_02_Timer_Step
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 5417400238581456072}
+  - {fileID: -3102263477329045035}
+  - {fileID: -2465052259203623950}
+  - {fileID: -6277631540245937591}
+  - {fileID: -2103974784951863497}
+  - {fileID: 4844259536960390368}
+  - {fileID: 5752659812889904285}
+  - {fileID: 3699023635463597419}
+  - {fileID: -5668689322048536283}
+  - {fileID: -6978757637000151005}
+  - {fileID: -7549418777435750121}
+  - {fileID: 6328038552481342269}
+  - {fileID: 5335361304114341058}
+  - {fileID: 5415618649743742896}
+  dataRegistries:
+  - {fileID: 11400000, guid: 1981bda1c8aeb6f4fbd58fc8ff6083ea, type: 2}
+  - {fileID: 11400000, guid: 937505ccb33dcae42a2068a3c243aded, type: 2}
+  groups: []
+  runningGraphs: []
+  originalInputColors: []
+  originalOutputColors: []
+  hiddenPortsColor: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 0.11764706}
+  graphID: SMucym0H
+  globalVariables: []
+  firstStep: {fileID: -2103974784951863497}
+  isOpenedFromNode: 0
+--- !u!114 &3699023635463597419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90861f7f5d031b24ebd107c91d213834, type: 3}
+  m_Name: Toggle Device Colliders Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 1096, y: 1000}
+  size: {x: 300, y: 221}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 3699023635463597419}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: 5752659812889904285}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 3699023635463597419}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 5335361304114341058}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: EsDSuCUg
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _toolName:
+    prefabName: PHY_Photoelectric_Effect_Stage_02
+    childName: Photodiode_Enclosure_Device_Interaciton
+  toggle: 0
+--- !u!114 &4844259536960390368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90861f7f5d031b24ebd107c91d213834, type: 3}
+  m_Name: Toggle Device Colliders Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 1096, y: 520}
+  size: {x: 300, y: 221}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 4844259536960390368}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: -2103974784951863497}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 4844259536960390368}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 5752659812889904285}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: SK0GofHb
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _toolName:
+    prefabName: PHY_Photoelectric_Effect_Stage_02
+    childName: Photodiode_Enclosure_Device_Interaciton
+  toggle: 0
+--- !u!114 &5335361304114341058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f59bb9dd77ff934bb83c1ff50278c11, type: 3}
+  m_Name: Side Message Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 1480, y: 328}
+  size: {x: 300, y: 261}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 5335361304114341058}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: 3699023635463597419}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 5335361304114341058}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 5415618649743742896}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: SwgpEa6n
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  messageID: 2
+  title: INFORMATIVE
+  text: Allow 10 minutes for the light source and apparatus to warm up before proceeding.
+  animationType: 7
+  duration: 10
+  _messageType: 0
+--- !u!114 &5415618649743742896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3abd0d8648f0f44892b766c0bb28f41, type: 3}
+  m_Name: Delay Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 1480, y: 600}
+  size: {x: 300, y: 161}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 5415618649743742896}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: 5335361304114341058}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 5415618649743742896}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -2465052259203623950}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: 4bxDuWLH
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  timeToWait: 3
+--- !u!114 &5417400238581456072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb86bf9e46620bc44b5c176cdeb1d7e8, type: 3}
+  m_Name: Node Group
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 1000, y: 232}
+  size: {x: 1577, y: 1074}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 5417400238581456072}
+      _typeQualifiedName: XNode.NodeGroups.NodeGroup, XNode, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 5417400238581456072}
+      _typeQualifiedName: XNode.NodeGroups.NodeGroup, XNode, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 0
+  groupCollapsed: 0
+  isGroup: 1
+  entry: {fileID: 0}
+  exit: {fileID: 0}
+  comment: Step_03
+  width: 1577
+  height: 946
+  lastWidth: 400
+  lastheight: 400
+  color: {r: 0.5801887, g: 0.8053724, b: 1, a: 0.1}
+  collapsedWidth: 250
+  collapsedHeight: 150
+  nodes: []
+  ExpandedSize: {x: 0, y: 0}
+--- !u!114 &5752659812889904285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90861f7f5d031b24ebd107c91d213834, type: 3}
+  m_Name: Toggle Device Colliders Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 1096, y: 760}
+  size: {x: 300, y: 221}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 5752659812889904285}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: 4844259536960390368}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 5752659812889904285}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 3699023635463597419}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: P7aXL8vK
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _toolName:
+    prefabName: PHY_Photoelectric_Effect_Stage_02
+    childName: Photodiode_Enclosure_Device_Interaciton
+  toggle: 0
+--- !u!114 &6328038552481342269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90861f7f5d031b24ebd107c91d213834, type: 3}
+  m_Name: Toggle Device Colliders Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 2216, y: 1000}
+  size: {x: 300, y: 221}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 6328038552481342269}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: -7549418777435750121}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 6328038552481342269}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: qzZKIXwp
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _toolName:
+    prefabName: PHY_Photoelectric_Effect_Stage_02
+    childName: Photodiode_Enclosure_Device_Interaciton
+  toggle: 1

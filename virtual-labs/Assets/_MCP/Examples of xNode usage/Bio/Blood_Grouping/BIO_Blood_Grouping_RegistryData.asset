@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d715f18a9755ee0428b317d4647d603f, type: 3}
+  m_Name: BIO_Blood_Grouping_RegistryData
+  m_EditorClassIdentifier: 
+  prefabRegisteries:
+  - prefabName: BIO_Blood_Grouping_InterestPoints
+    prefabChildren:
+    - childName: BIO_Blood_Grouping_InterestPoints
+      childComponents:
+      - ExperimentCameras
+      - RegisterObject
+    - childName: Centre_Bench_Front
+      childComponents:
+      - UnityEngine.BoxCollider
+      - InterestPoint
+      - InterestPointStagesToggle
+    - childName: Left_Bench_Front
+      childComponents:
+      - UnityEngine.BoxCollider
+      - InterestPoint
+      - InterestPointStagesToggle
+    - childName: Right_Bench_Front
+      childComponents:
+      - UnityEngine.BoxCollider
+      - InterestPoint
+      - InterestPointStagesToggle
+    - childName: SettingsMenu
+      childComponents:
+      - UnityEngine.BoxCollider
+      - InterestPoint
+      - InterestPointStagesToggle
+  - prefabName: BIO_Blood_Grouping_Tools
+    prefabChildren:
+    - childName: BIO_Blood_Grouping_Tools
+      childComponents:
+      - BloodGroupingLoadingController
+      - RegisterObject

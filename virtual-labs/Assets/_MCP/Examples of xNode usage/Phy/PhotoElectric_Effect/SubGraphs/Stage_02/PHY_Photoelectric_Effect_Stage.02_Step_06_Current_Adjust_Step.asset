@@ -1,0 +1,144 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23517ab23585b6d4daf29240f75364e5, type: 3}
+  m_Name: PHY_Photoelectric_Effect_Stage.02_Step_06_Current_Adjust_Step
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 1723262256629710587}
+  - {fileID: 9109676876148389010}
+  dataRegistries:
+  - {fileID: 11400000, guid: 1981bda1c8aeb6f4fbd58fc8ff6083ea, type: 2}
+  - {fileID: 11400000, guid: 937505ccb33dcae42a2068a3c243aded, type: 2}
+  groups: []
+  runningGraphs: []
+  originalInputColors: []
+  originalOutputColors: []
+  hiddenPortsColor: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 0.11764706}
+  graphID: 7ivk1VSj
+  globalVariables: []
+  firstStep: {fileID: 9109676876148389010}
+  isOpenedFromNode: 0
+--- !u!114 &1723262256629710587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb86bf9e46620bc44b5c176cdeb1d7e8, type: 3}
+  m_Name: Node Group
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 0.11764706}
+  graph: {fileID: 11400000}
+  position: {x: 2120, y: 1976}
+  size: {x: 526, y: 522}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 1723262256629710587}
+      _typeQualifiedName: XNode.NodeGroups.NodeGroup, XNode, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 1723262256629710587}
+      _typeQualifiedName: XNode.NodeGroups.NodeGroup, XNode, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 1
+  entry: {fileID: 0}
+  exit: {fileID: 0}
+  comment: 'Step_07
+
+'
+  width: 526
+  height: 394
+  lastWidth: 400
+  lastheight: 400
+  color: {r: 1, g: 0.4575472, b: 0.75092125, a: 0.1}
+  collapsedWidth: 250
+  collapsedHeight: 150
+  nodes:
+  - {fileID: 9109676876148389010}
+  ExpandedSize: {x: 0, y: 0}
+--- !u!114 &9109676876148389010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a30e68a1158386e45b26c05b2c230c5b, type: 3}
+  m_Name: Function Call Coroutine Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 2232, y: 2024}
+  size: {x: 300, y: 345}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 9109676876148389010}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 9109676876148389010}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: Pn8CWgTV
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _calledObjectName:
+    prefabName: PHY_Photoelectric_Effect_Stage_02
+    childName: PHY_Photoelectric_Effect_Stage_02
+  previousCalledObjectName: PHY_Photoelectric_Effect_Stage_02
+  selectedChild: {fileID: 0}
+  selectedComponent: PhotoElectricController
+  selectedFunction: SetVoltToZero
+  parameterValues: []
+  _canGoToNextStep: 1

@@ -1,0 +1,3271 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8954051832747189897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 887dff5612468b84a8f641cdf7b4b6b7, type: 3}
+  m_Name: IsWaveLengthSelected
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 10776, y: 6664}
+  size: {x: 260, y: 110}
+  ports:
+    keys:
+    - get
+    - set
+    values:
+    - _fieldName: get
+      _node: {fileID: -8954051832747189897}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: -3491722317951080972}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: set
+      _node: {fileID: -8954051832747189897}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: isTrue
+        node: {fileID: 594848380972262989}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  nodeCollapsed: 0
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: s
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  data:
+    name: IsWaveLengthSelected
+    previousType: 4
+    type: 4
+    intValue: 0
+    floatValue: 0
+    stringValue: 
+    boolValue: 1
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    vector2Value: {x: 0, y: 0}
+    vector3Value: {x: 0, y: 0, z: 0}
+    objectValue: {fileID: 0}
+--- !u!114 &-8311033296971148682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 887dff5612468b84a8f641cdf7b4b6b7, type: 3}
+  m_Name: IsWaveLengthSelected
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 0.9529412, g: 0.8980392, b: 0, a: 1}
+  outputPortColor: {r: 0.9528302, g: 0.89692736, b: 0, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 12248, y: 6968}
+  size: {x: 260, y: 110}
+  ports:
+    keys:
+    - get
+    - set
+    values:
+    - _fieldName: get
+      _node: {fileID: -8311033296971148682}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: 1706302438629098510}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: set
+      _node: {fileID: -8311033296971148682}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 594848380972262989}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  nodeCollapsed: 0
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: s
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  data:
+    name: IsWaveLengthSelected
+    previousType: 4
+    type: 4
+    intValue: 0
+    floatValue: 0
+    stringValue: 
+    boolValue: 1
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    vector2Value: {x: 0, y: 0}
+    vector3Value: {x: 0, y: 0, z: 0}
+    objectValue: {fileID: 0}
+--- !u!114 &-8241150388534491278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e687721476ec9934ea0cafd966ec5c7d, type: 3}
+  m_Name: Hint Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 11896, y: 7320}
+  size: {x: 300, y: 161}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: -8241150388534491278}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: -1744041844683838359}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -8241150388534491278}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -1879918020552823194}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: cUuojC90
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  stepNumber: 12
+--- !u!114 &-8158071290741027918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9ad24e63153cb3428d64f249ca159fb, type: 3}
+  m_Name: Sub Graph Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 15336, y: 8392}
+  size: {x: 300, y: 216}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: -8158071290741027918}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: set
+        node: {fileID: -4492129282125567274}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -8158071290741027918}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: 41QOK9pn
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  subGraph: {fileID: 11400000, guid: ad23353069a737a43b0f68392ea78ab6, type: 2}
+--- !u!114 &-7853353069629300257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 267aa7c654afc34438e4fe2ebcf03d13, type: 3}
+  m_Name: Function Call Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 0.6815902, g: 1, b: 0.08018869, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 14008, y: 8136}
+  size: {x: 300, y: 325}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: -7853353069629300257}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: buttonOne
+        node: {fileID: -647357661485250914}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -7853353069629300257}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 6325902015565529256}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: YoreTNjt
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _calledObjectName:
+    prefabName: <----Managers---->
+    childName: Tables_Manager
+  previousCalledObjectName: <----Managers---->
+  selectedChild: {fileID: 0}
+  selectedComponent: Table.TablesManager
+  selectedFunction: AddNewTrial
+  parameterValues: []
+--- !u!114 &-7582000606397416255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 267aa7c654afc34438e4fe2ebcf03d13, type: 3}
+  m_Name: Function Call Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 8264, y: 6568}
+  size: {x: 300, y: 387}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: -7582000606397416255}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: 8102278744264900822}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -7582000606397416255}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 405950490845801518}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: keJvS68q
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _calledObjectName:
+    prefabName: PHY_Photoelectric_Effect_Stage_01
+    childName: PHY_Photoelectric_Effect_Stage_01
+  previousCalledObjectName: PHY_Photoelectric_Effect_Stage_01
+  selectedChild: {fileID: 1312477509952888561, guid: 91901e0d23d810e47b9323a88db2e420,
+    type: 3}
+  selectedComponent: PhotoElectricTablesManager
+  selectedFunction: GetTableButton
+  parameterValues:
+  - intValue: 0
+    floatValue: 0
+    stringValue: table 1
+    boolValue: 0
+    vector3Value: {x: 0, y: 0, z: 0}
+    objectValue: {fileID: 0}
+    enumTypeName: 
+    enumValueIndex: 0
+    typeName: System.String
+--- !u!114 &-5651471061634108836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f59bb9dd77ff934bb83c1ff50278c11, type: 3}
+  m_Name: Side Message Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 13288, y: 6216}
+  size: {x: 300, y: 261}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: -5651471061634108836}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: True
+        node: {fileID: 9053667406282848364}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -5651471061634108836}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 1748474038332050821}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: egHYLB8Q
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  messageID: 7
+  title: 
+  text: This value has already been recorded. Please choose a different value to
+    proceed.
+  animationType: 7
+  duration: 10
+  _messageType: 0
+--- !u!114 &-5603040273644948408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 267aa7c654afc34438e4fe2ebcf03d13, type: 3}
+  m_Name: Function Call Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 12248, y: 6168}
+  size: {x: 300, y: 387}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: -5603040273644948408}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: 8660452752515673630}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -5603040273644948408}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 7429157340380664084}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: zXcnSjk9
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _calledObjectName:
+    prefabName: PHY_Photoelectric_Effect_Stage_01
+    childName: PhotoDiode_Enclosure_Wavelength_Knob
+  previousCalledObjectName: PHY_Photoelectric_Effect_Stage_01
+  selectedChild: {fileID: 0}
+  selectedComponent: EnhancedKnobController
+  selectedFunction: SetKnobInteractability
+  parameterValues:
+  - intValue: 0
+    floatValue: 0
+    stringValue: 
+    boolValue: 1
+    vector3Value: {x: 0, y: 0, z: 0}
+    objectValue: {fileID: 0}
+    enumTypeName: 
+    enumValueIndex: 0
+    typeName: System.Boolean
+--- !u!114 &-5547116063645600578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 267aa7c654afc34438e4fe2ebcf03d13, type: 3}
+  m_Name: Function Call Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 13944, y: 6648}
+  size: {x: 300, y: 387}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: -5547116063645600578}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: 669174875541256016}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -5547116063645600578}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -2800066693730008528}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: Hl2Y4W6g
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _calledObjectName:
+    prefabName: PHY_Photoelectric_Effect_Stage_01
+    childName: PhotoDiode_Enclosure_Wavelength_Knob
+  previousCalledObjectName: PHY_Photoelectric_Effect_Stage_01
+  selectedChild: {fileID: 0}
+  selectedComponent: EnhancedKnobController
+  selectedFunction: SetKnobInteractability
+  parameterValues:
+  - intValue: 0
+    floatValue: 0
+    stringValue: 
+    boolValue: 0
+    vector3Value: {x: 0, y: 0, z: 0}
+    objectValue: {fileID: 0}
+    enumTypeName: 
+    enumValueIndex: 0
+    typeName: System.Boolean
+--- !u!114 &-5503199551011870355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 267aa7c654afc34438e4fe2ebcf03d13, type: 3}
+  m_Name: Function Call Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 15000, y: 7960}
+  size: {x: 300, y: 325}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: -5503199551011870355}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: 5301506697070900122}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -5503199551011870355}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 8177713115828785433}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: ZjBngFsl
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _calledObjectName:
+    prefabName: PHY_Photoelectric_Effect_Stage_01
+    childName: Photodiode_Enclosure
+  previousCalledObjectName: PHY_Photoelectric_Effect_Stage_01
+  selectedChild: {fileID: 0}
+  selectedComponent: PhotoDiodeEnclosure
+  selectedFunction: ResetRecordedKnobValues
+  parameterValues: []
+--- !u!114 &-4492129282125567274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 887dff5612468b84a8f641cdf7b4b6b7, type: 3}
+  m_Name: IsWaveLengthSelected
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 15352, y: 8200}
+  size: {x: 260, y: 110}
+  ports:
+    keys:
+    - get
+    - set
+    values:
+    - _fieldName: get
+      _node: {fileID: -4492129282125567274}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: 8177713115828785433}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: set
+      _node: {fileID: -4492129282125567274}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -8158071290741027918}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+  nodeCollapsed: 0
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: s
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  data:
+    name: IsWaveLengthSelected
+    previousType: 4
+    type: 4
+    intValue: 0
+    floatValue: 0
+    stringValue: 
+    boolValue: 1
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    vector2Value: {x: 0, y: 0}
+    vector3Value: {x: 0, y: 0, z: 0}
+    objectValue: {fileID: 0}
+--- !u!114 &-4455838756719850546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af221c925c5913341a6aa9b3b2b25818, type: 3}
+  m_Name: UI Click Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 9704, y: 6552}
+  size: {x: 300, y: 201}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: -4455838756719850546}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: 8530445881089997279}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -4455838756719850546}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 4874754681361878661}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: GXjK6UpN
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _buttonName:
+    prefabName: TableRecordButton Variant no test
+    childName: TableRecordButton Variant no test
+--- !u!114 &-4427835835199360841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17c838adb36234e5bb65571c77782f2d, type: 3}
+  m_Name: Event Caller
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 9000, y: 6728}
+  size: {x: 300, y: 161}
+  ports:
+    keys:
+    - entry
+    - exit
+    - eventName
+    values:
+    - _fieldName: entry
+      _node: {fileID: -4427835835199360841}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: 5452656528941852345}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -4427835835199360841}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 2677448822020989721}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: eventName
+      _node: {fileID: -4427835835199360841}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: S9hk4jDX
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  eventName: Record Distance
+--- !u!114 &-3628097592906092846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 267aa7c654afc34438e4fe2ebcf03d13, type: 3}
+  m_Name: Function Call Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 8648, y: 6584}
+  size: {x: 300, y: 387}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: -3628097592906092846}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: 405950490845801518}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -3628097592906092846}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 5452656528941852345}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: 8TnPkihw
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _calledObjectName:
+    prefabName: PHY_Photoelectric_Effect_Stage_01
+    childName: PHY_Photoelectric_Effect_Stage_01
+  previousCalledObjectName: PHY_Photoelectric_Effect_Stage_01
+  selectedChild: {fileID: 1312477509952888561, guid: 91901e0d23d810e47b9323a88db2e420,
+    type: 3}
+  selectedComponent: PhotoElectricTablesManager
+  selectedFunction: GetRecordButton
+  parameterValues:
+  - intValue: 0
+    floatValue: 0
+    stringValue: tableRecordButton
+    boolValue: 0
+    vector3Value: {x: 0, y: 0, z: 0}
+    objectValue: {fileID: 0}
+    enumTypeName: 
+    enumValueIndex: 0
+    typeName: System.String
+--- !u!114 &-3546983619224731284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d6a7b0200e41cd40b13ce20f4d8d561, type: 3}
+  m_Name: First Then Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 0.9372188, b: 0, a: 1}
+  outputPortColor: {r: 0.9190098, g: 1, b: 0, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 8280, y: 6152}
+  size: {x: 300, y: 181}
+  ports:
+    keys:
+    - entry
+    - first
+    - then
+    values:
+    - _fieldName: entry
+      _node: {fileID: -3546983619224731284}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: first
+      _node: {fileID: -3546983619224731284}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: entry
+        node: {fileID: 8102278744264900822}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: then
+      _node: {fileID: -3546983619224731284}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: entry
+        node: {fileID: 405950490845801518}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: UBDVeHOx
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  first: 0
+  _isFirstIteration: 1
+  then: 0
+--- !u!114 &-3524631676181960220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 267aa7c654afc34438e4fe2ebcf03d13, type: 3}
+  m_Name: Function Call Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 12616, y: 6584}
+  size: {x: 300, y: 325}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: -3524631676181960220}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: 1748474038332050821}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -3524631676181960220}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 9053667406282848364}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: icw5LBrE
+  tooltip: check if we gone through this wavelength before or not
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _calledObjectName:
+    prefabName: PHY_Photoelectric_Effect_Stage_01
+    childName: Photodiode_Enclosure
+  previousCalledObjectName: PHY_Photoelectric_Effect_Stage_01
+  selectedChild: {fileID: 0}
+  selectedComponent: PhotoDiodeEnclosure
+  selectedFunction: IsWavelengthRecorded
+  parameterValues: []
+--- !u!114 &-3491722317951080972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 267aa7c654afc34438e4fe2ebcf03d13, type: 3}
+  m_Name: Function Call Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 10424, y: 6616}
+  size: {x: 300, y: 387}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: -3491722317951080972}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: 7192672570560326593}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -3491722317951080972}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: get
+        node: {fileID: -8954051832747189897}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: YEU2Gsy0
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _calledObjectName:
+    prefabName: PHY_Photoelectric_Effect_Stage_01
+    childName: PHY_Photoelectric_Effect_Stage_01
+  previousCalledObjectName: PHY_Photoelectric_Effect_Stage_01
+  selectedChild: {fileID: 1312477509952888561, guid: 91901e0d23d810e47b9323a88db2e420,
+    type: 3}
+  selectedComponent: PhotoElectricTablesManager
+  selectedFunction: ToggleRecordInteraction
+  parameterValues:
+  - intValue: 0
+    floatValue: 0
+    stringValue: 
+    boolValue: 0
+    vector3Value: {x: 0, y: 0, z: 0}
+    objectValue: {fileID: 0}
+    enumTypeName: 
+    enumValueIndex: 0
+    typeName: System.Boolean
+--- !u!114 &-2800066693730008528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9ad24e63153cb3428d64f249ca159fb, type: 3}
+  m_Name: Sub Graph Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 0.11764706}
+  outputPortColor: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 0.11764706}
+  graph: {fileID: 11400000}
+  position: {x: 14280, y: 6600}
+  size: {x: 300, y: 170}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: -2800066693730008528}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: -5547116063645600578}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -2800066693730008528}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 6489981924601480921}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 0
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: 8wzZYpl5
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  subGraph: {fileID: 11400000, guid: 70fe4725b1833e2439433fb31baa38f6, type: 2}
+--- !u!114 &-1879918020552823194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 267aa7c654afc34438e4fe2ebcf03d13, type: 3}
+  m_Name: Function Call Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 12600, y: 8136}
+  size: {x: 300, y: 387}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: -1879918020552823194}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: -8241150388534491278}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -1879918020552823194}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 6365485310307866904}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: 7ORyaeEv
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _calledObjectName:
+    prefabName: <----Managers---->
+    childName: Tables_Manager
+  previousCalledObjectName: <----Managers---->
+  selectedChild: {fileID: 0}
+  selectedComponent: Table.TablesManager
+  selectedFunction: NewTrialButtonInteractible
+  parameterValues:
+  - intValue: 0
+    floatValue: 0
+    stringValue: 
+    boolValue: 1
+    vector3Value: {x: 0, y: 0, z: 0}
+    objectValue: {fileID: 0}
+    enumTypeName: 
+    enumValueIndex: 0
+    typeName: System.Boolean
+--- !u!114 &-1838354158211315472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4f3a05db5cef2549875f51f8cf142f7, type: 3}
+  m_Name: If Statement Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 0, g: 0.9760325, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 11880, y: 6584}
+  size: {x: 300, y: 161}
+  ports:
+    keys:
+    - entry
+    - True
+    - False
+    values:
+    - _fieldName: entry
+      _node: {fileID: -1838354158211315472}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: 2475410226813647051}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: True
+      _node: {fileID: -1838354158211315472}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: entry
+        node: {fileID: 1706302438629098510}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: False
+      _node: {fileID: -1838354158211315472}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: entry
+        node: {fileID: 8660452752515673630}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: kLGJh59n
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  True: 0
+  False: 0
+--- !u!114 &-1744041844683838359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9a450b0650d746ef8e5696667692e58, type: 3}
+  m_Name: Progress Map Manual Next Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 11576, y: 7320}
+  size: {x: 300, y: 161}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: -1744041844683838359}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: 594848380972262989}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -1744041844683838359}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -8241150388534491278}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: lN5ne27f
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _nextStepIndex: 11
+--- !u!114 &-1604154259243875319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af221c925c5913341a6aa9b3b2b25818, type: 3}
+  m_Name: UI Click Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 13640, y: 8008}
+  size: {x: 300, y: 201}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: -1604154259243875319}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: closeButton
+        node: {fileID: -647357661485250914}
+        reroutePoints: []
+      - fieldName: buttonTwo
+        node: {fileID: -647357661485250914}
+        reroutePoints: []
+      - fieldName: buttonOne
+        node: {fileID: 7640902875394264328}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -1604154259243875319}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -647357661485250914}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: vxJrFh53
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _buttonName:
+    prefabName: Add trial
+    childName: Add Trial button
+--- !u!114 &-1258856161942500341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb86bf9e46620bc44b5c176cdeb1d7e8, type: 3}
+  m_Name: Node Group
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 0.11764706}
+  outputPortColor: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 0.11764706}
+  graph: {fileID: 11400000}
+  position: {x: 11096, y: 6104}
+  size: {x: 3541, y: 1493}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: -1258856161942500341}
+      _typeQualifiedName: XNode.NodeGroups.NodeGroup, XNode, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: -1258856161942500341}
+      _typeQualifiedName: XNode.NodeGroups.NodeGroup, XNode, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 0
+  groupCollapsed: 0
+  isGroup: 1
+  entry: {fileID: 0}
+  exit: {fileID: 0}
+  comment: Recording Loop
+  width: 3541
+  height: 1365
+  lastWidth: 3541
+  lastheight: 1365
+  color: {r: 0.16037738, g: 0, b: 0, a: 0.25490198}
+  collapsedWidth: 250
+  collapsedHeight: 150
+  nodes:
+  - {fileID: 594848380972262989}
+  - {fileID: 1748474038332050821}
+  - {fileID: -3524631676181960220}
+  - {fileID: 9053667406282848364}
+  - {fileID: -5651471061634108836}
+  - {fileID: -2800066693730008528}
+  - {fileID: 7171997958195276929}
+  - {fileID: 6489981924601480921}
+  - {fileID: 2475410226813647051}
+  - {fileID: -1838354158211315472}
+  - {fileID: -8311033296971148682}
+  - {fileID: 1706302438629098510}
+  - {fileID: 7429157340380664084}
+  - {fileID: -1744041844683838359}
+  - {fileID: 7353853710607524764}
+  - {fileID: -8241150388534491278}
+  - {fileID: -5603040273644948408}
+  - {fileID: -5547116063645600578}
+  - {fileID: 8660452752515673630}
+  - {fileID: 669174875541256016}
+  ExpandedSize: {x: 0, y: 0}
+--- !u!114 &-647357661485250914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1268caa123e8648a8b844f3731d02c, type: 3}
+  m_Name: Middle Message Two Actions Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 0.68235296, g: 1, b: 0.08235294, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 13640, y: 8264}
+  size: {x: 300, y: 401}
+  ports:
+    keys:
+    - entry
+    - buttonOne
+    - buttonTwo
+    - closeButton
+    values:
+    - _fieldName: entry
+      _node: {fileID: -647357661485250914}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: -1604154259243875319}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: buttonOne
+      _node: {fileID: -647357661485250914}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -7853353069629300257}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: buttonTwo
+      _node: {fileID: -647357661485250914}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -1604154259243875319}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: closeButton
+      _node: {fileID: -647357661485250914}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -1604154259243875319}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: c07n2FhH
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _messageID: 2
+  _messageType: 0
+  _middleMessageData:
+    <MessageTitle>k__BackingField: 
+    <TitleDescription>k__BackingField: 
+    <MessageHeader>k__BackingField: 
+    <Message>k__BackingField: Starting a new trial will begin at the Measurements
+      and Results substage, allowing you to select new aperture dial values and observe
+      the outcomes.
+    <ActionOneText>k__BackingField: Confirm
+    <ActionTwoText>k__BackingField: Close
+    middleMessageType: 0
+    messageType: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23517ab23585b6d4daf29240f75364e5, type: 3}
+  m_Name: PHY_Photoelectric_Effect_Step_10 to 12_Enhanced
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -1258856161942500341}
+  - {fileID: 5772836801114558178}
+  - {fileID: 3980610309948780926}
+  - {fileID: -3628097592906092846}
+  - {fileID: 405950490845801518}
+  - {fileID: -7582000606397416255}
+  - {fileID: 8102278744264900822}
+  - {fileID: -4427835835199360841}
+  - {fileID: -4455838756719850546}
+  - {fileID: 7192672570560326593}
+  - {fileID: -1879918020552823194}
+  - {fileID: -1604154259243875319}
+  - {fileID: -8158071290741027918}
+  - {fileID: 2677448822020989721}
+  - {fileID: 8530445881089997279}
+  - {fileID: 6325902015565529256}
+  - {fileID: -647357661485250914}
+  - {fileID: 5452656528941852345}
+  - {fileID: -7853353069629300257}
+  - {fileID: 5301506697070900122}
+  - {fileID: -3546983619224731284}
+  - {fileID: -3491722317951080972}
+  - {fileID: 594848380972262989}
+  - {fileID: -8954051832747189897}
+  - {fileID: 1748474038332050821}
+  - {fileID: -3524631676181960220}
+  - {fileID: 9053667406282848364}
+  - {fileID: -5651471061634108836}
+  - {fileID: -2800066693730008528}
+  - {fileID: 7171997958195276929}
+  - {fileID: 6489981924601480921}
+  - {fileID: 2475410226813647051}
+  - {fileID: -1838354158211315472}
+  - {fileID: -8311033296971148682}
+  - {fileID: 1706302438629098510}
+  - {fileID: 7429157340380664084}
+  - {fileID: -5503199551011870355}
+  - {fileID: -4492129282125567274}
+  - {fileID: 8177713115828785433}
+  - {fileID: 4874754681361878661}
+  - {fileID: -1744041844683838359}
+  - {fileID: 7353853710607524764}
+  - {fileID: -8241150388534491278}
+  - {fileID: -5603040273644948408}
+  - {fileID: -5547116063645600578}
+  - {fileID: 8660452752515673630}
+  - {fileID: 669174875541256016}
+  - {fileID: 7640902875394264328}
+  - {fileID: 6365485310307866904}
+  dataRegistries:
+  - {fileID: 11400000, guid: 1981bda1c8aeb6f4fbd58fc8ff6083ea, type: 2}
+  - {fileID: 11400000, guid: 937505ccb33dcae42a2068a3c243aded, type: 2}
+  groups: []
+  runningGraphs: []
+  originalInputColors: []
+  originalOutputColors: []
+  hiddenPortsColor: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 0.11764706}
+  graphID: VR2DA6Te
+  globalVariables: []
+  firstStep: {fileID: -3546983619224731284}
+  isOpenedFromNode: 0
+--- !u!114 &405950490845801518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa302ebd9fd764207ab1397b8fcf874a, type: 3}
+  m_Name: Enable Record Button
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 0.9371726, b: 0, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 8648, y: 6392}
+  size: {x: 300, y: 141}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 405950490845801518}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: -7582000606397416255}
+        reroutePoints: []
+      - fieldName: then
+        node: {fileID: -3546983619224731284}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 405950490845801518}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -3628097592906092846}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: lUeV0Gua
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+--- !u!114 &594848380972262989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 745d512b4e56e8a4991e66b7f5cee4f3, type: 3}
+  m_Name: While Loop Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 0.9529412, g: 0.8980392, b: 0, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 11160, y: 6600}
+  size: {x: 300, y: 181}
+  ports:
+    keys:
+    - entry
+    - isTrue
+    - continueLoop
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 594848380972262989}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: set
+        node: {fileID: -8311033296971148682}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: isTrue
+      _node: {fileID: 594848380972262989}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: set
+        node: {fileID: -8954051832747189897}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 1
+      _typeConstraint: 2
+      _dynamic: 0
+    - _fieldName: continueLoop
+      _node: {fileID: 594848380972262989}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 2475410226813647051}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 594848380972262989}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -1744041844683838359}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: nbrs9FE1
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+--- !u!114 &669174875541256016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 267aa7c654afc34438e4fe2ebcf03d13, type: 3}
+  m_Name: Function Call Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 0, b: 0, a: 1}
+  outputPortColor: {r: 1, g: 0, b: 0, a: 0.11764706}
+  graph: {fileID: 11400000}
+  position: {x: 13624, y: 6632}
+  size: {x: 300, y: 387}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 669174875541256016}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: 7171997958195276929}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 669174875541256016}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -5547116063645600578}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: 1ucsL6eG
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _calledObjectName:
+    prefabName: <----Managers---->
+    childName: CameraManager
+  previousCalledObjectName: <----Managers---->
+  selectedChild: {fileID: 0}
+  selectedComponent: Praxilabs.CameraSystem.CameraManager
+  selectedFunction: ExitDeviceCameraState
+  parameterValues:
+  - intValue: 0
+    floatValue: 0
+    stringValue: 
+    boolValue: 0
+    vector3Value: {x: 0, y: 0, z: 0}
+    objectValue: {fileID: 0}
+    enumTypeName: Praxilabs.CameraSystem.CameraState, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    enumValueIndex: 5
+    typeName: System.Enum
+--- !u!114 &1706302438629098510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 267aa7c654afc34438e4fe2ebcf03d13, type: 3}
+  m_Name: Function Call Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 0, g: 1, b: 0.9644847, a: 1}
+  outputPortColor: {r: 0, g: 1, b: 0.98080873, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 11912, y: 6952}
+  size: {x: 300, y: 325}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 1706302438629098510}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: True
+        node: {fileID: -1838354158211315472}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 1706302438629098510}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: get
+        node: {fileID: -8311033296971148682}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: a6SrAl1p
+  tooltip: Check if we gone through all wavelenghts
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _calledObjectName:
+    prefabName: PHY_Photoelectric_Effect_Stage_01
+    childName: Photodiode_Enclosure
+  previousCalledObjectName: PHY_Photoelectric_Effect_Stage_01
+  selectedChild: {fileID: 0}
+  selectedComponent: PhotoDiodeEnclosure
+  selectedFunction: ExitLoop
+  parameterValues: []
+--- !u!114 &1748474038332050821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a30e68a1158386e45b26c05b2c230c5b, type: 3}
+  m_Name: Function Call Coroutine Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 12616, y: 6168}
+  size: {x: 300, y: 345}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 1748474038332050821}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: -5651471061634108836}
+        reroutePoints: []
+      - fieldName: exit
+        node: {fileID: 7429157340380664084}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 1748474038332050821}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -3524631676181960220}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: L0NsnixR
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _calledObjectName:
+    prefabName: PHY_Photoelectric_Effect_Stage_01
+    childName: Photodiode_Enclosure
+  previousCalledObjectName: PHY_Photoelectric_Effect_Stage_01
+  selectedChild: {fileID: 0}
+  selectedComponent: PhotoDiodeEnclosure
+  selectedFunction: SelectWaveLength
+  parameterValues: []
+  _canGoToNextStep: 1
+--- !u!114 &2475410226813647051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 267aa7c654afc34438e4fe2ebcf03d13, type: 3}
+  m_Name: Function Call Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 11544, y: 6568}
+  size: {x: 300, y: 325}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 2475410226813647051}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: continueLoop
+        node: {fileID: 594848380972262989}
+        reroutePoints: []
+      - fieldName: exit
+        node: {fileID: 7353853710607524764}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 2475410226813647051}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -1838354158211315472}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: WHB6qQGE
+  tooltip: Check if we gone through all wavelenghts
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _calledObjectName:
+    prefabName: PHY_Photoelectric_Effect_Stage_01
+    childName: Photodiode_Enclosure
+  previousCalledObjectName: PHY_Photoelectric_Effect_Stage_01
+  selectedChild: {fileID: 0}
+  selectedComponent: PhotoDiodeEnclosure
+  selectedFunction: AreAllWavelengthsRecorded
+  parameterValues: []
+--- !u!114 &2677448822020989721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 267aa7c654afc34438e4fe2ebcf03d13, type: 3}
+  m_Name: Function Call Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 9368, y: 6312}
+  size: {x: 300, y: 387}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 2677448822020989721}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: -4427835835199360841}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 2677448822020989721}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 8530445881089997279}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: uCG0TPX4
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _calledObjectName:
+    prefabName: <----Managers---->
+    childName: Tables_Manager
+  previousCalledObjectName: <----Managers---->
+  selectedChild: {fileID: 0}
+  selectedComponent: Table.TablesManager
+  selectedFunction: NewTrialButtonInteractible
+  parameterValues:
+  - intValue: 0
+    floatValue: 0
+    stringValue: 
+    boolValue: 0
+    vector3Value: {x: 0, y: 0, z: 0}
+    objectValue: {fileID: 0}
+    enumTypeName: 
+    enumValueIndex: 0
+    typeName: System.Boolean
+--- !u!114 &3980610309948780926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb86bf9e46620bc44b5c176cdeb1d7e8, type: 3}
+  m_Name: Node Group
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 0.11764706}
+  outputPortColor: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 0.11764706}
+  graph: {fileID: 11400000}
+  position: {x: 8200, y: 6088}
+  size: {x: 2573, y: 1275}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 3980610309948780926}
+      _typeQualifiedName: XNode.NodeGroups.NodeGroup, XNode, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 3980610309948780926}
+      _typeQualifiedName: XNode.NodeGroups.NodeGroup, XNode, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 1
+  entry: {fileID: 0}
+  exit: {fileID: 0}
+  comment: 'Step 10: Table preparation'
+  width: 2573
+  height: 1147
+  lastWidth: 2456
+  lastheight: 1123
+  color: {r: 0.22315216, g: 0, b: 0.3207547, a: 0.28627452}
+  collapsedWidth: 250
+  collapsedHeight: 150
+  nodes:
+  - {fileID: -3628097592906092846}
+  - {fileID: 405950490845801518}
+  - {fileID: -7582000606397416255}
+  - {fileID: 8102278744264900822}
+  - {fileID: -4427835835199360841}
+  - {fileID: -4455838756719850546}
+  - {fileID: 7192672570560326593}
+  - {fileID: 2677448822020989721}
+  - {fileID: 8530445881089997279}
+  - {fileID: 5452656528941852345}
+  - {fileID: 4874754681361878661}
+  ExpandedSize: {x: 0, y: 0}
+--- !u!114 &4874754681361878661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9a450b0650d746ef8e5696667692e58, type: 3}
+  m_Name: Progress Map Manual Next Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 10072, y: 6488}
+  size: {x: 300, y: 161}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 4874754681361878661}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: -4455838756719850546}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 4874754681361878661}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 7192672570560326593}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: m7ZwHPrf
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _nextStepIndex: 8
+--- !u!114 &5301506697070900122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 267aa7c654afc34438e4fe2ebcf03d13, type: 3}
+  m_Name: Function Call Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 14680, y: 8136}
+  size: {x: 300, y: 387}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 5301506697070900122}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: 6325902015565529256}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 5301506697070900122}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -5503199551011870355}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: 4BkQVnIj
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _calledObjectName:
+    prefabName: PHY_Photoelectric_Effect_Stage_01
+    childName: PhotoDiode_Enclosure_Distance_Knob
+  previousCalledObjectName: PHY_Photoelectric_Effect_Stage_01
+  selectedChild: {fileID: 0}
+  selectedComponent: EnhancedKnobController
+  selectedFunction: SetKnobInteractability
+  parameterValues:
+  - intValue: 0
+    floatValue: 0
+    stringValue: 
+    boolValue: 1
+    vector3Value: {x: 0, y: 0, z: 0}
+    objectValue: {fileID: 0}
+    enumTypeName: 
+    enumValueIndex: 0
+    typeName: System.Boolean
+--- !u!114 &5452656528941852345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 267aa7c654afc34438e4fe2ebcf03d13, type: 3}
+  m_Name: Function Call Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 9000, y: 6376}
+  size: {x: 300, y: 325}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 5452656528941852345}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: -3628097592906092846}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 5452656528941852345}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -4427835835199360841}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: zb7faIJV
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _calledObjectName:
+    prefabName: PHY_Photoelectric_Effect_Stage_01
+    childName: PHY_Photoelectric_Effect_Stage_01
+  previousCalledObjectName: PHY_Photoelectric_Effect_Stage_01
+  selectedChild: {fileID: 0}
+  selectedComponent: PhotoElectricTablesManager
+  selectedFunction: UpdateStageOneEvents
+  parameterValues: []
+--- !u!114 &5772836801114558178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb86bf9e46620bc44b5c176cdeb1d7e8, type: 3}
+  m_Name: Node Group
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 0.11764706}
+  outputPortColor: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 0.11764706}
+  graph: {fileID: 11400000}
+  position: {x: 12568, y: 7832}
+  size: {x: 3137, y: 1138}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 5772836801114558178}
+      _typeQualifiedName: XNode.NodeGroups.NodeGroup, XNode, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 5772836801114558178}
+      _typeQualifiedName: XNode.NodeGroups.NodeGroup, XNode, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 1
+  entry: {fileID: 0}
+  exit: {fileID: 0}
+  comment: New Trial
+  width: 3137
+  height: 1010
+  lastWidth: 400
+  lastheight: 400
+  color: {r: 0, g: 0.24799967, b: 1, a: 0.078431375}
+  collapsedWidth: 250
+  collapsedHeight: 150
+  nodes: []
+  ExpandedSize: {x: 0, y: 0}
+--- !u!114 &6325902015565529256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 267aa7c654afc34438e4fe2ebcf03d13, type: 3}
+  m_Name: Function Call Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 14344, y: 8120}
+  size: {x: 300, y: 387}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 6325902015565529256}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: -7853353069629300257}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 6325902015565529256}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 5301506697070900122}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: wauhX4dY
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _calledObjectName:
+    prefabName: <----Managers---->
+    childName: Tables_Manager
+  previousCalledObjectName: <----Managers---->
+  selectedChild: {fileID: 0}
+  selectedComponent: Table.TablesManager
+  selectedFunction: NewTrialButtonInteractible
+  parameterValues:
+  - intValue: 0
+    floatValue: 0
+    stringValue: 
+    boolValue: 0
+    vector3Value: {x: 0, y: 0, z: 0}
+    objectValue: {fileID: 0}
+    enumTypeName: 
+    enumValueIndex: 0
+    typeName: System.Boolean
+--- !u!114 &6365485310307866904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3abd0d8648f0f44892b766c0bb28f41, type: 3}
+  m_Name: Delay Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 12968, y: 8168}
+  size: {x: 300, y: 161}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 6365485310307866904}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: -1879918020552823194}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 6365485310307866904}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 7640902875394264328}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: hKOkicaU
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  timeToWait: 1
+--- !u!114 &6489981924601480921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e687721476ec9934ea0cafd966ec5c7d, type: 3}
+  m_Name: Hint Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 14280, y: 6840}
+  size: {x: 300, y: 161}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 6489981924601480921}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: -2800066693730008528}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 6489981924601480921}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 7353853710607524764}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: Xi8yQTjN
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  stepNumber: 11
+--- !u!114 &7171997958195276929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 267aa7c654afc34438e4fe2ebcf03d13, type: 3}
+  m_Name: Function Call Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 13288, y: 6648}
+  size: {x: 300, y: 325}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 7171997958195276929}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: False
+        node: {fileID: 9053667406282848364}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 7171997958195276929}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 669174875541256016}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: BcpTdQsw
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _calledObjectName:
+    prefabName: PHY_Photoelectric_Effect_Stage_01
+    childName: Photodiode_Enclosure
+  previousCalledObjectName: PHY_Photoelectric_Effect_Stage_01
+  selectedChild: {fileID: 0}
+  selectedComponent: PhotoDiodeEnclosure
+  selectedFunction: RecordWaveLength
+  parameterValues: []
+--- !u!114 &7192672570560326593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e687721476ec9934ea0cafd966ec5c7d, type: 3}
+  m_Name: Hint Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 10072, y: 6728}
+  size: {x: 300, y: 161}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 7192672570560326593}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: 4874754681361878661}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 7192672570560326593}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -3491722317951080972}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: x7GA8ckQ
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  stepNumber: 9
+--- !u!114 &7353853710607524764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9a450b0650d746ef8e5696667692e58, type: 3}
+  m_Name: Progress Map Manual Next Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 14280, y: 7032}
+  size: {x: 300, y: 161}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 7353853710607524764}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: 6489981924601480921}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 7353853710607524764}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 2475410226813647051}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: 4Lg06QPJ
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _nextStepIndex: 10
+--- !u!114 &7429157340380664084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd05017c65f99594b8342ee749a4ba14, type: 3}
+  m_Name: Click Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 12248, y: 6600}
+  size: {x: 300, y: 201}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 7429157340380664084}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: -5603040273644948408}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 7429157340380664084}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: 1748474038332050821}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: cjz2xmvU
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _targetName:
+    prefabName: PHY_Photoelectric_Effect_Stage_01
+    childName: PhotoDiode_Enclosure_Wavelength_Knob
+  clickableObject: {fileID: 0}
+--- !u!114 &7640902875394264328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1268caa123e8648a8b844f3731d02c, type: 3}
+  m_Name: Middle Message Two Actions Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 13304, y: 8152}
+  size: {x: 300, y: 401}
+  ports:
+    keys:
+    - entry
+    - buttonOne
+    - buttonTwo
+    - closeButton
+    values:
+    - _fieldName: entry
+      _node: {fileID: 7640902875394264328}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: 6365485310307866904}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: buttonOne
+      _node: {fileID: 7640902875394264328}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -1604154259243875319}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: buttonTwo
+      _node: {fileID: 7640902875394264328}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: closeButton
+      _node: {fileID: 7640902875394264328}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: bnIotry4
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _messageID: 1
+  _messageType: 0
+  _middleMessageData:
+    <MessageTitle>k__BackingField: 
+    <TitleDescription>k__BackingField: 
+    <MessageHeader>k__BackingField: 
+    <Message>k__BackingField: Do you want to try again in a new trial?
+    <ActionOneText>k__BackingField: Yes, please
+    <ActionTwoText>k__BackingField: Proceed To Next Stage
+    middleMessageType: 0
+    messageType: 0
+--- !u!114 &8102278744264900822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0121da82489d943da9897fea507ecf9f, type: 3}
+  m_Name: Enable New Stage
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 0.928089, g: 1, b: 0, a: 0.85882354}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 8264, y: 6376}
+  size: {x: 300, y: 161}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 8102278744264900822}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: first
+        node: {fileID: -3546983619224731284}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 8102278744264900822}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -7582000606397416255}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: 3evtm8xh
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _stageNumber: 1
+--- !u!114 &8177713115828785433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 267aa7c654afc34438e4fe2ebcf03d13, type: 3}
+  m_Name: Function Call Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 15000, y: 8344}
+  size: {x: 300, y: 387}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 8177713115828785433}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: -5503199551011870355}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 8177713115828785433}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: get
+        node: {fileID: -4492129282125567274}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: uBfC23YX
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _calledObjectName:
+    prefabName: PHY_Photoelectric_Effect_Stage_01
+    childName: PHY_Photoelectric_Effect_Stage_01
+  previousCalledObjectName: PHY_Photoelectric_Effect_Stage_01
+  selectedChild: {fileID: 0}
+  selectedComponent: PhotoElectricController
+  selectedFunction: IsNewTrial
+  parameterValues:
+  - intValue: 0
+    floatValue: 0
+    stringValue: 
+    boolValue: 1
+    vector3Value: {x: 0, y: 0, z: 0}
+    objectValue: {fileID: 0}
+    enumTypeName: 
+    enumValueIndex: 0
+    typeName: System.Boolean
+--- !u!114 &8530445881089997279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 267aa7c654afc34438e4fe2ebcf03d13, type: 3}
+  m_Name: Function Call Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 9368, y: 6728}
+  size: {x: 300, y: 387}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 8530445881089997279}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: 2677448822020989721}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 8530445881089997279}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -4455838756719850546}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: 60dTeJYk
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _calledObjectName:
+    prefabName: PHY_Photoelectric_Effect_Stage_01
+    childName: PHY_Photoelectric_Effect_Stage_01
+  previousCalledObjectName: PHY_Photoelectric_Effect_Stage_01
+  selectedChild: {fileID: 0}
+  selectedComponent: PhotoElectricTablesManager
+  selectedFunction: ToggleRecordInteraction
+  parameterValues:
+  - intValue: 0
+    floatValue: 0
+    stringValue: 
+    boolValue: 1
+    vector3Value: {x: 0, y: 0, z: 0}
+    objectValue: {fileID: 0}
+    enumTypeName: 
+    enumValueIndex: 0
+    typeName: System.Boolean
+--- !u!114 &8660452752515673630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 267aa7c654afc34438e4fe2ebcf03d13, type: 3}
+  m_Name: Function Call Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 11880, y: 6168}
+  size: {x: 300, y: 387}
+  ports:
+    keys:
+    - entry
+    - exit
+    values:
+    - _fieldName: entry
+      _node: {fileID: 8660452752515673630}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: False
+        node: {fileID: -1838354158211315472}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: exit
+      _node: {fileID: 8660452752515673630}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: entry
+        node: {fileID: -5603040273644948408}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: vT8Xk7Pf
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  _calledObjectName:
+    prefabName: PHY_Photoelectric_Effect_Stage_01
+    childName: Tunable_DC_PowerSupply_VoltageRange_Knob
+  previousCalledObjectName: PHY_Photoelectric_Effect_Stage_01
+  selectedChild: {fileID: 0}
+  selectedComponent: Praxilabs.DeviceSideMenu.ConnectKnobToSliderComponent
+  selectedFunction: SetSliderInteraction
+  parameterValues:
+  - intValue: 0
+    floatValue: 0
+    stringValue: 
+    boolValue: 0
+    vector3Value: {x: 0, y: 0, z: 0}
+    objectValue: {fileID: 0}
+    enumTypeName: 
+    enumValueIndex: 0
+    typeName: System.Boolean
+--- !u!114 &9053667406282848364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4f3a05db5cef2549875f51f8cf142f7, type: 3}
+  m_Name: If Statement Step
+  m_EditorClassIdentifier: 
+  inputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  outputPortColor: {r: 1, g: 1, b: 1, a: 1}
+  graph: {fileID: 11400000}
+  position: {x: 12952, y: 6504}
+  size: {x: 300, y: 161}
+  ports:
+    keys:
+    - entry
+    - True
+    - False
+    values:
+    - _fieldName: entry
+      _node: {fileID: 9053667406282848364}
+      _typeQualifiedName: NodeObject, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: exit
+        node: {fileID: -3524631676181960220}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: True
+      _node: {fileID: 9053667406282848364}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: entry
+        node: {fileID: -5651471061634108836}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: False
+      _node: {fileID: 9053667406282848364}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: entry
+        node: {fileID: 7171997958195276929}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  nodeCollapsed: 1
+  groupCollapsed: 0
+  isGroup: 0
+  stepId: F6NtUy8j
+  tooltip: 
+  width: 300
+  originalWidth: 300
+  ignorePrepareStep: 0
+  True: 0
+  False: 0

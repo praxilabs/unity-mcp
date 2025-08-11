@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c76123014eae4384894d08aea3f8f4d9, type: 3}
+  m_Name: BIO_Blood_Grouping
+  m_EditorClassIdentifier: 
+  hasTutorial: 0
+  labType: 1
+  experimentCameras: {fileID: 6954028830982602615, guid: 2dc972b9d5b043242b7a2a507dd40ffc,
+    type: 3}
+  progressMapJson: {fileID: 11400000, guid: e4b805598af69ff47bcecfb68b018454, type: 2}
+  experimentStages:
+  - endMessageNextStageDependency: 0
+    experimentGraph: {fileID: 11400000, guid: ff210565435812440a9fd8de360a7975, type: 2}
+    experimentTools: {fileID: 4389921322916455575, guid: 4590307ff6bad214890c95510623249c,
+      type: 3}
+  tableStages: []
+  _experimentPrefix: BIO_BloodGrouping

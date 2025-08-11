@@ -1,0 +1,852 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d715f18a9755ee0428b317d4647d603f, type: 3}
+  m_Name: PHY_Photoelectric_Effect_RegistryData
+  m_EditorClassIdentifier: 
+  prefabRegisteries:
+  - prefabName: PHY_Photoelectric_Effect_Stage_01
+    prefabChildren:
+    - childName: PHY_Photoelectric_Effect_Stage_01
+      childComponents:
+      - PhotoElectricController
+      - PhotoElectricTablesManager
+      - RegisterObject
+      - Table.EventsRegistry
+    - childName: Ammeter_Screen_BG_Text
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - TMPro.TextMeshProUGUI
+    - childName: Ammeter_Screen_Canvas
+      childComponents:
+      - UnityEngine.Canvas
+      - UnityEngine.UI.CanvasScaler
+      - UnityEngine.UI.GraphicRaycaster
+      - DisplayScreen
+    - childName: Ammeter_Screen_Text
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - TMPro.TextMeshProUGUI
+    - childName: ControlsDropdownMenu(Clone)_ApertureDial
+      childComponents:
+      - Praxilabs.DeviceSideMenu.DropdownControlsComponentUI
+    - childName: ControlsDropdownMenu(Clone)_CurrentRanges_Dropdown
+      childComponents:
+      - Praxilabs.DeviceSideMenu.DropdownControlsComponentUI
+    - childName: ControlsDropdownMenu(Clone)_Filter
+      childComponents:
+      - Praxilabs.DeviceSideMenu.DropdownControlsComponentUI
+    - childName: ControlsDropdownMenu(Clone)_MeasureCalibration_Dropdown
+      childComponents:
+      - Praxilabs.DeviceSideMenu.DropdownControlsComponentUI
+    - childName: ControlsDropdownMenu(Clone)_VoltageRange_Dropdown
+      childComponents:
+      - Praxilabs.DeviceSideMenu.DropdownControlsComponentUI
+    - childName: ControlsSliderComponentV2(Clone)_CurrentAmplifier
+      childComponents:
+      - Praxilabs.DeviceSideMenu.SliderControlsComponentUI
+    - childName: ControlsSliderComponentV2(Clone)_Voltage_Slider
+      childComponents:
+      - Praxilabs.DeviceSideMenu.SliderControlsComponentUI
+    - childName: DC Current Amplifier_DeviceMenuUI
+      childComponents:
+      - Praxilabs.TabManager
+      - Praxilabs.DeviceSideMenu.DeviceMenu
+      - RegularMenuUI
+      - DeviceMenuTextDistributer
+    - childName: DC_CurrentAmplifier
+      childComponents:
+      - DCCurrentAmplifierController
+      - LabelsController
+      - GameEventListener
+      - DeviceMenuBinding
+      - Hologram
+    - childName: DC_CurrentAmplifier_CurrentAmplifier_Knob
+      childComponents:
+      - EnhancedKnobController
+      - UnityEngine.BoxCollider
+      - Hologram
+      - Praxilabs.DeviceSideMenu.ConnectKnobToSliderComponent
+      - Praxilabs.DeviceSideMenu.KnobUI
+      - CursorStates.CursorStateHandler
+    - childName: DC_CurrentAmplifier_CurrentRanges_Knob
+      childComponents:
+      - EnhancedKnobController
+      - UnityEngine.BoxCollider
+      - Hologram
+      - Praxilabs.DeviceSideMenu.DropdownReadingsMapper
+      - GameEventListener
+      - CursorStates.CursorStateHandler
+    - childName: DC_CurrentAmplifier_Power_Button
+      childComponents:
+      - PushButtonSwitch
+      - UnityEngine.BoxCollider
+      - ClickableTool
+      - Hologram
+      - CursorStates.CursorStateHandler
+    - childName: DC_CurrentAmplifier_Signal_Button
+      childComponents:
+      - PushButtonSwitch
+      - UnityEngine.BoxCollider
+      - ClickableTool
+      - Hologram
+      - Praxilabs.DeviceSideMenu.DropdownReadingsMapper
+      - GameEventListener
+      - GameEventListener
+      - CursorStates.CursorStateHandler
+    - childName: DC_Devices_Close_Button
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - UnityEngine.UI.Image
+      - UltimateClean.CleanButton
+      - UnityEngine.Animator
+      - UltimateClean.ButtonSounds
+      - UnityEngine.AudioSource
+      - CursorStates.CursorStateHandler
+    - childName: DC_Devices_Device_Interaciton
+      childComponents:
+      - DeviceUI
+      - DeviceSideController
+      - Hologram
+      - DeviceMenuMultipleBinding
+    - childName: DC_Volt_Canvas
+      childComponents:
+      - UnityEngine.Canvas
+      - UnityEngine.UI.CanvasScaler
+      - UnityEngine.UI.GraphicRaycaster
+      - DisplayScreen
+    - childName: DCCurrentAmplifier_CameraView
+      childComponents:
+      - UnityEngine.Camera
+      - UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+    - childName: DCCurrentAmplifier_DeviceScreen
+      childComponents:
+      - UnityEngine.Camera
+      - UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+    - childName: DeviceMenuBuilder
+      childComponents:
+      - Praxilabs.DeviceSideMenu.DeviceMenuBuilder
+      - Praxilabs.DeviceSideMenu.DynamicComponentSpawner
+      - Praxilabs.DeviceSideMenu.DeviceInfo
+    - childName: ExplorationHintsContainer -ScreenSpace
+      childComponents:
+      - ExplorationHintsContainer
+    - childName: ExploreHintItem
+      childComponents:
+      - ExploreHintItem
+    - childName: ExploreHintItem (1)
+      childComponents:
+      - ExploreHintItem
+    - childName: ExploreHintItem (2)
+      childComponents:
+      - ExploreHintItem
+    - childName: ExploreHintItem (3)
+      childComponents:
+      - ExploreHintItem
+    - childName: ExploreHintItem (4)
+      childComponents:
+      - ExploreHintItem
+    - childName: ExploreHintItem (5)
+      childComponents:
+      - ExploreHintItem
+    - childName: ExploreHintItem (6)
+      childComponents:
+      - ExploreHintItem
+    - childName: Filament_Volt_BG_Text
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - TMPro.TextMeshProUGUI
+    - childName: Filament_Volt_Canvas
+      childComponents:
+      - UnityEngine.Canvas
+      - UnityEngine.UI.CanvasScaler
+      - UnityEngine.UI.GraphicRaycaster
+      - DisplayScreen
+    - childName: Filament_Volt_Text
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - TMPro.TextMeshProUGUI
+    - childName: FrontSide_DC_Devices
+      childComponents:
+      - DeviceSide
+      - UnityEngine.BoxCollider
+      - ClickableTool
+      - CursorStates.CursorStateHandler
+      - DeviceHoverDetector
+    - childName: FrontSide_Mercury_Light_Source_Enclosure
+      childComponents:
+      - DeviceSide
+      - UnityEngine.BoxCollider
+      - DeviceHoverDetector
+      - ClickableTool
+      - CursorStates.CursorStateHandler
+    - childName: FrontSide_Mercury_Light_Source_PowerSupply
+      childComponents:
+      - DeviceSide
+      - UnityEngine.BoxCollider
+      - DeviceHoverDetector
+      - ClickableTool
+      - CursorStates.CursorStateHandler
+    - childName: FrontSide_Photodiode_Enclosure
+      childComponents:
+      - DeviceSide
+      - UnityEngine.BoxCollider
+      - DeviceHoverDetector
+      - ClickableTool
+      - CursorStates.CursorStateHandler
+    - childName: Label_Down_Black(Clone)
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - UnityEngine.UI.VerticalLayoutGroup
+      - UnityEngine.UI.ContentSizeFitter
+      - UnityEngine.CanvasGroup
+    - childName: Label_Right_Black(Clone)
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - UnityEngine.UI.VerticalLayoutGroup
+      - UnityEngine.UI.ContentSizeFitter
+      - UnityEngine.CanvasGroup
+    - childName: Label_Right_White(Clone)
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - UnityEngine.UI.VerticalLayoutGroup
+      - UnityEngine.UI.ContentSizeFitter
+      - UnityEngine.CanvasGroup
+    - childName: LeftSide_Photodiode_Enclosure
+      childComponents:
+      - DeviceSide
+      - UnityEngine.BoxCollider
+      - DeviceHoverDetector
+      - ClickableTool
+      - CursorStates.CursorStateHandler
+    - childName: Light_Source
+      childComponents:
+      - UnityEngine.MeshFilter
+      - UnityEngine.MeshRenderer
+      - Hologram
+    - childName: Mercury Light Source Enclosure_DeviceMenuUI
+      childComponents:
+      - Praxilabs.TabManager
+      - Praxilabs.DeviceSideMenu.DeviceMenu
+      - RegularMenuUI
+      - DeviceMenuTextDistributer
+    - childName: Mercury Light Source PowerSupply_DeviceMenuUI
+      childComponents:
+      - Praxilabs.TabManager
+      - Praxilabs.DeviceSideMenu.DeviceMenu
+      - RegularMenuUI
+      - DeviceMenuTextDistributer
+    - childName: Mercury_Light_Source_Close_Button
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - UnityEngine.UI.Image
+      - UltimateClean.CleanButton
+      - UnityEngine.Animator
+      - UltimateClean.ButtonSounds
+      - UnityEngine.AudioSource
+      - CursorStates.CursorStateHandler
+    - childName: Mercury_Light_Source_Device_Interaciton
+      childComponents:
+      - DeviceUI
+      - DeviceSideController
+      - LabelsController
+      - Hologram
+      - DeviceMenuBinding
+    - childName: Mercury_Light_Source_Enclosure
+      childComponents:
+      - LightSourceEnclosure
+    - childName: Mercury_Light_Source_PowerSupply
+      childComponents:
+      - MercuryLightSourcePowerSupply
+    - childName: Mercury_PowerSupply_ Device_Interaciton
+      childComponents:
+      - DeviceUI
+      - DeviceSideController
+      - LabelsController
+      - Hologram
+      - DeviceMenuBinding
+    - childName: Mercury_PowerSupply_Close_Button
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - UnityEngine.UI.Image
+      - UltimateClean.CleanButton
+      - UnityEngine.Animator
+      - UltimateClean.ButtonSounds
+      - UnityEngine.AudioSource
+      - CursorStates.CursorStateHandler
+    - childName: Mercury_PowerSupply_PowerButton
+      childComponents:
+      - PushButtonSwitch
+      - UnityEngine.BoxCollider
+      - ClickableTool
+      - Hologram
+      - CursorStates.CursorStateHandler
+    - childName: Photodiode_Enclosure
+      childComponents:
+      - PhotoDiodeEnclosure
+      - GameEventListener
+      - GameEventListener
+    - childName: Photodiode_Enclosure_Close_Button
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - UnityEngine.UI.Image
+      - UltimateClean.CleanButton
+      - UnityEngine.Animator
+      - UltimateClean.ButtonSounds
+      - UnityEngine.AudioSource
+      - CursorStates.CursorStateHandler
+    - childName: Photodiode_Enclosure_Device_Interaciton
+      childComponents:
+      - DeviceUI
+      - DeviceSideController
+      - LabelsController
+      - Hologram
+      - DeviceMenuBinding
+    - childName: PhotoDiode_Enclosure_Distance_Knob
+      childComponents:
+      - EnhancedKnobController
+      - UnityEngine.BoxCollider
+      - Hologram
+      - Praxilabs.DeviceSideMenu.DropdownReadingsMapper
+      - GameEventListener
+      - ClickableTool
+      - CursorStates.CursorStateHandler
+    - childName: PhotoDiode_Enclosure_Wavelength_Knob
+      childComponents:
+      - EnhancedKnobController
+      - UnityEngine.BoxCollider
+      - Hologram
+      - Praxilabs.DeviceSideMenu.DropdownReadingsMapper
+      - GameEventListener
+      - ClickableTool
+      - CursorStates.CursorStateHandler
+    - childName: PhotoDiode_Volt_BG_Text
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - TMPro.TextMeshProUGUI
+    - childName: PhotoDiode_Volt_Text
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - TMPro.TextMeshProUGUI
+    - childName: Photoelectric Effect Apparatus_DeviceMenuUI
+      childComponents:
+      - Praxilabs.TabManager
+      - Praxilabs.DeviceSideMenu.DeviceMenu
+      - RegularMenuUI
+      - DeviceMenuTextDistributer
+    - childName: PhotoelectricEffectApparatus_CameraView
+      childComponents:
+      - UnityEngine.Camera
+      - UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+    - childName: SourceAreaLight
+      childComponents:
+      - UnityEngine.Light
+      - UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+    - childName: SourceSpotLight
+      childComponents:
+      - UnityEngine.Light
+      - UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+    - childName: Splitter(Clone) (1)
+      childComponents:
+      - UnityEngine.MeshFilter
+      - UnityEngine.MeshRenderer
+      - UnityEngine.Animator
+    - childName: Tunable DC Power Supply_DeviceMenuUI
+      childComponents:
+      - Praxilabs.TabManager
+      - Praxilabs.DeviceSideMenu.DeviceMenu
+      - RegularMenuUI
+      - DeviceMenuTextDistributer
+    - childName: Tunable_DC_PowerSupply
+      childComponents:
+      - TunableDCPowerSupplyController
+      - LabelsController
+      - DeviceMenuBinding
+      - Hologram
+    - childName: Tunable_DC_PowerSupply_Filament_VoltageRange_Knob
+      childComponents:
+      - EnhancedKnobController
+      - UnityEngine.BoxCollider
+      - Hologram
+      - CursorStates.CursorStateHandler
+    - childName: Tunable_DC_PowerSupply_Power_Button
+      childComponents:
+      - PushButtonSwitch
+      - UnityEngine.BoxCollider
+      - ClickableTool
+      - Hologram
+      - CursorStates.CursorStateHandler
+    - childName: Tunable_DC_PowerSupply_VoltageRange_Button
+      childComponents:
+      - PushButtonSwitch
+      - UnityEngine.BoxCollider
+      - ClickableTool
+      - Hologram
+      - Praxilabs.DeviceSideMenu.DropdownReadingsMapper
+      - GameEventListener
+      - GameEventListener
+      - CursorStates.CursorStateHandler
+    - childName: Tunable_DC_PowerSupply_VoltageRange_Knob
+      childComponents:
+      - EnhancedKnobController
+      - UnityEngine.BoxCollider
+      - Hologram
+      - Praxilabs.DeviceSideMenu.ConnectKnobToSliderComponent
+      - Praxilabs.DeviceSideMenu.KnobUI
+      - GameEventListener
+      - GameEventListener
+      - CursorStates.CursorStateHandler
+      - ClickableTool
+    - childName: TunableDCPowerSupply_CameraView
+      childComponents:
+      - UnityEngine.Camera
+      - UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+    - childName: TunableDCPowerSupply_DeviceScreen
+      childComponents:
+      - UnityEngine.Camera
+      - UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+  - prefabName: PHY_Photoelectric_Effect_Stage_02
+    prefabChildren:
+    - childName: PHY_Photoelectric_Effect_Stage_02
+      childComponents:
+      - PhotoElectricController
+      - PhotoElectricTablesManager
+      - RegisterObject
+    - childName: Ammeter_Screen_BG_Text
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - TMPro.TextMeshProUGUI
+    - childName: Ammeter_Screen_Canvas
+      childComponents:
+      - UnityEngine.Canvas
+      - UnityEngine.UI.CanvasScaler
+      - UnityEngine.UI.GraphicRaycaster
+      - DisplayScreen
+    - childName: Ammeter_Screen_Text
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - TMPro.TextMeshProUGUI
+    - childName: ConfirmBtn
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - UnityEngine.UI.Image
+      - UltimateClean.CleanButton
+      - CursorStates.CursorStateHandler
+    - childName: ControlsDropdownMenu(Clone)_ApertureDial
+      childComponents:
+      - Praxilabs.DeviceSideMenu.DropdownControlsComponentUI
+    - childName: ControlsDropdownMenu(Clone)_CurrentRanges_Dropdown
+      childComponents:
+      - Praxilabs.DeviceSideMenu.DropdownControlsComponentUI
+    - childName: ControlsDropdownMenu(Clone)_Filter
+      childComponents:
+      - Praxilabs.DeviceSideMenu.DropdownControlsComponentUI
+    - childName: ControlsDropdownMenu(Clone)_MeasureCalibration_Dropdown
+      childComponents:
+      - Praxilabs.DeviceSideMenu.DropdownControlsComponentUI
+    - childName: ControlsDropdownMenu(Clone)_VoltageRange_Dropdown
+      childComponents:
+      - Praxilabs.DeviceSideMenu.DropdownControlsComponentUI
+    - childName: ControlsSliderComponentV2(Clone)_CurrentAmplifier
+      childComponents:
+      - Praxilabs.DeviceSideMenu.SliderControlsComponentUI
+    - childName: ControlsSliderComponentV2(Clone)_Voltage_Slider
+      childComponents:
+      - Praxilabs.DeviceSideMenu.SliderControlsComponentUI
+    - childName: DC Current Amplifier_DeviceMenuUI
+      childComponents:
+      - Praxilabs.TabManager
+      - Praxilabs.DeviceSideMenu.DeviceMenu
+      - RegularMenuUI
+      - DeviceMenuTextDistributer
+    - childName: DC_CurrentAmplifier
+      childComponents:
+      - DCCurrentAmplifierController
+      - LabelsController
+      - GameEventListener
+      - DeviceMenuBinding
+      - Hologram
+    - childName: DC_CurrentAmplifier_CurrentAmplifier_Knob
+      childComponents:
+      - EnhancedKnobController
+      - UnityEngine.BoxCollider
+      - Hologram
+      - Praxilabs.DeviceSideMenu.ConnectKnobToSliderComponent
+      - Praxilabs.DeviceSideMenu.KnobUI
+      - CursorStates.CursorStateHandler
+    - childName: DC_CurrentAmplifier_CurrentRanges_Knob
+      childComponents:
+      - EnhancedKnobController
+      - UnityEngine.BoxCollider
+      - Hologram
+      - Praxilabs.DeviceSideMenu.DropdownReadingsMapper
+      - GameEventListener
+      - CursorStates.CursorStateHandler
+    - childName: DC_CurrentAmplifier_Power_Button
+      childComponents:
+      - PushButtonSwitch
+      - UnityEngine.BoxCollider
+      - ClickableTool
+      - Hologram
+      - CursorStates.CursorStateHandler
+    - childName: DC_CurrentAmplifier_Signal_Button
+      childComponents:
+      - PushButtonSwitch
+      - UnityEngine.BoxCollider
+      - ClickableTool
+      - Hologram
+      - Praxilabs.DeviceSideMenu.DropdownReadingsMapper
+      - GameEventListener
+      - GameEventListener
+      - CursorStates.CursorStateHandler
+    - childName: DC_Devices_Close_Button
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - UnityEngine.UI.Image
+      - UltimateClean.CleanButton
+      - UnityEngine.Animator
+      - UltimateClean.ButtonSounds
+      - UnityEngine.AudioSource
+      - CursorStates.CursorStateHandler
+    - childName: DC_Devices_Device_Interaciton
+      childComponents:
+      - DeviceUI
+      - DeviceSideController
+      - LabelsController
+      - Hologram
+      - DeviceMenuMultipleBinding
+    - childName: DC_Volt_Canvas
+      childComponents:
+      - UnityEngine.Canvas
+      - UnityEngine.UI.CanvasScaler
+      - UnityEngine.UI.GraphicRaycaster
+      - DisplayScreen
+    - childName: DCCurrentAmplifier_CameraView
+      childComponents:
+      - UnityEngine.Camera
+      - UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+    - childName: DCCurrentAmplifier_DeviceScreen
+      childComponents:
+      - UnityEngine.Camera
+      - UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+    - childName: DeviceMenuBuilder
+      childComponents:
+      - Praxilabs.DeviceSideMenu.DeviceMenuBuilder
+      - Praxilabs.DeviceSideMenu.DynamicComponentSpawner
+      - Praxilabs.DeviceSideMenu.DeviceInfo
+    - childName: ExplorationHintsContainer -ScreenSpace
+      childComponents:
+      - ExplorationHintsContainer
+    - childName: ExploredOfTotalHintsText
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - RTLTMPro.RTLTextMeshPro
+    - childName: ExploreHintItem
+      childComponents:
+      - ExploreHintItem
+    - childName: ExploreHintPopupWindowParent
+      childComponents:
+      - ExploreHintPopupWindow
+    - childName: Filament_Volt_BG_Text
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - TMPro.TextMeshProUGUI
+    - childName: Filament_Volt_Canvas
+      childComponents:
+      - UnityEngine.Canvas
+      - UnityEngine.UI.CanvasScaler
+      - UnityEngine.UI.GraphicRaycaster
+      - DisplayScreen
+    - childName: Filament_Volt_Text
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - TMPro.TextMeshProUGUI
+    - childName: FrontSide_DC_Devices
+      childComponents:
+      - DeviceSide
+      - UnityEngine.BoxCollider
+      - ClickableTool
+      - CursorStates.CursorStateHandler
+      - DeviceHoverDetector
+    - childName: FrontSide_Mercury_Light_Source_Enclosure
+      childComponents:
+      - DeviceSide
+      - UnityEngine.BoxCollider
+      - DeviceHoverDetector
+      - ClickableTool
+      - CursorStates.CursorStateHandler
+    - childName: FrontSide_Mercury_Light_Source_PowerSupply
+      childComponents:
+      - DeviceSide
+      - UnityEngine.BoxCollider
+      - DeviceHoverDetector
+      - ClickableTool
+      - CursorStates.CursorStateHandler
+    - childName: FrontSide_Photodiode_Enclosure
+      childComponents:
+      - DeviceSide
+      - UnityEngine.BoxCollider
+      - DeviceHoverDetector
+      - ClickableTool
+      - CursorStates.CursorStateHandler
+    - childName: HintBtn
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - UnityEngine.UI.Image
+      - UltimateClean.CleanButton
+      - CursorStates.CursorStateHandler
+    - childName: HintText
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - RTLTMPro.RTLTextMeshPro
+    - childName: Label_Down_Black(Clone)
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - UnityEngine.UI.VerticalLayoutGroup
+      - UnityEngine.UI.ContentSizeFitter
+      - UnityEngine.CanvasGroup
+    - childName: Label_Down_White(Clone)
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - UnityEngine.UI.VerticalLayoutGroup
+      - UnityEngine.UI.ContentSizeFitter
+      - UnityEngine.CanvasGroup
+    - childName: Label_Right_White(Clone)
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - UnityEngine.UI.VerticalLayoutGroup
+      - UnityEngine.UI.ContentSizeFitter
+      - UnityEngine.CanvasGroup
+    - childName: LeftSide_Photodiode_Enclosure
+      childComponents:
+      - DeviceSide
+      - UnityEngine.BoxCollider
+      - DeviceHoverDetector
+      - ClickableTool
+      - CursorStates.CursorStateHandler
+    - childName: Light_Source
+      childComponents:
+      - UnityEngine.MeshFilter
+      - UnityEngine.MeshRenderer
+      - Hologram
+    - childName: Mercury Light Source Enclosure_DeviceMenuUI
+      childComponents:
+      - Praxilabs.TabManager
+      - Praxilabs.DeviceSideMenu.DeviceMenu
+      - RegularMenuUI
+      - DeviceMenuTextDistributer
+    - childName: Mercury Light Source PowerSupply_DeviceMenuUI
+      childComponents:
+      - Praxilabs.TabManager
+      - Praxilabs.DeviceSideMenu.DeviceMenu
+      - RegularMenuUI
+      - DeviceMenuTextDistributer
+    - childName: Mercury_Light_Source_Close_Button
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - UnityEngine.UI.Image
+      - UltimateClean.CleanButton
+      - UnityEngine.Animator
+      - UltimateClean.ButtonSounds
+      - UnityEngine.AudioSource
+      - CursorStates.CursorStateHandler
+    - childName: Mercury_Light_Source_Device_Interaciton
+      childComponents:
+      - DeviceUI
+      - DeviceSideController
+      - LabelsController
+      - Hologram
+      - DeviceMenuBinding
+    - childName: Mercury_Light_Source_Enclosure
+      childComponents:
+      - LightSourceEnclosure
+    - childName: Mercury_Light_Source_PowerSupply
+      childComponents:
+      - MercuryLightSourcePowerSupply
+    - childName: Mercury_PowerSupply_ Device_Interaciton
+      childComponents:
+      - DeviceUI
+      - DeviceSideController
+      - LabelsController
+      - Hologram
+      - DeviceMenuBinding
+    - childName: Mercury_PowerSupply_Close_Button
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - UnityEngine.UI.Image
+      - UltimateClean.CleanButton
+      - UnityEngine.Animator
+      - UltimateClean.ButtonSounds
+      - UnityEngine.AudioSource
+      - CursorStates.CursorStateHandler
+    - childName: Mercury_PowerSupply_PowerButton
+      childComponents:
+      - PushButtonSwitch
+      - UnityEngine.BoxCollider
+      - ClickableTool
+      - Hologram
+      - CursorStates.CursorStateHandler
+    - childName: Photodiode_Enclosure
+      childComponents:
+      - PhotoDiodeEnclosure
+      - GameEventListener
+      - GameEventListener
+    - childName: Photodiode_Enclosure_Close_Button
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - UnityEngine.UI.Image
+      - UltimateClean.CleanButton
+      - UnityEngine.Animator
+      - UltimateClean.ButtonSounds
+      - UnityEngine.AudioSource
+      - CursorStates.CursorStateHandler
+    - childName: Photodiode_Enclosure_Device_Interaciton
+      childComponents:
+      - DeviceUI
+      - DeviceSideController
+      - LabelsController
+      - Hologram
+      - DeviceMenuBinding
+    - childName: PhotoDiode_Enclosure_Distance_Knob
+      childComponents:
+      - EnhancedKnobController
+      - UnityEngine.BoxCollider
+      - Hologram
+      - Praxilabs.DeviceSideMenu.DropdownReadingsMapper
+      - GameEventListener
+      - ClickableTool
+      - CursorStates.CursorStateHandler
+    - childName: PhotoDiode_Enclosure_Wavelength_Knob
+      childComponents:
+      - EnhancedKnobController
+      - UnityEngine.BoxCollider
+      - Hologram
+      - Praxilabs.DeviceSideMenu.DropdownReadingsMapper
+      - GameEventListener
+      - ClickableTool
+      - CursorStates.CursorStateHandler
+    - childName: PhotoDiode_Volt_BG_Text
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - TMPro.TextMeshProUGUI
+    - childName: PhotoDiode_Volt_Text
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - TMPro.TextMeshProUGUI
+    - childName: Photoelectric Effect Apparatus_DeviceMenuUI
+      childComponents:
+      - Praxilabs.TabManager
+      - Praxilabs.DeviceSideMenu.DeviceMenu
+      - RegularMenuUI
+      - DeviceMenuTextDistributer
+    - childName: PhotoelectricEffectApparatus_CameraView
+      childComponents:
+      - UnityEngine.Camera
+      - UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+    - childName: SourceAreaLight
+      childComponents:
+      - UnityEngine.Light
+      - UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+    - childName: SourceSpotLight
+      childComponents:
+      - UnityEngine.Light
+      - UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+    - childName: Splitter(Clone) (1)
+      childComponents:
+      - UnityEngine.MeshFilter
+      - UnityEngine.MeshRenderer
+      - UnityEngine.Animator
+    - childName: Text (TMP)
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - RTLTMPro.RTLTextMeshPro
+      - LocalizationSystem.LocalizeStringEvent
+    - childName: Tunable DC Power Supply_DeviceMenuUI
+      childComponents:
+      - Praxilabs.TabManager
+      - Praxilabs.DeviceSideMenu.DeviceMenu
+      - RegularMenuUI
+      - DeviceMenuTextDistributer
+    - childName: Tunable_DC_PowerSupply
+      childComponents:
+      - TunableDCPowerSupplyController
+      - LabelsController
+      - DeviceMenuBinding
+      - Hologram
+    - childName: Tunable_DC_PowerSupply_Filament_VoltageRange_Knob
+      childComponents:
+      - EnhancedKnobController
+      - UnityEngine.BoxCollider
+      - Hologram
+      - CursorStates.CursorStateHandler
+    - childName: Tunable_DC_PowerSupply_Power_Button
+      childComponents:
+      - PushButtonSwitch
+      - UnityEngine.BoxCollider
+      - ClickableTool
+      - Hologram
+      - CursorStates.CursorStateHandler
+    - childName: Tunable_DC_PowerSupply_VoltageRange_Button
+      childComponents:
+      - PushButtonSwitch
+      - UnityEngine.BoxCollider
+      - ClickableTool
+      - Hologram
+      - Praxilabs.DeviceSideMenu.DropdownReadingsMapper
+      - GameEventListener
+      - GameEventListener
+      - CursorStates.CursorStateHandler
+    - childName: Tunable_DC_PowerSupply_VoltageRange_Knob
+      childComponents:
+      - EnhancedKnobController
+      - UnityEngine.BoxCollider
+      - Hologram
+      - Praxilabs.DeviceSideMenu.ConnectKnobToSliderComponent
+      - Praxilabs.DeviceSideMenu.KnobUI
+      - GameEventListener
+      - GameEventListener
+      - CursorStates.CursorStateHandler
+      - ClickableTool
+    - childName: TunableDCPowerSupply_CameraView
+      childComponents:
+      - UnityEngine.Camera
+      - UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+    - childName: TunableDCPowerSupply_DeviceScreen
+      childComponents:
+      - UnityEngine.Camera
+      - UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+  - prefabName: MCQCloseButton
+    prefabChildren:
+    - childName: MCQCloseButton
+      childComponents:
+      - UnityEngine.RectTransform
+      - UnityEngine.CanvasRenderer
+      - UnityEngine.UI.Image
+      - UnityEngine.UI.Button
+      - RegisterObject
+      - CursorStates.CursorStateHandler
+  - prefabName: Add trial
+    prefabChildren:
+    - childName: Add Trial button
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - UnityEngine.UI.Image
+      - UnityEngine.UI.Button
+      - CursorStates.CursorStateHandler
+    - childName: AddTrial_Text
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - RTLTMPro.RTLTextMeshPro
+      - LocalizationSystem.LocalizeStringEvent
+    - childName: Plus_Text
+      childComponents:
+      - UnityEngine.CanvasRenderer
+      - TMPro.TextMeshProUGUI

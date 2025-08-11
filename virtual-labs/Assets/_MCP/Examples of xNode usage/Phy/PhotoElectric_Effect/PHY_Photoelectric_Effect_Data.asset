@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c76123014eae4384894d08aea3f8f4d9, type: 3}
+  m_Name: PHY_Photoelectric_Effect_Data
+  m_EditorClassIdentifier: 
+  experimentName: PHY_Photoelectric_Effect
+  hasTutorial: 0
+  labType: 1
+  experimentCameras: {fileID: 6954028830982602615, guid: 933392141ddb6574a900ef6c4f7294fa,
+    type: 3}
+  progressMapJson: {fileID: 11400000, guid: 78667611957fa1a41b4c046b5a26d2a0, type: 2}
+  experimentStages:
+  - stageEndMessageType: 0
+    experimentGraph: {fileID: 11400000, guid: 6c627387fe8011c4fabd8949beaddf07, type: 2}
+    experimentTools: {fileID: 4898518580765301686, guid: 91901e0d23d810e47b9323a88db2e420,
+      type: 3}
+  - stageEndMessageType: 0
+    experimentGraph: {fileID: 11400000, guid: 49faafba89c11654793a91b53f42eb52, type: 2}
+    experimentTools: {fileID: 4898518580765301686, guid: 27e5e996cf1910e419fcc80a2aa85242,
+      type: 3}
+  tableStages:
+  - stage: 1
+    showTableSettings: 1
+    tableWindow: {fileID: 2934364475803165262, guid: d74f9c244c5be3347a75cf9e9355393d,
+      type: 3}
+    tableSettingsViewPrefab: {fileID: 3848481670425267534, guid: cbfb4e3e9e6d7dc4892e2b599ec71a33,
+      type: 3}
+    tableViewPrefab: {fileID: 4487967732186905109, guid: ad02de32234febb4b922484273086768,
+      type: 3}
+  - stage: 2
+    showTableSettings: 1
+    tableWindow: {fileID: 2934364475803165262, guid: 940cde2158f43484a8bee594da679c5d,
+      type: 3}
+    tableSettingsViewPrefab: {fileID: 3848481670425267534, guid: 635654d291fef55409cfbb04ef3f004f,
+      type: 3}
+    tableViewPrefab: {fileID: 4487967732186905109, guid: 2b504b17de663804dbab4cd8e80566d5,
+      type: 3}
