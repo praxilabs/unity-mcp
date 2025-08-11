@@ -1,7 +1,6 @@
 using Praxilabs.UIs;
 using System.Collections;
 using System.Collections.Generic;
-using Unified.UniversalBlur.Runtime;
 using UnityEngine;
 
 [NodeTint("#424242"), CreateNodeMenu("Hint", 5)]
