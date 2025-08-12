@@ -21,6 +21,7 @@ namespace UnityMcpBridge.Editor.Tools
             { "HandleReadConsole", ReadConsole.HandleCommand },
             { "HandleExecuteMenuItem", ExecuteMenuItem.HandleCommand },
             { "HandleManageShader", ManageShader.HandleCommand},
+            { "HandleAddClickStep", AddClickStep.HandleCommand },
         };
 
         /// <summary>

@@ -6,7 +6,7 @@ from .manage_asset import register_manage_asset_tools
 from .manage_shader import register_manage_shader_tools
 from .read_console import register_read_console_tools
 from .execute_menu_item import register_execute_menu_item_tools
-
+from .add_click_step import register_add_click_step_tools
 def register_all_tools(mcp):
     """Register all refactored tools with the MCP server."""
     print("Registering Unity MCP Server refactored tools...")
@@ -18,4 +18,5 @@ def register_all_tools(mcp):
     register_manage_shader_tools(mcp)
     register_read_console_tools(mcp)
     register_execute_menu_item_tools(mcp)
+    register_add_click_step_tools(mcp)
     print("Unity MCP Server tool registration complete.")
