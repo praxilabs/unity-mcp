@@ -41,33 +41,32 @@ async def server_lifespan(server: FastMCP) -> AsyncIterator[Dict[str, Any]]:
 # Initialize MCP server
 mcp = FastMCP(
     "unity-mcp-server",
-    description="Unity Editor integration via Model Context Protocol",
     lifespan=server_lifespan
 )
 
 # Register all tools
 register_all_tools(mcp)
 
-# Asset Creation Strategy
+# Test AddClickStep tool
+async def test_add_click_step():
+    # Example payload, adjust as needed for your tool's expected input
+    payload = {
+        "step_description": "Click the Play button in the Unity Editor"
+        "target_graph_path": "C:\Dahdouha\virtual-labs-main\Assets\-AssetBundlesXnode\Phy\Photoelectric Effect Data (xNode)-20250604T123125Z-1-001\Add a click step in Assets\-AssetBundlesXnode\Phy\Photoelectric Effect Data (xNode)-20250604T123125Z-1-001\Photoelectric Effect Data (xNode)\PHY_Photoelectric_Effect_Stage_01.asset
+targetting PHY_Photoelectric_Effect_Stage_01/m_EditorClassIdentifier
 
-@mcp.prompt()
-def asset_creation_strategy() -> str:
-    """Guide for discovering and using Unity MCP tools effectively."""
-    return (
-        "Available Unity MCP Server Tools:\\n\\n"
-        "- `manage_editor`: Controls editor state and queries info.\\n"
-        "- `execute_menu_item`: Executes Unity Editor menu items by path.\\n"
-        "- `read_console`: Reads or clears Unity console messages, with filtering options.\\n"
-        "- `manage_scene`: Manages scenes.\\n"
-        "- `manage_gameobject`: Manages GameObjects in the scene.\\n"
-        "- `manage_script`: Manages C# script files.\\n"
-        "- `manage_asset`: Manages prefabs and assets.\\n"
-        "- `manage_shader`: Manages shaders.\\n\\n"
-        "Tips:\\n"
-        "- Create prefabs for reusable GameObjects.\\n"
-        "- Always include a camera and main light in your scenes.\\n"
-    )
+"
+    }
+    try:
+        # Call the tool using MCP's internal dispatch
+        result = await mcp.call_tool("add_click_step", payload)
+        logger.info(f"AddClickStep tool test result: {result}")
+    except Exception as e:
+        logger.error(f"AddClickStep tool test failed: {e}")
 
-# Run the server
+import asyncio
+
 if __name__ == "__main__":
+    # Run the test before starting the server
+    asyncio.run(test_add_click_step())
     mcp.run(transport='stdio')
