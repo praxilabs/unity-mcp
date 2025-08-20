@@ -1,0 +1,3 @@
+[submodule "Submodules/virtual-labs"]
+	path = Submodules/virtual-labs
+	url = git@github.com:praxilabs/virtual-labs.git
