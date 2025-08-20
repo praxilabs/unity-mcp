@@ -20,7 +20,9 @@ namespace UnityMcpBridge.Editor.Tools
             { "HandleManageAsset", ManageAsset.HandleCommand },
             { "HandleReadConsole", ReadConsole.HandleCommand },
             { "HandleExecuteMenuItem", ExecuteMenuItem.HandleCommand },
-            { "HandleManageShader", ManageShader.HandleCommand},
+            { "PrintHelloWorld", PrintHelloWorld.HandleCommand },
+            { "CreateScriptableObject", CreateScriptableObject.HandleCommand },
+            { "CreateXNodeNode", CreateXNodeNode.HandleCommand }
         };
 
         /// <summary>
