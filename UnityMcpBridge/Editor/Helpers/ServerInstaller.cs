@@ -11,40 +11,27 @@ namespace UnityMcpBridge.Editor.Helpers
     {
         private const string RootFolder = "UnityMCP";
         private const string ServerFolder = "UnityMcpServer";
-        private const string BranchName = "main";
-        private const string GitUrl = "https://github.com/CoplayDev/unity-mcp.git";
+        private const string BranchName = "virtual-lab-submodule";
+        // Point to your fork; if private, keep SSH for git ops and only use raw if public
+        private const string GitUrl = "git@github.com:praxilabs/unity-mcp.git";
+        // raw needs just the branch name, not "refs/heads"
         private const string PyprojectUrl =
-            "https://raw.githubusercontent.com/CoplayDev/unity-mcp/refs/heads/"
-            + BranchName
-            + "/UnityMcpServer/src/pyproject.toml";
+            "https://raw.githubusercontent.com/praxilabs/unity-mcp/" + BranchName + "/UnityMcpServer/src/pyproject.toml";
 
-        /// <summary>
-        /// Ensures the unity-mcp-server is installed and up to date.
-        /// </summary>
-        public static void EnsureServerInstalled()
-        {
-            try
-            {
+        public static void EnsureServerInstalled() {
+            try {
                 string saveLocation = GetSaveLocation();
-
-                if (!IsServerInstalled(saveLocation))
-                {
+                if (!IsServerInstalled(saveLocation)) {
                     InstallServer(saveLocation);
-                }
-                else
-                {
+                } else {
                     string installedVersion = GetInstalledVersion();
-                    string latestVersion = GetLatestVersion();
-
-                    if (IsNewerVersion(latestVersion, installedVersion))
-                    {
+                    string latestVersion = installedVersion;
+                    try { latestVersion = GetLatestVersion(); } catch { /* private repo or network: skip */ }
+                    if (IsNewerVersion(latestVersion, installedVersion)) {
                         UpdateServer(saveLocation);
                     }
-                    else { }
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 Debug.LogError($"Failed to ensure server installation: {ex.Message}");
             }
         }
