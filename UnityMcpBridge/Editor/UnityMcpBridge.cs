@@ -427,6 +427,8 @@ namespace UnityMcpBridge.Editor
                     "list_registry_parents" => ManageRegistryData.HandleListParents(paramsObject),
                     "list_registry_all" => ManageRegistryData.HandleListAll(paramsObject),
                     "list_registry_children" => ManageRegistryData.HandleListChildren(paramsObject),
+                    "get_child_components" => ManageRegistryData.HandleGetChildComponents(paramsObject),
+                    "get_component_methods" => ManageRegistryData.HandleGetComponentMethods(paramsObject),
                     _ => throw new ArgumentException(
                         $"Unknown or unsupported command type: {command.type}"
                     ),

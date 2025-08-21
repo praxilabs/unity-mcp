@@ -1,0 +1,89 @@
+---
+alwaysApply: true
+---
+# XNode Step Nodes Context and Usage Guide
+
+This rule provides comprehensive context for all XNode step node types available in the virtual labs system. Understanding these nodes is crucial for designing effective experiment workflows.
+
+## Node Categories
+
+The system organizes nodes into several categories:
+
+### 1. Action-Executed Steps
+User interaction required - see [action-executed-steps.mdc](mdc:.cursor/rules/action-executed-steps.mdc)
+
+### 2. Self-Executed Steps  
+Automatically execute when reached - see [self-executed-steps.mdc](mdc:.cursor/rules/self-executed-steps.mdc)
+
+### 3. Control Flow Steps
+Manage experiment flow logic - see [control-flow-steps.mdc](mdc:.cursor/rules/control-flow-steps.mdc)
+
+### 4. UI and System Steps
+Interface and system operations - see [ui-system-steps.mdc](mdc:.cursor/rules/ui-system-steps.mdc)
+
+## Key Concepts
+
+### Registry System
+All nodes use the **ExperimentItemsRegistry** to resolve GameObjects:
+- **Parent Objects**: Top-level prefabs (e.g., "Tools", "Cube")
+- **Child Objects**: Specific components within parents
+- **Resolution**: `ExperimentItemsContainer.Instance.Resolve(parent, child)`
+
+### Node Execution Flow
+1. **PrepareStep()**: Initialize and resolve objects
+2. **Execute()**: Perform the main action
+3. **Exit()**: Clean up and signal completion
+
+### Parameter Types
+- **RegistryItem**: References to scene objects via registry
+- **SerializableParameter[]**: Function call parameters
+- **NodeObject**: Data flow between nodes
+
+## Experiment Design Patterns
+
+### Educational Experiment Pattern (PhotoElectric Effect Style)
+**Purpose**: Guided learning with user-paced progression
+
+**Structure**:
+1. **Introduction Phase**: IntroEndMessagesStep + HintStep for context
+2. **Guided Progression**: HintStep → ProgressMapManualNextStep → SubGraphStep pattern
+3. **Modular Procedures**: Each experimental step as separate SubGraph
+4. **Educational Reinforcement**: HintStep nodes between major phases
+5. **User Control**: ProgressMapManualNextStep for pacing
+
+**Key Characteristics**:
+- Linear progression with user control points
+- Heavy use of SubGraphStep for modularity
+- Educational hints at every major transition
+- No complex control flow (ForLoop, WhileLoop) - keeps focus on learning
+
+### Research Experiment Pattern
+**Purpose**: Data collection and analysis with complex control flow
+
+**Structure**:
+1. **Setup Phase**: FunctionCallStep to configure materials and objects
+2. **Control Flow Phase**: ForLoopStep/WhileLoopStep for systematic testing
+3. **Interaction Phase**: ClickStep and RotateKnobStep for user control
+4. **Measurement Phase**: FunctionCallStep to read sensor values
+5. **Analysis Phase**: Calculation nodes and data display
+6. **Decision Logic**: IfStatementStep and SwitchStep for adaptive behavior
+
+**Key Characteristics**:
+- Complex control flow with loops and conditionals
+- Automated data collection sequences
+- Error handling and retry logic
+- Statistical analysis and comparison
+
+## Best Practices
+
+- Always ensure scene prefabs are registered before creating graphs
+- Use DelayStep between rapid operations to ensure proper timing
+- Combine ClickStep with visual feedback (flashing tools)
+- Use HintStep to guide users through complex procedures
+- Implement proper error handling in FunctionCallStep nodes
+
+## File References
+
+- Node implementations: [Assets/Scripts/System/xNode/Steps/](mdc:Assets/Scripts/System/xNode/Steps/)
+- Registry system: [Assets/Scripts/System/xNode/DependencyInjection/](mdc:Assets/Scripts/System/xNode/DependencyInjection/)
+- Graph management: [Assets/Scripts/System/xNode/Graphs/StepsGraph.cs](mdc:Assets/Scripts/System/xNode/Graphs/StepsGraph.cs)

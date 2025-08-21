@@ -17,7 +17,7 @@ public static class ManageRegistryData
             return new
             {
                 success = false,
-                error = "Missing required argument: graphPath"
+                                    error = "Missing required argument: graphPath"
             };
         }
 
@@ -63,10 +63,10 @@ public static class ManageRegistryData
             {
                 foreach (var entry in enumerable)
                 {
-                    var prefabNameProperty = entry.GetType().GetProperty("prefabName");
-                    if (prefabNameProperty != null)
+                    var prefabNameField = entry.GetType().GetField("prefabName");
+                    if (prefabNameField != null)
                     {
-                        var prefabName = prefabNameProperty.GetValue(entry) as string;
+                        var prefabName = prefabNameField.GetValue(entry) as string;
                         if (!string.IsNullOrEmpty(prefabName))
                         {
                             parents.Add(prefabName);
@@ -107,7 +107,7 @@ public static class ManageRegistryData
             return new
             {
                 success = false,
-                error = "Missing required argument: graphPath"
+                                    error = "Missing required argument: graphPath"
             };
         }
 
@@ -154,12 +154,12 @@ public static class ManageRegistryData
             {
                 foreach (var prefabEntry in enumerable)
                 {
-                    var prefabNameProperty = prefabEntry.GetType().GetProperty("prefabName");
-                    var prefabChildrenProperty = prefabEntry.GetType().GetProperty("prefabChildren");
+                    var prefabNameField = prefabEntry.GetType().GetField("prefabName");
+                    var prefabChildrenField = prefabEntry.GetType().GetField("prefabChildren");
                     
-                    if (prefabNameProperty != null)
+                    if (prefabNameField != null)
                     {
-                        var prefabName = prefabNameProperty.GetValue(prefabEntry) as string;
+                        var prefabName = prefabNameField.GetValue(prefabEntry) as string;
                         if (string.IsNullOrEmpty(prefabName)) continue;
 
                         // Add the parent itself
@@ -172,25 +172,25 @@ public static class ManageRegistryData
                         });
 
                         // Add all children
-                        if (prefabChildrenProperty != null)
+                        if (prefabChildrenField != null)
                         {
-                            var children = prefabChildrenProperty.GetValue(prefabEntry) as System.Collections.IEnumerable;
+                            var children = prefabChildrenField.GetValue(prefabEntry) as System.Collections.IEnumerable;
                             if (children != null)
                             {
                                 foreach (var childEntry in children)
                                 {
-                                    var childNameProperty = childEntry.GetType().GetProperty("childName");
-                                    var childComponentsProperty = childEntry.GetType().GetProperty("childComponents");
+                                    var childNameField = childEntry.GetType().GetField("childName");
+                                    var childComponentsField = childEntry.GetType().GetField("childComponents");
                                     
-                                    if (childNameProperty != null)
+                                    if (childNameField != null)
                                     {
-                                        var childName = childNameProperty.GetValue(childEntry) as string;
+                                        var childName = childNameField.GetValue(childEntry) as string;
                                         if (string.IsNullOrEmpty(childName)) continue;
 
                                         var components = new List<string>();
-                                        if (childComponentsProperty != null)
+                                        if (childComponentsField != null)
                                         {
-                                            var childComponents = childComponentsProperty.GetValue(childEntry) as System.Collections.IEnumerable;
+                                            var childComponents = childComponentsField.GetValue(childEntry) as System.Collections.IEnumerable;
                                             if (childComponents != null)
                                             {
                                                 foreach (var component in childComponents)
@@ -246,7 +246,7 @@ public static class ManageRegistryData
             return new
             {
                 success = false,
-                error = "Missing required argument: graphPath"
+                                    error = "Missing required argument: graphPath"
             };
         }
 
@@ -255,7 +255,7 @@ public static class ManageRegistryData
             return new
             {
                 success = false,
-                error = "Missing required argument: parentName"
+                                    error = "Missing required argument: parentName"
             };
         }
 
@@ -301,10 +301,10 @@ public static class ManageRegistryData
             {
                 foreach (var entry in enumerable)
                 {
-                    var prefabNameProperty = entry.GetType().GetProperty("prefabName");
-                    if (prefabNameProperty != null)
+                    var prefabNameField = entry.GetType().GetField("prefabName");
+                    if (prefabNameField != null)
                     {
-                        var prefabName = prefabNameProperty.GetValue(entry) as string;
+                        var prefabName = prefabNameField.GetValue(entry) as string;
                         if (string.Equals(prefabName, parentName, StringComparison.OrdinalIgnoreCase))
                         {
                             parentEntry = entry;
@@ -325,26 +325,26 @@ public static class ManageRegistryData
 
             // Extract children
             var children = new List<object>();
-            var prefabChildrenProperty = parentEntry.GetType().GetProperty("prefabChildren");
-            if (prefabChildrenProperty != null)
+            var prefabChildrenField = parentEntry.GetType().GetField("prefabChildren");
+            if (prefabChildrenField != null)
             {
-                var childrenEnumerable = prefabChildrenProperty.GetValue(parentEntry) as System.Collections.IEnumerable;
+                var childrenEnumerable = prefabChildrenField.GetValue(parentEntry) as System.Collections.IEnumerable;
                 if (childrenEnumerable != null)
                 {
                     foreach (var childEntry in childrenEnumerable)
                     {
-                        var childNameProperty = childEntry.GetType().GetProperty("childName");
-                        var childComponentsProperty = childEntry.GetType().GetProperty("childComponents");
+                        var childNameField = childEntry.GetType().GetField("childName");
+                        var childComponentsField = childEntry.GetType().GetField("childComponents");
                         
-                        if (childNameProperty != null)
+                        if (childNameField != null)
                         {
-                            var childName = childNameProperty.GetValue(childEntry) as string;
+                            var childName = childNameField.GetValue(childEntry) as string;
                             if (string.IsNullOrEmpty(childName)) continue;
 
                             var components = new List<string>();
-                            if (childComponentsProperty != null)
+                            if (childComponentsField != null)
                             {
-                                var childComponents = childComponentsProperty.GetValue(childEntry) as System.Collections.IEnumerable;
+                                var childComponents = childComponentsField.GetValue(childEntry) as System.Collections.IEnumerable;
                                 if (childComponents != null)
                                 {
                                     foreach (var component in childComponents)
@@ -393,25 +393,302 @@ public static class ManageRegistryData
         }
     }
 
+    public static object HandleGetChildComponents(JObject args)
+    {
+        string graphPath = args?["graphPath"]?.ToString();
+        string parentName = args?["parentName"]?.ToString();
+        string childName = args?["childName"]?.ToString();
+
+        if (string.IsNullOrEmpty(graphPath))
+        {
+            return new
+            {
+                success = false,
+                error = "Missing required argument: graphPath"
+            };
+        }
+
+        if (string.IsNullOrEmpty(parentName))
+        {
+            return new
+            {
+                success = false,
+                error = "Missing required argument: parentName"
+            };
+        }
+
+        if (string.IsNullOrEmpty(childName))
+        {
+            return new
+            {
+                success = false,
+                error = "Missing required argument: childName"
+            };
+        }
+
+        try
+        {
+            // Load the graph asset as base type to avoid compile-time dependency
+            var graph = AssetDatabase.LoadAssetAtPath<NodeGraph>(graphPath);
+            if (graph == null)
+            {
+                return new
+                {
+                    success = false,
+                    error = $"Could not load NodeGraph at path: {graphPath}"
+                };
+            }
+
+            // Get the registry data from the graph using SerializedObject
+            var registryData = GetRegistryDataFromGraph(graph);
+            if (registryData == null)
+            {
+                return new
+                {
+                    success = false,
+                    error = "Could not access registry data from graph (is it a StepsGraph?)"
+                };
+            }
+
+            // Get prefab registries using reflection
+            var prefabRegistries = GetPrefabRegistries(registryData);
+            if (prefabRegistries == null)
+            {
+                return new
+                {
+                    success = false,
+                    error = "No registry data found in the graph"
+                };
+            }
+
+            // Find the specific parent
+            object parentEntry = null;
+            var enumerable = prefabRegistries as System.Collections.IEnumerable;
+            if (enumerable != null)
+            {
+                foreach (var entry in enumerable)
+                {
+                    var prefabNameField = entry.GetType().GetField("prefabName");
+                    if (prefabNameField != null)
+                    {
+                        var prefabName = prefabNameField.GetValue(entry) as string;
+                        if (string.Equals(prefabName, parentName, StringComparison.OrdinalIgnoreCase))
+                        {
+                            parentEntry = entry;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (parentEntry == null)
+            {
+                return new
+                {
+                    success = false,
+                    error = $"Parent '{parentName}' not found in registry"
+                };
+            }
+
+            // Find the specific child and get its components
+            var components = new List<string>();
+            var prefabChildrenField = parentEntry.GetType().GetField("prefabChildren");
+            if (prefabChildrenField != null)
+            {
+                var childrenEnumerable = prefabChildrenField.GetValue(parentEntry) as System.Collections.IEnumerable;
+                if (childrenEnumerable != null)
+                {
+                    foreach (var childEntry in childrenEnumerable)
+                    {
+                        var childNameField = childEntry.GetType().GetField("childName");
+                        if (childNameField != null)
+                        {
+                            var currentChildName = childNameField.GetValue(childEntry) as string;
+                            if (string.Equals(currentChildName, childName, StringComparison.OrdinalIgnoreCase))
+                            {
+                                // Found the child, now get its components
+                                var childComponentsField = childEntry.GetType().GetField("childComponents");
+                                if (childComponentsField != null)
+                                {
+                                    var childComponents = childComponentsField.GetValue(childEntry) as System.Collections.IEnumerable;
+                                    if (childComponents != null)
+                                    {
+                                        foreach (var component in childComponents)
+                                        {
+                                            if (component != null)
+                                                components.Add(component.ToString());
+                                        }
+                                    }
+                                }
+                                break; // Found the child, no need to continue
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (components.Count == 0)
+            {
+                return new
+                {
+                    success = false,
+                    error = $"Child '{childName}' not found in parent '{parentName}' or has no components"
+                };
+            }
+
+            return new
+            {
+                success = true,
+                message = $"Found {components.Count} components for child '{childName}' in parent '{parentName}'",
+                graphPath = graphPath,
+                parentName = parentName,
+                childName = childName,
+                components = components.ToArray(),
+                count = components.Count,
+                timestamp = System.DateTime.Now.ToString()
+            };
+        }
+        catch (Exception ex)
+        {
+            return new
+            {
+                success = false,
+                error = $"Failed to get child components: {ex.Message}"
+            };
+        }
+    }
+
+    public static object HandleGetComponentMethods(JObject args)
+    {
+        string componentTypeName = args?["componentTypeName"]?.ToString();
+
+        if (string.IsNullOrEmpty(componentTypeName))
+        {
+            return new
+            {
+                success = false,
+                error = "Missing required argument: componentTypeName"
+            };
+        }
+
+        try
+        {
+            // Get the component type using reflection
+            var componentType = System.Type.GetType(componentTypeName);
+            if (componentType == null)
+            {
+                // Try with UnityEngine namespace
+                componentType = System.Type.GetType($"UnityEngine.{componentTypeName}");
+            }
+            if (componentType == null)
+            {
+                // Try with Praxilabs namespace
+                componentType = System.Type.GetType($"Praxilabs.{componentTypeName}");
+            }
+            if (componentType == null)
+            {
+                // Try with Praxilabs.Input namespace
+                componentType = System.Type.GetType($"Praxilabs.Input.{componentTypeName}");
+            }
+
+            if (componentType == null)
+            {
+                return new
+                {
+                    success = false,
+                    error = $"Could not find component type: {componentTypeName}"
+                };
+            }
+
+            // Get all public methods
+            var methods = componentType.GetMethods(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.DeclaredOnly);
+            
+            var methodList = new List<object>();
+            foreach (var method in methods)
+            {
+                // Skip Unity's built-in methods and properties
+                if (method.Name.StartsWith("get_") || method.Name.StartsWith("set_") || 
+                    method.Name == "ToString" || method.Name == "GetType" || 
+                    method.Name == "Equals" || method.Name == "GetHashCode")
+                {
+                    continue;
+                }
+
+                // Get parameter information
+                var parameters = method.GetParameters();
+                var parameterList = new List<object>();
+                
+                foreach (var param in parameters)
+                {
+                    parameterList.Add(new
+                    {
+                        name = param.Name,
+                        type = param.ParameterType.Name,
+                        isOptional = param.IsOptional,
+                        defaultValue = param.HasDefaultValue ? param.DefaultValue?.ToString() : null
+                    });
+                }
+
+                methodList.Add(new
+                {
+                    name = method.Name,
+                    returnType = method.ReturnType.Name,
+                    parameters = parameterList.ToArray(),
+                    parameterCount = parameters.Length
+                });
+            }
+
+            // Sort methods by name
+            methodList = methodList.OrderBy(m => 
+            {
+                var nameProperty = m.GetType().GetProperty("name");
+                return nameProperty?.GetValue(m) as string ?? "";
+            }).ToList();
+
+            return new
+            {
+                success = true,
+                message = $"Found {methodList.Count} public methods for component '{componentTypeName}'",
+                componentTypeName = componentTypeName,
+                methods = methodList.ToArray(),
+                count = methodList.Count,
+                timestamp = System.DateTime.Now.ToString()
+            };
+        }
+        catch (Exception ex)
+        {
+            return new
+            {
+                success = false,
+                error = $"Failed to get component methods: {ex.Message}"
+            };
+        }
+    }
+
     /// <summary>
-    /// Helper method to get registry data from a graph using SerializedObject to avoid compile-time dependencies
+    /// Helper method to get registry data from a graph using SerializedObject to access dataRegistries
     /// </summary>
     private static object GetRegistryDataFromGraph(NodeGraph graph)
     {
         try
         {
-            // Use SerializedObject to access the registryData property
+            // Use SerializedObject to access the dataRegistries field directly
             SerializedObject so = new SerializedObject(graph);
-            SerializedProperty registryDataProp = so.FindProperty("registryData");
+            SerializedProperty dataRegistriesProperty = so.FindProperty("dataRegistries");
             
-            if (registryDataProp == null)
+            if (dataRegistriesProperty == null || dataRegistriesProperty.arraySize == 0)
             {
-                return null; // Property not found, might not be a StepsGraph
+                return null;
             }
-
-            // Get the registry data object
-            var registryData = registryDataProp.objectReferenceValue;
-            return registryData;
+            
+            // Get the first registry from the dataRegistries array
+            SerializedProperty firstRegistry = dataRegistriesProperty.GetArrayElementAtIndex(0);
+            if (firstRegistry.objectReferenceValue == null)
+            {
+                return null;
+            }
+            
+            return firstRegistry.objectReferenceValue;
         }
         catch (Exception ex)
         {
@@ -425,11 +702,17 @@ public static class ManageRegistryData
     /// </summary>
     private static object GetPrefabRegistries(object registryData)
     {
-        if (registryData == null) return null;
+        if (registryData == null) 
+        {
+            return null;
+        }
         
-        var prefabRegisteriesProperty = registryData.GetType().GetProperty("prefabRegisteries");
-        if (prefabRegisteriesProperty == null) return null;
+        var prefabRegisteriesField = registryData.GetType().GetField("prefabRegisteries");
+        if (prefabRegisteriesField == null) 
+        {
+            return null;
+        }
         
-        return prefabRegisteriesProperty.GetValue(registryData);
+        return prefabRegisteriesField.GetValue(registryData);
     }
 }

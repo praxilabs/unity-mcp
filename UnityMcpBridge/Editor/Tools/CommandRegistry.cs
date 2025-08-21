@@ -26,6 +26,8 @@ namespace UnityMcpBridge.Editor.Tools
         { "HandleListRegistryParents", ManageRegistryData.HandleListParents },
         { "HandleListRegistryAll", ManageRegistryData.HandleListAll },
         { "HandleListRegistryChildren", ManageRegistryData.HandleListChildren },
+        { "HandleGetChildComponents", ManageRegistryData.HandleGetChildComponents },
+        { "HandleGetComponentMethods", ManageRegistryData.HandleGetComponentMethods },
     };
 
         /// <summary>

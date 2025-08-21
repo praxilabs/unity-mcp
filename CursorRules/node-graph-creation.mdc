@@ -1,0 +1,62 @@
+---
+alwaysApply: true
+---
+# Node Graph Creation Requirements and Process
+
+## Prerequisites for Node Graph Creation
+
+Before creating any Node Graph, ensure the following requirements are met:
+
+### Scene References
+- **Required**: Scene must contain references stored in `Prefabs` within the `ScenePrefabs` folder
+- **Action**: If references are not in the scene, add them automatically
+- **Location**: References are stored in Prefabs located in the `ScenePrefabs` folder
+
+### Asset Files
+- **Required**: Scene must have necessary asset files present
+- **Action**: If asset files are missing, create them as needed
+
+### ScenePrefabs Folder
+- **Required**: `ScenePrefabs` folder must exist in the project
+- **Action**: If folder doesn't exist, notify user and proceed with graph creation
+
+## Node Graph Creation Process
+
+### Standard Node Graph
+When creating a new XNode Graph (non-subgraph), automatically create:
+
+1. **Experiment Data Asset** - Required for experiment management
+2. **Experiment Item Registry Data** - Required for item tracking and management
+
+### SubGraph Creation
+When creating a SubGraph:
+- **Do NOT** create new Experiment Data assets
+- **Do NOT** create new Experiment Item Registry Data
+- **Use** existing data from the parent graph
+- **Stick to** already made data structures
+
+## Implementation Guidelines
+
+### Asset Creation Priority
+1. Check for existing ScenePrefabs folder
+2. Verify scene contains required references
+3. Add missing references to scene if needed
+4. Create Experiment Data asset (for non-subgraphs only)
+5. Create Experiment Item Registry Data (for non-subgraphs only)
+6. Create the Node Graph
+
+### Error Handling
+- If ScenePrefabs folder is missing: Notify user and continue with graph creation
+- If references are missing: Add them to scene automatically
+- If assets are missing: Create them as part of the graph creation process
+
+### File Structure
+- ScenePrefabs folder: `Assets/Prefabs/ScenePrefabs/`
+- Experiment Data assets: `Assets/Testing/`
+- Experiment Item Registry Data: `Assets/Testing/`
+- Node Graphs: `Assets/Testing/Graphs/`
+
+## Code References
+- Node Graph assets use the `.asset` extension
+- Experiment Data and Registry Data are ScriptableObject types
+- References are stored as Prefab assets in the ScenePrefabs folder

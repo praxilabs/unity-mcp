@@ -1,0 +1,388 @@
+---
+description: These Rules are conditions of usage and best practicies for the variable nodes.
+alwaysApply: false
+---
+# Variable Nodes
+
+Variable nodes handle data management, storage, and flow between steps in the experiment workflow. These nodes provide a way to store, retrieve, and pass data between different parts of the experiment.
+
+## Location
+**Directory**: `Assets/Scripts/System/xNode/Steps/VariableNodes/`
+
+## Core Variable Nodes
+
+### VariableNode
+- **File**: [VariableNode.cs](mdc:Assets/Scripts/System/xNode/Steps/VariableNodes/VariableNode.cs)
+- **Purpose**: Generic variable storage and data flow
+- **Parameters**:
+  - `variableName` (string): Name of the variable
+  - `variableValue` (NodeObject): Value to store
+  - `variableType` (Type): Data type of the variable
+- **Behavior**: Stores and retrieves data values
+- **Use Cases**: Data storage, value passing, intermediate calculations
+
+### GlobalVariables
+- **File**: [GlobalVariables.cs](mdc:Assets/Scripts/System/xNode/Steps/VariableNodes/GlobalVariables.cs)
+- **Purpose**: Global variable management across graphs
+- **Parameters**:
+  - `globalVariableName` (string): Name of global variable
+  - `globalVariableValue` (NodeObject): Global value to store
+- **Behavior**: Manages variables accessible across multiple graphs
+- **Use Cases**: Cross-graph data sharing, persistent state, configuration
+
+## Data Types and Values
+
+### NodeObject
+The primary data container used by variable nodes:
+- **Purpose**: Wrapper for any data type
+- **Features**: Type-safe data storage and retrieval
+- **Usage**: Pass data between nodes and graphs
+
+### Supported Data Types
+- **Primitive Types**: int, float, bool, string
+- **Complex Types**: Vector3, Quaternion, Color
+- **Custom Types**: Any serializable Unity type
+- **Collections**: Arrays, Lists (when supported)
+
+## Common Patterns
+
+### Data Storage Pattern
+```csharp
+// Store value from function call
+FunctionCallStep → VariableNode → Use in other steps
+```
+
+### Data Flow Pattern
+```csharp
+// Pass data between graphs
+VariableNode → SubGraphStep → VariableNode
+```
+
+### Global State Pattern
+```csharp
+// Share data across graphs
+GlobalVariables → SubGraphStep → GlobalVariables
+```
+
+### Calculation Pattern
+```csharp
+// Store intermediate calculations
+FunctionCallStep → VariableNode → FunctionCallStep → VariableNode
+```
+
+## Experiment Design Patterns
+
+### Data Collection Pattern
+```
+Measurement data flow:
+1. FunctionCallStep - Perform measurement
+2. VariableNode - Store measurement value
+3. FunctionCallStep - Calculate statistics
+4. VariableNode - Store calculated result
+5. FunctionCallStep - Display results
+```
+
+### Configuration Pattern
+```
+Parameter management:
+1. GlobalVariables - Set experiment parameters
+2. SubGraphStep - Use parameters in procedures
+3. VariableNode - Store procedure results
+4. GlobalVariables - Update configuration
+```
+
+### State Management Pattern
+```
+Experiment state tracking:
+1. VariableNode - Store current state
+2. IfStatementStep - Check state
+3. VariableNode - Update state
+4. SwitchStep - Route based on state
+```
+
+### Data Validation Pattern
+```
+Input validation flow:
+1. VariableNode - Store user input
+2. FunctionCallStep - Validate input
+3. IfStatementStep - Check validation result
+   ├─ True: Use validated input
+   └─ False: Request new input
+```
+
+## Best Practices
+
+1. **Naming Conventions**: Use descriptive variable names
+2. **Type Safety**: Ensure correct data types for variables
+3. **Scope Management**: Use appropriate variable scope (local vs global)
+4. **Data Validation**: Validate data before storing
+5. **Memory Management**: Clean up variables when no longer needed
+6. **Documentation**: Document variable purposes and expected values
+
+## Integration with Other Nodes
+
+### With Function Call Steps
+- Store function return values
+- Pass parameters to functions
+- Cache expensive calculations
+
+### With Control Flow Steps
+- Pass boolean values to conditional nodes
+- Store loop counters and state
+- Manage decision results
+
+### With UI Steps
+- Store user input from UI interactions
+- Pass data to display components
+- Cache UI state information
+
+### With Action-Executed Steps
+- Store interaction results
+- Pass data between user actions
+- Cache user preferences
+
+## Performance Considerations
+
+1. **Memory Usage**: Avoid storing large data sets in variables
+2. **Type Conversion**: Minimize type conversions for performance
+3. **Scope**: Use local variables when possible instead of globals
+4. **Cleanup**: Clear variables when no longer needed
+
+## Debugging Tips
+
+1. **Value Inspection**: Check variable values during execution
+2. **Type Verification**: Ensure correct data types are being stored
+3. **Scope Issues**: Verify variable scope and accessibility
+4. **Data Flow**: Trace data flow between nodes
+
+## Common Use Cases
+
+### Experiment Configuration
+```csharp
+// Store experiment parameters
+GlobalVariables (materialType: "Metal")
+GlobalVariables (temperature: 25.0f)
+GlobalVariables (pressure: 101.325f)
+```
+
+### Measurement Data
+```csharp
+// Store measurement results
+VariableNode (measurement1: 10.5f)
+VariableNode (measurement2: 11.2f)
+VariableNode (average: 10.85f)
+```
+
+### User Preferences
+```csharp
+// Store user settings
+GlobalVariables (userLevel: "Intermediate")
+GlobalVariables (showHints: true)
+GlobalVariables (autoSave: false)
+```
+
+### State Tracking
+```csharp
+// Track experiment state
+VariableNode (currentPhase: "Measurement")
+VariableNode (trialCount: 5)
+VariableNode (isComplete: false)
+```
+
+## File References
+
+- Variable nodes directory: [Assets/Scripts/System/xNode/Steps/VariableNodes/](mdc:Assets/Scripts/System/xNode/Steps/VariableNodes/)
+- Variable node implementation: [VariableNode.cs](mdc:Assets/Scripts/System/xNode/Steps/VariableNodes/VariableNode.cs)
+- Global variables implementation: [GlobalVariables.cs](mdc:Assets/Scripts/System/xNode/Steps/VariableNodes/GlobalVariables.cs)
+# Variable Nodes
+
+Variable nodes handle data management, storage, and flow between steps in the experiment workflow. These nodes provide a way to store, retrieve, and pass data between different parts of the experiment.
+
+## Location
+**Directory**: `Assets/Scripts/System/xNode/Steps/VariableNodes/`
+
+## Core Variable Nodes
+
+### VariableNode
+- **File**: [VariableNode.cs](mdc:Assets/Scripts/System/xNode/Steps/VariableNodes/VariableNode.cs)
+- **Purpose**: Generic variable storage and data flow
+- **Parameters**:
+  - `variableName` (string): Name of the variable
+  - `variableValue` (NodeObject): Value to store
+  - `variableType` (Type): Data type of the variable
+- **Behavior**: Stores and retrieves data values
+- **Use Cases**: Data storage, value passing, intermediate calculations
+
+### GlobalVariables
+- **File**: [GlobalVariables.cs](mdc:Assets/Scripts/System/xNode/Steps/VariableNodes/GlobalVariables.cs)
+- **Purpose**: Global variable management across graphs
+- **Parameters**:
+  - `globalVariableName` (string): Name of global variable
+  - `globalVariableValue` (NodeObject): Global value to store
+- **Behavior**: Manages variables accessible across multiple graphs
+- **Use Cases**: Cross-graph data sharing, persistent state, configuration
+
+## Data Types and Values
+
+### NodeObject
+The primary data container used by variable nodes:
+- **Purpose**: Wrapper for any data type
+- **Features**: Type-safe data storage and retrieval
+- **Usage**: Pass data between nodes and graphs
+
+### Supported Data Types
+- **Primitive Types**: int, float, bool, string
+- **Complex Types**: Vector3, Quaternion, Color
+- **Custom Types**: Any serializable Unity type
+- **Collections**: Arrays, Lists (when supported)
+
+## Common Patterns
+
+### Data Storage Pattern
+```csharp
+// Store value from function call
+FunctionCallStep → VariableNode → Use in other steps
+```
+
+### Data Flow Pattern
+```csharp
+// Pass data between graphs
+VariableNode → SubGraphStep → VariableNode
+```
+
+### Global State Pattern
+```csharp
+// Share data across graphs
+GlobalVariables → SubGraphStep → GlobalVariables
+```
+
+### Calculation Pattern
+```csharp
+// Store intermediate calculations
+FunctionCallStep → VariableNode → FunctionCallStep → VariableNode
+```
+
+## Experiment Design Patterns
+
+### Data Collection Pattern
+```
+Measurement data flow:
+1. FunctionCallStep - Perform measurement
+2. VariableNode - Store measurement value
+3. FunctionCallStep - Calculate statistics
+4. VariableNode - Store calculated result
+5. FunctionCallStep - Display results
+```
+
+### Configuration Pattern
+```
+Parameter management:
+1. GlobalVariables - Set experiment parameters
+2. SubGraphStep - Use parameters in procedures
+3. VariableNode - Store procedure results
+4. GlobalVariables - Update configuration
+```
+
+### State Management Pattern
+```
+Experiment state tracking:
+1. VariableNode - Store current state
+2. IfStatementStep - Check state
+3. VariableNode - Update state
+4. SwitchStep - Route based on state
+```
+
+### Data Validation Pattern
+```
+Input validation flow:
+1. VariableNode - Store user input
+2. FunctionCallStep - Validate input
+3. IfStatementStep - Check validation result
+   ├─ True: Use validated input
+   └─ False: Request new input
+```
+
+## Best Practices
+
+1. **Naming Conventions**: Use descriptive variable names
+2. **Type Safety**: Ensure correct data types for variables
+3. **Scope Management**: Use appropriate variable scope (local vs global)
+4. **Data Validation**: Validate data before storing
+5. **Memory Management**: Clean up variables when no longer needed
+6. **Documentation**: Document variable purposes and expected values
+
+## Integration with Other Nodes
+
+### With Function Call Steps
+- Store function return values
+- Pass parameters to functions
+- Cache expensive calculations
+
+### With Control Flow Steps
+- Pass boolean values to conditional nodes
+- Store loop counters and state
+- Manage decision results
+
+### With UI Steps
+- Store user input from UI interactions
+- Pass data to display components
+- Cache UI state information
+
+### With Action-Executed Steps
+- Store interaction results
+- Pass data between user actions
+- Cache user preferences
+
+## Performance Considerations
+
+1. **Memory Usage**: Avoid storing large data sets in variables
+2. **Type Conversion**: Minimize type conversions for performance
+3. **Scope**: Use local variables when possible instead of globals
+4. **Cleanup**: Clear variables when no longer needed
+
+## Debugging Tips
+
+1. **Value Inspection**: Check variable values during execution
+2. **Type Verification**: Ensure correct data types are being stored
+3. **Scope Issues**: Verify variable scope and accessibility
+4. **Data Flow**: Trace data flow between nodes
+
+## Common Use Cases
+
+### Experiment Configuration
+```csharp
+// Store experiment parameters
+GlobalVariables (materialType: "Metal")
+GlobalVariables (temperature: 25.0f)
+GlobalVariables (pressure: 101.325f)
+```
+
+### Measurement Data
+```csharp
+// Store measurement results
+VariableNode (measurement1: 10.5f)
+VariableNode (measurement2: 11.2f)
+VariableNode (average: 10.85f)
+```
+
+### User Preferences
+```csharp
+// Store user settings
+GlobalVariables (userLevel: "Intermediate")
+GlobalVariables (showHints: true)
+GlobalVariables (autoSave: false)
+```
+
+### State Tracking
+```csharp
+// Track experiment state
+VariableNode (currentPhase: "Measurement")
+VariableNode (trialCount: 5)
+VariableNode (isComplete: false)
+```
+
+## File References
+
+- Variable nodes directory: [Assets/Scripts/System/xNode/Steps/VariableNodes/](mdc:Assets/Scripts/System/xNode/Steps/VariableNodes/)
+- Variable node implementation: [VariableNode.cs](mdc:Assets/Scripts/System/xNode/Steps/VariableNodes/VariableNode.cs)
+- Global variables implementation: [GlobalVariables.cs](mdc:Assets/Scripts/System/xNode/Steps/VariableNodes/GlobalVariables.cs)

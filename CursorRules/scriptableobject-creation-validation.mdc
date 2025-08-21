@@ -1,0 +1,105 @@
+---
+alwaysApply: true
+description: Validates ScriptableObject creation with correct class names and prevents creation errors
+---
+
+# ScriptableObject Creation Validation
+
+## Critical Rule: Always Verify ScriptableObject Class Names
+
+When creating ScriptableObjects in Unity through the MCP bridge, you MUST use the exact class names as they exist in the codebase. Never guess or assume class names.
+
+## Correct ScriptableObject Class Names
+
+### Registry Data
+- **CORRECT**: `ExperimentItemsRegistry` (not "RegistryItemData")
+- **File**: [ExperimentItemsRegistry.cs](mdc:Assets/Scripts/System/xNode/DependencyInjection/ExperimentItemsRegistry.cs)
+- **CreateAssetMenu**: "Praxilabs/Experiment Data/Registry Data"
+- **Purpose**: Contains prefab registries for experiment items
+
+### Experiment Data
+- **CORRECT**: `ExperimentData` (not "ExperimentDataSO" or "ExperimentDataAsset")
+- **File**: [ExperimentData.cs](mdc:Assets/Scripts/System/Experiment/ExperimentData.cs)
+- **CreateAssetMenu**: "Praxilabs/Experiments/ExperimentData"
+- **Purpose**: Contains experiment configuration and stages
+
+### Steps Graph
+- **CORRECT**: `StepsGraph` (confirmed working)
+- **Purpose**: xNode graph for experiment step sequences
+
+## Mandatory Verification Process
+
+Before creating any ScriptableObject:
+
+1. **ALWAYS search the codebase** for the exact class name
+2. **Verify the class inherits from ScriptableObject**
+3. **Check for [CreateAssetMenu] attribute** to confirm it can be created
+4. **Use the exact class name** from the source code
+
+## Common Error Patterns to Avoid
+
+### WRONG - Guessed Names
+```
+"RegistryItemData"     // Does not exist
+"ExperimentDataSO"     // Does not exist  
+"RegistryData"         // Does not exist
+"ItemRegistry"         // Does not exist
+```
+
+### CORRECT - Verified Names
+```
+"ExperimentItemsRegistry"  // Verified in codebase
+"ExperimentData"           // Verified in codebase
+"StepsGraph"              // Verified working
+```
+
+## MCP Bridge ScriptableObject Creation
+
+The [CreateScriptableObject.HandleCommand](mdc:Packages/com.praxilabs.unity-mcp/Editor/Tools/CreateXNodeGraph.cs) method uses:
+```csharp
+var so = ScriptableObject.CreateInstance(soType);
+```
+
+This requires the **exact class name string** as it exists in the compiled assembly.
+
+## Error Prevention Checklist
+
+Before any ScriptableObject creation command:
+
+- [ ] Search codebase for the class name using `codebase_search`
+- [ ] Verify the class exists and inherits from ScriptableObject
+- [ ] Confirm the class has [CreateAssetMenu] attribute
+- [ ] Use the exact class name from the source code
+- [ ] Test creation with a simple instance first if unsure
+
+## Registry System Context
+
+The registry system uses these key components:
+- **ExperimentItemsRegistry**: Design-time registry data asset
+- **ExperimentItemsContainer**: Runtime registry container (Singleton)
+- **RegisterObject**: Component that registers GameObjects
+- **RegistryItem**: Data structure for object references (NOT a ScriptableObject)
+
+## Integration with Step Nodes
+
+Many step nodes use `RegistryItem` parameters:
+- `ClickStep._targetName` (RegistryItem)
+- `GameObjectSetActiveStep._newToolName` (RegistryItem)
+- `AttachStep._sourceName` and `_targetName` (RegistryItem)
+
+These are **data structures**, not ScriptableObjects that need creation.
+
+## File References
+
+- Registry system: [Assets/Scripts/System/xNode/DependencyInjection/](mdc:Assets/Scripts/System/xNode/DependencyInjection/)
+- Experiment data: [Assets/Scripts/System/Experiment/](mdc:Assets/Scripts/System/Experiment/)
+- MCP creation tools: [Packages/com.praxilabs.unity-mcp/Editor/Tools/](mdc:Packages/com.praxilabs.unity-mcp/Editor/Tools/)
+
+## Emergency Recovery
+
+If you encounter "Instance of [ClassName] couldn't be created" error:
+1. STOP immediately
+2. Search codebase for the correct class name
+3. Verify the class exists and is a ScriptableObject
+4. Use the exact name found in source code
+5. Never proceed with guessed names

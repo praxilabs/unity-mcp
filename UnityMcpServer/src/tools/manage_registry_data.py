@@ -88,3 +88,63 @@ def register_manage_registry_data_tools(mcp: FastMCP):
                 "success": False,
                 "error": f"Failed to list registry children: {str(e)}"
             }
+
+    @mcp.tool()
+    def get_child_components(
+        ctx: Context,
+        graph_path: str,
+        parent_name: str,
+        child_name: str
+    ) -> Dict[str, Any]:
+        """
+        Gets the components for a specific child from the registry.
+
+        Args:
+            graph_path: Path to the StepsGraph asset (e.g., "Assets/Testing Graphs/NewStepsGraph.asset").
+            parent_name: Name of the parent object (e.g., "Tools", "-Utility_Managers").
+            child_name: Name of the child object to get components for (e.g., "Cube (1)", "DragDropManager").
+
+        Returns:
+            Dictionary with results ('success', 'message', 'components', 'count', etc.).
+        """
+        try:
+            connection = get_unity_connection()
+            params = {
+                "graphPath": graph_path,
+                "parentName": parent_name,
+                "childName": child_name
+            }
+            result = connection.send_command("get_child_components", params)
+            return result
+        except Exception as e:
+            return {
+                "success": False,
+                "error": f"Failed to get child components: {str(e)}"
+            }
+
+    @mcp.tool()
+    def get_component_methods(
+        ctx: Context,
+        component_type_name: str
+    ) -> Dict[str, Any]:
+        """
+        Gets all public methods from a specific component type using reflection.
+
+        Args:
+            component_type_name: Name of the component type (e.g., "DragDropManager", "Rigidbody").
+
+        Returns:
+            Dictionary with results ('success', 'message', 'methods', 'count', etc.).
+        """
+        try:
+            connection = get_unity_connection()
+            params = {
+                "componentTypeName": component_type_name
+            }
+            result = connection.send_command("get_component_methods", params)
+            return result
+        except Exception as e:
+            return {
+                "success": False,
+                "error": f"Failed to get component methods: {str(e)}"
+            }

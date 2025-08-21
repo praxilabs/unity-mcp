@@ -1,0 +1,104 @@
+---
+alwaysApply: true
+---
+
+# RegistryItem Parameter Setting Rules
+
+## Critical: RegistryItem Parameters Must Use JSON Format
+
+When setting RegistryItem parameters in XNode step nodes through the MCP bridge, you MUST use proper JSON object format with exact property names.
+
+## Correct Format
+
+RegistryItem parameters must be set as JSON objects with these exact properties:
+```json
+{
+  "prefabName": "ParentObjectName",
+  "childName": "ChildObjectName"
+}
+```
+
+## Prerequisites
+
+Before setting RegistryItem parameters:
+
+1. **StepsGraph must have registry data**: The StepsGraph's `dataRegistries` list must contain the ExperimentItemsRegistry asset
+2. **Registry must be populated**: The ExperimentItemsRegistry must contain the prefab entries with parent-child relationships
+3. **Scene objects must be registered**: Scene objects must have RegisterObject components pointing to the registry
+
+## Common RegistryItem Node Types
+
+- **FunctionCallStep**: `_calledObjectName` parameter
+- **ClickStep**: `_targetName` parameter  
+- **AttachStep**: `_followerName` and `_receiverName` parameters
+- **DetachStep**: `_targetName` parameter
+- **RotateKnobStep**: `_targetName` parameter
+- **ExploreStep**: `_targetName` parameter
+
+## Validation
+
+After setting RegistryItem parameters, always verify they were set correctly by retrieving the parameter value. The returned value should show:
+```json
+{
+  "prefabName": "ExpectedParentName",
+  "childName": "ExpectedChildName"
+}
+```
+
+If the values show as `null`, the JSON format was incorrect or the registry data is not available.
+
+## File References
+
+- RegistryItem class: [Assets/Scripts/System/xNode/DependencyInjection/RegisterObject.cs](mdc:Assets/Scripts/System/xNode/DependencyInjection/RegisterObject.cs)
+- RegistryDropdown attribute: [Assets/Scripts/System/xNode/Editor/DependencyInjection/RegistryDropdownDrawer.cs](mdc:Assets/Scripts/System/xNode/Editor/DependencyInjection/RegistryDropdownDrawer.cs)
+- StepsGraph registry system: [Assets/Scripts/System/xNode/Graphs/StepsGraph.cs](mdc:Assets/Scripts/System/xNode/Graphs/StepsGraph.cs)
+# RegistryItem Parameter Setting Rules
+
+## Critical: RegistryItem Parameters Must Use JSON Format
+
+When setting RegistryItem parameters in XNode step nodes through the MCP bridge, you MUST use proper JSON object format with exact property names.
+
+## Correct Format
+
+RegistryItem parameters must be set as JSON objects with these exact properties:
+```json
+{
+  "prefabName": "ParentObjectName",
+  "childName": "ChildObjectName"
+}
+```
+
+## Prerequisites
+
+Before setting RegistryItem parameters:
+
+1. **StepsGraph must have registry data**: The StepsGraph's `dataRegistries` list must contain the ExperimentItemsRegistry asset
+2. **Registry must be populated**: The ExperimentItemsRegistry must contain the prefab entries with parent-child relationships
+3. **Scene objects must be registered**: Scene objects must have RegisterObject components pointing to the registry
+
+## Common RegistryItem Node Types
+
+- **FunctionCallStep**: `_calledObjectName` parameter
+- **ClickStep**: `_targetName` parameter  
+- **AttachStep**: `_followerName` and `_receiverName` parameters
+- **DetachStep**: `_targetName` parameter
+- **RotateKnobStep**: `_targetName` parameter
+- **ExploreStep**: `_targetName` parameter
+
+## Validation
+
+After setting RegistryItem parameters, always verify they were set correctly by retrieving the parameter value. The returned value should show:
+```json
+{
+  "prefabName": "ExpectedParentName",
+  "childName": "ExpectedChildName"
+}
+```
+
+If the values show as `null`, the JSON format was incorrect or the registry data is not available.
+
+## File References
+
+- RegistryItem class: [Assets/Scripts/System/xNode/DependencyInjection/RegisterObject.cs](mdc:Assets/Scripts/System/xNode/DependencyInjection/RegisterObject.cs)
+- RegistryDropdown attribute: [Assets/Scripts/System/xNode/Editor/DependencyInjection/RegistryDropdownDrawer.cs](mdc:Assets/Scripts/System/xNode/Editor/DependencyInjection/RegistryDropdownDrawer.cs)
+- StepsGraph registry system: [Assets/Scripts/System/xNode/Graphs/StepsGraph.cs](mdc:Assets/Scripts/System/xNode/Graphs/StepsGraph.cs)
