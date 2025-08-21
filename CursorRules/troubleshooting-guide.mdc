@@ -1,0 +1,307 @@
+---
+description: Comprehensive troubleshooting guide for Unity MCP Bridge with error patterns, solutions, and prevention strategies
+---
+
+# Unity MCP Bridge - Troubleshooting Guide
+
+## 🚨 Critical Error Patterns & Solutions
+
+### 1. JSON Format Errors
+
+#### Error Pattern: "Failed to set parameter" or malformed JSON
+```json
+❌ WRONG formats that cause errors:
+{prefabName: "Tools", childName: "Cube (1)"}        // Missing quotes on keys
+{"prefabName: "Tools", "childName": "Cube (1)"}     // Missing quote
+{"prefabName": Tools, "childName": "Cube (1)"}      // Missing quotes on value
+{\"prefabName\": \"Tools\", \"childName\": \"Cube (1)\"} // Double-escaped quotes
+```
+
+#### Solution
+```json
+✅ CORRECT format (memorize this exactly):
+{"prefabName": "Tools", "childName": "Cube (1)"}
+```
+
+#### Prevention
+- Always use double quotes around both keys and values
+- Never mix single and double quotes
+- Don't escape quotes in the parameter value
+- Test with simple examples first
+
+### 2. ScriptableObject Creation Errors
+
+#### Error Pattern: "Instance of [ClassName] couldn't be created"
+```
+❌ Common wrong class names:
+"RegistryItemData"     // Does not exist
+"ExperimentDataSO"     // Does not exist  
+"RegistryData"         // Does not exist
+"ItemRegistry"         // Does not exist
+```
+
+#### Solution Process
+1. **ALWAYS search codebase first**:
+   ```
+   Use codebase_search with query: "ScriptableObject class name"
+   ```
+2. **Verify class inheritance**:
+   ```csharp
+   public class ExperimentItemsRegistry : ScriptableObject
+   ```
+3. **Use exact names from source**:
+   ```
+   ✅ CORRECT verified names:
+   "ExperimentItemsRegistry"  // From ExperimentItemsRegistry.cs
+   "ExperimentData"          // From ExperimentData.cs
+   "StepsGraph"              // Confirmed working
+   ```
+
+#### Prevention
+- Never guess ScriptableObject class names
+- Always verify in codebase before creating
+- Use exact string from source code
+- Keep a verified list of working class names
+
+### 3. Parameter Not Found Errors
+
+#### Error Pattern: "Parameter 'parameterName' not found on node type 'NodeType'"
+
+#### Diagnostic Steps
+1. **List available parameters**:
+   ```
+   Use mcp_unityMCP_list_node_parameters to see all available parameters
+   ```
+2. **Check parameter name spelling**:
+   ```
+   Common mistakes:
+   "_functionName" → should be "selectedFunction"
+   "hintText" → HintStep doesn't have this parameter
+   "targetName" → should be "_targetName"
+   ```
+3. **Verify node type supports parameter**:
+   ```
+   GameObjectSetActiveStep: _newToolName, _isActive
+   ClickStep: _targetName
+   FunctionCallStep: _calledObjectName, selectedComponent, selectedFunction
+   ```
+
+#### Solution
+- Use `list_node_parameters` to discover correct names
+- Check node type documentation
+- Verify parameter exists for that specific node type
+
+### 4. Connection Errors
+
+#### Error Pattern: Nodes not connecting or execution stops
+
+#### Common Connection Issues
+```
+❌ WRONG CompositeStep pattern:
+CompositeStep.routes → ClickStep → Logic → NextStep (missing return)
+
+✅ CORRECT CompositeStep pattern:
+CompositeStep.routes → ClickStep → Logic → CompositeStep.entry (returns to composite)
+```
+
+#### Diagnostic Steps
+1. **Verify port names**:
+   ```
+   Common ports: entry, exit, routes, True, False, continueLoop
+   ```
+2. **Check connection direction**:
+   ```
+   Output port (from) → Input port (to)
+   exit → entry
+   routes → entry
+   ```
+3. **Validate node supports connection type**:
+   ```
+   ActionExecuted nodes can connect to routes
+   SelfExecuted nodes connect via entry/exit
+   ```
+
+#### Solution
+- Use correct port names for each node type
+- Ensure proper flow direction
+- Return CompositeStep routes to entry port
+
+### 5. Registry Resolution Errors
+
+#### Error Pattern: "No registry data found" or "Object not found in registry"
+
+#### Diagnostic Steps
+1. **Verify graph has registry data**:
+   ```
+   StepsGraph must have dataRegistries field populated
+   ```
+2. **Check registry contains objects**:
+   ```
+   Use mcp_unityMCP_list_registry_parents
+   Use mcp_unityMCP_list_registry_children
+   ```
+3. **Verify exact names match**:
+   ```
+   Registry: "Cube (1)" vs Parameter: "Cube(1)" // Space matters!
+   ```
+
+#### Solution
+- Ensure StepsGraph references ExperimentItemsRegistry
+- Verify object names match exactly (including spaces, case)
+- Check parent-child relationships in registry
+
+### 6. Unity Editor Connection Errors
+
+#### Error Pattern: "Failed to communicate with Unity: Connection closed"
+
+#### Common Causes
+- Unity Editor recompiling scripts
+- MCP server connection timeout
+- Unity Editor not responding
+
+#### Solution
+1. **Wait for compilation to complete**
+2. **Retry the command**
+3. **Check Unity Editor console for errors**
+4. **Restart MCP connection if needed**
+
+#### Prevention
+- Avoid making changes during script compilation
+- Wait for Unity to finish processing
+- Monitor Unity console for errors
+
+## 🔧 Debugging Strategies
+
+### 1. Systematic Parameter Validation
+```
+Step 1: List all parameters → mcp_unityMCP_list_node_parameters
+Step 2: Verify parameter exists
+Step 3: Check parameter type and format
+Step 4: Set parameter with correct syntax
+Step 5: Verify parameter was set → mcp_unityMCP_get_node_parameter
+```
+
+### 2. Connection Flow Tracing
+```
+Step 1: List all nodes → mcp_unityMCP_list_graph_nodes
+Step 2: Identify connection points
+Step 3: Verify port names and directions
+Step 4: Test connections one by one
+Step 5: Trace execution flow manually
+```
+
+### 3. Registry Data Validation
+```
+Step 1: Check registry exists → mcp_unityMCP_list_registry_parents
+Step 2: Verify parent objects → mcp_unityMCP_list_registry_children
+Step 3: Check child objects and components
+Step 4: Validate exact name matching
+Step 5: Test registry resolution
+```
+
+## 🔍 Diagnostic Tools
+
+### Parameter Inspection
+```
+mcp_unityMCP_list_node_parameters(graph_path, node_name)
+mcp_unityMCP_get_node_parameter(graph_path, node_name, parameter_name)
+```
+
+### Registry Inspection
+```
+mcp_unityMCP_list_registry_parents(graph_path)
+mcp_unityMCP_list_registry_children(graph_path, parent_name)
+mcp_unityMCP_get_child_components(graph_path, parent_name, child_name)
+```
+
+### Graph Structure Inspection
+```
+mcp_unityMCP_list_graph_nodes(graph_path)
+mcp_unityMCP_check_node_exists(graph_path, node_name)
+```
+
+### Console Monitoring
+```
+mcp_unityMCP_read_console(action="get", types=["error", "warning"])
+```
+
+## 🛡️ Prevention Strategies
+
+### 1. Pre-Flight Checklist
+Before any major operation:
+- [ ] Verify codebase for class names
+- [ ] Check registry data exists
+- [ ] Validate JSON format
+- [ ] Test with simple examples first
+
+### 2. Incremental Development
+- Create one node at a time
+- Test parameters immediately after setting
+- Verify connections before adding more
+- Use simple test cases first
+
+### 3. Error Handling Patterns
+```csharp
+// Always include error handling in complex flows
+IfStatementStep (validate input)
+├─ True: Continue normal flow
+└─ False: Error handling path
+```
+
+### 4. Documentation As You Go
+- Record working parameter formats
+- Document successful connection patterns
+- Note verified class names
+- Keep troubleshooting logs
+
+## 🚨 Emergency Recovery Procedures
+
+### When Everything Breaks
+1. **Stop and assess**: Don't make more changes
+2. **Check Unity console**: Look for error messages
+3. **Verify basic connectivity**: Test simple commands
+4. **Start with known working examples**: Use verified patterns
+5. **Rebuild incrementally**: Add complexity gradually
+
+### When Parameters Won't Set
+1. **Use list_node_parameters**: See what's actually available
+2. **Check JSON format**: Use online JSON validator
+3. **Verify node type**: Ensure you're using correct step node
+4. **Test with simple values**: Try basic strings/numbers first
+
+### When Connections Fail
+1. **Check port names**: Verify entry/exit/routes exist
+2. **Test simple connections**: Connect two basic nodes
+3. **Verify node types**: Ensure compatibility
+4. **Use connection tools**: Try different connection methods
+
+## 📚 Reference Quick Cards
+
+### JSON Format Card
+```json
+RegistryItem: {"prefabName": "Parent", "childName": "Child"}
+Parameters: [{"parameterName": "name", "parameterValue": value, "parameterType": "Type"}]
+```
+
+### ScriptableObject Card
+```
+ExperimentItemsRegistry (registry data)
+ExperimentData (experiment config)
+StepsGraph (node graph)
+```
+
+### Connection Card
+```
+Sequential: Node1.exit → Node2.entry
+Parallel: CompositeStep.routes → Node → CompositeStep.entry
+Conditional: IfStep.True/False → Node.entry
+```
+
+### Troubleshooting Card
+```
+1. Check Unity console first
+2. Verify parameter names with list_node_parameters
+3. Validate JSON format
+4. Test connections incrementally
+5. Use diagnostic tools extensively
+```

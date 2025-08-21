@@ -1,0 +1,320 @@
+---
+alwaysApply: true
+description: Critical JSON formatting and parameter handling rules for Unity MCP Bridge
+---
+
+# JSON & Parameter Formatting Guide
+
+## 🚨 MANDATORY JSON FORMAT RULES
+
+### RegistryItem Format (CRITICAL)
+```json
+✅ CORRECT - Memorize this exact format:
+{"prefabName": "Tools", "childName": "Cube (1)"}
+
+❌ WRONG - These will fail:
+{prefabName: "Tools", childName: "Cube (1)"}           // Missing quotes on keys
+{"prefabName: "Tools", "childName": "Cube (1)"}        // Missing quote on key
+{"prefabName": Tools, "childName": "Cube (1)"}         // Missing quotes on value
+{'prefabName': 'Tools', 'childName': 'Cube (1)'}       // Single quotes
+{\"prefabName\": \"Tools\", \"childName\": \"Cube (1)\"} // Double-escaped
+```
+
+### Function Parameters Format
+```json
+✅ CORRECT SerializableParameter array:
+[
+  {
+    "parameterName": "value",
+    "parameterValue": true,
+    "parameterType": "System.Boolean"
+  },
+  {
+    "parameterName": "speed",
+    "parameterValue": 2.5,
+    "parameterType": "System.Single"
+  }
+]
+
+❌ WRONG formats:
+[{parameterName: "value", parameterValue: true}]        // Missing quotes on keys
+[{"parameterName": value, "parameterValue": true}]      // Missing quotes on value
+```
+
+## 📋 Parameter Type Reference
+
+### Common Step Node Parameters
+
+#### GameObjectSetActiveStep
+```json
+{
+  "_newToolName": {"prefabName": "Tools", "childName": "Cube (1)"},
+  "_isActive": true
+}
+```
+
+#### ClickStep
+```json
+{
+  "_targetName": {"prefabName": "Tools", "childName": "Cube (1)"}
+}
+```
+
+#### FunctionCallStep
+```json
+{
+  "_calledObjectName": {"prefabName": "Tools", "childName": "Cube (1)"},
+  "selectedComponent": "DisableKinematic",
+  "selectedFunction": "Disable",
+  "parameterValues": []
+}
+```
+
+#### DelayStep
+```json
+{
+  "timeToWait": 1.5
+}
+```
+
+#### SideMessageStep
+```json
+{
+  "messageID": 1001
+}
+```
+
+### Parameter Value Types
+
+#### Boolean Values
+```json
+✅ CORRECT:
+"_isActive": true
+"_isActive": false
+
+❌ WRONG:
+"_isActive": "true"    // String instead of boolean
+"_isActive": True      // Python syntax
+"_isActive": 1         // Number instead of boolean
+```
+
+#### Numeric Values
+```json
+✅ CORRECT:
+"timeToWait": 1.5      // Float
+"messageID": 1001      // Integer
+"iterations": 10       // Integer
+
+❌ WRONG:
+"timeToWait": "1.5"    // String instead of number
+"messageID": 1001.0    // Float instead of integer
+```
+
+#### String Values
+```json
+✅ CORRECT:
+"selectedComponent": "DisableKinematic"
+"selectedFunction": "Disable"
+
+❌ WRONG:
+"selectedComponent": DisableKinematic    // Missing quotes
+"selectedFunction": 'Disable'           // Single quotes
+```
+
+## 🔧 Function Parameter Patterns
+
+### No Parameters
+```json
+"parameterValues": []
+```
+
+### Single Boolean Parameter
+```json
+"parameterValues": [
+  {
+    "parameterName": "value",
+    "parameterValue": false,
+    "parameterType": "System.Boolean"
+  }
+]
+```
+
+### Multiple Parameters
+```json
+"parameterValues": [
+  {
+    "parameterName": "x",
+    "parameterValue": 1.0,
+    "parameterType": "System.Single"
+  },
+  {
+    "parameterName": "y",
+    "parameterValue": 2.0,
+    "parameterType": "System.Single"
+  },
+  {
+    "parameterName": "z",
+    "parameterValue": 3.0,
+    "parameterType": "System.Single"
+  }
+]
+```
+
+### Common Parameter Types
+```json
+"System.Boolean"    // true/false
+"System.Int32"      // Integer numbers
+"System.Single"     // Float numbers (C# float)
+"System.String"     // Text strings
+"System.Double"     // Double precision numbers
+"UnityEngine.Vector3"  // 3D vectors
+```
+
+## 🎯 Registry Object Patterns
+
+### Parent-Child Relationships
+```json
+// Parent object (top-level prefab)
+{"prefabName": "Tools", "childName": "Tools"}
+
+// Child object within parent
+{"prefabName": "Tools", "childName": "Cube (1)"}
+{"prefabName": "Tools", "childName": "Cube (2)"}
+{"prefabName": "Tools", "childName": "Cube (3)"}
+
+// Different parent
+{"prefabName": "-Utility_Managers", "childName": "DragDropManager"}
+```
+
+### Name Matching Rules
+```json
+✅ CORRECT - Exact match with registry:
+Registry: "Cube (1)"  →  Parameter: "Cube (1)"
+
+❌ WRONG - Mismatched names:
+Registry: "Cube (1)"  →  Parameter: "Cube(1)"     // Missing space
+Registry: "Cube (1)"  →  Parameter: "cube (1)"    // Wrong case
+Registry: "Cube (1)"  →  Parameter: "Cube 1"      // Different format
+```
+
+## 🔍 Validation Techniques
+
+### JSON Syntax Validation
+1. **Count quotes**: Every opening quote needs a closing quote
+2. **Check commas**: Separate array items and object properties
+3. **Verify brackets**: `{}` for objects, `[]` for arrays
+4. **Validate nesting**: Proper opening/closing of nested structures
+
+### Parameter Validation
+1. **Use list_node_parameters**: See available parameters
+2. **Check parameter types**: Match expected data types
+3. **Verify object existence**: Confirm registry objects exist
+4. **Test incremental**: Set one parameter at a time
+
+### Registry Validation
+1. **List parents**: `mcp_unityMCP_list_registry_parents`
+2. **List children**: `mcp_unityMCP_list_registry_children`
+3. **Check components**: `mcp_unityMCP_get_child_components`
+4. **Match exactly**: Ensure names match character-for-character
+
+## ⚠️ Common JSON Errors
+
+### Syntax Errors
+```json
+❌ Missing comma between properties:
+{
+  "prefabName": "Tools"
+  "childName": "Cube (1)"
+}
+
+✅ CORRECT:
+{
+  "prefabName": "Tools",
+  "childName": "Cube (1)"
+}
+```
+
+```json
+❌ Trailing comma (some systems reject this):
+{
+  "prefabName": "Tools",
+  "childName": "Cube (1)",
+}
+
+✅ CORRECT:
+{
+  "prefabName": "Tools",
+  "childName": "Cube (1)"
+}
+```
+
+### Quote Errors
+```json
+❌ Mixed quote types:
+{"prefabName': "Tools", "childName": 'Cube (1)'}
+
+✅ CORRECT:
+{"prefabName": "Tools", "childName": "Cube (1)"}
+```
+
+### Escape Sequence Errors
+```json
+❌ Double-escaped quotes:
+{\"prefabName\": \"Tools\", \"childName\": \"Cube (1)\"}
+
+✅ CORRECT (no escaping needed in parameter values):
+{"prefabName": "Tools", "childName": "Cube (1)"}
+```
+
+## 🛠️ Debugging JSON Issues
+
+### Step-by-Step Validation
+1. **Copy JSON to validator**: Use online JSON validator
+2. **Check each quote**: Ensure proper opening/closing
+3. **Verify commas**: Check separation between elements
+4. **Test minimal example**: Start with simplest case
+5. **Build incrementally**: Add complexity gradually
+
+### Common Fixes
+```json
+// Fix missing quotes on keys
+❌ {prefabName: "Tools"}
+✅ {"prefabName": "Tools"}
+
+// Fix missing quotes on values  
+❌ {"prefabName": Tools}
+✅ {"prefabName": "Tools"}
+
+// Fix mixed quote types
+❌ {"prefabName': "Tools"}
+✅ {"prefabName": "Tools"}
+```
+
+## 📚 Quick Reference Cards
+
+### RegistryItem Card
+```json
+{"prefabName": "ParentName", "childName": "ChildName"}
+```
+
+### Function Parameters Card
+```json
+[{"parameterName": "name", "parameterValue": value, "parameterType": "Type"}]
+```
+
+### Common Types Card
+```
+Boolean: true/false (not "true"/"false")
+Integer: 123 (not "123")
+Float: 1.5 (not "1.5")
+String: "text" (with quotes)
+```
+
+### Validation Card
+```
+1. Use double quotes everywhere
+2. No trailing commas
+3. Match registry names exactly
+4. Test with JSON validator
+5. Set parameters one at a time
+```

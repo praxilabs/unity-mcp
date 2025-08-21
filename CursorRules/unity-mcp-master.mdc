@@ -1,0 +1,144 @@
+---
+alwaysApply: true
+description: Master rule for Unity MCP Bridge operations - contains all critical patterns and mandatory checks
+---
+
+# Unity MCP Bridge - Master Rule
+
+## 🚨 CRITICAL RULES (Check FIRST Every Time)
+
+### 1. JSON Format Rules (MANDATORY)
+```json
+// ✅ CORRECT RegistryItem format
+{"prefabName": "Tools", "childName": "Cube (1)"}
+
+// ❌ WRONG formats - NEVER use these
+{prefabName: "Tools", childName: "Cube (1)"}        // Missing quotes on keys
+{"prefabName: "Tools", "childName": "Cube (1)"}     // Missing quote
+{"prefabName": Tools, "childName": "Cube (1)"}      // Missing quotes on value
+```
+
+### 2. ScriptableObject Class Names (VERIFIED)
+```csharp
+// ✅ CORRECT class names (verified in codebase)
+"ExperimentItemsRegistry"  // NOT "RegistryItemData"
+"ExperimentData"          // NOT "ExperimentDataSO" 
+"StepsGraph"              // Confirmed working
+
+// ❌ NEVER guess class names - always verify in codebase first
+```
+
+### 3. CompositeStep Pattern (CRITICAL)
+```
+// ✅ CORRECT pattern for parallel execution
+Start → CompositeStep.entry
+CompositeStep.routes → Route A → Logic A → CompositeStep.entry
+CompositeStep.routes → Route B → Logic B → CompositeStep.entry
+CompositeStep.routes → Route C → Logic C → CompositeStep.entry
+CompositeStep.exit → Next Step
+
+// ❌ WRONG - Don't connect routes directly to completion
+```
+
+## 🎯 DECISION TREE
+
+### Need to show/hide objects?
+→ **Use GameObjectSetActiveStep** (NOT FunctionCallStep)
+- Parameters: `_newToolName` (RegistryItem), `_isActive` (bool)
+
+### Need user interaction that can happen in any order?
+→ **Use CompositeStep pattern**
+- Connect routes back to CompositeStep.entry
+- Only exit when all routes complete
+
+### Need sequential execution?
+→ **Chain nodes with exit → entry connections**
+- Use DelayStep for timing between actions
+
+### Need function calls with parameters?
+→ **Use FunctionCallStep with parameterValues array**
+- Format: `[{"parameterName": "name", "parameterValue": value, "parameterType": "Type"}]`
+
+## 📋 BEFORE EVERY ACTION CHECKLIST
+
+### Before Setting RegistryItem Parameters:
+- [ ] Use exact format: `{"prefabName": "Parent", "childName": "Child"}`
+- [ ] Verify parent and child exist in registry
+- [ ] Double-check JSON syntax (quotes around keys AND values)
+
+### Before Creating ScriptableObjects:
+- [ ] Search codebase for exact class name
+- [ ] Verify class inherits from ScriptableObject
+- [ ] Use exact string from source code
+
+### Before Connecting Nodes:
+- [ ] Identify if execution is parallel or sequential
+- [ ] Use CompositeStep for parallel, direct connections for sequential
+- [ ] Verify port names (entry, exit, routes)
+
+### Before Completing Tasks:
+- [ ] Test all parameters are set correctly
+- [ ] Verify all connections are made
+- [ ] Confirm starting point is assigned
+
+## 🔧 QUICK REFERENCE
+
+### Common Step Nodes
+| Need | Use | Key Parameters |
+|------|-----|----------------|
+| Show/Hide Objects | GameObjectSetActiveStep | `_newToolName`, `_isActive` |
+| User Clicks | ClickStep | `_targetName` |
+| Function Calls | FunctionCallStep | `_calledObjectName`, `selectedComponent`, `selectedFunction` |
+| Delays | DelayStep | `timeToWait` |
+| Parallel Routes | CompositeStep | Connect routes back to entry |
+| Messages | SideMessageStep | `messageID` |
+
+### Connection Patterns
+```
+Sequential: Node1.exit → Node2.entry → Node3.entry
+Parallel: CompositeStep.routes → [Node1, Node2, Node3] → CompositeStep.entry
+```
+
+## ❌ COMMON ERRORS TO AVOID
+
+1. **Wrong JSON Format**: Always use double quotes around keys and values
+2. **Wrong ScriptableObject Names**: Always verify in codebase first
+3. **Missing CompositeStep Routes**: Routes must connect back to entry
+4. **Wrong Step Node Type**: Use GameObjectSetActiveStep for visibility, not FunctionCallStep
+
+## 🏗️ EXPERIMENT PATTERNS
+
+### Educational Pattern (PhotoElectric Style)
+```
+Setup → Hints → Sequential Steps → User Interaction → Results
+```
+
+### Interactive Demo Pattern  
+```
+Setup → Sequential Appearance → Parallel Interaction → Completion
+```
+
+### Data Collection Pattern
+```
+Setup → Loops → Measurements → Analysis → Results
+```
+
+## 🆘 TROUBLESHOOTING
+
+### "Parameter not found" errors:
+1. Use `list_node_parameters` to see available parameters
+2. Check parameter name spelling and case
+3. Verify node type supports the parameter
+
+### "Instance couldn't be created" errors:
+1. Search codebase for exact class name
+2. Verify class exists and inherits from ScriptableObject
+3. Use exact string from source code
+
+### Connection errors:
+1. Verify port names (entry, exit, routes)
+2. Check if nodes support the connection type
+3. Ensure proper flow direction
+
+---
+**Remember: When in doubt, always verify in the codebase first!**

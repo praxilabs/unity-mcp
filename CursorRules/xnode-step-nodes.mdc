@@ -1,6 +1,21 @@
 ---
-alwaysApply: true
+alwaysApply: false
+description: Legacy rule - use unity-mcp-master.mdc instead
 ---
+
+# ⚠️ DEPRECATED - Use New Rule Structure
+
+This rule has been superseded by the new comprehensive rule structure. Please use:
+
+## 🚨 NEW MASTER RULE
+[**unity-mcp-master.mdc**](mdc:.cursor/rules/unity-mcp-master.mdc) - Start here for all Unity MCP Bridge tasks
+
+## 📋 COMPLETE RULE INDEX
+[**unity-mcp-index.mdc**](mdc:.cursor/rules/unity-mcp-index.mdc) - Navigation guide to all rules
+
+---
+
+# Legacy Content (Use New Rules Instead)
 # XNode Step Nodes - Complete Reference
 
 This rule provides comprehensive documentation for all XNode step nodes available in the virtual labs system. The step nodes are organized into categories based on their execution behavior and functionality.
