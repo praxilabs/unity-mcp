@@ -10,6 +10,9 @@ from .print_hello_world import register_print_hello_world_tools
 from .create_scriptable_object import register_create_scriptable_object_tools
 from .create_xnode_node import register_create_xnode_node_tools
 from .set_node_first_step import register_set_node_as_first_step_tools
+from .create_connection_between_nodes import register_make_connection_tools
+from .manage_node_parameters import register_manage_node_parameters_tools
+from .manage_registry_data import register_manage_registry_data_tools
 
 def register_all_tools(mcp):
     """Register all refactored tools with the MCP server."""
@@ -22,8 +25,11 @@ def register_all_tools(mcp):
     register_create_xnode_node_tools(mcp)
     register_print_hello_world_tools(mcp)
     register_create_scriptable_object_tools(mcp)
+    register_manage_registry_data_tools(mcp)
+    register_make_connection_tools(mcp)
     register_manage_shader_tools(mcp)
     register_read_console_tools(mcp)
     register_set_node_as_first_step_tools(mcp)
+    register_manage_node_parameters_tools(mcp)
     register_execute_menu_item_tools(mcp)
     print("Unity MCP Server tool registration complete.")

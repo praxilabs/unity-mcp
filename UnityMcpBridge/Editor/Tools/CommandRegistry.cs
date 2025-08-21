@@ -11,19 +11,22 @@ namespace UnityMcpBridge.Editor.Tools
     {
         // Maps command names (matching those called from Python via ctx.bridge.unity_editor.HandlerName)
         // to the corresponding static HandleCommand method in the appropriate tool class.
-        private static readonly Dictionary<string, Func<JObject, object>> _handlers = new()
-        {
-            { "HandleManageScript", ManageScript.HandleCommand },
-            { "HandleManageScene", ManageScene.HandleCommand },
-            { "HandleManageEditor", ManageEditor.HandleCommand },
-            { "HandleManageGameObject", ManageGameObject.HandleCommand },
-            { "HandleManageAsset", ManageAsset.HandleCommand },
-            { "HandleReadConsole", ReadConsole.HandleCommand },
-            { "HandleExecuteMenuItem", ExecuteMenuItem.HandleCommand },
-            { "PrintHelloWorld", PrintHelloWorld.HandleCommand },
-            { "CreateScriptableObject", CreateScriptableObject.HandleCommand },
-            { "CreateXNodeNode", CreateXNodeNode.HandleCommand }
-        };
+    private static readonly Dictionary<string, Func<JObject, object>> _handlers = new()
+    {
+        { "HandleManageScript", ManageScript.HandleCommand },
+        { "HandleManageScene", ManageScene.HandleCommand },
+        { "HandleManageEditor", ManageEditor.HandleCommand },
+        { "HandleManageGameObject", ManageGameObject.HandleCommand },
+        { "HandleManageAsset", ManageAsset.HandleCommand },
+        { "HandleReadConsole", ReadConsole.HandleCommand },
+        { "HandleExecuteMenuItem", ExecuteMenuItem.HandleCommand },
+        { "PrintHelloWorld", PrintHelloWorld.HandleCommand },
+        { "CreateScriptableObject", CreateScriptableObject.HandleCommand },
+        { "SetNodeAsFirstStep", SetNodeAsFirstStep.HandleCommand },
+        { "HandleListRegistryParents", ManageRegistryData.HandleListParents },
+        { "HandleListRegistryAll", ManageRegistryData.HandleListAll },
+        { "HandleListRegistryChildren", ManageRegistryData.HandleListChildren },
+    };
 
         /// <summary>
         /// Gets a command handler by name.
