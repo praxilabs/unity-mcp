@@ -34,3 +34,6 @@ CONTRIBUTING.md.meta
 .vscode/
 .aider*
 .DS_Store*
+
+# Submodules (downloaded content)
+Submodules/
