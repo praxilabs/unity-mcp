@@ -14,6 +14,7 @@ from .set_node_first_step import register_set_node_as_first_step_tools
 from .create_connection_between_nodes import register_make_connection_tools
 from .manage_node_parameters import register_manage_node_parameters_tools
 from .manage_registry_data import register_manage_registry_data_tools
+from .manage_xnode_node import register_manage_xnode_node_tools
 
 def register_all_tools(mcp):
     """Register all refactored tools with the MCP server."""
@@ -34,4 +35,5 @@ def register_all_tools(mcp):
     register_set_node_as_first_step_tools(mcp)
     register_manage_node_parameters_tools(mcp)
     register_execute_menu_item_tools(mcp)
+    register_manage_xnode_node_tools(mcp)
     print("Unity MCP Server tool registration complete.")

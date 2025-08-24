@@ -421,7 +421,7 @@ namespace UnityMcpBridge.Editor
                     "create_xnode_node" => ManageXNodeNode.HandleCommand(paramsObject),
                     "delete_xnode_node" => ManageXNodeNode.DeleteNode(paramsObject),
                     "delete_multiple_nodes" => ManageXNodeNode.DeleteMultipleNodes(paramsObject),
-                    "set_xnode_node_position" => ManageXNodeNode.SetNodePosition(paramsObject),
+                    "set_node_position" => ManageXNodeNode.SetNodePosition(paramsObject),
                     "list_available_node_types" => ManageXNodeNode.HandleListAvailableNodeTypes(paramsObject),
                     "make_connection_between_nodes" => MakeAConnectionBetweenNodes.HandleCommand(paramsObject),
                     "set_node_as_first_step" => SetNodeAsFirstStep.HandleCommand(paramsObject),
