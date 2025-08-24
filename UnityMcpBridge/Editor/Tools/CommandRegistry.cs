@@ -28,6 +28,9 @@ namespace UnityMcpBridge.Editor.Tools
         { "HandleListRegistryChildren", ManageRegistryData.HandleListChildren },
         { "HandleGetChildComponents", ManageRegistryData.HandleGetChildComponents },
         { "HandleGetComponentMethods", ManageRegistryData.HandleGetComponentMethods },
+        { "HandleCreateXNodeNode", ManageXNodeNode.HandleCommand },
+        { "HandleDeleteXNodeNode", ManageXNodeNode.DeleteNode },
+        { "HandleSetXNodeNodePosition", ManageXNodeNode.SetNodePosition },
     };
 
         /// <summary>
