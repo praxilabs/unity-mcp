@@ -186,6 +186,12 @@ public static class ManageXNodeNode
 
             // Remove the node from the graph
             graph.RemoveNode(node);
+            
+            // Remove the node as a sub-asset from the AssetDatabase
+            if (AssetDatabase.Contains(node))
+            {
+                AssetDatabase.RemoveObjectFromAsset(node);
+            }
 
             // Mark assets as dirty and save
             EditorUtility.SetDirty(graph);
@@ -271,6 +277,12 @@ public static class ManageXNodeNode
                         int nodeId = node.GetInstanceID();
                         
                         graph.RemoveNode(node);
+                        
+                        // Remove the node as a sub-asset from the AssetDatabase
+                        if (AssetDatabase.Contains(node))
+                        {
+                            AssetDatabase.RemoveObjectFromAsset(node);
+                        }
                         
                         deletedNodes.Add(new {
                             name = nodeName,
