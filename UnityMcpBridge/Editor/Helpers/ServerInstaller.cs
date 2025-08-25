@@ -11,9 +11,8 @@ namespace UnityMcpBridge.Editor.Helpers
     {
         private const string RootFolder = "UnityMCP";
         private const string ServerFolder = "UnityMcpServer";
-        private const string BranchName = "virtual-lab-submodule";
-        // Point to your fork; if private, keep SSH for git ops and only use raw if public
-        private const string GitUrl = "git@github.com:praxilabs/unity-mcp.git";
+        private const string BranchName = "main";
+        private const string GitUrl = "https://github.com/praxilabs/unity-mcp.git";
         // raw needs just the branch name, not "refs/heads"
         private const string PyprojectUrl =
             "https://raw.githubusercontent.com/praxilabs/unity-mcp/" + BranchName + "/UnityMcpServer/src/pyproject.toml";
@@ -110,21 +109,39 @@ namespace UnityMcpBridge.Editor.Helpers
             Directory.CreateDirectory(location);
 
             // Initialize git repo in the src directory
-            RunCommand("git", $"init", workingDirectory: location);
+            CommandRunner.RunCommand("git", $"init", workingDirectory: location);
 
-            // Add remote
-            RunCommand("git", $"remote add origin {GitUrl}", workingDirectory: location);
+            // Add remote (handle case where it already exists)
+            try
+            {
+                CommandRunner.RunCommand("git", $"remote add origin {GitUrl}", workingDirectory: location);
+            }
+            catch (Exception)
+            {
+                // Remote might already exist, try to set the URL
+                try
+                {
+                    CommandRunner.RunCommand("git", $"remote set-url origin {GitUrl}", workingDirectory: location);
+                }
+                catch (Exception)
+                {
+                    // If that fails too, remove and re-add
+                    CommandRunner.RunCommand("git", "remote remove origin", workingDirectory: location);
+                    CommandRunner.RunCommand("git", $"remote add origin {GitUrl}", workingDirectory: location);
+                }
+            }
 
             // Configure sparse checkout
-            RunCommand("git", "config core.sparseCheckout true", workingDirectory: location);
+            CommandRunner.RunCommand("git", "config core.sparseCheckout true", workingDirectory: location);
 
             // Set sparse checkout path to only include UnityMcpServer folder
             string sparseCheckoutPath = Path.Combine(location, ".git", "info", "sparse-checkout");
             File.WriteAllText(sparseCheckoutPath, $"{ServerFolder}/");
 
             // Fetch and checkout the branch
-            RunCommand("git", $"fetch --depth=1 origin {BranchName}", workingDirectory: location);
-            RunCommand("git", $"checkout {BranchName}", workingDirectory: location);
+            CommandRunner.RunCommand("git", $"fetch --depth=1 origin {BranchName}", workingDirectory: location);
+            CommandRunner.RunCommand("git", $"checkout {BranchName}", workingDirectory: location);
+
         }
 
         /// <summary>
@@ -156,7 +173,7 @@ namespace UnityMcpBridge.Editor.Helpers
         /// </summary>
         private static void UpdateServer(string location)
         {
-            RunCommand("git", $"pull origin {BranchName}", workingDirectory: location);
+            CommandRunner.RunCommand("git", $"pull origin {BranchName}", workingDirectory: location);
         }
 
         /// <summary>
@@ -200,38 +217,6 @@ namespace UnityMcpBridge.Editor.Helpers
             return latestParts.Length > installedParts.Length;
         }
 
-        /// <summary>
-        /// Runs a command-line process and handles output/errors.
-        /// </summary>
-        private static void RunCommand(
-            string command,
-            string arguments,
-            string workingDirectory = null
-        )
-        {
-            System.Diagnostics.Process process = new()
-            {
-                StartInfo = new System.Diagnostics.ProcessStartInfo
-                {
-                    FileName = command,
-                    Arguments = arguments,
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true,
-                    UseShellExecute = false,
-                    CreateNoWindow = true,
-                    WorkingDirectory = workingDirectory ?? string.Empty,
-                },
-            };
-            process.Start();
-            string output = process.StandardOutput.ReadToEnd();
-            string error = process.StandardError.ReadToEnd();
-            process.WaitForExit();
-            if (process.ExitCode != 0)
-            {
-                throw new Exception(
-                    $"Command failed: {command} {arguments}\nOutput: {output}\nError: {error}"
-                );
-            }
-        }
+
     }
 }

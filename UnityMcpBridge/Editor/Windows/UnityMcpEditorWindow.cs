@@ -386,6 +386,18 @@ namespace UnityMcpBridge.Editor.Windows
                     }
                 }
             }
+            else if (mcpClient.mcpType == McpTypes.Cursor)
+            {
+                if (GUILayout.Button("Auto Configure", GUILayout.Height(32)))
+                {
+                    ConfigureMcpClient(mcpClient);
+                }
+                
+                if (GUILayout.Button("Install Cursor MCP Rules", GUILayout.Height(32)))
+                {
+                    CursorRulesInstaller.InstallCursorMcpRules();
+                }
+            }
             else
             {
                 if (GUILayout.Button($"Auto Configure", GUILayout.Height(32)))
@@ -447,6 +459,8 @@ namespace UnityMcpBridge.Editor.Windows
             };
             EditorGUILayout.LabelField($"Config: {Path.GetFileName(RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? mcpClient.windowsConfigPath : mcpClient.linuxConfigPath)}", configInfoStyle);
         }
+
+
 
         private void ToggleUnityBridge()
         {
