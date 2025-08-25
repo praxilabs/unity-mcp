@@ -34,8 +34,3 @@ CONTRIBUTING.md.meta
 .vscode/
 .aider*
 .DS_Store*
-
-# Submodules - don't track the actual submodule content
-# Only track the .gitmodules file and submodule pointers
-Submodules/*/
-!Submodules/.gitkeep

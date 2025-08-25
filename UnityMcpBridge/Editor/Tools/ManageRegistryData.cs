@@ -715,4 +715,150 @@ public static class ManageRegistryData
         
         return prefabRegisteriesField.GetValue(registryData);
     }
+
+    /// <summary>
+    /// Registers objects in the scene by finding RegisterObject components and calling their RegisterPreparation function
+    /// </summary>
+    public static object HandleRegisterSceneObjects(JObject args)
+    {
+        try
+        {
+            // Find all RegisterObject components in the scene
+            var registerObjects = UnityEngine.Object.FindObjectsOfType<MonoBehaviour>()
+                .Where(mb => mb.GetType().Name == "RegisterObject")
+                .ToList();
+
+            if (registerObjects.Count == 0)
+            {
+                return new
+                {
+                    success = false,
+                    error = "No RegisterObject components found in the scene"
+                };
+            }
+
+            var results = new List<object>();
+            int successCount = 0;
+            int errorCount = 0;
+
+            foreach (var registerObject in registerObjects)
+            {
+                try
+                {
+                    var gameObject = (registerObject as MonoBehaviour)?.gameObject;
+                    if (gameObject == null) continue;
+
+                    // Check if registryData is set
+                    var registryDataField = registerObject.GetType().GetField("registryData");
+                    if (registryDataField == null)
+                    {
+                        results.Add(new
+                        {
+                            gameObjectName = gameObject.name,
+                            success = false,
+                            error = "registryData field not found on RegisterObject"
+                        });
+                        errorCount++;
+                        continue;
+                    }
+
+                    var registryData = registryDataField.GetValue(registerObject);
+                    if (registryData == null)
+                    {
+                        results.Add(new
+                        {
+                            gameObjectName = gameObject.name,
+                            success = false,
+                            error = "registryData is not set on RegisterObject"
+                        });
+                        errorCount++;
+                        continue;
+                    }
+
+                    // Call RegisterPreparation function
+                    var registerPreparationMethod = registerObject.GetType().GetMethod("RegisterPreparation");
+                    if (registerPreparationMethod == null)
+                    {
+                        results.Add(new
+                        {
+                            gameObjectName = gameObject.name,
+                            success = false,
+                            error = "RegisterPreparation method not found on RegisterObject"
+                        });
+                        errorCount++;
+                        continue;
+                    }
+
+                    // Debug logging
+                    UnityEngine.Debug.Log($"Attempting to call RegisterPreparation on {gameObject.name}");
+                    
+                    registerPreparationMethod.Invoke(registerObject, null);
+                    
+                    UnityEngine.Debug.Log($"Successfully called RegisterPreparation on {gameObject.name}");
+
+                    // Mark the registry data as dirty so Unity saves the changes
+                    if (registryData is UnityEngine.Object registryObj)
+                        EditorUtility.SetDirty(registryObj);
+                    EditorUtility.SetDirty(registerObject);
+
+                    results.Add(new
+                    {
+                        gameObjectName = gameObject.name,
+                        success = true,
+                        message = "Successfully registered object and called RegisterPreparation"
+                    });
+                    successCount++;
+                }
+                catch (Exception ex)
+                {
+                    var gameObject = (registerObject as MonoBehaviour)?.gameObject;
+                    var errorMessage = ex.Message;
+                    
+                    // Get inner exception details if available
+                    if (ex.InnerException != null)
+                    {
+                        errorMessage += $" | Inner Exception: {ex.InnerException.Message}";
+                    }
+                    
+                    // Get stack trace for debugging
+                    var stackTrace = ex.StackTrace;
+                    if (stackTrace != null && stackTrace.Length > 200)
+                    {
+                        stackTrace = stackTrace.Substring(0, 200) + "...";
+                    }
+                    
+                    results.Add(new
+                    {
+                        gameObjectName = gameObject?.name ?? "Unknown",
+                        success = false,
+                        error = $"Exception during registration: {errorMessage}",
+                        stackTrace = stackTrace
+                    });
+                    errorCount++;
+                }
+            }
+
+            // Save all assets
+            AssetDatabase.SaveAssets();
+
+            return new
+            {
+                success = true,
+                message = $"Registration completed. Success: {successCount}, Errors: {errorCount}",
+                totalObjects = registerObjects.Count,
+                successCount = successCount,
+                errorCount = errorCount,
+                results = results.ToArray(),
+                timestamp = System.DateTime.Now.ToString()
+            };
+        }
+        catch (Exception ex)
+        {
+            return new
+            {
+                success = false,
+                error = $"Failed to register scene objects: {ex.Message}"
+            };
+        }
+    }
 }
