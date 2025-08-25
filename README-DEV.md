@@ -7,14 +7,6 @@ Welcome to the Unity MCP development environment! This directory contains tools 
 ### ✅ Development Deployment Scripts
 Quick deployment and testing tools for Unity MCP core changes.
 
-### 🔄 Coming Soon
-- **Development Mode Toggle**: Built-in Unity editor development features
-- **Hot Reload System**: Real-time code updates without Unity restarts  
-- **Plugin Development Kit**: Tools for creating custom Unity MCP extensions
-- **Automated Testing Suite**: Comprehensive testing framework for contributions
-- **Debug Dashboard**: Advanced debugging and monitoring tools
-
----
 
 ## Development Deployment Scripts
 

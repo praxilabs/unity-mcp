@@ -98,6 +98,66 @@ list_available_node_types()
 - **[System Explanation](Docs/system-explanation/README.md)** - Detailed system architecture and components
 - **[GitHub Setup](Docs/GITHUB-SETUP.md)** - Repository and submodule setup
 
+## 🎯 AI Development Framework
+
+Unity MCP Bridge includes a comprehensive AI prompting framework based on the [Autonomous Agent Prompting Framework](https://gist.github.com/aashari/07cc9c1b6c0debbeb4f4d94a3a81339e) to optimize AI assistant interactions.
+
+### 🧠 CursorRules Structure
+
+```
+CursorRules/
+├── rules/
+│   ├── General Rules/           # Core AI prompting framework
+│   │   ├── core.mdc            # Autonomous Principal Engineer doctrine
+│   │   ├── request.mdc         # Standard operating protocol
+│   │   ├── refresh.mdc         # Root cause analysis protocol
+│   │   ├── retro.mdc           # Self-improvement loop
+│   │   ├── concise.mdc         # Communication optimization
+│   │   └── no-absolute-right.mdc # Professional communication
+│   └── Project Specific Rules/ # Unity MCP Bridge specific rules
+│       ├── unity-mcp-essential.mdc    # Core Unity MCP concepts
+│       ├── mcp-tools-reference.mdc    # Complete tool reference
+│       └── step-nodes-reference.mdc   # XNode step node guide
+```
+
+### 🔧 Framework Components
+
+#### **General Rules** (Universal AI Behavior)
+- **[Core Doctrine](CursorRules/rules/General Rules/core.mdc)** - Autonomous Principal Engineer identity and operational protocols
+- **[Request Protocol](CursorRules/rules/General Rules/request.mdc)** - Standard operating procedure for constructive work
+- **[Refresh Protocol](CursorRules/rules/General Rules/refresh.mdc)** - Root cause analysis and remediation
+- **[Retro Protocol](CursorRules/rules/General Rules/retro.mdc)** - Metacognitive self-improvement loop
+- **[Communication Rules](CursorRules/rules/General Rules/concise.mdc)** - Optimized communication patterns
+- **[Professional Standards](CursorRules/rules/General Rules/no-absolute-right.mdc)** - Professional interaction guidelines
+
+#### **Project Specific Rules** (Unity MCP Bridge Context)
+- **[Unity MCP Essentials](CursorRules/rules/Project Specific Rules/unity-mcp-essential.mdc)** - Core concepts and patterns
+- **[MCP Tools Reference](CursorRules/rules/Project Specific Rules/mcp-tools-reference.mdc)** - Complete tool documentation
+- **[Step Nodes Reference](CursorRules/rules/Project Specific Rules/step-nodes-reference.mdc)** - XNode step node patterns
+
+### 🚀 Using the Framework
+
+#### **For Development Tasks**
+1. **Install Core Doctrine**: Set `core.mdc` as your global AI rule
+2. **Use Request Protocol**: Paste `request.mdc` content for feature development
+3. **Apply Project Rules**: Include relevant project-specific rules for context
+
+#### **For Problem Solving**
+1. **Use Refresh Protocol**: Apply `refresh.mdc` for persistent issues
+2. **Follow Root Cause Analysis**: Systematic problem diagnosis and resolution
+
+#### **For Continuous Improvement**
+1. **End with Retro**: Use `retro.mdc` to capture learnings
+2. **Update Doctrine**: Integrate lessons back into the core framework
+
+### 🎯 Framework Benefits
+
+- **Autonomous Operation**: AI agents work independently with minimal intervention
+- **Systematic Approach**: Structured workflow ensures thorough analysis and execution
+- **Quality Assurance**: Built-in verification and self-audit protocols
+- **Continuous Learning**: Framework evolves based on project experiences
+- **Professional Standards**: Maintains high-quality communication and execution
+
 ## 🛠️ Available Tools
 
 ### Experiment & Graph Tools

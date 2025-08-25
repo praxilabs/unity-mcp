@@ -1,71 +1,67 @@
 # Unity MCP Bridge Documentation 📚
 
-Complete documentation for Unity MCP Bridge - the AI-powered Unity development platform.
+Complete documentation for Unity MCP Bridge - the AI assistant for Unity development.
 
-## 📖 Quick Navigation
+## 🚀 Quick Navigation
 
-### 🛠️ [Tool Reference](tools/README.md)
-- Complete tool catalog with implementation details
-- Parameter documentation and usage examples
-- Internal code explanations
+**Start Here**: Main [README.md](../README.md) → [Tool Reference](tools/README.md) → [System Explanation](system-explanation/README.md)
 
-### 🏗️ [System Explanation](system-explanation/README.md)
-- Detailed system architecture and components
-- How the three-layer system works
-- Data flow and communication patterns
+## 📋 Documentation Overview
 
-### 🔧 [GitHub Setup](GITHUB-SETUP.md)
-- Repository cloning with submodules
-- SSH/HTTPS configuration
-- Troubleshooting submodule issues
+This documentation suite provides comprehensive coverage of Unity MCP Bridge:
 
-## 🎯 Tool Categories
+- **[Main README](../README.md)** - Project overview, quick start, system architecture, and AI development framework
+- **[Tool Reference](tools/README.md)** - Complete tool documentation and usage guides
+- **[System Explanation](system-explanation/README.md)** - Detailed system architecture and extension guide
 
-### Experiment & Graph Tools
-- **XNode Node Management** - Create, list, delete, and position nodes in XNode graphs
-- **Node Parameter Management** - Set, get, and list node parameters
-- **Node Connection Tools** - Create connections between nodes in XNode graphs
+## 🛠️ Tool Categories
 
-### Registry Management
-- **Registry Exploration** - List registry items and discover components
-- **Component Discovery** - Find available components and their methods
+### **XNode Node Management**
+Tools for creating, managing, and manipulating nodes in XNode graphs:
+- Node creation and deletion
+- Node positioning and configuration
+- Node type discovery and listing
+- First step configuration
 
-### Utility Tools
-- **System Verification** - Test Unity MCP Bridge connectivity
-- **Asset Creation** - Create ScriptableObject assets programmatically
+### **Node Parameter Management**
+Tools for managing node parameters and properties:
+- Parameter setting and retrieval
+- Parameter listing and discovery
+- Complex type conversion and validation
 
-## 🔍 Quick Reference
+### **Node Connection Tools**
+Tools for creating and managing connections between nodes:
+- Connection creation and validation
+- Port discovery and management
+- Connection routing and verification
 
-### Essential Tools
-```python
-# Test system connectivity
-print_hello_world(random_string="test")
+### **Registry Management**
+Tools for exploring and managing registry data:
+- Registry item listing and discovery
+- Component and method exploration
+- Parent-child relationship management
 
-# Create experiments
-create_xnode_node(graph_path="Assets/Experiment.asset", node_type_name="ClickStep")
+### **Utility Tools**
+Basic utility and verification tools:
+- System connectivity testing
+- ScriptableObject creation
+- Basic asset management
 
-# Manage parameters
-manage_node_parameters(action="set", graph_path="Assets/Experiment.asset", node_name="ClickStep_123", parameter_name="_targetName", parameter_value={"prefabName": "Tools", "childName": "Cube (1)"})
+## 📖 Quick Reference
 
-# Connect nodes
-make_connection_between_nodes(graph_path="Assets/Experiment.asset", from_node="ClickStep_123", to_node="DelayStep_456")
-```
+### **Common Workflows**
+- **Create XNode Graph**: `create_xnode_node` → `set_node_as_first_step` → `make_connection_between_nodes`
+- **Manage Node Parameters**: `list_node_parameters` → `set_node_parameter` → `get_node_parameter`
+- **Explore Registry**: `list_registry_parents` → `list_registry_children` → `get_child_components`
 
-### Common Workflows
-1. **Interactive Experiments** - Build node-based experiment flows
-2. **Parameter Configuration** - Set and manage node parameters
-3. **Graph Construction** - Create and connect nodes
-4. **Registry Exploration** - Discover available components and methods
-5. **System Verification** - Test and debug Unity MCP Bridge
+### **Tool Patterns**
+- **Creation Tools**: Return success status and created object details
+- **Management Tools**: Support multiple actions (create, modify, delete, list)
+- **Discovery Tools**: Return structured data for exploration and analysis
 
 ## 🆘 Need Help?
 
-- **Installation Issues**: See main [README.md](../README.md) for setup instructions
-- **Tool Usage**: [Tool Reference](tools/README.md)
-- **System Understanding**: [System Explanation](system-explanation/README.md)
-- **GitHub Issues**: [GitHub Setup](GITHUB-SETUP.md)
-- **Community Support**: [GitHub Issues](https://github.com/praxilabs/unity-mcp/issues)
-
----
-
-**Start Here**: Main [README.md](../README.md) → [Tool Reference](tools/README.md) → [System Explanation](system-explanation/README.md)
+- **[Tool Reference](tools/README.md)** - Detailed tool documentation
+- **[System Explanation](system-explanation/README.md)** - Architecture and extension guide
+- **[Main README](../README.md)** - Project overview and quick start
+- **[GitHub Issues](https://github.com/praxilabs/unity-mcp/issues)** - Report bugs and request features
