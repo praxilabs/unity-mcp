@@ -62,7 +62,7 @@ ssh-keygen -t rsa -b 4096 -C "your-email@example.com"
 ssh -T git@github.com
 ```
 
-**📖 See [GitHub Setup Guide](docs/GITHUB-SETUP.md) for detailed instructions.**
+**📖 See [GitHub Setup Guide](Docs/GITHUB-SETUP.md) for detailed instructions.**
 
 ### 2. Clone Repository
 ```bash
@@ -94,24 +94,24 @@ list_available_node_types()
 
 ## 📚 Documentation
 
-- **[Tool Reference](docs/tools/README.md)** - Complete tool documentation
-- **[System Explanation](docs/system-explanation/README.md)** - Detailed system architecture and components
-- **[GitHub Setup](docs/GITHUB-SETUP.md)** - Repository and submodule setup
+- **[Tool Reference](Docs/tools/README.md)** - Complete tool documentation
+- **[System Explanation](Docs/system-explanation/README.md)** - Detailed system architecture and components
+- **[GitHub Setup](Docs/GITHUB-SETUP.md)** - Repository and submodule setup
 
 ## 🛠️ Available Tools
 
 ### Experiment & Graph Tools
-- **[XNode Node Management](docs/tools/xnode-node-management.md)** - Create, list, delete, and position nodes in XNode graphs
-- **[Node Parameter Management](docs/tools/node-parameter-management.md)** - Set, get, and list node parameters
-- **[Node Connection Tools](docs/tools/node-connection-tools.md)** - Create connections between nodes in XNode graphs
+- **[XNode Node Management](Docs/tools/xnode-node-management.md)** - Create, list, delete, and position nodes in XNode graphs
+- **[Node Parameter Management](Docs/tools/node-parameter-management.md)** - Set, get, and list node parameters
+- **[Node Connection Tools](Docs/tools/node-connection-tools.md)** - Create connections between nodes in XNode graphs
 
 ### Registry Management
-- **[Registry Management](docs/tools/registry-management.md)** - List registry items and discover components
+- **[Registry Management](Docs/tools/registry-management.md)** - List registry items and discover components
 
 ### Utility Tools
-- **[Utility Tools](docs/tools/utility-tools.md)** - System verification and basic asset creation
+- **[Utility Tools](Docs/tools/utility-tools.md)** - System verification and basic asset creation
 
-**📖 See [Complete Tool Reference](docs/tools/README.md) for detailed documentation.**
+**📖 See [Complete Tool Reference](Docs/tools/README.md) for detailed documentation.**
 
 ## 🔧 System Requirements
 
@@ -126,11 +126,11 @@ list_available_node_types()
 ### Common Issues
 - **Unity Bridge Not Connecting**: Ensure Unity Editor is open and package is installed
 - **MCP Client Not Connecting**: Check server configuration and ports
-- **Submodule Issues**: See [GitHub Setup Guide](docs/GITHUB-SETUP.md)
+- **Submodule Issues**: See [GitHub Setup Guide](Docs/GITHUB-SETUP.md)
 
 ### Getting Help
 - [GitHub Issues](https://github.com/praxilabs/unity-mcp/issues)
-- [Tool Reference](docs/tools/README.md)
+- [Tool Reference](Docs/tools/README.md)
 
 ## 📄 License
 
@@ -138,4 +138,4 @@ MIT License. See [LICENSE](LICENSE) file.
 
 ---
 
-**Ready to start?** Explore the [Tool Reference](docs/tools/README.md) or learn about the [System Architecture](docs/system-explanation/README.md)!
+**Ready to start?** Explore the [Tool Reference](Docs/tools/README.md) or learn about the [System Architecture](Docs/system-explanation/README.md)!
