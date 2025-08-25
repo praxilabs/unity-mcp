@@ -1,0 +1,160 @@
+---
+alwaysApply: true
+---
+
+# Unity MCP Bridge - Essential Rules
+
+## 🚨 CRITICAL JSON FORMATS (MANDATORY)
+
+### RegistryItem Format
+```json
+✅ CORRECT: {"prefabName": "Tools", "childName": "Cube (1)"}
+❌ WRONG: {prefabName: "Tools"} or {"prefabName": Tools} or {'prefabName': 'Tools'}
+```
+
+### Function Parameters
+```json
+✅ CORRECT: [{"parameterName": "value", "parameterValue": true, "parameterType": "System.Boolean"}]
+❌ WRONG: [{parameterName: "value"}] or [{"parameterName": value}]
+```
+
+## 🎯 DECISION TREE
+
+### Need to show/hide objects?
+→ **GameObjectSetActiveStep** (NOT FunctionCallStep)
+- `_newToolName`: {"prefabName": "Parent", "childName": "Child"}
+- `_isActive`: true/false
+
+### Need user interaction in any order?
+→ **CompositeStep pattern**
+- Routes → Actions → Routes back to entry → Exit
+
+### Need sequential execution?
+→ **Chain: Node1.exit → Node2.entry**
+
+### Need function calls?
+→ **FunctionCallStep**
+- `_calledObjectName`: RegistryItem
+- `selectedComponent`: "ComponentName"
+- `selectedFunction`: "MethodName"
+
+## 📋 BEFORE EVERY ACTION CHECKLIST
+
+- [ ] JSON: Double quotes around keys AND values
+- [ ] RegistryItem: Verify parent/child exist in registry
+- [ ] ScriptableObject: Use exact class name from codebase
+- [ ] Connections: Parallel = CompositeStep, Sequential = direct
+- [ ] Parameters: Test all are set correctly
+
+## 🔧 QUICK REFERENCE
+
+| Need | Use | Key Parameters |
+|------|-----|----------------|
+| Show/Hide | GameObjectSetActiveStep | `_newToolName`, `_isActive` |
+| User Clicks | ClickStep | `_targetName` |
+| Function Calls | FunctionCallStep | `_calledObjectName`, `selectedComponent`, `selectedFunction` |
+| Delays | DelayStep | `timeToWait` |
+| Parallel | CompositeStep | Routes back to entry |
+| Messages | SideMessageStep | `messageID` |
+
+## 📐 NODE POSITIONING
+
+### Spacing Rules
+- **Horizontal**: 400 units between sequential nodes
+- **Vertical**: 300 units between parallel routes
+- **Start**: (100, 100) for first node
+
+### Connection Patterns
+```
+Sequential: Node1.exit → Node2.entry → Node3.entry
+Parallel: CompositeStep.routes → [Node1, Node2, Node3] → CompositeStep.entry
+```
+
+## ❌ COMMON ERRORS TO AVOID
+
+1. **Wrong JSON Format**: Always use double quotes around keys and values
+2. **Wrong ScriptableObject Names**: Always verify in codebase first
+3. **Missing CompositeStep Routes**: Routes must connect back to entry
+4. **Wrong Step Node Type**: Use GameObjectSetActiveStep for visibility, not FunctionCallStep
+
+---
+
+**Remember**: When in doubt, always verify in the codebase first!
+# Unity MCP Bridge - Essential Rules
+
+## 🚨 CRITICAL JSON FORMATS (MANDATORY)
+
+### RegistryItem Format
+```json
+✅ CORRECT: {"prefabName": "Tools", "childName": "Cube (1)"}
+❌ WRONG: {prefabName: "Tools"} or {"prefabName": Tools} or {'prefabName': 'Tools'}
+```
+
+### Function Parameters
+```json
+✅ CORRECT: [{"parameterName": "value", "parameterValue": true, "parameterType": "System.Boolean"}]
+❌ WRONG: [{parameterName: "value"}] or [{"parameterName": value}]
+```
+
+## 🎯 DECISION TREE
+
+### Need to show/hide objects?
+→ **GameObjectSetActiveStep** (NOT FunctionCallStep)
+- `_newToolName`: {"prefabName": "Parent", "childName": "Child"}
+- `_isActive`: true/false
+
+### Need user interaction in any order?
+→ **CompositeStep pattern**
+- Routes → Actions → Routes back to entry → Exit
+
+### Need sequential execution?
+→ **Chain: Node1.exit → Node2.entry**
+
+### Need function calls?
+→ **FunctionCallStep**
+- `_calledObjectName`: RegistryItem
+- `selectedComponent`: "ComponentName"
+- `selectedFunction`: "MethodName"
+
+## 📋 BEFORE EVERY ACTION CHECKLIST
+
+- [ ] JSON: Double quotes around keys AND values
+- [ ] RegistryItem: Verify parent/child exist in registry
+- [ ] ScriptableObject: Use exact class name from codebase
+- [ ] Connections: Parallel = CompositeStep, Sequential = direct
+- [ ] Parameters: Test all are set correctly
+
+## 🔧 QUICK REFERENCE
+
+| Need | Use | Key Parameters |
+|------|-----|----------------|
+| Show/Hide | GameObjectSetActiveStep | `_newToolName`, `_isActive` |
+| User Clicks | ClickStep | `_targetName` |
+| Function Calls | FunctionCallStep | `_calledObjectName`, `selectedComponent`, `selectedFunction` |
+| Delays | DelayStep | `timeToWait` |
+| Parallel | CompositeStep | Routes back to entry |
+| Messages | SideMessageStep | `messageID` |
+
+## 📐 NODE POSITIONING
+
+### Spacing Rules
+- **Horizontal**: 400 units between sequential nodes
+- **Vertical**: 300 units between parallel routes
+- **Start**: (100, 100) for first node
+
+### Connection Patterns
+```
+Sequential: Node1.exit → Node2.entry → Node3.entry
+Parallel: CompositeStep.routes → [Node1, Node2, Node3] → CompositeStep.entry
+```
+
+## ❌ COMMON ERRORS TO AVOID
+
+1. **Wrong JSON Format**: Always use double quotes around keys and values
+2. **Wrong ScriptableObject Names**: Always verify in codebase first
+3. **Missing CompositeStep Routes**: Routes must connect back to entry
+4. **Wrong Step Node Type**: Use GameObjectSetActiveStep for visibility, not FunctionCallStep
+
+---
+
+**Remember**: When in doubt, always verify in the codebase first!
