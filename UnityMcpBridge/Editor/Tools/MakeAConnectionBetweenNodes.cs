@@ -17,33 +17,35 @@ public static class MakeAConnectionBetweenNodes
     {
         try
         {
-            string graphPath = args?["graphPath"]?.ToString();
-            if (string.IsNullOrEmpty(graphPath))
+            // Validate required parameters using ToolUtils
+            var (isValidGraphPath, graphPath, graphPathError) = ToolUtils.ValidateRequiredString(args, "graphPath", "graphPath");
+            if (!isValidGraphPath)
             {
-                return new { success = false, error = "Missing required argument: graphPath" };
+                return ToolUtils.CreateErrorResponse(graphPathError);
             }
 
-            // Load graph
-            NodeGraph graph = AssetDatabase.LoadAssetAtPath<NodeGraph>(graphPath);
-            if (graph == null)
+            // Load and validate graph using ToolUtils
+            var (isValidGraph, graph, graphError) = ToolUtils.ValidateGraphPath(graphPath);
+            if (!isValidGraph)
             {
-                return new { success = false, error = $"Could not load NodeGraph at path: {graphPath}" };
+                return ToolUtils.CreateErrorResponse(graphError);
             }
+
             if (graph.nodes == null || graph.nodes.Count == 0)
             {
-                return new { success = false, error = "Graph has no nodes" };
+                return ToolUtils.CreateErrorResponse("Graph has no nodes");
             }
 
-            // Resolve endpoints
+            // Resolve endpoints using ToolUtils
             Node fromNode = ResolveNode(graph, args?["fromNode"]);
             Node toNode = ResolveNode(graph, args?["toNode"]);
             if (fromNode == null || toNode == null)
             {
-                return new { success = false, error = "Could not resolve 'fromNode' or 'toNode' in the graph" };
+                return ToolUtils.CreateErrorResponse("Could not resolve 'fromNode' or 'toNode' in the graph");
             }
 
-            string fromPortName = args?["fromPort"]?.ToString();
-            string toPortName = args?["toPort"]?.ToString();
+            string fromPortName = ToolUtils.GetOptionalString(args, "fromPort");
+            string toPortName = ToolUtils.GetOptionalString(args, "toPort");
 
             // Pick ports with sensible defaults
             NodePort fromPort = !string.IsNullOrEmpty(fromPortName)
@@ -58,11 +60,11 @@ public static class MakeAConnectionBetweenNodes
 
             if (fromPort == null)
             {
-                return new { success = false, error = $"No suitable output port found on '{fromNode.name}'" };
+                return ToolUtils.CreateErrorResponse($"No suitable output port found on '{fromNode.name}'");
             }
             if (toPort == null)
             {
-                return new { success = false, error = $"No suitable input port found on '{toNode.name}'" };
+                return ToolUtils.CreateErrorResponse($"No suitable input port found on '{toNode.name}'");
             }
 
             // Connect if not already
@@ -70,24 +72,26 @@ public static class MakeAConnectionBetweenNodes
             if (!alreadyConnected)
             {
                 fromPort.Connect(toPort);
-                EditorUtility.SetDirty(graph);
-                AssetDatabase.SaveAssets();
+                ToolUtils.SaveGraphChanges(graph);
             }
 
-            return new
-            {
-                success = true,
-                message = alreadyConnected
-                    ? $"Ports already connected: {fromNode.name}.{fromPort.fieldName} -> {toNode.name}.{toPort.fieldName}"
-                    : $"Connected: {fromNode.name}.{fromPort.fieldName} -> {toNode.name}.{toPort.fieldName}",
-                graphPath,
-                from = new { node = fromNode.name, port = fromPort.fieldName },
-                to = new { node = toNode.name, port = toPort.fieldName }
-            };
+            string message = alreadyConnected
+                ? $"Ports already connected: {fromNode.name}.{fromPort.fieldName} -> {toNode.name}.{toPort.fieldName}"
+                : $"Connected: {fromNode.name}.{fromPort.fieldName} -> {toNode.name}.{toPort.fieldName}";
+
+            return ToolUtils.CreateSuccessResponse(
+                message,
+                new
+                {
+                    graphPath,
+                    from = new { node = fromNode.name, port = fromPort.fieldName },
+                    to = new { node = toNode.name, port = toPort.fieldName }
+                }
+            );
         }
         catch (Exception ex)
         {
-            return new { success = false, error = $"Failed to connect nodes: {ex.Message}" };
+            return ToolUtils.CreateErrorResponse($"Failed to connect nodes: {ex.Message}");
         }
     }
 
@@ -99,12 +103,12 @@ public static class MakeAConnectionBetweenNodes
         if (token.Type == JTokenType.Integer)
         {
             int id = token.ToObject<int>();
-            return graph.nodes.FirstOrDefault(n => n != null && n.GetInstanceID() == id);
+            return ToolUtils.FindNodeById(graph, id);
         }
 
         // Try by name
         string name = token.ToString();
-        Node byExact = graph.nodes.FirstOrDefault(n => n != null && n.name == name);
+        Node byExact = ToolUtils.FindNodeByName(graph, name);
         if (byExact != null) return byExact;
 
         // Case-insensitive fallback

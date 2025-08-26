@@ -35,7 +35,7 @@ namespace UnityMcpBridge.Editor.Windows
         // UI state
         private int selectedClientIndex = 0;
 
-        [MenuItem("Window/Unity MCP")]
+        [MenuItem("Window/Unity MCP/MCP Bridge Manager")]
         public static void ShowWindow()
         {
             GetWindow<UnityMcpEditorWindow>("MCP Editor");
@@ -137,6 +137,15 @@ namespace UnityMcpBridge.Editor.Windows
 
         private void OnGUI()
         {
+
+            if (!InstallationManager.IsServerInstalled)
+            {
+                EditorGUILayout.Space(10);
+                EditorGUILayout.LabelField("Server Not Installed", EditorStyles.boldLabel);
+                EditorGUILayout.HelpBox("The MCP server is not installed. Please use the Installation Manager to install the server first.", MessageType.Warning);
+                return;
+            }
+            
             scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
 
             // Header

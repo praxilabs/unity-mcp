@@ -47,7 +47,7 @@ This section contains detailed documentation for each tool group in the Unity MC
 - **list_node_parameters** - List all available parameters
 
 ### Utility Tools
-- **print_hello_world** - System verification tool
+- **print** - System verification and debugging tool
 - **create_scriptable_object** - Create ScriptableObject assets
 
 ### Registry Management Tools

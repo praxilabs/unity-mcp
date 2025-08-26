@@ -9,182 +9,272 @@ using System.Collections.Generic;
 
 public static class ManageXNodeNode
 {
-    // Helper function to safely serialize Vector2 properties
-    private static object SafeSerializeVector2(Vector2 vector)
+    public static object CreateNode(JObject args)
     {
-        return new { x = vector.x, y = vector.y };
-    }
-
-    // Helper function to safely serialize any property value
-    private static object SafeSerializeValue(object value)
-    {
-        if (value is Vector2 vector2)
+        // Validate input arguments
+        var validation = ValidateCreateNodeArgs(args);
+        if (!validation.IsValid)
         {
-            return SafeSerializeVector2(vector2);
-        }
-        else if (value is Vector3 vector3)
-        {
-            return new { x = vector3.x, y = vector3.y, z = vector3.z };
-        }
-        else if (value is Color color)
-        {
-            return new { r = color.r, g = color.g, b = color.b, a = color.a };
-        }
-        else if (value is Quaternion quaternion)
-        {
-            return new { x = quaternion.x, y = quaternion.y, z = quaternion.z, w = quaternion.w };
-        }
-        
-        return value;
-    }
-
-    public static object HandleCommand(JObject args)
-    {
-        string graphPath = args?["graphPath"]?.ToString();
-        string nodeTypeName = args?["nodeTypeName"]?.ToString();
-        float posX = args?["positionX"]?.ToObject<float>() ?? 0f;
-        float posY = args?["positionY"]?.ToObject<float>() ?? 0f;
-
-        if (string.IsNullOrEmpty(graphPath) || string.IsNullOrEmpty(nodeTypeName))
-        {
-            return new
-            {
-                success = false,
-                error = "Missing required arguments: graphPath and nodeTypeName"
-            };
+            return ToolUtils.CreateErrorResponse(validation.ErrorMessage);
         }
 
         try
         {
-            // Load the graph asset
-            NodeGraph graph = AssetDatabase.LoadAssetAtPath<NodeGraph>(graphPath);
+            // Load and validate graph
+            var graph = ToolUtils.LoadNodeGraph(validation.GraphPath);
             if (graph == null)
             {
-                return new
-                {
-                    success = false,
-                    error = $"Could not load NodeGraph at path: {graphPath}"
-                };
+                return ToolUtils.CreateErrorResponse($"Could not load NodeGraph at path: {validation.GraphPath}");
             }
 
             // Find the node type
-            Type nodeType = FindNodeType(nodeTypeName);
+            Type nodeType = ToolUtils.FindNodeType(validation.NodeTypeName);
             if (nodeType == null)
             {
-                return new
-                {
-                    success = false,
-                    error = $"Could not find node type: {nodeTypeName}"
-                };
+                return ToolUtils.CreateErrorResponse($"Could not find node type: {validation.NodeTypeName}");
             }
 
             // Create the node
             Node newNode = graph.AddNode(nodeType);
             if (newNode == null)
             {
-                return new
-                {
-                    success = false,
-                    error = $"Failed to create node of type: {nodeTypeName}"
-                };
+                return ToolUtils.CreateErrorResponse($"Failed to create node of type: {validation.NodeTypeName}");
             }
 
-            // Set position
-            newNode.position = new Vector2(posX, posY);
+            // Configure the node
+            ConfigureNewNode(newNode, validation.NodeTypeName, validation.PositionX, validation.PositionY);
 
-            // Give the node a proper name
-            newNode.name = $"{nodeTypeName}_{newNode.GetInstanceID()}";
-
-            // Add the node as a sub-asset to the graph (this is the critical fix!)
-            if (!AssetDatabase.Contains(newNode))
-            {
-                AssetDatabase.AddObjectToAsset(newNode, graph);
-            }
-
-            // Mark assets as dirty and save
-            EditorUtility.SetDirty(graph);
+            // Save changes
+            ToolUtils.SaveGraphChanges(graph);
             EditorUtility.SetDirty(newNode);
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
 
-            return new
-            {
-                success = true,
-                message = $"Node '{nodeTypeName}' created in graph",
-                graphPath = graphPath,
-                nodeId = newNode.GetInstanceID(),
-                nodeName = newNode.name,
-                nodeType = nodeTypeName,
-                position = SafeSerializeVector2(new Vector2(posX, posY)),
-                timestamp = System.DateTime.Now.ToString()
-            };
+            return CreateNodeSuccessResponse(newNode, validation.GraphPath, validation.NodeTypeName, validation.PositionX, validation.PositionY);
         }
         catch (Exception ex)
         {
-            return new
-            {
-                success = false,
-                error = $"Failed to create node: {ex.Message}"
-            };
+            return ToolUtils.CreateErrorResponse($"Failed to create node: {ex.Message}");
         }
     }
 
+    private static (bool IsValid, string GraphPath, string NodeTypeName, float PositionX, float PositionY, string ErrorMessage) ValidateCreateNodeArgs(JObject args)
+    {
+        string graphPath = args?["graphPath"]?.ToString();
+        string nodeTypeName = args?["nodeTypeName"]?.ToString();
+        float posX = args?["positionX"]?.ToObject<float>() ?? 0f;
+        float posY = args?["positionY"]?.ToObject<float>() ?? 0f;
+
+        if (string.IsNullOrEmpty(graphPath))
+        {
+            return (false, null, null, 0f, 0f, "Missing required argument: graphPath");
+        }
+
+        if (string.IsNullOrEmpty(nodeTypeName))
+        {
+            return (false, null, null, 0f, 0f, "Missing required argument: nodeTypeName");
+        }
+
+        return (true, graphPath, nodeTypeName, posX, posY, null);
+    }
+
+    private static void ConfigureNewNode(Node newNode, string nodeTypeName, float posX, float posY)
+    {
+        newNode.position = new Vector2(posX, posY);
+        newNode.name = $"{nodeTypeName}_{newNode.GetInstanceID()}";
+
+        // Add the node as a sub-asset to the graph
+        if (!AssetDatabase.Contains(newNode))
+        {
+            AssetDatabase.AddObjectToAsset(newNode, newNode.graph);
+        }
+    }
+
+    private static object CreateNodeSuccessResponse(Node newNode, string graphPath, string nodeTypeName, float posX, float posY)
+    {
+        return new
+        {
+            success = true,
+            message = $"Node '{nodeTypeName}' created in graph",
+            graphPath = graphPath,
+            nodeId = newNode.GetInstanceID(),
+            nodeName = newNode.name,
+            nodeType = nodeTypeName,
+            position = new { x = posX, y = posY },
+            timestamp = System.DateTime.Now.ToString()
+        };
+    }
+
     public static object DeleteNode(JObject args)
+    {
+        // Validate input arguments
+        var validation = ValidateDeleteNodeArgs(args);
+        if (!validation.IsValid)
+        {
+            return ToolUtils.CreateErrorResponse(validation.ErrorMessage);
+        }
+
+        try
+        {
+            // Load and validate graph
+            var graph = ToolUtils.LoadNodeGraph(validation.GraphPath);
+            if (graph == null)
+            {
+                return ToolUtils.CreateErrorResponse($"Could not load NodeGraph at path: {validation.GraphPath}");
+            }
+
+            // Find the node
+            var node = ToolUtils.FindNodeByIdentifier(graph, validation.NodeIdentifier, validation.IdentifierType);
+            if (node == null)
+            {
+                return ToolUtils.CreateErrorResponse($"Could not find node with {validation.IdentifierType}: {validation.NodeIdentifier}");
+            }
+
+            // Delete the node
+            var deletionResult = DeleteSingleNode(graph, node, validation.NodeIdentifier);
+            if (!deletionResult.Success)
+            {
+                return ToolUtils.CreateErrorResponse($"Failed to delete node: {deletionResult.ErrorInfo}");
+            }
+
+            // Save changes
+            ToolUtils.SaveGraphChanges(graph);
+
+            return CreateDeleteNodeSuccessResponse(deletionResult.NodeInfo, validation.GraphPath, validation.IdentifierType, validation.NodeIdentifier);
+        }
+        catch (Exception ex)
+        {
+            return ToolUtils.CreateErrorResponse($"Failed to delete node: {ex.Message}");
+        }
+    }
+
+    private static (bool IsValid, string GraphPath, string NodeIdentifier, string IdentifierType, string ErrorMessage) ValidateDeleteNodeArgs(JObject args)
     {
         string graphPath = args?["graphPath"]?.ToString();
         string nodeIdentifier = args?["nodeIdentifier"]?.ToString();
         string identifierType = args?["identifierType"]?.ToString() ?? "name";
 
-        if (string.IsNullOrEmpty(graphPath) || string.IsNullOrEmpty(nodeIdentifier))
+        if (string.IsNullOrEmpty(graphPath))
         {
-            return new
-            {
-                success = false,
-                error = "Missing required arguments: graphPath and nodeIdentifier"
-            };
+            return (false, null, null, null, "Missing required argument: graphPath");
+        }
+
+        if (string.IsNullOrEmpty(nodeIdentifier))
+        {
+            return (false, null, null, null, "Missing required argument: nodeIdentifier");
+        }
+
+        return (true, graphPath, nodeIdentifier, identifierType, null);
+    }
+
+    private static object CreateDeleteNodeSuccessResponse(object nodeInfo, string graphPath, string identifierType, string nodeIdentifier)
+    {
+        return new {
+            success = true,
+            message = "Node deleted successfully",
+            graphPath = graphPath,
+            deletedNode = nodeInfo,
+            timestamp = System.DateTime.Now.ToString()
+        };
+    }
+
+    public static object DeleteMultipleNodes(JObject args)
+    {
+        // Validate input arguments
+        var validation = ValidateDeleteMultipleArgs(args);
+        if (!validation.IsValid)
+        {
+            return ToolUtils.CreateErrorResponse(validation.ErrorMessage);
         }
 
         try
         {
-            // Load the graph asset
-            NodeGraph graph = AssetDatabase.LoadAssetAtPath<NodeGraph>(graphPath);
+            // Load and validate graph
+            var graph = ToolUtils.LoadNodeGraph(validation.GraphPath);
             if (graph == null)
             {
-                return new
-                {
-                    success = false,
-                    error = $"Could not load NodeGraph at path: {graphPath}"
-                };
+                return ToolUtils.CreateErrorResponse($"Could not load NodeGraph at path: {validation.GraphPath}");
             }
 
-            // Find the node based on identifier type
-            Node node = null;
-            if (identifierType.ToLower() == "id")
+            // Process node deletions
+            var result = ProcessNodeDeletions(graph, validation.NodeIdentifiers, validation.IdentifierType);
+
+            // Save changes if any nodes were deleted
+            if (result.DeletedCount > 0)
             {
-                // Find by instance ID
-                if (int.TryParse(nodeIdentifier, out int instanceId))
+                ToolUtils.SaveGraphChanges(graph);
+            }
+
+            return CreateSuccessResponse(result, validation.GraphPath);
+        }
+        catch (Exception ex)
+        {
+            return ToolUtils.CreateErrorResponse($"Failed to delete multiple nodes: {ex.Message}");
+        }
+    }
+
+    private static (bool IsValid, string GraphPath, string[] NodeIdentifiers, string IdentifierType, string ErrorMessage) ValidateDeleteMultipleArgs(JObject args)
+    {
+        string graphPath = args?["graphPath"]?.ToString();
+        JArray nodeIdentifiersArray = args?["nodeIdentifiers"] as JArray;
+        string identifierType = args?["identifierType"]?.ToString() ?? "name";
+
+        if (string.IsNullOrEmpty(graphPath))
+        {
+            return (false, null, null, null, "Missing required argument: graphPath");
+        }
+
+        if (nodeIdentifiersArray == null || nodeIdentifiersArray.Count == 0)
+        {
+            return (false, null, null, null, "Missing or empty required argument: nodeIdentifiers");
+        }
+
+        var nodeIdentifiers = nodeIdentifiersArray.Select(token => token.ToString()).ToArray();
+        return (true, graphPath, nodeIdentifiers, identifierType, null);
+    }
+
+
+
+    private static (int DeletedCount, int FailedCount, List<object> DeletedNodes, List<object> FailedNodes) ProcessNodeDeletions(NodeGraph graph, string[] nodeIdentifiers, string identifierType)
+    {
+        var deletedNodes = new List<object>();
+        var failedNodes = new List<object>();
+
+        foreach (string nodeIdentifier in nodeIdentifiers)
+        {
+            var node = ToolUtils.FindNodeByIdentifier(graph, nodeIdentifier, identifierType);
+            
+            if (node != null)
+            {
+                var deletionResult = DeleteSingleNode(graph, node, nodeIdentifier);
+                if (deletionResult.Success)
                 {
-                    node = graph.nodes.FirstOrDefault(n => n.GetInstanceID() == instanceId);
+                    deletedNodes.Add(deletionResult.NodeInfo);
+                }
+                else
+                {
+                    failedNodes.Add(deletionResult.ErrorInfo);
                 }
             }
             else
             {
-                // Find by name (default)
-                node = graph.nodes.FirstOrDefault(n => n.name == nodeIdentifier);
+                failedNodes.Add(new {
+                    identifier = nodeIdentifier,
+                    error = $"Node not found with {identifierType}: {nodeIdentifier}"
+                });
             }
+        }
 
-            if (node == null)
-            {
-                return new {
-                    success = false,
-                    error = $"Could not find node with {identifierType}: {nodeIdentifier}"
-                };
-            }
+        return (deletedNodes.Count, failedNodes.Count, deletedNodes, failedNodes);
+    }
 
-            string deletedNodeName = node.name;
-            int deletedNodeId = node.GetInstanceID();
 
-            // Remove the node from the graph
+
+    private static (bool Success, object NodeInfo, object ErrorInfo) DeleteSingleNode(NodeGraph graph, Node node, string nodeIdentifier)
+    {
+        try
+        {
+            string nodeName = node.name;
+            int nodeId = node.GetInstanceID();
+            
             graph.RemoveNode(node);
             
             // Remove the node as a sub-asset from the AssetDatabase
@@ -192,285 +282,300 @@ public static class ManageXNodeNode
             {
                 AssetDatabase.RemoveObjectFromAsset(node);
             }
-
-            // Mark assets as dirty and save
-            EditorUtility.SetDirty(graph);
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
-
-            return new {
-                success = true,
-                message = "Node deleted successfully",
-                graphPath = graphPath,
-                deletedNode = new {
-                    name = deletedNodeName,
-                    id = deletedNodeId,
-                    identifierType = identifierType,
-                    identifier = nodeIdentifier
-                },
-                timestamp = System.DateTime.Now.ToString()
+            
+            var nodeInfo = new {
+                name = nodeName,
+                id = nodeId,
+                identifier = nodeIdentifier
             };
+            
+            return (true, nodeInfo, null);
         }
         catch (Exception ex)
         {
-            return new {
-                success = false,
-                error = $"Failed to delete node: {ex.Message}"
+            var errorInfo = new {
+                identifier = nodeIdentifier,
+                error = ex.Message
             };
+            
+            return (false, null, errorInfo);
         }
     }
 
-    public static object DeleteMultipleNodes(JObject args)
-    {
-        string graphPath = args?["graphPath"]?.ToString();
-        JArray nodeIdentifiersArray = args?["nodeIdentifiers"] as JArray;
-        string identifierType = args?["identifierType"]?.ToString() ?? "name";
 
-        if (string.IsNullOrEmpty(graphPath) || nodeIdentifiersArray == null || nodeIdentifiersArray.Count == 0)
+
+    private static object CreateSuccessResponse((int DeletedCount, int FailedCount, List<object> DeletedNodes, List<object> FailedNodes) result, string graphPath)
+    {
+        return new {
+            success = true,
+            message = $"Deleted {result.DeletedCount} node(s), {result.FailedCount} failed",
+            graphPath = graphPath,
+            deletedNodes = result.DeletedNodes.ToArray(),
+            failedNodes = result.FailedNodes.ToArray(),
+            successCount = result.DeletedCount,
+            failureCount = result.FailedCount,
+            timestamp = System.DateTime.Now.ToString()
+        };
+    }
+
+
+
+    public static object SetNodePosition(JObject args)
+    {
+        // Validate input arguments
+        var validation = ValidateSetNodePositionArgs(args);
+        if (!validation.IsValid)
         {
-            return new
-            {
-                success = false,
-                error = "Missing required arguments: graphPath and nodeIdentifiers"
-            };
+            return ToolUtils.CreateErrorResponse(validation.ErrorMessage);
         }
 
         try
         {
-            // Load the graph asset
-            NodeGraph graph = AssetDatabase.LoadAssetAtPath<NodeGraph>(graphPath);
+            // Load and validate graph
+            var graph = ToolUtils.LoadNodeGraph(validation.GraphPath);
             if (graph == null)
             {
-                return new
-                {
-                    success = false,
-                    error = $"Could not load NodeGraph at path: {graphPath}"
-                };
+                return ToolUtils.CreateErrorResponse($"Could not load NodeGraph at path: {validation.GraphPath}");
             }
 
-            var deletedNodes = new List<object>();
-            var failedNodes = new List<object>();
-
-            foreach (JToken identifierToken in nodeIdentifiersArray)
+            // Find the node
+            var node = ToolUtils.FindNodeByIdentifier(graph, validation.NodeId, "id");
+            if (node == null)
             {
-                string nodeIdentifier = identifierToken.ToString();
-                
-                // Find the node based on identifier type
-                Node node = null;
-                if (identifierType.ToLower() == "id")
-                {
-                    if (int.TryParse(nodeIdentifier, out int instanceId))
-                    {
-                        node = graph.nodes.FirstOrDefault(n => n.GetInstanceID() == instanceId);
-                    }
-                }
-                else
-                {
-                    node = graph.nodes.FirstOrDefault(n => n.name == nodeIdentifier);
-                }
-
-                if (node != null)
-                {
-                    try
-                    {
-                        string nodeName = node.name;
-                        int nodeId = node.GetInstanceID();
-                        
-                        graph.RemoveNode(node);
-                        
-                        // Remove the node as a sub-asset from the AssetDatabase
-                        if (AssetDatabase.Contains(node))
-                        {
-                            AssetDatabase.RemoveObjectFromAsset(node);
-                        }
-                        
-                        deletedNodes.Add(new {
-                            name = nodeName,
-                            id = nodeId,
-                            identifier = nodeIdentifier
-                        });
-                    }
-                    catch (Exception ex)
-                    {
-                        failedNodes.Add(new {
-                            identifier = nodeIdentifier,
-                            error = ex.Message
-                        });
-                    }
-                }
-                else
-                {
-                    failedNodes.Add(new {
-                        identifier = nodeIdentifier,
-                        error = $"Node not found with {identifierType}: {nodeIdentifier}"
-                    });
-                }
+                return ToolUtils.CreateErrorResponse($"Could not find node with ID: {validation.NodeId}");
             }
 
-            // Mark assets as dirty and save
-            if (deletedNodes.Count > 0)
-            {
-                EditorUtility.SetDirty(graph);
-                AssetDatabase.SaveAssets();
-                AssetDatabase.Refresh();
-            }
+            // Set position
+            SetNodePosition(node, validation.PositionX, validation.PositionY);
 
-            return new {
-                success = true,
-                message = $"Deleted {deletedNodes.Count} node(s), {failedNodes.Count} failed",
-                graphPath = graphPath,
-                deletedNodes = deletedNodes.ToArray(),
-                failedNodes = failedNodes.ToArray(),
-                successCount = deletedNodes.Count,
-                failureCount = failedNodes.Count,
-                timestamp = System.DateTime.Now.ToString()
-            };
+            // Save changes
+            ToolUtils.SaveGraphChanges(graph);
+            EditorUtility.SetDirty(node);
+
+            return CreateSetNodePositionSuccessResponse(validation.GraphPath, validation.NodeId, validation.PositionX, validation.PositionY);
         }
         catch (Exception ex)
         {
-            return new {
-                success = false,
-                error = $"Failed to delete multiple nodes: {ex.Message}"
-            };
+            return ToolUtils.CreateErrorResponse($"Failed to set node position: {ex.Message}");
         }
     }
 
-    public static object SetNodePosition(JObject args)
+    private static (bool IsValid, string GraphPath, string NodeId, float PositionX, float PositionY, string ErrorMessage) ValidateSetNodePositionArgs(JObject args)
     {
         string graphPath = args?["graphPath"]?.ToString();
         string nodeId = args?["nodeId"]?.ToString();
         float posX = args?["positionX"]?.ToObject<float>() ?? 0f;
         float posY = args?["positionY"]?.ToObject<float>() ?? 0f;
 
-        if (string.IsNullOrEmpty(graphPath) || string.IsNullOrEmpty(nodeId))
+        if (string.IsNullOrEmpty(graphPath))
         {
-            return new
-            {
-                success = false,
-                error = "Missing required arguments: graphPath and nodeId"
-            };
+            return (false, null, null, 0f, 0f, "Missing required argument: graphPath");
         }
 
-        try
+        if (string.IsNullOrEmpty(nodeId))
         {
-            // Load the graph asset
-            NodeGraph graph = AssetDatabase.LoadAssetAtPath<NodeGraph>(graphPath);
-            if (graph == null)
-            {
-                return new
-                {
-                    success = false,
-                    error = $"Could not load NodeGraph at path: {graphPath}"
-                };
-            }
-
-            // Find the node
-            Node node = graph.nodes.FirstOrDefault(n => n.GetInstanceID().ToString() == nodeId);
-            if (node == null)
-            {
-                return new {
-                    success = false,
-                    error = $"Could not find node with ID: {nodeId}"
-                };
-            }
-
-            // Set position
-            node.position = new Vector2(posX, posY);
-
-            // Mark assets as dirty and save
-            EditorUtility.SetDirty(graph);
-            EditorUtility.SetDirty(node);
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
-
-            return new {
-                success = true,
-                message = "Node position set",
-                graphPath = graphPath,
-                nodeId = nodeId,
-                position = SafeSerializeVector2(new Vector2(posX, posY)),
-                timestamp = System.DateTime.Now.ToString()
-            };
+            return (false, null, null, 0f, 0f, "Missing required argument: nodeId");
         }
-        catch (Exception ex)
-        {
-            return new {
-                success = false,
-                error = $"Failed to set node position: {ex.Message}"
-            };
-        }
+
+        return (true, graphPath, nodeId, posX, posY, null);
+    }
+
+    private static void SetNodePosition(Node node, float posX, float posY)
+    {
+        node.position = new Vector2(posX, posY);
+    }
+
+    private static object CreateSetNodePositionSuccessResponse(string graphPath, string nodeId, float posX, float posY)
+    {
+        return new {
+            success = true,
+            message = "Node position set",
+            graphPath = graphPath,
+            nodeId = nodeId,
+            position = new { x = posX, y = posY },
+            timestamp = System.DateTime.Now.ToString()
+        };
     }
     public static object HandleListAvailableNodeTypes(JObject args)
     {
         try
         {
-            // Get all node types using xNode's reflection system
-            Type[] nodeTypes = NodeEditorReflection.GetDerivedTypes(typeof(Node));
-            
-            var availableNodes = nodeTypes
-                .Where(type => !type.IsAbstract)
-                .Select(type => new
+            var nodeTypes = ToolUtils.GetAvailableNodeTypes();
+            return CreateListNodeTypesSuccessResponse(nodeTypes);
+        }
+        catch (Exception ex)
+        {
+            return ToolUtils.CreateErrorResponse($"Failed to list node types: {ex.Message}");
+        }
+    }
+
+
+
+    private static object CreateListNodeTypesSuccessResponse(object[] nodeTypes)
+    {
+        return new
+        {
+            success = true,
+            message = "Retrieved available node types",
+            nodeTypes = nodeTypes,
+            count = nodeTypes.Length,
+            timestamp = System.DateTime.Now.ToString()
+        };
+    }
+
+    // Args:
+    // - graphPath: string (required) → path to a StepsGraph asset
+    // - nodeName: string (optional)  → exact node name in the graph (e.g., "ClickStep_-123")
+    // - nodeId: int (optional)       → InstanceID of the node
+    public static object SetNodeAsFirstStep(JObject args)
+    {
+        try
+        {
+            // Validate graph path
+            string graphPath = args?["graphPath"]?.ToString();
+            var graphValidation = ToolUtils.ValidateGraphPath(graphPath);
+            if (!graphValidation.IsValid)
+            {
+                return ToolUtils.CreateErrorResponse(graphValidation.ErrorMessage);
+            }
+
+            var graph = graphValidation.Graph;
+
+            if (graph.nodes == null || graph.nodes.Count == 0)
+            {
+                return ToolUtils.CreateErrorResponse("Graph contains no nodes to assign as first step");
+            }
+
+            // Find target node
+            var targetNode = FindTargetNode(graph, args);
+            if (targetNode == null)
+            {
+                return ToolUtils.CreateErrorResponse("Could not resolve a target node in the graph");
+            }
+
+            // Set first step node
+            if (!SetFirstStepNode(graph, targetNode))
+            {
+                return ToolUtils.CreateErrorResponse("Graph does not have a 'firstStep' property (is it a StepsGraph?)");
+            }
+
+            // Save changes
+            ToolUtils.SaveGraphChanges(graph);
+
+            return CreateSetFirstStepSuccessResponse(targetNode, graphPath);
+        }
+        catch (Exception ex)
+        {
+            return ToolUtils.CreateErrorResponse($"Failed to set first step: {ex.Message}");
+        }
+    }
+    public static bool SetFirstStepNode(NodeGraph graph, Node targetNode)
+    {
+        try
+        {
+            SerializedObject so = new SerializedObject(graph);
+            SerializedProperty firstStepProp = so.FindProperty("firstStep");
+            if (firstStepProp == null)
+            {
+                return false;
+            }
+
+            firstStepProp.objectReferenceValue = targetNode;
+            so.ApplyModifiedProperties();
+            EditorUtility.SetDirty(graph);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Failed to set first step node: {ex.Message}");
+            return false;
+        }
+    }
+
+
+    // Args:
+    // - graphPath: string (required) → path to a StepsGraph asset
+    public static object ListGraphNodes(JObject args)
+    {
+        try
+        {
+            // Validate graph path
+            string graphPath = args?["graphPath"]?.ToString();
+            var graphValidation = ToolUtils.ValidateGraphPath(graphPath);
+            if (!graphValidation.IsValid)
+            {
+                return ToolUtils.CreateErrorResponse(graphValidation.ErrorMessage);
+            }
+
+            var graph = graphValidation.Graph;
+
+            if (graph.nodes == null || graph.nodes.Count == 0)
+            {
+                return new
                 {
-                    typeName = type.Name,
-                    fullName = type.FullName,
-                    assembly = type.Assembly.GetName().Name,
-                    menuPath = GetCreateNodeMenuPath(type),
-                    hasCreateMenu = type.GetCustomAttributes(typeof(XNode.Node.CreateNodeMenuAttribute), false).Length > 0
-                })
-                .OrderBy(node => node.typeName)
-                .ToArray();
+                    success = true,
+                    message = "Graph contains no nodes",
+                    data = new { nodes = new List<object>() },
+                    timestamp = System.DateTime.Now.ToString()
+                };
+            }
+
+            // Get nodes information
+            var nodesList = ToolUtils.GetGraphNodesInfo(graph);
 
             return new
             {
                 success = true,
-                message = "Retrieved available node types",
-                nodeTypes = availableNodes,
-                count = availableNodes.Length,
+                message = $"Found {nodesList.Count} nodes in graph",
+                data = new { 
+                    nodes = nodesList,
+                    graphPath = graphPath,
+                    totalNodes = nodesList.Count
+                },
                 timestamp = System.DateTime.Now.ToString()
             };
         }
         catch (Exception ex)
         {
-            return new
-            {
-                success = false,
-                error = $"Failed to list node types: {ex.Message}"
-            };
+            return ToolUtils.CreateErrorResponse($"Failed to list graph nodes: {ex.Message}");
         }
     }
 
-    private static Type FindNodeType(string nodeTypeName)
+
+
+    private static object CreateSetFirstStepSuccessResponse(Node targetNode, string graphPath)
     {
-        // Get all node types using xNode's reflection system
-        Type[] nodeTypes = NodeEditorReflection.GetDerivedTypes(typeof(Node));
-        
-        // First try exact match
-        Type nodeType = nodeTypes.FirstOrDefault(t => t.Name == nodeTypeName);
-        
-        // If not found, try case-insensitive match
-        if (nodeType == null)
+        return new
         {
-            nodeType = nodeTypes.FirstOrDefault(t => 
-                string.Equals(t.Name, nodeTypeName, StringComparison.OrdinalIgnoreCase));
-        }
-        
-        // If still not found, try matching by full name
-        if (nodeType == null)
-        {
-            nodeType = nodeTypes.FirstOrDefault(t => t.FullName.EndsWith(nodeTypeName));
-        }
-
-        return nodeType;
+            success = true,
+            message = $"Assigned '{targetNode.name}' as first step",
+            graphPath = graphPath,
+            assignedNodeName = targetNode.name,
+            assignedNodeId = targetNode.GetInstanceID(),
+            timestamp = System.DateTime.Now.ToString()
+        };
     }
 
-    private static string GetCreateNodeMenuPath(Type nodeType)
+    private static Node FindTargetNode(NodeGraph graph, JObject args)
     {
-        var attributes = nodeType.GetCustomAttributes(typeof(XNode.Node.CreateNodeMenuAttribute), false);
-        if (attributes.Length > 0)
+        string nodeName = args?["nodeName"]?.ToString();
+        int? nodeId = args?["nodeId"]?.ToObject<int?>();
+
+        // Try to find by name first
+        if (!string.IsNullOrEmpty(nodeName))
         {
-            XNode.Node.CreateNodeMenuAttribute menuAttribute = attributes[0] as XNode.Node.CreateNodeMenuAttribute;
-            return menuAttribute.menuName;
+            return graph.nodes.FirstOrDefault(n => n != null && n.name == nodeName);
         }
-        return null;
+
+        // Try to find by ID
+        if (nodeId.HasValue)
+        {
+            return graph.nodes.FirstOrDefault(n => n != null && n.GetInstanceID() == nodeId.Value);
+        }
+
+        // No selector provided, choose the first node of a class name ending with "Step" if possible, else first non-null
+        return graph.nodes.FirstOrDefault(n => n != null && n.GetType().Name.EndsWith("Step", StringComparison.Ordinal))
+               ?? graph.nodes.FirstOrDefault(n => n != null);
     }
+
 }

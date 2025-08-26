@@ -7,11 +7,13 @@ using System.Net.Sockets;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Unity.VisualScripting.YamlDotNet.Serialization.NamingConventions;
 using UnityEditor;
 using UnityEngine;
 using UnityMcpBridge.Editor.Helpers;
 using UnityMcpBridge.Editor.Models;
 using UnityMcpBridge.Editor.Tools;
+
 
 namespace UnityMcpBridge.Editor
 {
@@ -81,22 +83,44 @@ namespace UnityMcpBridge.Editor
 
         static UnityMcpBridge()
         {
-            Start();
+            // Subscribe to installation events
+            InstallationManager.OnInstallationCompleted += OnServerInstalled;
+            CursorRulesInstaller.Initialize();
+            
+            // Only start if server is already installed
+            if (InstallationManager.IsServerInstalled)
+            {
+                Start();
+            }
+            else
+            {
+                Debug.Log("Unity MCP Bridge: Server not installed. Please use Tools > Unity MCP Bridge > Installation Manager to install the server.");
+            }
+            
             EditorApplication.quitting += Stop;
+        }
+
+        private static void OnServerInstalled()
+        {
+            Debug.Log("Unity MCP Bridge: Server installation detected, starting bridge...");
+            ServerInstaller.EnsureServerInstalled();
+            Start();
         }
 
         public static void Start()
         {
-            Stop();
+            // Check if server is installed before starting
+            if (!ServerInstaller.Initialize()) {
+                InstallationManager.IsServerInstalled = false;
+            }
 
-            try
+            if (!InstallationManager.IsServerInstalled)
             {
-                ServerInstaller.EnsureServerInstalled();
+                Debug.LogWarning("Unity MCP Bridge: Cannot start - server is not installed.");
+                return;
             }
-            catch (Exception ex)
-            {
-                Debug.LogError($"Failed to ensure UnityMcpServer is installed: {ex.Message}");
-            }
+
+            Stop();
 
             if (isRunning)
             {
@@ -416,18 +440,30 @@ namespace UnityMcpBridge.Editor
                     "manage_asset" => ManageAsset.HandleCommand(paramsObject),
                     "read_console" => ReadConsole.HandleCommand(paramsObject),
                     "execute_menu_item" => ExecuteMenuItem.HandleCommand(paramsObject),
-                    "print_hello_world" => PrintHelloWorld.HandleCommand(paramsObject),
+                    
+                    "print" => Print.HandleCommand(paramsObject),
                     "create_scriptable_object" => CreateScriptableObject.HandleCommand(paramsObject),
-                    "create_xnode_node" => ManageXNodeNode.HandleCommand(paramsObject),
+
+                    //XNode Management
+
+                    "create_xnode_node" => ManageXNodeNode.CreateNode(paramsObject),
                     "delete_xnode_node" => ManageXNodeNode.DeleteNode(paramsObject),
                     "delete_multiple_nodes" => ManageXNodeNode.DeleteMultipleNodes(paramsObject),
                     "set_node_position" => ManageXNodeNode.SetNodePosition(paramsObject),
                     "list_available_node_types" => ManageXNodeNode.HandleListAvailableNodeTypes(paramsObject),
+                    "set_node_as_first_step" => ManageXNodeNode.SetNodeAsFirstStep(paramsObject),
+                    "list_graph_nodes" => ManageXNodeNode.ListGraphNodes(paramsObject),
+
+                    //Connection Management
+
                     "make_connection_between_nodes" => MakeAConnectionBetweenNodes.HandleCommand(paramsObject),
-                    "set_node_as_first_step" => SetNodeAsFirstStep.HandleCommand(paramsObject),
-                    "list_graph_nodes" => SetNodeAsFirstStep.HandleListGraphNodesCommand(paramsObject),
+                    
+                    
                     "manage_node_parameters" => ManageNodeParameters.HandleCommand(paramsObject),
                     "manage_scriptable_object_parameters" => ManageScriptableObjectParameters.HandleCommand(paramsObject),
+                    
+                    //!! Under Construction
+
                     "list_registry_parents" => ManageRegistryData.HandleListParents(paramsObject),
                     "list_registry_all" => ManageRegistryData.HandleListAll(paramsObject),
                     "list_registry_children" => ManageRegistryData.HandleListChildren(paramsObject),
@@ -459,7 +495,7 @@ namespace UnityMcpBridge.Editor
                     stackTrace = ex.StackTrace, // Include stack trace for detailed debugging
                     paramsSummary = command?.@params != null
                         ? GetParamsSummary(command.@params)
-                        : "No parameters", // Summarize parameters for context
+                        : "No parameters", 
                 };
                 return JsonConvert.SerializeObject(response);
             }

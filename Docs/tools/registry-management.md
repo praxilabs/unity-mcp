@@ -1,3 +1,8 @@
+
+# This Page is Under Construction !!
+
+
+<!--
 # Registry Management Tools 📋
 
 **Tool Group**: Registry Management  
@@ -178,3 +183,5 @@ def get_component_methods(ctx: Context, component_type_name: str) -> Dict[str, A
 "get_child_components" => ManageRegistryData.HandleCommand(paramsObject),
 "get_component_methods" => ManageRegistryData.HandleCommand(paramsObject),
 ```
+
+-->

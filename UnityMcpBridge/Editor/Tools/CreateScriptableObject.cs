@@ -19,17 +19,17 @@ namespace UnityMcpBridge.Editor.Tools
         {
             try
             {
-                string scriptableObjectType = @params["scriptableObjectType"]?.ToString();
-                string assetPath = @params["assetPath"]?.ToString();
-
-                if (string.IsNullOrWhiteSpace(scriptableObjectType))
+                // Validate required parameters using ToolUtils
+                var (isValidType, scriptableObjectType, typeError) = ToolUtils.ValidateRequiredString(@params, "scriptableObjectType", "scriptableObjectType");
+                if (!isValidType)
                 {
-                    return Response.Error("Required parameter 'scriptableObjectType' is missing or empty.");
+                    return ToolUtils.CreateErrorResponse(typeError);
                 }
 
-                if (string.IsNullOrWhiteSpace(assetPath))
+                var (isValidPath, assetPath, pathError) = ToolUtils.ValidateRequiredString(@params, "assetPath", "assetPath");
+                if (!isValidPath)
                 {
-                    return Response.Error("Required parameter 'assetPath' is missing or empty.");
+                    return ToolUtils.CreateErrorResponse(pathError);
                 }
 
                 // Ensure directory exists
@@ -43,7 +43,7 @@ namespace UnityMcpBridge.Editor.Tools
                 ScriptableObject asset = CreateScriptableObjectInstance(scriptableObjectType);
                 if (asset == null)
                 {
-                    return Response.Error($"Failed to create ScriptableObject of type '{scriptableObjectType}'. Type may not exist or may not be a ScriptableObject.");
+                    return ToolUtils.CreateErrorResponse($"Failed to create ScriptableObject of type '{scriptableObjectType}'. Type may not exist or may not be a ScriptableObject.");
                 }
 
                 // Ensure unique filename
@@ -57,18 +57,15 @@ namespace UnityMcpBridge.Editor.Tools
                 // Select the created asset in the Project window
                 EditorGUIUtility.PingObject(asset);
 
-                return new
-                {
-                    success = true,
-                    message = $"Successfully created {scriptableObjectType} at {assetPath}",
-                    assetPath = assetPath,
-                    timestamp = System.DateTime.Now.ToString()
-                };
+                return ToolUtils.CreateSuccessResponse(
+                    $"Successfully created {scriptableObjectType} at {assetPath}",
+                    new { assetPath = assetPath }
+                );
             }
             catch (Exception e)
             {
                 Debug.LogError($"[CreateScriptableObject] Failed to create ScriptableObject: {e}");
-                return Response.Error($"Failed to create ScriptableObject: {e.Message}");
+                return ToolUtils.CreateErrorResponse($"Failed to create ScriptableObject: {e.Message}");
             }
         }
 

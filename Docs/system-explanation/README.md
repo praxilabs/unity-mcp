@@ -257,6 +257,7 @@ private static string ExecuteCommand(Command command)
     }
 }
 ```
+---
 
 ### Step 2: Implement Python Side Handler
 
@@ -360,43 +361,11 @@ class UnityMcpServer:
         # Register your custom tool
         register_my_custom_tool_tools(self.mcp)
 ```
+---
 
-### Step 3: Test Your Tool
+### Step 3: Deploy Your Changes
 
-#### 3.1 Test in Unity Editor
-```csharp
-// Test your tool directly in Unity
-var testParams = new JObject
-{
-    ["action"] = "create",
-    ["value"] = 42.0f
-};
-
-var result = MyCustomTool.HandleCommand(testParams);
-Debug.Log($"Tool result: {JsonConvert.SerializeObject(result, Formatting.Indented)}");
-```
-
-#### 3.2 Test via MCP
-```python
-# Test via MCP client
-result = await mcp_client.call_tool("my_custom_tool", {
-    "action": "create",
-    "value": 42.0
-})
-print(f"Tool result: {result}")
-
-# Test modify action
-result = await mcp_client.call_tool("my_custom_tool", {
-    "action": "modify",
-    "target": "CustomObject",
-    "value": 100.0
-})
-print(f"Tool result: {result}")
-```
-
-### Step 4: Deploy Your Changes
-
-#### 4.1 Commit All Changes to Repository
+#### 3.1 Commit All Changes to Repository
 ```bash
 # Since everything is in the same repository, commit all changes together
 git add UnityMcpBridge/Editor/Tools/MyCustomTool.cs
@@ -408,10 +377,11 @@ git add UnityMcpServer/src/server.py
 git commit -m "Add custom tool: my_custom_tool"
 git push origin main
 ```
+---
 
-### Step 5: Update Projects Using Your Package
+### Step 4: Update Projects Using Your Package
 
-#### 5.1 Update Package Reference
+#### 4.1 Update Package Reference
 ```json
 // In Unity project's manifest.json
 {
@@ -421,46 +391,11 @@ git push origin main
 }
 ```
 
-#### 5.2 Update Python Server
+#### 4.2 Update Python Server
 ```bash
 # In your Unity project, pull the updated server
 cd UnityMcpServer
 git pull origin main
-```
-
-## 🔍 Advanced Extension Patterns
-
-### Custom Data Types with Serialization
-```csharp
-// UnityMcpBridge/Runtime/Serialization/MyCustomTypeConverter.cs
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-
-namespace UnityMcpBridge.Runtime.Serialization
-{
-    public class MyCustomTypeConverter : JsonConverter<MyCustomType>
-    {
-        public override MyCustomType ReadJson(JsonReader reader, Type objectType, MyCustomType existingValue, bool hasExistingValue, JsonSerializer serializer)
-        {
-            JObject jo = JObject.Load(reader);
-            return new MyCustomType
-            {
-                Property1 = jo["property1"]?.ToObject<string>(),
-                Property2 = jo["property2"]?.ToObject<float>()
-            };
-        }
-
-        public override void WriteJson(JsonWriter writer, MyCustomType value, JsonSerializer serializer)
-        {
-            JObject jo = new JObject
-            {
-                ["property1"] = value.Property1,
-                ["property2"] = value.Property2
-            };
-            jo.WriteTo(writer);
-        }
-    }
-}
 ```
 
 ### Tool Dependencies (Using Other Tools)
@@ -529,7 +464,7 @@ unity-mcp/                           # Single Repository
 ## 🎯 Best Practices
 
 ### Tool Design
-- **Follow Existing Patterns**: Use the same structure as `PrintHelloWorld` and `ManageGameObject`
+- **Follow Existing Patterns**: Use the same structure as `Print` and `ManageXNodeNode`
 - **Parameter Validation**: Always validate inputs using the same pattern as existing tools
 - **Error Handling**: Use `Response.Error()` and `Response.Success()` consistently
 - **Documentation**: Add XML documentation comments to your tools
@@ -564,9 +499,9 @@ unity-mcp/                           # Single Repository
 ---
 
 **Next Steps**: 
-1. **Start Simple**: Create a basic tool following the `PrintHelloWorld` pattern
+1. **Start Simple**: Create a basic tool following the `Print` pattern
 2. **Test Thoroughly**: Test in isolation before integration
 3. **Document**: Update documentation with your changes
 4. **Share**: Contribute your tools to the community
 
-**Examples**: See existing tools like `PrintHelloWorld.cs` and `ManageGameObject.cs` for complete working examples.
+**Examples**: See existing tools like `Print.cs` and `ManageGameObject.cs` for complete working examples.

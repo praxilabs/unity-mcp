@@ -10,11 +10,17 @@ namespace UnityMcpBridge.Editor.Helpers
         private const string BranchName = "main";
         private const string GitUrl = "https://github.com/praxilabs/unity-mcp.git";
         
-        /// <summary>
-        /// Installs Cursor MCP Rules by fetching the CursorRules folder directly from GitHub
-        /// and copying .mdc files to the virtual-labs/.cursor/rules directory structure.
-        /// </summary>
-        /// <returns>True if installation was successful, false otherwise.</returns>
+
+        public static void Initialize()
+        {
+            InstallationManager.OnInstallationCompleted += OnInstallationCompleted;
+        }
+        
+        private static void OnInstallationCompleted()
+        {
+            InstallCursorMcpRules();
+        }
+        
         public static bool InstallCursorMcpRules()
         {
             try
@@ -23,11 +29,44 @@ namespace UnityMcpBridge.Editor.Helpers
                 string unityProjectDir = Application.dataPath;
                 string projectDir = Path.GetDirectoryName(unityProjectDir);
                 
-                
                 // Create .cursor/rules directory structure
                 string cursorRulesPath = Path.Combine(projectDir, ".cursor", "rules");
                 Directory.CreateDirectory(cursorRulesPath);
                 
+                // First, check if there's a local CursorRules directory in the parent directory
+                string parentDir = Path.GetDirectoryName(projectDir);
+                string localCursorRulesPath = Path.Combine(parentDir, "CursorRules");
+                
+                if (Directory.Exists(localCursorRulesPath))
+                {
+                    // Use local CursorRules directory
+                    string[] sourceFiles = Directory.GetFiles(localCursorRulesPath, "*.mdc", SearchOption.AllDirectories);
+                    
+                    if (sourceFiles.Length == 0)
+                    {
+                        EditorUtility.DisplayDialog("Warning", "No .mdc files found in local CursorRules directory.", "OK");
+                        return false;
+                    }
+                    
+                    int copiedFiles = 0;
+                    foreach (string sourceFile in sourceFiles)
+                    {
+                        string relativePath = Path.GetRelativePath(localCursorRulesPath, sourceFile);
+                        string destinationFile = Path.Combine(cursorRulesPath, Path.GetFileName(sourceFile));
+                        
+                        File.Copy(sourceFile, destinationFile, true);
+                        copiedFiles++;
+                    }
+                    
+                    EditorUtility.DisplayDialog("Success", 
+                        $"Successfully installed {copiedFiles} Cursor MCP rules from local directory to:\n\\.cursor\\rules", 
+                        "OK");
+                    
+                    UnityEngine.Debug.Log($"Installed {copiedFiles} Cursor MCP rules from local directory to {cursorRulesPath}");
+                    return true;
+                }
+                
+                // Fall back to GitHub if local directory doesn't exist
                 // Create a temporary directory for fetching CursorRules from GitHub
                 string tempDir = Path.Combine(Path.GetTempPath(), "UnityMCP_CursorRules_" + Guid.NewGuid().ToString("N"));
                 Directory.CreateDirectory(tempDir);
@@ -77,7 +116,7 @@ namespace UnityMcpBridge.Editor.Helpers
                         return false;
                     }
                     
-                    // Copy all .mdc files from CursorRules to virtual-labs/.cursor/rules
+                    // Copy all .mdc files from CursorRules to .cursor/rules
                     string[] sourceFiles = Directory.GetFiles(sourceCursorRulesPath, "*.mdc");
                     
                     if (sourceFiles.Length == 0)
@@ -97,10 +136,10 @@ namespace UnityMcpBridge.Editor.Helpers
                     }
                     
                     EditorUtility.DisplayDialog("Success", 
-                        $"Successfully installed {copiedFiles} Cursor MCP rules to:\n\\.cursor\\rules", 
+                        $"Successfully installed {copiedFiles} Cursor MCP rules from GitHub to:\n\\.cursor\\rules", 
                         "OK");
                     
-                    UnityEngine.Debug.Log($"Installed {copiedFiles} Cursor MCP rules to {cursorRulesPath}");
+                    UnityEngine.Debug.Log($"Installed {copiedFiles} Cursor MCP rules from GitHub to {cursorRulesPath}");
                     return true;
                 }
                 finally
@@ -130,7 +169,7 @@ namespace UnityMcpBridge.Editor.Helpers
         }
         
         /// <summary>
-        /// Checks if Cursor MCP Rules are already installed in the virtual-labs submodule.
+        /// Checks if Cursor MCP Rules are already installed in the current Unity project.
         /// </summary>
         /// <returns>True if rules are installed, false otherwise.</returns>
         public static bool AreRulesInstalled()
@@ -139,8 +178,7 @@ namespace UnityMcpBridge.Editor.Helpers
             {
                 string unityProjectDir = Application.dataPath;
                 string projectDir = Path.GetDirectoryName(unityProjectDir);
-                string virtualLabsPath = Path.Combine(projectDir, "virtual-labs");
-                string cursorRulesPath = Path.Combine(virtualLabsPath, ".cursor", "rules");
+                string cursorRulesPath = Path.Combine(projectDir, ".cursor", "rules");
                 
                 if (!Directory.Exists(cursorRulesPath))
                 {
@@ -166,8 +204,7 @@ namespace UnityMcpBridge.Editor.Helpers
             {
                 string unityProjectDir = Application.dataPath;
                 string projectDir = Path.GetDirectoryName(unityProjectDir);
-                string virtualLabsPath = Path.Combine(projectDir, "virtual-labs");
-                string cursorRulesPath = Path.Combine(virtualLabsPath, ".cursor", "rules");
+                string cursorRulesPath = Path.Combine(projectDir, ".cursor", "rules");
                 
                 return Directory.Exists(cursorRulesPath) ? cursorRulesPath : null;
             }

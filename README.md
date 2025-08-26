@@ -53,22 +53,11 @@ When you ask an AI to "create a red cube", the system:
 ## 🚀 Quick Start
 
 ### 1. GitHub Setup (Required First)
-```bash
-# Generate SSH key (recommended)
-ssh-keygen -t rsa -b 4096 -C "your-email@example.com"
-
-# Add to GitHub: Settings → SSH and GPG keys → New SSH key
-# Test connection
-ssh -T git@github.com
-```
 
 **📖 See [GitHub Setup Guide](docs/GITHUB-SETUP.md) for detailed instructions.**
 
 ### 2. Clone Repository
-```bash
-# SSH (recommended)
-git clone --recurse-submodules git@github.com:praxilabs/unity-mcp.git
-```
+**📖 See [GitHub Setup Guide](docs/GITHUB-SETUP.md) for detailed instructions.**
 
 ### 3. Install Unity Package
 - Open Unity Hub → Create new 3D project
@@ -81,24 +70,12 @@ git clone --recurse-submodules git@github.com:praxilabs/unity-mcp.git
 - Verify green status indicator 🟢
 
 ### 5. Test Setup
-```python
-# Test system connectivity
-print_hello_world(random_string="test")
+- Try generating any logic using Unity MCP Bridges available tools you can find tools in the **"🛠️ Overview on Tools"** section, for
+ a more detailed look go to **[Tool Reference](docs/tools/README.md)** .
+- **📖 For system architecture details, see [System Explanation](docs/system-explanation/README.md)** .
 
-# Create a ScriptableObject
-create_scriptable_object(scriptable_object_type="ExperimentData", folder="Assets/Testing/")
 
-# List available node types
-list_available_node_types()
-```
-
-## 📚 Documentation
-
-- **[Tool Reference](docs/tools/README.md)** - Complete tool documentation
-- **[System Explanation](docs/system-explanation/README.md)** - Detailed system architecture and components
-- **[GitHub Setup](docs/GITHUB-SETUP.md)** - Repository and submodule setup
-
-## 🛠️ Available Tools
+## 🛠️ Overview on Tools
 
 ### Experiment & Graph Tools
 - **[XNode Node Management](docs/tools/xnode-node-management.md)** - Create, list, delete, and position nodes in XNode graphs
@@ -110,8 +87,6 @@ list_available_node_types()
 
 ### Utility Tools
 - **[Utility Tools](docs/tools/utility-tools.md)** - System verification and basic asset creation
-
-**📖 See [Complete Tool Reference](docs/tools/README.md) for detailed documentation.**
 
 ## 🔧 System Requirements
 
@@ -128,14 +103,17 @@ list_available_node_types()
 - **MCP Client Not Connecting**: Check server configuration and ports
 - **Submodule Issues**: See [GitHub Setup Guide](docs/GITHUB-SETUP.md)
 
+## 📚 Documentation
+
+- **[Tool Reference](docs/tools/README.md)** - Complete tool documentation
+- **[System Explanation](docs/system-explanation/README.md)** - Detailed system architecture and components
+- **[GitHub Setup](docs/GITHUB-SETUP.md)** - Repository and submodule setup
+
 ### Getting Help
 - [GitHub Issues](https://github.com/praxilabs/unity-mcp/issues)
-- [Tool Reference](docs/tools/README.md)
 
 ## 📄 License
 
 MIT License. See [LICENSE](LICENSE) file.
 
 ---
-
-**Ready to start?** Explore the [Tool Reference](docs/tools/README.md) or learn about the [System Architecture](docs/system-explanation/README.md)!

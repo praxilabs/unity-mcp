@@ -10,7 +10,7 @@ Setup guide for cloning the Unity MCP Bridge repository with virtual-labs submod
 
 1. **Generate SSH key:**
 ```powershell
-ssh-keygen -t rsa -b 4096 -C "your-email@example.com"
+ssh-keygen -t rsa -b 4096 -C "your-email@praxilabs.com"
 # Press Enter 3 times (default location, no passphrase)
 ```
 

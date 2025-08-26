@@ -20,17 +20,27 @@ namespace UnityMcpBridge.Editor.Tools
         { "HandleManageAsset", ManageAsset.HandleCommand },
         { "HandleReadConsole", ReadConsole.HandleCommand },
         { "HandleExecuteMenuItem", ExecuteMenuItem.HandleCommand },
-        { "PrintHelloWorld", PrintHelloWorld.HandleCommand },
+        
+        { "Print", Print.HandleCommand },
         { "CreateScriptableObject", CreateScriptableObject.HandleCommand },
-        { "SetNodeAsFirstStep", SetNodeAsFirstStep.HandleCommand },
+
         { "HandleListRegistryParents", ManageRegistryData.HandleListParents },
         { "HandleListRegistryAll", ManageRegistryData.HandleListAll },
         { "HandleListRegistryChildren", ManageRegistryData.HandleListChildren },
         { "HandleGetChildComponents", ManageRegistryData.HandleGetChildComponents },
         { "HandleGetComponentMethods", ManageRegistryData.HandleGetComponentMethods },
-        { "HandleCreateXNodeNode", ManageXNodeNode.HandleCommand },
+
+        { "MakeConnectionBetweenNodes", MakeAConnectionBetweenNodes.HandleCommand },
+
+        //XNode Management
+
+        { "SetNodeAsFirstStep", ManageXNodeNode.SetNodeAsFirstStep },
+        { "ListGraphNodes", ManageXNodeNode.ListGraphNodes },
+        { "HandleCreateXNodeNode", ManageXNodeNode.CreateNode },
         { "HandleDeleteXNodeNode", ManageXNodeNode.DeleteNode },
+        { "HandleDeleteMultipleNodes", ManageXNodeNode.DeleteMultipleNodes },
         { "HandleSetXNodeNodePosition", ManageXNodeNode.SetNodePosition },
+        { "HandleListAvailableNodeTypes", ManageXNodeNode.HandleListAvailableNodeTypes },
     };
 
         /// <summary>
