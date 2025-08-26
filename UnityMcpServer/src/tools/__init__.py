@@ -8,8 +8,6 @@ from .read_console import register_read_console_tools
 from .execute_menu_item import register_execute_menu_item_tools
 from .print import register_print_tools
 from .create_scriptable_object import register_create_scriptable_object_tools
-from .create_xnode_node import register_create_xnode_node_tools
-from .delete_xnode_node import register_delete_xnode_node_tools
 from .set_node_first_step import register_set_node_as_first_step_tools
 from .create_connection_between_nodes import register_make_connection_tools
 from .manage_node_parameters import register_manage_node_parameters_tools
