@@ -20,14 +20,26 @@ namespace UnityMcpBridge.Editor.Helpers
         public static void EnsureServerInstalled() {
             try {
                 string saveLocation = GetSaveLocation();
+                Debug.Log($"Server installation path: {saveLocation}");
+                
                 if (!IsServerInstalled(saveLocation)) {
+                    Debug.Log("Server not found, installing...");
                     InstallServer(saveLocation);
                 } else {
+                    // Check for updates and pull latest changes
                     string installedVersion = GetInstalledVersion();
                     string latestVersion = installedVersion;
-                    try { latestVersion = GetLatestVersion(); } catch { /* private repo or network: skip */ }
+                    try { 
+                        latestVersion = GetLatestVersion(); 
+                    } catch { 
+                        Debug.LogWarning("Could not fetch latest version, skipping update check");
+                    }
+                    
                     if (IsNewerVersion(latestVersion, installedVersion)) {
+                        Debug.Log($"New version available ({latestVersion} vs {installedVersion}), updating...");
                         UpdateServer(saveLocation);
+                    } else {
+                        Debug.Log("Server is up to date");
                     }
                 }
             } catch (Exception ex) {
@@ -43,7 +55,7 @@ namespace UnityMcpBridge.Editor.Helpers
         /// <summary>
         /// Gets the platform-specific save location for the server.
         /// </summary>
-        private static string GetSaveLocation()
+        public static string GetSaveLocation()
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {

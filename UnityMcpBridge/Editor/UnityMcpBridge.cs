@@ -13,6 +13,7 @@ using UnityMcpBridge.Editor.Helpers;
 using UnityMcpBridge.Editor.Models;
 using UnityMcpBridge.Editor.Tools;
 
+
 namespace UnityMcpBridge.Editor
 {
     [InitializeOnLoad]
@@ -81,22 +82,39 @@ namespace UnityMcpBridge.Editor
 
         static UnityMcpBridge()
         {
-            Start();
+            // Subscribe to installation events
+            InstallationManager.OnInstallationCompleted += OnServerInstalled;
+            
+            // Only start if server is already installed
+            if (InstallationManager.IsServerInstalled)
+            {
+                Start();
+            }
+            else
+            {
+                Debug.Log("Unity MCP Bridge: Server not installed. Please use Tools > Unity MCP Bridge > Installation Manager to install the server.");
+            }
+            
             EditorApplication.quitting += Stop;
+        }
+
+        private static void OnServerInstalled()
+        {
+            Debug.Log("Unity MCP Bridge: Server installation detected, starting bridge...");
+            ServerInstaller.EnsureServerInstalled();
+            Start();
         }
 
         public static void Start()
         {
-            Stop();
+            // Check if server is installed before starting
+            if (!InstallationManager.IsServerInstalled)
+            {
+                Debug.LogWarning("Unity MCP Bridge: Cannot start - server is not installed.");
+                return;
+            }
 
-            try
-            {
-                ServerInstaller.EnsureServerInstalled();
-            }
-            catch (Exception ex)
-            {
-                Debug.LogError($"Failed to ensure UnityMcpServer is installed: {ex.Message}");
-            }
+            Stop();
 
             if (isRunning)
             {
