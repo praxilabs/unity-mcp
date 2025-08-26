@@ -456,7 +456,7 @@ unity-mcp/                           # Single Repository
 │       │   ├── my_custom_tool.py            # Python handler
 │       │   └── complex_tool.py              # Advanced Python handler
 │       └── server.py                        # Updated tool registration
-└── docs/
+└── Docs/
     └── system-explanation/
         └── README.md                         # This guide
 ```
