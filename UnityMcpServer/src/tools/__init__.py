@@ -16,7 +16,6 @@ from .manage_xnode_node import register_manage_xnode_node_tools
 
 def register_all_tools(mcp):
     """Register all refactored tools with the MCP server."""
-    print("Registering Unity MCP Server refactored tools...")
     register_manage_script_tools(mcp)
     register_manage_scene_tools(mcp)
     register_manage_editor_tools(mcp)
@@ -32,4 +31,3 @@ def register_all_tools(mcp):
     register_manage_node_parameters_tools(mcp)
     register_execute_menu_item_tools(mcp)
     register_manage_xnode_node_tools(mcp)
-    print("Unity MCP Server tool registration complete.")
