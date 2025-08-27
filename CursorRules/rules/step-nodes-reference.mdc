@@ -27,6 +27,7 @@ description: Comprehensive reference for all XNode step nodes with usage pattern
 - **ForLoopStep**: Fixed iterations → `iterations` (int)
 - **WhileLoopStep**: Conditional loops → Condition evaluation
 
+
 ## 📋 Action-Executed Steps (User Interaction)
 
 ### ClickStep
@@ -55,6 +56,26 @@ description: Comprehensive reference for all XNode step nodes with usage pattern
 - AttachStep: `_followerName`, `_receiverName` (RegistryItem)
 - DetachStep: `_targetName` (RegistryItem)
 **Usage**: Equipment assembly, component connections
+
+
+### TimerStep
+**File**: [TimerStep.cs](mdc:Assets/Scripts/System/xNode/Steps/SelfExecuted/UI/TimerStep.cs)
+**Purpose**: Display countdown timer with UI controls
+**Key Parameters**:
+- `_timerID` (int): Unique identifier for the timer
+- `_initialSpeedFactor` (float): Initial speed multiplier (1.0 = normal speed)
+- `_speedFactors` (List<float>): Available speed factors for user control
+- `_time` (TimeSpanWrapper): Timer duration with hours, minutes, seconds
+- `_isSkippable` (bool): Whether the timer can be skipped by user
+**TimeSpanWrapper Structure**:
+```csharp
+[Range(0, 23)] public int hours;
+[Range(0, 59)] public int minutes;
+[Range(0, 59)] public int seconds;
+```
+**Usage**: Experiment timing, procedure pacing, user-controlled countdowns
+
+
 
 ## 🔄 Self-Executed Steps (Automatic)
 
@@ -114,6 +135,7 @@ CompositeStep.exit → Continue
 - Multiple user interactions in any order
 - Parallel data collection
 - Independent setup procedures
+
 
 ### IfStatementStep
 **Purpose**: Boolean conditional branching
@@ -188,6 +210,51 @@ CompositeStep.routes → ClickStep B → Action B → CompositeStep.entry
 CompositeStep.exit → Completion
 ```
 
+### Using ClickStep to do something
+```
+ClickStep (Object) → GameObjectSetActive(hide)
+
+or
+
+ClickStep (Object) → FunctionCallStep(Functionality) → DelayStep → GameObjectSetActive(show)
+
+or
+
+ClickStep (Object) → AnimationStep(object)     Animating an object on click.
+
+or any pattern that comes like the previously addressed patterns.
+```
+
+### Making a user controlled Timer
+
+AnyNode → TimerStep(Time) → AnyNode   --This creates a Panel with a timer for the User to control freely.
+
+### ⚠️ CRITICAL: Complete Requirement Implementation
+**When user mentions "click makes animation" or similar, ALWAYS implement:**
+```
+ClickStep (Object) → AnimationStep(object) → Return
+```
+**NOT just:**
+```
+ClickStep (Object) → Return
+```
+
+**Examples:**
+- "Click tube makes shaking animation" = ClickStep → AnimationStep
+- "Click dropper triggers effect" = ClickStep → AnimationStep  
+- "Click button plays animation" = ClickStep → AnimationStep
+
+**Always verify each step includes ALL required components, not just the primary action.**
+
+### Attaching and Detaching an Object
+```
+AttachStep → ShowMessage      that means that the message won't show up except for when object 1 is attached to object 2.
+
+DetachStep → ShowMessage      that means that the message won't show up except for when object 1 is detached from object 2.
+
+used in the logic that specify attaching an object or detaching it inorder to continue the sequence.
+```
+
 ### Function Call with Parameters
 ```
 FunctionCallStep:
@@ -209,6 +276,8 @@ HintStep → DelayStep → GameObjectSetActiveStep → ClickStep → FunctionCal
 3. **Missing parameter validation**: Always verify RegistryItem exists
 4. **Incorrect JSON format**: Always use double quotes
 5. **Wrong port connections**: Verify entry/exit/routes port names
+6. **Incomplete animation implementation**: When user mentions "click makes animation", implement ClickStep → AnimationStep, not just ClickStep
+7. **Complex connection fixes**: Prefer clean graph recreation over fixing complex existing connections
 
 ## 🔍 Debugging Tips
 
@@ -217,3 +286,5 @@ HintStep → DelayStep → GameObjectSetActiveStep → ClickStep → FunctionCal
 3. **Verify registry data** with `list_registry_children`
 4. **Test connections** one route at a time
 5. **Use DelayStep** to slow down execution for debugging
+6. **Verify complete implementation**: When user mentions multi-step requirements, ensure ALL components are included
+7. **Clean recreation**: If connection issues arise, prefer complete graph recreation with clean connections
