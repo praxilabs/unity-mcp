@@ -73,6 +73,6 @@ MonoBehaviour:
   originalWidth: 300
   ignorePrepareStep: 0
   _targetName:
-    prefabName: 
-    childName: 
+    prefabName: Myprefab
+    childName: Mychild
   clickableObject: {fileID: 0}

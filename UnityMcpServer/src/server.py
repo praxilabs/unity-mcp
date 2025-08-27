@@ -48,25 +48,24 @@ mcp = FastMCP(
 register_all_tools(mcp)
 
 # Test AddClickStep tool
-async def test_add_click_step():
-    # Example payload, adjust as needed for your tool's expected input
-    payload = {
-        "step_description": "Click the Play button in the Unity Editor"
-        "target_graph_path": "C:\Dahdouha\virtual-labs-main\Assets\-AssetBundlesXnode\Phy\Photoelectric Effect Data (xNode)-20250604T123125Z-1-001\Add a click step in Assets\-AssetBundlesXnode\Phy\Photoelectric Effect Data (xNode)-20250604T123125Z-1-001\Photoelectric Effect Data (xNode)\PHY_Photoelectric_Effect_Stage_01.asset
-targetting PHY_Photoelectric_Effect_Stage_01/m_EditorClassIdentifier
+# async def test_add_click_step():
+#     # Example payload, adjust as needed for your tool's expected input
+#     payload = { "step_description": "Click the Play button in the Unity Editor"
+#         "target_graph_path": "C:\Dahdouha\virtual-labs-main\Assets\-AssetBundlesXnode\Phy\Photoelectric Effect Data (xNode)-20250604T123125Z-1-001\Add a click step in Assets\-AssetBundlesXnode\Phy\Photoelectric Effect Data (xNode)-20250604T123125Z-1-001\Photoelectric Effect Data (xNode)\PHY_Photoelectric_Effect_Stage_01.asset
+# targetting PHY_Photoelectric_Effect_Stage_01/m_EditorClassIdentifier
 
-"
-    }
-    try:
-        # Call the tool using MCP's internal dispatch
-        result = await mcp.call_tool("add_click_step", payload)
-        logger.info(f"AddClickStep tool test result: {result}")
-    except Exception as e:
-        logger.error(f"AddClickStep tool test failed: {e}")
+# "
+#     }
+#     try:
+#         # Call the tool using MCP's internal dispatch
+#         result = await mcp.call_tool("add_click_step", payload)
+#         logger.info(f"AddClickStep tool test result: {result}")
+#     except Exception as e:
+#         logger.error(f"AddClickStep tool test failed: {e}")
 
 import asyncio
 
 if __name__ == "__main__":
     # Run the test before starting the server
-    asyncio.run(test_add_click_step())
+    # asyncio.run(test_add_click_step())
     mcp.run(transport='stdio')

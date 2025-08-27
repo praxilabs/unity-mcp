@@ -9,15 +9,6 @@
       },
       "hash": "38fecf55e4fd94ccfe58a92ed8ad1a529ba1694e"
     },
-    "com.coplaydev.unity-mcp": {
-      "version": "https://github.com/justinpbarnett/unity-mcp.git?path=/UnityMcpBridge",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {
-        "com.unity.nuget.newtonsoft-json": "3.0.2"
-      },
-      "hash": "14a6cbaeb4aaeb111697934188552cdf158d8a3b"
-    },
     "com.github.siccity.xnode": {
       "version": "https://github.com/siccity/xNode.git",
       "depth": 0,

@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "com.boxqkrtm.ide.cursor": "https://github.com/boxqkrtm/com.unity.ide.cursor.git",
-    "com.coplaydev.unity-mcp": "https://github.com/justinpbarnett/unity-mcp.git?path=/UnityMcpBridge",
     "com.github.siccity.xnode": "https://github.com/siccity/xNode.git",
     "com.masyo-lab.favorites-asset": "https://github.com/MasyoLab/UnityTools-FavoritesAsset.git?path=Assets/MasyoLab/FavoritesAsset",
     "com.nosuchstudio.rtltmpro": "3.4.5",

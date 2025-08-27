@@ -38,17 +38,17 @@ namespace UnityMcpBridge.Editor
         public static void StartAutoConnect()
         {
             Stop(); // Stop current connection
-            
+
             try
             {
                 // Discover new port and save it
                 currentUnityPort = PortManager.DiscoverNewPort();
-                
+
                 listener = new TcpListener(IPAddress.Loopback, currentUnityPort);
                 listener.Start();
                 isRunning = true;
                 isAutoConnectMode = true;
-                
+
                 Debug.Log($"UnityMcpBridge auto-connected on port {currentUnityPort}");
                 Task.Run(ListenerLoop);
                 EditorApplication.update += ProcessCommands;
@@ -107,7 +107,7 @@ namespace UnityMcpBridge.Editor
             {
                 // Use PortManager to get available port with automatic fallback
                 currentUnityPort = PortManager.GetPortWithFallback();
-                
+
                 listener = new TcpListener(IPAddress.Loopback, currentUnityPort);
                 listener.Start();
                 isRunning = true;
@@ -302,7 +302,7 @@ namespace UnityMcpBridge.Editor
 
                         // Normal JSON command processing
                         Command command = JsonConvert.DeserializeObject<Command>(commandText);
-                        
+
                         if (command == null)
                         {
                             var nullCommandResponse = new
@@ -417,7 +417,7 @@ namespace UnityMcpBridge.Editor
                     "manage_shader" => ManageShader.HandleCommand(paramsObject),
                     "read_console" => ReadConsole.HandleCommand(paramsObject),
                     "execute_menu_item" => ExecuteMenuItem.HandleCommand(paramsObject),
-                     "add_click_step" => AddClickStep.HandleCommand(paramsObject),
+                    "add_step" => AddStep.HandleCommand(paramsObject),
                     _ => throw new ArgumentException(
                         $"Unknown or unsupported command type: {command.type}"
                     ),
