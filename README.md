@@ -57,22 +57,27 @@ When you ask an AI to "create a red cube", the system:
 **📖 See [GitHub Setup Guide](Docs/GITHUB-SETUP.md) for detailed instructions.**
 
 ### 2. Clone Repository
-**📖 See [GitHub Setup Guide](docs/GITHUB-SETUP.md) for detailed instructions.**
+**📖 See [GitHub Setup Guide](Docs/GITHUB-SETUP.md) for detailed instructions.**
+
 
 ### 3. Install Unity Package
 - Open Unity Hub → Create new 3D project
 - Window → Package Manager → + → Add package from git URL
 - Enter: `https://github.com/praxilabs/unity-mcp.git?path=/UnityMcpBridge`
 
-### 4. Configure MCP Client
+### 4. Install MCP Server
+- Go to **Window** → **Unity MCP** → **Installation Manager**
+- Click the **Install Server** button 
+
+### 5. Configure MCP Client
 - Install [Cursor](https://cursor.sh/) or [Claude Desktop](https://claude.ai/download)
 - Unity → Window → Unity MCP → Auto Configure
 - Verify green status indicator 🟢
 
-### 5. Test Setup
+### 6. Test Setup
 - Try generating any logic using Unity MCP Bridges available tools you can find tools in the **"🛠️ Overview on Tools"** section, for
- a more detailed look go to **[Tool Reference](docs/tools/README.md)** .
-- **📖 For system architecture details, see [System Explanation](docs/system-explanation/README.md)** .
+ a more detailed look go to **[Tool Reference](Docs/tools/README.md)** .
+- **📖 For system architecture details, see [System Explanation](Docs/system-explanation/README.md)** .
 
 
 ## 🛠️ Overview on Tools
@@ -105,9 +110,9 @@ When you ask an AI to "create a red cube", the system:
 
 ## 📚 Documentation
 
-- **[Tool Reference](docs/tools/README.md)** - Complete tool documentation
-- **[System Explanation](docs/system-explanation/README.md)** - Detailed system architecture and components
-- **[GitHub Setup](docs/GITHUB-SETUP.md)** - Repository and submodule setup
+- **[Tool Reference](Docs/tools/README.md)** - Complete tool documentation
+- **[System Explanation](Docs/system-explanation/README.md)** - Detailed system architecture and components
+- **[GitHub Setup](Docs/GITHUB-SETUP.md)** - Repository and submodule setup
 
 ### Getting Help
 - [GitHub Issues](https://github.com/praxilabs/unity-mcp/issues)

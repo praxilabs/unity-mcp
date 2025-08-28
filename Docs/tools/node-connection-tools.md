@@ -49,6 +49,7 @@ ToolUtils.SaveGraphChanges(graph);
 
 
 ```
+
 ---
 
 ### Node Resolution
@@ -188,3 +189,203 @@ def connect_nodes_by_id(
 // UnityMcpBridge.cs
 "make_connection_between_nodes" => MakeAConnectionBetweenNodes.HandleCommand(paramsObject),
 ```
+
+---
+
+## 🗑️ Connection Deletion
+
+### Overview
+Connection deletion tools allow you to remove connections between nodes in XNode graphs, supporting various deletion strategies and identification methods.
+
+### Deletion Methods
+
+#### 1. **Delete Specific Connection** (`delete_connection_between_nodes`)
+Removes a specific connection between two nodes.
+
+**Parameters:**
+- `graph_path`: Path to the NodeGraph asset (required)
+- `from_node`: Source node name (string) or instance ID (int) (required)
+- `to_node`: Target node name (string) or instance ID (int) (required)
+- `from_port`: Output port name on source node (optional, defaults to first output port)
+- `to_port`: Input port name on target node (optional, defaults to first input port)
+
+**Example:**
+```python
+# Delete connection from "ClickStep" to "DelayStep"
+delete_connection_between_nodes(
+    graph_path="Assets/Testing/Graphs/MyGraph.asset",
+    from_node="ClickStep",
+    to_node="DelayStep"
+)
+```
+
+#### 2. **Delete All Connections From Node** (`delete_all_connections_from_node`)
+Removes all output connections from a specific node.
+
+**Parameters:**
+- `graph_path`: Path to the NodeGraph asset (required)
+- `node`: Node name (string) or instance ID (int) (required)
+- `port`: Output port name (optional, deletes all connections from this port)
+
+**Example:**
+```python
+# Delete all output connections from "ClickStep"
+delete_all_connections_from_node(
+    graph_path="Assets/Testing/Graphs/MyGraph.asset",
+    node="ClickStep"
+)
+```
+
+#### 3. **Delete All Connections To Node** (`delete_all_connections_to_node`)
+Removes all input connections to a specific node.
+
+**Parameters:**
+- `graph_path`: Path to the NodeGraph asset (required)
+- `node`: Node name (string) or instance ID (int) (required)
+- `port`: Input port name (optional, deletes all connections to this port)
+
+**Example:**
+```python
+# Delete all input connections to "DelayStep"
+delete_all_connections_to_node(
+    graph_path="Assets/Testing/Graphs/MyGraph.asset",
+    node="DelayStep"
+)
+```
+
+#### 4. **Delete All Connections In Graph** (`delete_all_connections_in_graph`)
+Removes all connections in the entire graph.
+
+**Parameters:**
+- `graph_path`: Path to the NodeGraph asset (required)
+
+**Example:**
+```python
+# Delete all connections in the graph
+delete_all_connections_in_graph(
+    graph_path="Assets/Testing/Graphs/MyGraph.asset"
+)
+```
+
+### Convenience Wrappers
+
+#### Delete by Name (`delete_connection_by_name`)
+```python
+@mcp.tool()
+def delete_connection_by_name(
+    ctx: Context,
+    graph_path: str,
+    from_node_name: str,
+    to_node_name: str,
+    from_port: str = None,
+    to_port: str = None
+) -> Dict[str, Any]:
+    """
+    Deletes a connection between two nodes using their names.
+    
+    Convenience wrapper for delete_connection_between_nodes using node names.
+    """
+```
+
+#### Delete by ID (`delete_connection_by_id`)
+```python
+@mcp.tool()
+def delete_connection_by_id(
+    ctx: Context,
+    graph_path: str,
+    from_node_id: int,
+    to_node_id: int,
+    from_port: str = None,
+    to_port: str = None
+) -> Dict[str, Any]:
+    """
+    Deletes a connection between two nodes using their instance IDs.
+    
+    Convenience wrapper for delete_connection_between_nodes using node IDs.
+    """
+```
+
+### Implementation Details
+
+#### Unity Side (C#)
+```csharp
+// Delete specific connection
+NodePort fromPort = fromNode.GetOutputPort(fromPortName ?? fromNode.OutputPorts.First().fieldName);
+NodePort toPort = toNode.GetInputPort(toPortName ?? toNode.InputPorts.First().fieldName);
+
+if (fromPort.IsConnectedTo(toPort))
+{
+    fromPort.Disconnect(toPort);
+    ToolUtils.SaveGraphChanges(graph);
+}
+
+// Delete all connections from node
+foreach (NodePort outputPort in fromNode.OutputPorts)
+{
+    outputPort.ClearConnections();
+}
+ToolUtils.SaveGraphChanges(graph);
+
+// Delete all connections in graph
+foreach (Node node in graph.nodes)
+{
+    foreach (NodePort port in node.Ports)
+    {
+        port.ClearConnections();
+    }
+}
+ToolUtils.SaveGraphChanges(graph);
+```
+
+#### Python Side Integration
+```python
+@mcp.tool()
+def delete_connection_between_nodes(
+    ctx: Context,
+    graph_path: str,
+    from_node: Union[str, int],
+    to_node: Union[str, int],
+    from_port: str = None,
+    to_port: str = None
+) -> Dict[str, Any]:
+    """
+    Deletes a connection between two nodes in a NodeGraph.
+    """
+    try:
+        params = {
+            "graphPath": graph_path,
+            "fromNode": from_node,
+            "toNode": to_node
+        }
+        
+        if from_port is not None:
+            params["fromPort"] = from_port
+        if to_port is not None:
+            params["toPort"] = to_port
+        
+        connection = get_unity_connection()
+        result = connection.send_command("delete_connection_between_nodes", params)
+        return result
+        
+    except Exception as e:
+        return {
+            "success": False,
+            "error": f"Failed to delete connection between nodes: {str(e)}"
+        }
+```
+
+### Use Cases
+
+- **Graph Cleanup**: Remove unwanted or incorrect connections
+- **Node Isolation**: Disconnect nodes before repositioning or modifying
+- **Graph Reset**: Clear all connections to start fresh
+- **Error Correction**: Remove connections that cause validation errors
+- **Performance Optimization**: Remove unnecessary connections that slow down graph execution
+
+### Best Practices
+
+1. **Verify Before Deletion**: Check if connections exist before attempting deletion
+2. **Use Specific Ports**: Specify port names when multiple ports exist to avoid ambiguity
+3. **Graph Validation**: Validate graph integrity after bulk deletions
+4. **Backup Strategy**: Consider backing up graph state before major connection changes
+5. **Incremental Deletion**: Use specific deletion methods rather than clearing entire graphs when possible
