@@ -1,0 +1,129 @@
+---
+description: This contains the logic and common sense that you will use to control the sequence as you wish and shape it as you like, this is the core and maybe the most important file out of them all.
+alwaysApply: false
+---
+# Control Flow Nodes
+
+## 📋 Overview
+Control Flow nodes manage execution flow and branching logic in virtual lab experiments. These nodes are essential for decision making, parallel execution, and state management.
+
+## 🔧 Available Nodes
+
+### CompositeStep ⭐ CRITICAL PATTERN
+**File**: [CompositeStep.cs](mdc:Assets/Scripts/System/xNode/Steps/SelfExecuted/ControlFlow/CompositeStep.cs)
+**Purpose**: Parallel execution management
+**Usage**: used in the cases where we have multiple branches and all of the branches must be executing at any order.
+
+
+**Connection Pattern**:
+```
+Start → CompositeStep.entry
+CompositeStep.routes → Route A → Logic → CompositeStep.entry
+CompositeStep.routes → Route B → Logic → CompositeStep.entry  
+CompositeStep.exit → Continue
+```
+**When to Use**:
+- Multiple user interactions in any order
+- Parallel data collection
+- Independent setup procedures
+
+### IfStatementStep
+**Purpose**: Boolean conditional branching
+**Outputs**: `True`, `False`
+**Usage**: Decision points, error checking
+**Best Practices**:
+- Use clear boolean conditions
+- Handle both True and False cases
+- Connect to appropriate responses
+
+### SwitchStep / SwitchEnumStep
+**Purpose**: Multi-way branching
+**Usage**: State machines, menu systems
+**Best Practices**:
+- Use for multiple choice scenarios
+- Handle all possible cases
+- Connect to appropriate responses
+
+
+### OR Step
+**Purpose**: Logical Or-ing of two or more sequenece branches,
+**Usage**: when having multiple routes that you have to take only one of them.
+
+**Best Practices**:
+- Use for multiple choice scenarios where a single choice will do the trick.
+
+
+### First Then
+**Purpose**: Multi-way branching
+**Usage**: State machines, menu systems
+**Best Practices**:
+- Use for multiple choice scenarios
+- Handle all possible cases
+- Connect to appropriate responses
+
+
+## 🏗️ Common Patterns
+
+### Parallel User Interactions
+```
+CompositeStep.entry ← Setup
+CompositeStep.routes → ClickStep A → Action A → CompositeStep.entry
+CompositeStep.routes → ClickStep B → Action B → CompositeStep.entry
+CompositeStep.exit → Completion
+```
+
+### Conditional Execution
+```
+IfStatementStep (Check condition) → True: Execute Action A → Continue
+                                → False: Execute Action B → Continue
+```
+
+### Multi-way Decision
+```
+SwitchStep (User choice) → Case 1: Action A → Continue
+                         → Case 2: Action B → Continue
+                         → Case 3: Action C → Continue
+```
+
+### State Machine Pattern
+```
+SwitchStep (Current state) → State A: Actions → SwitchStep (Next state)
+                          → State B: Actions → SwitchStep (Next state)
+                          → State C: Actions → SwitchStep (Next state)
+```
+
+### Multiple choices where you have to choose one of them to procede
+
+```
+OR Step (Current state) → State A: Actions → SwitchStep (Next state)  -- Option 1 
+                        → State B: Actions → SwitchStep (Next state)  -- Option 2            --Pick one of them
+                        → State C: Actions → SwitchStep (Next state)  -- Option 3
+```
+
+### Multiple choices where you have to try all of the branches at any order in order for the step to execution to end
+
+```
+Composite Step (Current state) → State A: Actions → SwitchStep (Next state)  -- Option 1 
+                               → State B: Actions → SwitchStep (Next state)  -- Option 2            --Pick one of them
+                               → State C: Actions → SwitchStep (Next state)  -- Option 3
+```
+
+### Error Handling Pattern
+```
+IfStatementStep (Check for error) → True: ShowErrorMessage → Return
+                                 → False: Continue normal flow
+```
+
+## ⚠️ Common Mistakes
+
+1. **Wrong CompositeStep connections**: Routes must connect back to entry 
+2. **Missing False case**: Always handle both True and False in IfStatementStep
+3. **Incomplete Switch cases**: Handle all possible cases in SwitchStep
+4. **Wrong port connections**: Verify entry/exit/routes port names
+
+## 🔍 Debugging Tips
+
+1. **Test connections** one route at a time
+2. **Verify port names** exist on nodes
+3. **Check flow direction** (output → input)
+4. **Use DelayStep** to slow down execution for debugging

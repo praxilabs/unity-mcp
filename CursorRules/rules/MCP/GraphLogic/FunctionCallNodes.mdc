@@ -1,0 +1,136 @@
+# Function Call Nodes
+
+## 📋 Overview
+Function Call nodes execute methods on GameObjects in virtual lab experiments. These nodes are essential for component method execution and system interactions. Based on the [FunctionCallBase.cs](mdc:Assets/Scripts/System/xNode/Steps/SelfExecuted/FunctionCallBase.cs) class, all function call nodes inherit from a common base that handles method invocation through reflection.
+
+## 🔧 Available Nodes
+
+### FunctionCallStep
+**File**: [FunctionCallStep.cs](mdc:Assets/Scripts/System/xNode/Steps/SelfExecuted/FunctionCallStep.cs)
+**Purpose**: Standard method execution on GameObjects
+**NodeTint**: "#40534C"
+**Menu Path**: "Function Call/Function Call"
+**Inherits**: FunctionCallBase
+**Best Practices**:
+- Verify component exists on object
+- Verify method exists on component
+- Use appropriate parameter types
+
+### FunctionCallGlobalStep
+**File**: [FunctionCallGlobalStep.cs](mdc:Assets/Scripts/System/xNode/Steps/SelfExecuted/FunctionCallGlobalStep.cs)
+**Purpose**: Global method execution (inherits from FunctionCallBase)
+**NodeTint**: "#1A3636"
+**Menu Path**: "Function Call/Function Call Global"
+**Inherits**: FunctionCallBase
+**Use Case**: When you need global function calls
+
+### FunctionCallCoroutineStep
+**File**: [FunctionCallCoroutineStep.cs](mdc:Assets/Scripts/System/xNode/Steps/SelfExecuted/FunctionCallCoroutineStep.cs)
+**Purpose**: Execute coroutine methods with step control
+**NodeTint**: "#40534C"
+**Menu Path**: "Function Call/Function Call Coroutine"
+**Inherits**: FunctionCallBase
+**Key Features**:
+- Can control when to proceed to next step while it is working in the background.
+- Handles coroutine execution properly
+**Best Practices**:
+- Use for methods that return IEnumerator
+- Control step progression with events
+- Handle coroutine completion properly
+
+### FunctionCallCoroutineGlobalStep
+**File**: [FunctionCallCoroutineGlobalStep.cs](mdc:Assets/Scripts/System/xNode/Steps/SelfExecuted/FunctionCallCoroutineGlobalStep.cs)
+**Purpose**: Global coroutine method execution
+**NodeTint**: "#1A3636"
+**Menu Path**: "Function Call/Function Call Coroutine Global"
+**Inherits**: FunctionCallCoroutineStep
+**Use Case**: Global coroutine function calls
+
+
+### Method Parameters
+- **`parentName`**: Name of the Parent of the Object that will execute the method.
+- **`childName`**: Name of the Child of the Parent that the script is no.
+- **`selectedComponent`**: Component type name (MonoBehaviour)
+- **`selectedFunction`**: Method name to invoke
+- **`parameterValues`**: SerializableParameter array for method parameters
+
+
+## 🏗️ Common Patterns
+
+### Basic Function Call
+```
+FunctionCallStep (Object, Component, Method) → Continue
+```
+
+### Function Call with Parameters
+```
+FunctionCallStep:
+- _calledObjectName: {"prefabName": "Tools", "childName": "Cube (1)"}
+- selectedComponent: "DisableKinematic"
+- selectedFunction: "Disable"
+- parameterValues: [] // No parameters for this method
+```
+
+### Coroutine Function Call
+```
+FunctionCallCoroutineStep(Object) →  nextNode   --This code will execute the nextNode without waitng for the Coroutine Step to finish, it will work in the background.
+```
+
+### Click to Function Pattern
+```
+ClickStep (Object) → FunctionCallStep (Object) → ShowMessage (Function executed) --click to have a certain functionality.
+```
+
+### Conditional Function Call
+```
+IfStatementStep (Check condition) → True: FunctionCallStep (Execute function) → Continue
+                                → False: Continue
+```
+
+### Sequential Function Calls
+```
+FunctionCallStep (Setup function) → DelayStep → FunctionCallStep (Main function) → ShowMessage (Complete)
+```
+
+### Coroutine with Event Control
+```
+FunctionCallCoroutineStep (Start coroutine) → Wait for GoToNextStep event → Continue
+```
+
+## ⚠️ Common Mistakes
+
+1. **Using FunctionCallStep for visibility**: Use GameObjectSetActiveStep instead
+3. **Wrong component name**: Verify component exists on object
+4. **Wrong method name**: Verify method exists on component
+5. **Wrong parameter types**: Use correct parameter types for method
+6. **Using regular FunctionCallStep for coroutines**: Use FunctionCallCoroutineStep for IEnumerator methods
+7. **Not handling coroutine completion**: Ensure coroutines complete before proceeding
+
+## 🔍 Debugging Tips
+
+3. **Test function calls** one step at a time
+4. **Use DelayStep** to slow down execution for debugging
+5. **Check Unity console** for function execution logs
+6. **Monitor coroutine execution** for FunctionCallCoroutineStep
+
+## 🎯 When to Use Each Type
+
+### FunctionCallStep
+- Standard method calls
+- Synchronous operations
+
+### FunctionCallGlobalStep
+- Global method calls
+- System-wide functions
+
+### FunctionCallCoroutineStep
+- Methods that return IEnumerator
+- Asynchronous operations
+- When you need to control step progression
+- Long-running operations
+- Method that you don't want to delay the rest of execution for it to operate
+
+### FunctionCallCoroutineGlobalStep
+- Global coroutine calls
+- System-wide asynchronous operations
+

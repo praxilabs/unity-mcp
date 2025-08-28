@@ -1,0 +1,298 @@
+
+# Unity MCP Bridge Tools Reference
+
+## 🔧 Core Graph Management Tools
+
+### Graph Structure Tools
+
+#### `mcp_unityMCP_list_graph_nodes`
+**Purpose**: List all nodes in a StepsGraph
+**Parameters**:
+- `graph_path` (string): Path to StepsGraph asset
+**Returns**: Complete node list with positions, types, and IDs
+**Usage**:
+```python
+mcp_unityMCP_list_graph_nodes("Assets/Testing Graphs/NewStepsGraph.asset")
+```
+
+#### `mcp_unityMCP_check_node_exists`
+**Purpose**: Verify if a node exists in the graph
+**Parameters**:
+- `graph_path` (string): Path to StepsGraph asset
+- `node_name` (string): Name of node to check
+**Usage**:
+```python
+mcp_unityMCP_check_node_exists("Assets/Testing Graphs/NewStepsGraph.asset", "ClickStep_-123456")
+```
+
+### Node Creation Tools
+
+#### `mcp_unityMCP_create_step_node`
+**Purpose**: Create new step nodes in graphs
+**Parameters**:
+- `graph_path` (string): Path to StepsGraph asset
+- `step_type` (string): Type of step node to create
+- `position_x` (float): X position in graph editor
+- `position_y` (float): Y position in graph editor
+**Common Step Types**:
+- `ClickStep`, `RotateKnobStep`, `AttachStep`, `DetachStep`
+- `GameObjectSetActiveStep`, `FunctionCallStep`, `DelayStep`
+- `CompositeStep`, `IfStatementStep`, `SwitchStep`
+- `ForLoopStep`, `WhileLoopStep`
+- `SideMessageStep`, `HintStep`
+**Usage**:
+```python
+mcp_unityMCP_create_step_node(
+    "Assets/Testing Graphs/NewStepsGraph.asset",
+    "GameObjectSetActiveStep",
+    100.0,
+    -200.0
+)
+```
+
+### Node Connection Tools
+
+#### `mcp_unityMCP_connect_nodes_by_name`
+**Purpose**: Connect nodes using their names
+**Parameters**:
+- `graph_path` (string): Path to StepsGraph asset
+- `from_node_name` (string): Source node name
+- `to_node_name` (string): Target node name
+- `from_port` (string, optional): Output port name
+- `to_port` (string, optional): Input port name
+**Common Ports**:
+- `entry`, `exit` (standard)
+- `routes` (CompositeStep, ORStep)
+- `True`, `False` (IfStatementStep)
+- `continueLoop` (ForLoopStep, WhileLoopStep)
+**Usage**:
+```python
+# Standard connection
+mcp_unityMCP_connect_nodes_by_name(
+    "Assets/Testing Graphs/NewStepsGraph.asset",
+    "DelayStep_-123456",
+    "ClickStep_-789012"
+)
+
+# CompositeStep routes connection
+mcp_unityMCP_connect_nodes_by_name(
+    "Assets/Testing Graphs/NewStepsGraph.asset",
+    "CompositeStep_-456789",
+    "ClickStep_-123456",
+    "routes",
+    "entry"
+)
+```
+
+#### `mcp_unityMCP_connect_nodes_by_id`
+**Purpose**: Connect nodes using their instance IDs
+**Parameters**: Similar to `connect_nodes_by_name` but uses integer IDs
+**Usage**: When working with node IDs instead of names
+
+## 📊 Registry Data Tools
+
+### Registry Inspection
+
+#### `mcp_unityMCP_list_registry_parents`
+**Purpose**: List all parent objects in the registry
+**Parameters**:
+- `graph_path` (string): Path to StepsGraph asset
+**Returns**: List of parent prefab names
+**Usage**:
+```python
+mcp_unityMCP_list_registry_parents("Assets/Testing Graphs/NewStepsGraph.asset")
+```
+
+#### `mcp_unityMCP_list_registry_children`
+**Purpose**: List children of a specific parent
+**Parameters**:
+- `graph_path` (string): Path to StepsGraph asset
+- `parent_name` (string): Name of parent object
+**Returns**: List of child objects with components
+**Usage**:
+```python
+mcp_unityMCP_list_registry_children(
+    "Assets/Testing Graphs/NewStepsGraph.asset",
+    "Tools"
+)
+```
+
+#### `mcp_unityMCP_get_child_components`
+**Purpose**: Get components for a specific child object
+**Parameters**:
+- `graph_path` (string): Path to StepsGraph asset
+- `parent_name` (string): Name of parent object
+- `child_name` (string): Name of child object
+**Returns**: List of component names
+**Usage**:
+```python
+mcp_unityMCP_get_child_components(
+    "Assets/Testing Graphs/NewStepsGraph.asset",
+    "Tools",
+    "Cube (1)"
+)
+```
+
+#### `mcp_unityMCP_get_component_methods`
+**Purpose**: Get public methods from a component type
+**Parameters**:
+- `component_type_name` (string): Name of component type
+**Returns**: List of methods with parameters
+**Usage**:
+```python
+mcp_unityMCP_get_component_methods("DisableKinematic")
+```
+
+## 🏗️ Asset Management Tools
+
+### ScriptableObject Creation
+
+#### `mcp_unityMCP_create_scriptable_object`
+**Purpose**: Create new ScriptableObject assets
+**Parameters**:
+- `scriptable_object_type` (string): Exact class name
+- `folder` (string): Target folder path
+**Critical Class Names**:
+- `"ExperimentItemsRegistry"` (NOT "RegistryItemData")
+- `"ExperimentData"` (NOT "ExperimentDataSO")
+- `"StepsGraph"` (confirmed working)
+**Usage**:
+```python
+mcp_unityMCP_create_scriptable_object(
+    "StepsGraph",
+    "Assets/Testing Graphs"
+)
+```
+
+### Graph Management
+
+#### `mcp_unityMCP_set_node_as_first_step`
+**Purpose**: Set the starting node for graph execution
+**Parameters**:
+- `graph_path` (string): Path to StepsGraph asset
+- `node_name` (string): Name of node to set as first step
+**Usage**:
+```python
+mcp_unityMCP_set_node_as_first_step(
+    "Assets/Testing Graphs/NewStepsGraph.asset",
+    "GameObjectSetActiveStep_-123456"
+)
+```
+
+## 🔍 Debugging Tools
+
+### Console Management
+
+#### `mcp_unityMCP_read_console`
+**Purpose**: Read Unity Editor console messages
+**Parameters**:
+- `action` (string): "get" or "clear"
+- `types` (array, optional): Message types to filter
+- `count` (int, optional): Max messages to return
+- `filter_text` (string, optional): Text filter
+**Usage**:
+```python
+# Get recent errors and warnings
+mcp_unityMCP_read_console(
+    action="get",
+    types=["error", "warning"],
+    count=10
+)
+
+# Clear console
+mcp_unityMCP_read_console(action="clear")
+```
+
+### Available Node Types
+
+#### `mcp_unityMCP_list_available_node_types`
+**Purpose**: List all available step node types
+**Returns**: All creatable node types with descriptions
+**Usage**:
+```python
+mcp_unityMCP_list_available_node_types("dummy")  # Requires dummy parameter
+```
+
+## 🎯 Tool Usage Patterns
+
+### Standard Workflow Pattern
+```python
+# 1. Create nodes
+node_id = mcp_unityMCP_create_step_node(graph, "ClickStep", 100, -200)
+
+# 2. Connect nodes
+mcp_unityMCP_connect_nodes_by_name(graph, node1, node2)
+
+# 3. Set starting point
+mcp_unityMCP_set_node_as_first_step(graph, first_node)
+
+# 4. Verify setup
+mcp_unityMCP_list_graph_nodes(graph)
+```
+
+### Registry Exploration Pattern
+```python
+# 1. List parents
+parents = mcp_unityMCP_list_registry_parents(graph)
+
+# 2. Explore children
+children = mcp_unityMCP_list_registry_children(graph, parent_name)
+
+# 3. Check components
+components = mcp_unityMCP_get_child_components(graph, parent, child)
+
+# 4. Get methods
+methods = mcp_unityMCP_get_component_methods(component_type)
+```
+
+### Debugging Pattern
+```python
+# 1. Check console for errors
+console = mcp_unityMCP_read_console(action="get", types=["error"])
+
+# 2. Verify node exists
+exists = mcp_unityMCP_check_node_exists(graph, node_name)
+
+# 3. Check registry data
+parents = mcp_unityMCP_list_registry_parents(graph)
+```
+
+## ⚠️ Tool Usage Best Practices
+
+### Node Creation
+1. **Plan positions** to avoid overlapping nodes
+2. **Use descriptive step types** that match functionality
+3. **Create nodes incrementally** and test each one
+4. **Verify creation** with `check_node_exists`
+
+### Connection Management
+1. **Understand port types** for each node
+2. **Use correct connection patterns** (especially CompositeStep)
+3. **Test connections incrementally**
+4. **Verify flow direction** (output → input)
+
+### Registry Usage
+1. **Explore registry structure** before using objects
+2. **Match names exactly** (case-sensitive, spaces matter)
+3. **Verify objects exist** before referencing
+4. **Check component availability** before function calls
+
+## 🚨 Critical Error Prevention
+
+### ScriptableObject Errors
+- Always search codebase for exact class names
+- Never use assumed or shortened names
+- Verify inheritance from ScriptableObject
+
+### Connection Errors
+- Understand CompositeStep pattern: routes → logic → entry
+- Verify port names exist on nodes
+- Test connections one at a time
+
+### Registry Errors
+- Explore registry data before using
+- Match object names exactly
+- Verify parent-child relationships exist
+- Explore registry data before using
+- Match object names exactly
+- Verify parent-child relationships exist

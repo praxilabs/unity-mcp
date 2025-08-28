@@ -1,0 +1,109 @@
+
+# XNode Step Nodes - Core Reference Guide
+
+## 🎯 Node Selection Decision Tree
+
+### User Interaction Required?
+- **ClickStep**: Object clicking interactions
+- **RotateKnobStep**: Knob rotation interactions
+- **AttachStep**: Object attachment
+- **DetachStep**: Object detachment
+- **ExploreStep**: Object exploration
+
+### Automatic Execution?
+- **GameObjectSetActiveStep**: Show/hide objects
+- **FunctionCallStep**: Method calls
+- **DelayStep**: Time delays
+- **SubGraphStep**: Execute sub-graphs
+- **HintStep**: Display hints
+
+### Control Flow Logic?
+- **CompositeStep**: Parallel execution
+- **IfStatementStep**: Boolean branching
+- **SwitchStep**: Multi-way branching
+- **ForLoopStep**: Fixed iterations
+- **WhileLoopStep**: Conditional loops
+
+## 📂 Step Node Categories
+
+### Attach-Detach
+**Purpose**: Handle object attachment and detachment operations
+**Nodes**: AttachStep, DetachStep
+**Usage**: Equipment assembly, component connections
+
+### Click
+**Purpose**: Handle user clicking interactions
+**Nodes**: ClickStep, RotateKnobStep, ExploreStep
+**Usage**: User interface interactions, object selection
+
+### Control Flow
+**Purpose**: Manage execution flow and branching logic
+**Nodes**: CompositeStep, IfStatementStep, SwitchStep, SwitchEnumStep
+**Usage**: Decision making, parallel execution, state management
+
+### Camera
+**Purpose**: Control camera positioning and focus
+**Nodes**: FocusOnToolStep, ReturnCameraStep
+**Usage**: Guided attention, view management
+
+### Function Call
+**Purpose**: Execute methods on GameObjects
+**Nodes**: FunctionCallStep
+**Usage**: Component method execution, system interactions
+
+### Loops
+**Purpose**: Handle iterative operations
+**Nodes**: ForLoopStep, WhileLoopStep
+**Usage**: Repeated actions, data collection
+
+### Tools
+**Purpose**: Object manipulation and visibility control
+**Nodes**: GameObjectSetActiveStep, ToggleColliderStep
+**Usage**: Object state management, interaction control
+
+### UI
+**Purpose**: User interface and messaging
+**Nodes**: SideMessageStep, HintStep, TimerStep
+**Usage**: User guidance, feedback, timing controls
+
+### Utility
+**Purpose**: System utility operations
+**Nodes**: FreezeLabStep, DelayStep, SubGraphStep
+**Usage**: System control, timing, modular execution
+
+### NewEvents
+**Purpose**: Event-driven interactions
+**Nodes**: Event-based step nodes
+**Usage**: Reactive programming, event handling
+
+### Table
+**Purpose**: Data table operations
+**Nodes**: Table-related step nodes
+**Usage**: Data management, table interactions
+
+### Progress Map
+**Purpose**: Progress tracking and navigation
+**Nodes**: Progress-related step nodes
+**Usage**: Experiment progress, navigation control
+
+### Animation Step
+**Purpose**: Animation control and playback
+**Nodes**: AnimationStep
+**Usage**: Object animations, visual effects
+
+## 🔗 Related Rule Files
+
+For detailed information about each category, see the specific rule files:
+- [Attach-Detach Nodes](mdc:.cursor/rules/MCP/Attach-DetachNodes.mdc)
+- [Click Nodes](mdc:.cursor/rules/MCP/ClickNodes.mdc)
+- [Control Flow Nodes](mdc:.cursor/rules/MCP/ControlFlowNodes.mdc)
+- [Camera Nodes](mdc:.cursor/rules/MCP/CameraNodes.mdc)
+- [Function Call Nodes](mdc:.cursor/rules/MCP/FunctionCallNodes.mdc)
+- [Loop Nodes](mdc:.cursor/rules/MCP/LoopNodes.mdc)
+- [Tool Nodes](mdc:.cursor/rules/MCP/ToolNodes.mdc)
+- [UI Nodes](mdc:.cursor/rules/MCP/UINodes.mdc)
+- [Utility Nodes](mdc:.cursor/rules/MCP/UtilityNodes.mdc)
+- [NewEvents Nodes](mdc:.cursor/rules/MCP/NewEventsNodes.mdc)
+- [Table Nodes](mdc:.cursor/rules/MCP/TableNodes.mdc)
+- [Progress Map Nodes](mdc:.cursor/rules/MCP/ProgressMapNodes.mdc)
+- [Animation Step Nodes](mdc:.cursor/rules/MCP/AnimationStepNodes.mdc)

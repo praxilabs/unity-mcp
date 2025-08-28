@@ -1,0 +1,403 @@
+---
+description: this has anything to do with a popup UI side messages, middle messages, MCQs, Intro Messages, End Messages, Timer
+alwaysApply: false
+---
+# UI Nodes
+
+## 📋 Overview
+UI nodes handle user interface and messaging in virtual lab experiments. These nodes are essential for user guidance, feedback, timing controls, and interactive elements.
+
+## 🔧 Available Nodes
+
+### 📨 Messages Category
+
+### IntroEndMessageStep
+**Purpose**: Display a panel in the middle of the screen at the start or end of the experiment or Stage
+**Usage**: Instructions, feedback, completion messages
+**Best Practices**:
+- Use clear, concise messages
+- Connect to immediate response actions
+- Use for important user guidance
+
+
+#### SideMessageStep
+**Purpose**: Display side panel messages
+**Usage**: Instructions, feedback, completion messages
+**Best Practices**:
+- Use clear, concise messages
+- Connect to immediate response actions
+- Use for important user guidance
+
+#### MiddleMessageOneActionStep
+**Purpose**: Display middle screen message with one action button
+**Usage**: Confirmation dialogs, single-choice prompts, simple decisions
+**Best Practices**:
+- Provide clear action description
+- Use for binary decisions (Yes/No, Continue/Cancel)
+- Ensure action is clearly understood
+
+#### MiddleMessageTwoActionsStep
+**Purpose**: Display middle screen message with two action buttons
+**Usage**: Multiple choice dialogs, decision points, option selection
+**Best Practices**:
+- Provide clear descriptions for both actions
+- Use for scenarios requiring user choice
+- Ensure both options are valid and clear
+
+#### StageEndMessageIndependentStep
+**Purpose**: Display stage completion message that doesn't depend on other stages
+**Usage**: Independent stage completion, standalone achievements
+**Best Practices**:
+- Use for stages that can be completed independently
+- Provide clear completion feedback
+- Don't reference other stage dependencies
+
+#### StageEndMessageDependentStep
+**Purpose**: Display stage completion message that depends on other stages
+**Usage**: Dependent stage completion, conditional achievements
+**Best Practices**:
+- Use for stages that require other stages to be completed first
+- Reference dependent stages clearly
+- Provide context about dependencies
+
+#### StageEndMessageMultiScenarioStep
+**Purpose**: Display stage completion message for multiple scenarios
+**Usage**: Complex stage completion, multiple outcome scenarios
+**Best Practices**:
+- Handle multiple completion scenarios
+- Provide appropriate feedback for each scenario
+- Use for stages with branching outcomes
+
+### ⏱️ Timer Category
+
+#### TimerStep
+**File**: [TimerStep.cs](mdc:Assets/Scripts/System/xNode/Steps/SelfExecuted/UI/TimerStep.cs)
+**Purpose**: Display countdown timer with UI controls
+**Usage**: Experiment timing, procedure pacing, user-controlled countdowns
+**Best Practices**:
+- Set appropriate time duration
+- Use for user-controlled timing
+- Connect to timing-dependent actions
+
+### ❓ MCQ (Multiple Choice Question) Category
+
+#### MCQStep
+**Purpose**: Display multiple choice questions to users
+**Usage**: Knowledge assessment, decision making, educational testing
+**Best Practices**:
+- Provide clear question text
+- Include all necessary answer options
+- Handle user selection appropriately
+- Provide feedback based on selection
+
+### 🛡️ SafetyTools Category
+
+#### SafetyToolsStep
+**Purpose**: Display safety-related tools and warnings
+**Usage**: Safety protocols, hazard warnings, safety equipment guidance
+**Best Practices**:
+- Use for critical safety information
+- Ensure safety messages are prominent
+- Provide clear safety instructions
+- Connect to safety validation steps
+
+### 💡 HintStep
+**Purpose**: Display educational hints
+**Usage**: Educational guidance, help systems
+**Best Practices**:
+- Use step numbers for sequence
+- Connect to educational flow
+- Use for learning assistance
+
+## 🏗️ Common Patterns
+
+### Making a user controlled Timer
+```
+AnyNode → TimerStep(Time) → AnyNode   --This creates a Panel with a timer for the User to control freely.
+```
+
+### Educational Flow
+```
+HintStep → DelayStep → GameObjectSetActiveStep → ClickStep → FunctionCallStep → HintStep
+```
+
+### Message Sequence Pattern
+```
+SideMessageStep (Instructions) → UserAction → SideMessageStep (Feedback) → Continue
+```
+
+### Progressive Guidance Pattern
+```
+HintStep (Step 1) → UserAction → HintStep (Step 2) → UserAction → HintStep (Step 3)
+```
+
+### Timer with Action Pattern
+```
+TimerStep (Duration) → UserAction → SideMessageStep (Time complete) → Continue
+```
+
+### Interactive Tutorial Pattern
+```
+SideMessageStep (Welcome) → HintStep (First step) → UserAction → SideMessageStep (Good job) → HintStep (Next step)
+```
+
+### Confirmation Dialog Pattern
+```
+MiddleMessageOneActionStep (Confirm action) → UserAction → ExecuteAction → Continue
+```
+
+### Decision Making Pattern
+```
+MiddleMessageTwoActionsStep (Choose option) → UserSelectsOption → HandleSelection → Continue
+```
+
+### Stage Completion Pattern
+```
+StageEndMessageIndependentStep (Stage complete) → ShowMessage (Congratulations) → Continue
+```
+
+### Dependent Stage Pattern
+```
+StageEndMessageDependentStep (Stage complete, depends on others) → CheckDependencies → Continue
+```
+
+### Multi-Scenario Stage Pattern
+```
+StageEndMessageMultiScenarioStep (Multiple outcomes) → HandleScenario → Continue
+```
+
+### MCQ Assessment Pattern
+```
+MCQStep (Question) → UserSelectsAnswer → ValidateAnswer → ProvideFeedback → Continue
+```
+
+### Safety Protocol Pattern
+```
+SafetyToolsStep (Safety warning) → UserAcknowledges → SafetyCheck → Continue
+```
+
+### Complete UI Workflow
+```
+SideMessageStep (Welcome) → MCQStep (Initial assessment) → TimerStep (Time limit) → 
+MiddleMessageTwoActionsStep (Final decision) → StageEndMessageIndependentStep (Complete) → Continue
+```
+
+## ⚠️ Common Mistakes
+
+1. **Missing step numbers**: Use sequential step numbers for HintStep
+2. **Unclear messages**: Use clear, concise language in messages
+3. **Wrong timing**: Set appropriate durations for TimerStep
+4. **Missing user guidance**: Provide clear instructions with UI nodes
+5. **Unclear action descriptions**: Ensure action buttons have clear, understandable text
+6. **Missing dependency handling**: Properly handle stage dependencies in dependent messages
+7. **Incomplete MCQ options**: Provide all necessary answer choices
+8. **Inadequate safety warnings**: Ensure safety messages are prominent and clear
+
+## 🔍 Debugging Tips
+
+1. **Test message display** one step at a time
+2. **Verify step numbers** are sequential
+3. **Check timer duration** is appropriate
+4. **Use DelayStep** to slow down for debugging
+5. **Monitor user feedback** for message clarity
+6. **Test action button functionality** for middle messages
+7. **Verify stage dependencies** for dependent messages
+8. **Check MCQ answer handling** and feedback
+9. **Validate safety message prominence** and clarity
+
+
+# UI Nodes
+
+## 📋 Overview
+UI nodes handle user interface and messaging in virtual lab experiments. These nodes are essential for user guidance, feedback, timing controls, and interactive elements.
+
+## 🔧 Available Nodes
+
+### 📨 Messages Category
+
+#### SideMessageStep
+**Purpose**: Display side panel messages
+**Usage**: Instructions, feedback, completion messages
+**Best Practices**:
+- Use clear, concise messages
+- Connect to immediate response actions
+- Use for important user guidance
+
+#### MiddleMessageOneActionStep
+**Purpose**: Display middle screen message with one action button
+**Usage**: Confirmation dialogs, single-choice prompts, simple decisions
+**Best Practices**:
+- Provide clear action description
+- Use for binary decisions (Yes/No, Continue/Cancel)
+- Ensure action is clearly understood
+
+#### MiddleMessageTwoActionsStep
+**Purpose**: Display middle screen message with two action buttons
+**Usage**: Multiple choice dialogs, decision points, option selection
+**Best Practices**:
+- Provide clear descriptions for both actions
+- Use for scenarios requiring user choice
+- Ensure both options are valid and clear
+
+#### StageEndMessageIndependentStep
+**Purpose**: Display stage completion message that doesn't depend on other stages
+**Usage**: Independent stage completion, standalone achievements
+**Best Practices**:
+- Use for stages that can be completed independently
+- Provide clear completion feedback
+- Don't reference other stage dependencies
+
+#### StageEndMessageDependentStep
+**Purpose**: Display stage completion message that depends on other stages
+**Usage**: Dependent stage completion, conditional achievements
+**Best Practices**:
+- Use for stages that require other stages to be completed first
+- Reference dependent stages clearly
+- Provide context about dependencies
+
+#### StageEndMessageMultiScenarioStep
+**Purpose**: Display stage completion message for multiple scenarios
+**Usage**: Complex stage completion, multiple outcome scenarios
+**Best Practices**:
+- Handle multiple completion scenarios
+- Provide appropriate feedback for each scenario
+- Use for stages with branching outcomes
+
+### ⏱️ Timer Category
+
+#### TimerStep
+**File**: [TimerStep.cs](mdc:Assets/Scripts/System/xNode/Steps/SelfExecuted/UI/TimerStep.cs)
+**Purpose**: Display countdown timer with UI controls
+**Usage**: Experiment timing, procedure pacing, user-controlled countdowns
+**Best Practices**:
+- Set appropriate time duration
+- Use for user-controlled timing
+- Connect to timing-dependent actions
+
+### ❓ MCQ (Multiple Choice Question) Category
+
+#### MCQStep
+**Purpose**: Display multiple choice questions to users
+**Usage**: Knowledge assessment, decision making, educational testing
+**Best Practices**:
+- Provide clear question text
+- Include all necessary answer options
+- Handle user selection appropriately
+- Provide feedback based on selection
+
+### 🛡️ SafetyTools Category
+
+#### SafetyToolsStep
+**Purpose**: Display safety-related tools and warnings
+**Usage**: Safety protocols, hazard warnings, safety equipment guidance
+**Best Practices**:
+- Use for critical safety information
+- Ensure safety messages are prominent
+- Provide clear safety instructions
+- Connect to safety validation steps
+
+### 💡 HintStep
+**Purpose**: Display educational hints
+**Usage**: Educational guidance, help systems
+**Best Practices**:
+- Use step numbers for sequence
+- Connect to educational flow
+- Use for learning assistance
+
+## 🏗️ Common Patterns
+
+### Making a user controlled Timer
+```
+AnyNode → TimerStep(Time) → AnyNode   --This creates a Panel with a timer for the User to control freely.
+```
+
+### Educational Flow
+```
+HintStep → DelayStep → GameObjectSetActiveStep → ClickStep → FunctionCallStep → HintStep
+```
+
+### Message Sequence Pattern
+```
+SideMessageStep (Instructions) → UserAction → SideMessageStep (Feedback) → Continue
+```
+
+### Progressive Guidance Pattern
+```
+HintStep (Step 1) → UserAction → HintStep (Step 2) → UserAction → HintStep (Step 3)
+```
+
+### Timer with Action Pattern
+```
+TimerStep (Duration) → UserAction → SideMessageStep (Time complete) → Continue
+```
+
+### Interactive Tutorial Pattern
+```
+SideMessageStep (Welcome) → HintStep (First step) → UserAction → SideMessageStep (Good job) → HintStep (Next step)
+```
+
+### Confirmation Dialog Pattern
+```
+MiddleMessageOneActionStep (Confirm action) → UserAction → ExecuteAction → Continue
+```
+
+### Decision Making Pattern
+```
+MiddleMessageTwoActionsStep (Choose option) → UserSelectsOption → HandleSelection → Continue
+```
+
+### Stage Completion Pattern
+```
+StageEndMessageIndependentStep (Stage complete) → ShowMessage (Congratulations) → Continue
+```
+
+### Dependent Stage Pattern
+```
+StageEndMessageDependentStep (Stage complete, depends on others) → CheckDependencies → Continue
+```
+
+### Multi-Scenario Stage Pattern
+```
+StageEndMessageMultiScenarioStep (Multiple outcomes) → HandleScenario → Continue
+```
+
+### MCQ Assessment Pattern
+```
+MCQStep (Question) → UserSelectsAnswer → ValidateAnswer → ProvideFeedback → Continue
+```
+
+### Safety Protocol Pattern
+```
+SafetyToolsStep (Safety warning) → UserAcknowledges → SafetyCheck → Continue
+```
+
+### Complete UI Workflow
+```
+SideMessageStep (Welcome) → MCQStep (Initial assessment) → TimerStep (Time limit) → 
+MiddleMessageTwoActionsStep (Final decision) → StageEndMessageIndependentStep (Complete) → Continue
+```
+
+## ⚠️ Common Mistakes
+
+1. **Missing step numbers**: Use sequential step numbers for HintStep
+2. **Unclear messages**: Use clear, concise language in messages
+3. **Wrong timing**: Set appropriate durations for TimerStep
+4. **Missing user guidance**: Provide clear instructions with UI nodes
+5. **Unclear action descriptions**: Ensure action buttons have clear, understandable text
+6. **Missing dependency handling**: Properly handle stage dependencies in dependent messages
+7. **Incomplete MCQ options**: Provide all necessary answer choices
+8. **Inadequate safety warnings**: Ensure safety messages are prominent and clear
+
+## 🔍 Debugging Tips
+
+1. **Test message display** one step at a time
+2. **Verify step numbers** are sequential
+3. **Check timer duration** is appropriate
+4. **Use DelayStep** to slow down for debugging
+5. **Monitor user feedback** for message clarity
+6. **Test action button functionality** for middle messages
+7. **Verify stage dependencies** for dependent messages
+8. **Check MCQ answer handling** and feedback
+9. **Validate safety message prominence** and clarity
+
+
