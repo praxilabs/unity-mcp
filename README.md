@@ -79,6 +79,79 @@ When you ask an AI to "create a red cube", the system:
  a more detailed look go to **[Tool Reference](Docs/tools/README.md)** .
 - **📖 For system architecture details, see [System Explanation](Docs/system-explanation/README.md)** .
 
+## 🎯 Using Cursor Rules Framework
+
+The Unity MCP Bridge includes a comprehensive **Cursor Rules** framework that provides AI assistants with specialized knowledge for Unity development tasks.
+
+### What are Cursor Rules?
+Cursor Rules are `.mdc` files that contain domain-specific knowledge and guidelines for AI assistants. They help the AI understand:
+- **Unity-specific workflows** and best practices
+- **Graph logic patterns** for XNode-based experiments
+- **Tool usage guidelines** and common scenarios
+- **Error handling** and troubleshooting approaches
+
+### Available Rule Categories
+
+#### **Core Rules** (`CursorRules/rules/Core/`)
+- `core.mdc` - Fundamental Unity MCP concepts and patterns
+- `concise.mdc` - Guidelines for clear, minimal documentation
+- `request.mdc` - How to handle user requests effectively
+- `retro.mdc` - Retrospective analysis and improvement patterns
+
+#### **Graph Logic Rules** (`CursorRules/rules/MCP/GraphLogic/`)
+- **Control Flow** - Managing sequence execution and branching
+- **Click Nodes** - Mouse interaction and UI element handling
+- **Camera Nodes** - Camera positioning and movement logic
+- **UI Nodes** - Popup messages, MCQs, and interface elements
+- **Loop Nodes** - Iteration and conditional execution
+- **Progress Nodes** - Experiment progression tracking
+- **Table Nodes** - Data management and record keeping
+- **Tool Nodes** - Collider toggling and utility operations
+- **Utility Nodes** - Delays, freezing, and system utilities
+- **Misc Nodes** - Animation and other specialized operations
+
+### How to Use Cursor Rules
+
+1. **Automatic Application**: Rules are automatically applied when using Cursor IDE with this project
+2. **Context-Aware Suggestions**: AI will suggest appropriate tools and patterns based on your request
+3. **Best Practice Guidance**: Rules ensure consistent, high-quality Unity development workflows
+4. **Error Prevention**: Built-in guidelines help avoid common Unity development pitfalls
+
+### Specialized Protocol Rules
+
+#### **@request.mdc** - Feature Request Protocol
+When you need to request new features, refactoring, or changes:
+- **Structured Approach**: Follows a 5-phase protocol from reconnaissance to final verification
+- **System-Wide Analysis**: Ensures all dependencies and impacts are considered
+- **Zero-Trust Audit**: Mandatory self-audit to prevent regressions
+- **Evidence-Based**: Requires empirical verification of all changes
+
+#### **@retro.mdc** - Retrospective & Learning Protocol
+After completing work, use this to:
+- **Analyze Performance**: Review the entire session for successes and failures
+- **Distill Lessons**: Extract durable, universal principles from the interaction
+- **Update Doctrine**: Integrate learnings into the AI's operational rules
+- **Continuous Improvement**: Evolve the AI's capabilities based on real experiences
+
+#### **@refresh.mdc** - Bug Fix & Root Cause Analysis Protocol
+For persistent bugs or issues:
+- **Deep Diagnostics**: Systematic investigation beyond surface-level fixes
+- **Root Cause Focus**: Identifies the absolute underlying cause, not just symptoms
+- **Reproducible Testing**: Creates minimal test cases to verify fixes
+- **Regression Prevention**: Ensures fixes don't introduce new problems
+
+### Example Usage
+When you ask the AI to "create a click sequence that shows a popup", the rules framework will:
+- Suggest appropriate **ClickStep** and **UINodes**
+- Guide you through proper **Control Flow** setup
+- Recommend **Progress tracking** for experiment management
+- Ensure proper **Error handling** and validation
+
+### Customizing Rules
+- Rules are located in `CursorRules/rules/` directory
+- Each `.mdc` file contains specific domain knowledge
+- Modify rules to match your project's specific requirements
+- Rules follow markdown format with clear sections and examples
 
 ## 🛠️ Overview on Tools
 
