@@ -458,18 +458,17 @@ namespace UnityMcpBridge.Editor
 
                     "make_connection_between_nodes" => MakeAConnectionBetweenNodes.HandleCommand(paramsObject),
                     
+                    // //!! Under Construction
                     
-                    "manage_node_parameters" => ManageNodeParameters.HandleCommand(paramsObject),
-                    "manage_scriptable_object_parameters" => ManageScriptableObjectParameters.HandleCommand(paramsObject),
-                    
-                    //!! Under Construction
+                    // "manage_node_parameters" => ManageNodeParameters.HandleCommand(paramsObject),
+                    // "manage_scriptable_object_parameters" => ManageScriptableObjectParameters.HandleCommand(paramsObject),
 
-                    "list_registry_parents" => ManageRegistryData.HandleListParents(paramsObject),
-                    "list_registry_all" => ManageRegistryData.HandleListAll(paramsObject),
-                    "list_registry_children" => ManageRegistryData.HandleListChildren(paramsObject),
-                    "get_child_components" => ManageRegistryData.HandleGetChildComponents(paramsObject),
-                    "get_component_methods" => ManageRegistryData.HandleGetComponentMethods(paramsObject),
-                    "register_scene_objects" => ManageRegistryData.HandleRegisterSceneObjects(paramsObject),
+                    // "list_registry_parents" => ManageRegistryData.HandleListParents(paramsObject),
+                    // "list_registry_all" => ManageRegistryData.HandleListAll(paramsObject),
+                    // "list_registry_children" => ManageRegistryData.HandleListChildren(paramsObject),
+                    // "get_child_components" => ManageRegistryData.HandleGetChildComponents(paramsObject),
+                    // "get_component_methods" => ManageRegistryData.HandleGetComponentMethods(paramsObject),
+                    // "register_scene_objects" => ManageRegistryData.HandleRegisterSceneObjects(paramsObject),
                     _ => throw new ArgumentException(
                         $"Unknown or unsupported command type: {command.type}"
                     ),

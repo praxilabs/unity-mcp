@@ -24,34 +24,19 @@ namespace UnityMcpBridge.Editor.Helpers
             return false;
         }
 
-        public static void EnsureServerInstalled() {
+        public static void UninstallServer(string saveLocation) {
             try {
-                string saveLocation = GetSaveLocation();
-                Debug.Log($"Server installation path: {saveLocation}");
-                
-                if (!IsServerInstalled(saveLocation)) {
-                    Debug.Log("Server not found, installing...");
-                    InstallServer(saveLocation);
-                } else {
-                    // Check for updates and pull latest changes
-                    string installedVersion = GetInstalledVersion();
-                    string latestVersion = installedVersion;
-                    try { 
-                        latestVersion = GetLatestVersion(); 
-                    } catch { 
-                        Debug.LogWarning("Could not fetch latest version, skipping update check");
-                    }
-                    
-                    if (IsNewerVersion(latestVersion, installedVersion)) {
-                        Debug.Log($"New version available ({latestVersion} vs {installedVersion}), updating...");
-                        UpdateServer(saveLocation);
-                    } else {
-                        Debug.Log("Server is up to date");
-                    }
+                if (Directory.Exists(saveLocation)) {
+                    Directory.Delete(saveLocation, true);
                 }
-            } catch (Exception ex) {
-                Debug.LogError($"Failed to ensure server installation: {ex.Message}");
+            } catch {
+                Debug.LogWarning("Some Files Can't be Deleted so they will be ignored! this will not affect the installation");
             }
+        }
+        
+        public static void EnsureServerInstalled() {
+            UninstallServer(GetSaveLocation());
+            InstallServer(GetSaveLocation());
         }
 
         public static string GetServerPath()

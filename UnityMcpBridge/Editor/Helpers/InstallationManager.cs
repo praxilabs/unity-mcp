@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEditor;
 
@@ -23,18 +24,16 @@ namespace UnityMcpBridge.Editor.Helpers
             }
         }
         
-        public static void StartInstallation()
-        {
-            if (IsServerInstalled)
-            {
-                Debug.Log("Server is already installed.");
-                return;
-            }
-            
-            Debug.Log("Starting server installation...");
-            
+        public static async void StartInstallation()
+        {          
             try
             {
+                OnInstallationStarted?.Invoke();
+                
+                // Wait for editor to stop compiling before proceeding
+                await WaitForEditorCompilation();
+                
+                ServerInstaller.EnsureServerInstalled();
                 IsServerInstalled = true;
                 OnInstallationCompleted?.Invoke();
                 Debug.Log("Server installation completed successfully.");
@@ -46,32 +45,14 @@ namespace UnityMcpBridge.Editor.Helpers
             }
         }
         
-        public static void UninstallServer()
+        private static async Task WaitForEditorCompilation()
         {
-            if (!IsServerInstalled)
+            while (EditorApplication.isCompiling)
             {
-                Debug.Log("Server is not installed.");
-                return;
+                Debug.Log("Waiting for Unity editor to finish compiling...");
+                await Task.Delay(1000); // Wait 1 second before checking again
             }
-            
-            Debug.Log("Uninstalling server...");
-            
-            try
-            {
-                string saveLocation = ServerInstaller.GetSaveLocation();
-                if (System.IO.Directory.Exists(saveLocation))
-                {
-                    System.IO.Directory.Delete(saveLocation, true);
-                }
-                
-            }
-            catch
-            {
-            
-            }
-             
-                IsServerInstalled = false;
-                Debug.Log("Server uninstalled successfully.");
+            Debug.Log("Unity editor compilation completed, proceeding with installation...");
         }
         
         public static void ResetInstallationStatus()

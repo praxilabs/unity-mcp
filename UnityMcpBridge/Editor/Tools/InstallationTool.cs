@@ -67,25 +67,10 @@ namespace UnityMcpBridge.Editor.Tools
             EditorGUILayout.Space(10);
             
             // Installation Button
-            EditorGUI.BeginDisabledGroup(isInstalling || isInstalled);
             if (GUILayout.Button("Install Server", GUILayout.Height(30)))
             {
                 InstallationManager.StartInstallation();
-            }
-            EditorGUI.EndDisabledGroup();
-            
-            // Uninstall Button
-            EditorGUI.BeginDisabledGroup(isInstalling || !isInstalled);
-            if (GUILayout.Button("Uninstall Server", GUILayout.Height(30)))
-            {
-                if (EditorUtility.DisplayDialog("Confirm Uninstall", 
-                    "Are you sure you want to uninstall the MCP server? This will remove all server files.", 
-                    "Uninstall", "Cancel"))
-                {
-                    InstallationManager.UninstallServer();
-                }
-            }
-            EditorGUI.EndDisabledGroup();
+            } 
             
             EditorGUILayout.Space(10);
             
