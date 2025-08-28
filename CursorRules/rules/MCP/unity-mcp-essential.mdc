@@ -1,0 +1,267 @@
+---
+alwaysApply: true
+---
+
+
+
+# Unity MCP Bridge - Essential Rules & Category Reference
+
+## 🎯 QUICK DECISION TREE
+
+### Need to show/hide objects?
+→ **Tools** category → [GameObjectSetActiveStep](mdc:.cursor/rules/MCP/GraphLogic/ToolNodes.mdc)
+
+### Need user interaction in any order?
+→ **Control Flow** category → [CompositeStep pattern](mdc:.cursor/rules/MCP/GraphLogic/ControlFlowNodes.mdc)
+
+### Need sequential execution?
+→ **Chain: Node1.exit → Node2.entry**
+
+### Need function calls?
+→ **Function Call** category → [FunctionCallStep](mdc:.cursor/rules/MCP/GraphLogic/FunctionCallNodes.mdc)
+
+## 📂 STEP NODE CATEGORIES OVERVIEW
+
+### 🔗 Attach-Detach
+**Purpose**: Handle object attachment and detachment operations
+**Use Cases**: Equipment assembly, component connections, interactive object manipulation
+**Key Nodes**: AttachStep, DetachStep
+**When to Use**: When objects need to be physically connected or disconnected
+**Reference**: [Attach-Detach Nodes](mdc:.cursor/rules/MCP/GraphLogic/Attach-DetachNodes.mdc)
+
+### 🖱️ Click
+**Purpose**: Handle user clicking interactions
+**Use Cases**: User interface interactions, object selection, interactive object manipulation
+**Key Nodes**: ClickStep, RotateKnobStep, ExploreStep
+**When to Use**: When user needs to interact with objects via clicking, rotating, or exploring
+**Reference**: [Click Nodes](mdc:.cursor/rules/MCP/GraphLogic/ClickNodes.mdc)
+
+### 🔄 Control Flow
+**Purpose**: Manage execution flow and branching logic
+**Use Cases**: Decision making, parallel execution, state management
+**Key Nodes**: CompositeStep, IfStatementStep, SwitchStep, SwitchEnumStep
+**When to Use**: When you need conditional logic, parallel execution, or state machines
+**Reference**: [Control Flow Nodes](mdc:.cursor/rules/MCP/GraphLogic/ControlFlowNodes.mdc)
+
+### 📷 Camera
+**Purpose**: Control camera positioning and focus
+**Use Cases**: Guided attention, view management, detailed object examination
+**Key Nodes**: FocusOnToolStep, ReturnCameraStep
+**When to Use**: When you need to guide user attention or provide detailed views
+**Reference**: [Camera Nodes](mdc:.cursor/rules/MCP/GraphLogic/CameraNodes.mdc)
+
+### ⚙️ Function Call
+**Purpose**: Execute methods on GameObjects
+**Use Cases**: Component method execution, system interactions
+**Key Nodes**: FunctionCallStep
+**When to Use**: When you need to call specific methods on objects (NOT for visibility)
+**Reference**: [Function Call Nodes](mdc:.cursor/rules/MCP/GraphLogic/FunctionCallNodes.mdc)
+
+### 🔁 Loops
+**Purpose**: Handle iterative operations
+**Use Cases**: Repeated actions, data collection, iterative processes
+**Key Nodes**: ForLoopStep, WhileLoopStep
+**When to Use**: When you need to repeat actions a fixed number of times or until a condition is met
+**Reference**: [Loop Nodes](mdc:.cursor/rules/MCP/GraphLogic/LoopNodes.mdc)
+
+### 🛠️ Tools
+**Purpose**: Object manipulation and visibility control
+**Use Cases**: Object state management, interaction control, visibility
+**Key Nodes**: GameObjectSetActiveStep, ToggleColliderStep
+**When to Use**: When you need to show/hide objects or control interactions
+**Reference**: [Tool Nodes](mdc:.cursor/rules/MCP/GraphLogic/ToolNodes.mdc)
+
+### 🖥️ UI
+**Purpose**: User interface and messaging
+**Use Cases**: User guidance, feedback, timing controls, educational content
+**Key Nodes**: SideMessageStep, HintStep, TimerStep
+**When to Use**: When you need to communicate with users or provide timing controls
+**Reference**: [UI Nodes](mdc:.cursor/rules/MCP/GraphLogic/UINodes.mdc)
+
+### ⚡ Utility
+**Purpose**: System utility operations
+**Use Cases**: System control, timing, modular execution
+**Key Nodes**: FreezeLabStep, DelayStep, SubGraphStep
+**When to Use**: When you need system-wide control, timing, or modular execution
+**Reference**: [Utility Nodes](mdc:.cursor/rules/MCP/GraphLogic/UtilityNodes.mdc)
+
+### 🎯 NewEvents
+**Purpose**: Event-driven interactions
+**Use Cases**: Reactive programming, event handling
+**Key Nodes**: Event-based step nodes
+**When to Use**: When you need reactive programming or event-driven logic
+**Reference**: [NewEvents Nodes](mdc:.cursor/rules/MCP/GraphLogic/NewEventsNodes.mdc)
+
+### 📊 Table
+**Purpose**: Data table operations
+**Use Cases**: Data management, table interactions
+**Key Nodes**: Table-related step nodes
+**When to Use**: When you need to manage data in table format
+**Reference**: [Table Nodes](mdc:.cursor/rules/MCP/GraphLogic/TableNodes.mdc)
+
+### 🗺️ Progress Map
+**Purpose**: Progress tracking and navigation
+**Use Cases**: Experiment progress, navigation control
+**Key Nodes**: Progress-related step nodes
+**When to Use**: When you need to track experiment progress or control navigation
+**Reference**: [Progress Map Nodes](mdc:.cursor/rules/MCP/GraphLogic/ProgressMapNodes.mdc)
+
+### 🎬 Animation Step
+**Purpose**: Animation control and playback
+**Use Cases**: Object animations, visual effects
+**Key Nodes**: AnimationStep
+**When to Use**: When you need to animate objects or create visual effects
+**Reference**: [Animation Step Nodes](mdc:.cursor/rules/MCP/GraphLogic/AnimationStepNodes.mdc)
+
+
+## 📐 NODE POSITIONING
+
+### Spacing Rules
+- **Horizontal**: 400 units between sequential nodes
+- **Vertical**: 300 units between parallel routes
+- **Start**: (100, 100) for first node
+
+### Connection Patterns
+```
+Sequential: Node1.exit → Node2.entry → Node3.entry
+Parallel: CompositeStep.routes → [Node1, Node2, Node3] → CompositeStep.entry
+```
+
+## 🔗 ADDITIONAL REFERENCES
+
+- [MCP Tools Reference](mdc:.cursor/rules/MCP/mcp-tools-reference.mdc) - Complete tool reference
+- [Step Nodes Reference](mdc:.cursor/rules/MCP/step-nodes-reference.mdc) - Core step nodes overview
+
+
+**Remember**: When in doubt, always verify in the codebase first!
+
+# Unity MCP Bridge - Essential Rules & Category Reference
+
+## 🎯 QUICK DECISION TREE
+
+### Need to show/hide objects?
+→ **Tools** category → [GameObjectSetActiveStep](mdc:.cursor/rules/MCP/GraphLogic/ToolNodes.mdc)
+
+### Need user interaction in any order?
+→ **Control Flow** category → [CompositeStep pattern](mdc:.cursor/rules/MCP/GraphLogic/ControlFlowNodes.mdc)
+
+### Need sequential execution?
+→ **Chain: Node1.exit → Node2.entry**
+
+### Need function calls?
+→ **Function Call** category → [FunctionCallStep](mdc:.cursor/rules/MCP/GraphLogic/FunctionCallNodes.mdc)
+
+## 📂 STEP NODE CATEGORIES OVERVIEW
+
+### 🔗 Attach-Detach
+**Purpose**: Handle object attachment and detachment operations
+**Use Cases**: Equipment assembly, component connections, interactive object manipulation
+**Key Nodes**: AttachStep, DetachStep
+**When to Use**: When objects need to be physically connected or disconnected
+**Reference**: [Attach-Detach Nodes](mdc:.cursor/rules/MCP/GraphLogic/Attach-DetachNodes.mdc)
+
+### 🖱️ Click
+**Purpose**: Handle user clicking interactions
+**Use Cases**: User interface interactions, object selection, interactive object manipulation
+**Key Nodes**: ClickStep, RotateKnobStep, ExploreStep
+**When to Use**: When user needs to interact with objects via clicking, rotating, or exploring
+**Reference**: [Click Nodes](mdc:.cursor/rules/MCP/GraphLogic/ClickNodes.mdc)
+
+### 🔄 Control Flow
+**Purpose**: Manage execution flow and branching logic
+**Use Cases**: Decision making, parallel execution, state management
+**Key Nodes**: CompositeStep, IfStatementStep, SwitchStep, SwitchEnumStep
+**When to Use**: When you need conditional logic, parallel execution, or state machines
+**Reference**: [Control Flow Nodes](mdc:.cursor/rules/MCP/GraphLogic/ControlFlowNodes.mdc)
+
+### 📷 Camera
+**Purpose**: Control camera positioning and focus
+**Use Cases**: Guided attention, view management, detailed object examination
+**Key Nodes**: FocusOnToolStep, ReturnCameraStep
+**When to Use**: When you need to guide user attention or provide detailed views
+**Reference**: [Camera Nodes](mdc:.cursor/rules/MCP/GraphLogic/CameraNodes.mdc)
+
+### ⚙️ Function Call
+**Purpose**: Execute methods on GameObjects
+**Use Cases**: Component method execution, system interactions
+**Key Nodes**: FunctionCallStep
+**When to Use**: When you need to call specific methods on objects (NOT for visibility)
+**Reference**: [Function Call Nodes](mdc:.cursor/rules/MCP/GraphLogic/FunctionCallNodes.mdc)
+
+### 🔁 Loops
+**Purpose**: Handle iterative operations
+**Use Cases**: Repeated actions, data collection, iterative processes
+**Key Nodes**: ForLoopStep, WhileLoopStep
+**When to Use**: When you need to repeat actions a fixed number of times or until a condition is met
+**Reference**: [Loop Nodes](mdc:.cursor/rules/MCP/GraphLogic/LoopNodes.mdc)
+
+### 🛠️ Tools
+**Purpose**: Object manipulation and visibility control
+**Use Cases**: Object state management, interaction control, visibility
+**Key Nodes**: GameObjectSetActiveStep, ToggleColliderStep
+**When to Use**: When you need to show/hide objects or control interactions
+**Reference**: [Tool Nodes](mdc:.cursor/rules/MCP/GraphLogic/ToolNodes.mdc)
+
+### 🖥️ UI
+**Purpose**: User interface and messaging
+**Use Cases**: User guidance, feedback, timing controls, educational content
+**Key Nodes**: SideMessageStep, HintStep, TimerStep
+**When to Use**: When you need to communicate with users or provide timing controls
+**Reference**: [UI Nodes](mdc:.cursor/rules/MCP/GraphLogic/UINodes.mdc)
+
+### ⚡ Utility
+**Purpose**: System utility operations
+**Use Cases**: System control, timing, modular execution
+**Key Nodes**: FreezeLabStep, DelayStep, SubGraphStep
+**When to Use**: When you need system-wide control, timing, or modular execution
+**Reference**: [Utility Nodes](mdc:.cursor/rules/MCP/GraphLogic/UtilityNodes.mdc)
+
+### 🎯 NewEvents
+**Purpose**: Event-driven interactions
+**Use Cases**: Reactive programming, event handling
+**Key Nodes**: Event-based step nodes
+**When to Use**: When you need reactive programming or event-driven logic
+**Reference**: [NewEvents Nodes](mdc:.cursor/rules/MCP/GraphLogic/NewEventsNodes.mdc)
+
+### 📊 Table
+**Purpose**: Data table operations
+**Use Cases**: Data management, table interactions
+**Key Nodes**: Table-related step nodes
+**When to Use**: When you need to manage data in table format
+**Reference**: [Table Nodes](mdc:.cursor/rules/MCP/GraphLogic/TableNodes.mdc)
+
+### 🗺️ Progress Map
+**Purpose**: Progress tracking and navigation
+**Use Cases**: Experiment progress, navigation control
+**Key Nodes**: Progress-related step nodes
+**When to Use**: When you need to track experiment progress or control navigation
+**Reference**: [Progress Map Nodes](mdc:.cursor/rules/MCP/GraphLogic/ProgressMapNodes.mdc)
+
+### 🎬 Animation Step
+**Purpose**: Animation control and playback
+**Use Cases**: Object animations, visual effects
+**Key Nodes**: AnimationStep
+**When to Use**: When you need to animate objects or create visual effects
+**Reference**: [Animation Step Nodes](mdc:.cursor/rules/MCP/GraphLogic/AnimationStepNodes.mdc)
+
+
+## 📐 NODE POSITIONING
+
+### Spacing Rules
+- **Horizontal**: 400 units between sequential nodes
+- **Vertical**: 300 units between parallel routes
+- **Start**: (100, 100) for first node
+
+### Connection Patterns
+```
+Sequential: Node1.exit → Node2.entry → Node3.entry
+Parallel: CompositeStep.routes → [Node1, Node2, Node3] → CompositeStep.entry
+```
+
+## 🔗 ADDITIONAL REFERENCES
+
+- [MCP Tools Reference](mdc:.cursor/rules/MCP/mcp-tools-reference.mdc) - Complete tool reference
+- [Step Nodes Reference](mdc:.cursor/rules/MCP/step-nodes-reference.mdc) - Core step nodes overview
+
+
+**Remember**: When in doubt, always verify in the codebase first!

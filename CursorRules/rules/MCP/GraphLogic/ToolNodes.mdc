@@ -1,0 +1,244 @@
+---
+description: This rule contains the common sense of using tool specific functionalities like Toggling colliders.
+alwaysApply: false
+---
+# Tool Nodes
+
+## 📋 Overview
+Tool nodes handle object manipulation, visibility control, and tool-specific interactions in virtual lab experiments. These nodes are essential for object state management, interaction control, and tool presentation.
+
+## 🔧 Available Nodes
+
+### GameObjectSetActiveStep ⭐ RECOMMENDED
+**File**: [GameObjectSetActiveStep.cs](mdc:Assets/Scripts/System/xNode/Steps/SelfExecuted/GameObjectSetActive.cs)
+**Purpose**: Show/hide objects (better than FunctionCallStep for this)
+**Best Practices**:
+- Use for visibility control, not function calls
+- Connect to immediate response actions
+
+### ToggleColliderStep
+**Purpose**: Enable/disable colliders
+**Usage**: Interaction control, safety systems
+**Best Practices**:
+- Use for interaction control
+- Connect to safety or interaction logic
+
+### ToolsInputfieldStep
+**Purpose**: Handle input field interactions for tools
+**Usage**: Data entry for tools, parameter input, tool configuration
+**Best Practices**:
+- Validate input data before processing
+- Provide clear feedback for input validation
+- Use for tool-specific data collection
+
+### ToolsInteractionsMenuStep
+**Purpose**: Control interactions menu for tools
+**Usage**: Tool menu management, interaction options, tool selection
+**Best Practices**:
+- Manage menu state appropriately
+- Provide clear navigation options
+- Use for tool interaction control
+
+## 🏗️ Common Patterns
+
+### Sequential Object Appearance
+```
+GameObjectSetActiveStep (hide) → DelayStep → GameObjectSetActiveStep (show) → DelayStep → ...
+```
+
+### Object State Management
+```
+GameObjectSetActiveStep (hide object) → DelayStep → GameObjectSetActiveStep (show new object) → Continue
+```
+
+### Interaction Control Pattern
+```
+ToggleColliderStep (disable) → UserAction → ToggleColliderStep (enable) → Continue
+```
+
+### Safety Pattern
+```
+IfStatementStep (Check safety) → True: ToggleColliderStep (enable) → Continue
+                             → False: ToggleColliderStep (disable) → ShowMessage (Safety warning)
+```
+
+### Tool Setup Pattern
+```
+GameObjectSetActiveStep (hide all tools) → DelayStep → GameObjectSetActiveStep (show current tool) → ShowMessage (Tool ready)
+```
+
+### Object Replacement Pattern
+```
+GameObjectSetActiveStep (hide old object) → DelayStep → GameObjectSetActiveStep (show new object) → ShowMessage (Object replaced)
+```
+
+### Tool Input Field Pattern
+```
+// User enters data in tool input field
+ToolsInputfieldStep (InputField) → UserInputStep (Data) → ValidateInput → Continue
+
+// Tool configuration with input
+ToolsInputfieldStep (ConfigField) → SetToolParameter → ShowMessage (Tool configured) → Continue
+```
+
+### Tool Menu Interaction Pattern
+```
+// Enable tool interactions menu
+ToolsInteractionsMenuStep (EnableMenu) → UserSelectsOption → ExecuteToolAction → Continue
+
+// Tool selection from menu
+ToolsInteractionsMenuStep (ShowToolMenu) → UserSelectsTool → GameObjectSetActiveStep (ShowSelectedTool) → Continue
+```
+
+### Complete Tool Workflow
+```
+// Complete tool setup and interaction workflow
+GameObjectSetActiveStep (ShowTool) → ToolsInteractionsMenuStep (EnableMenu) → 
+UserSelectsOption → ToolsInputfieldStep (GetParameters) → ExecuteToolFunction → Continue
+```
+
+### Tool Parameter Configuration
+```
+// Configure tool parameters through input fields
+ToolsInputfieldStep (ParameterField1) → ToolsInputfieldStep (ParameterField2) → 
+ValidateParameters → ApplyConfiguration → ShowMessage (Tool configured) → Continue
+```
+
+## ⚠️ Common Mistakes
+
+3. **Wrong visibility logic**: Use clear show/hide patterns
+4. **Missing safety controls**: Use ToggleColliderStep for interaction safety
+5. **Invalid input data**: Always validate input field data before processing
+6. **Missing menu state management**: Ensure tool menus are properly enabled/disabled
+7. **Incomplete tool configuration**: Verify all required parameters are set
+
+## 🔍 Debugging Tips
+
+2. **Test visibility changes** one step at a time
+3. **Check object states** before and after changes
+4. **Use DelayStep** to slow down for debugging
+5. **Monitor object visibility** with console logs
+6. **Validate input field data** before processing
+7. **Check menu states** for tool interactions
+8. **Test tool workflows** end-to-end
+
+# Tool Nodes
+
+## 📋 Overview
+Tool nodes handle object manipulation, visibility control, and tool-specific interactions in virtual lab experiments. These nodes are essential for object state management, interaction control, and tool presentation.
+
+## 🔧 Available Nodes
+
+### GameObjectSetActiveStep ⭐ RECOMMENDED
+**File**: [GameObjectSetActiveStep.cs](mdc:Assets/Scripts/System/xNode/Steps/SelfExecuted/GameObjectSetActive.cs)
+**Purpose**: Show/hide objects (better than FunctionCallStep for this)
+**Best Practices**:
+- Use for visibility control, not function calls
+- Connect to immediate response actions
+
+### ToggleColliderStep
+**Purpose**: Enable/disable colliders
+**Usage**: Interaction control, safety systems
+**Best Practices**:
+- Use for interaction control
+- Connect to safety or interaction logic
+
+### ToolsInputfieldStep
+**Purpose**: Handle input field interactions for tools
+**Usage**: Data entry for tools, parameter input, tool configuration
+**Best Practices**:
+- Validate input data before processing
+- Provide clear feedback for input validation
+- Use for tool-specific data collection
+
+### ToolsInteractionsMenuStep
+**Purpose**: Control interactions menu for tools
+**Usage**: Tool menu management, interaction options, tool selection
+**Best Practices**:
+- Manage menu state appropriately
+- Provide clear navigation options
+- Use for tool interaction control
+
+## 🏗️ Common Patterns
+
+### Sequential Object Appearance
+```
+GameObjectSetActiveStep (hide) → DelayStep → GameObjectSetActiveStep (show) → DelayStep → ...
+```
+
+### Object State Management
+```
+GameObjectSetActiveStep (hide object) → DelayStep → GameObjectSetActiveStep (show new object) → Continue
+```
+
+### Interaction Control Pattern
+```
+ToggleColliderStep (disable) → UserAction → ToggleColliderStep (enable) → Continue
+```
+
+### Safety Pattern
+```
+IfStatementStep (Check safety) → True: ToggleColliderStep (enable) → Continue
+                             → False: ToggleColliderStep (disable) → ShowMessage (Safety warning)
+```
+
+### Tool Setup Pattern
+```
+GameObjectSetActiveStep (hide all tools) → DelayStep → GameObjectSetActiveStep (show current tool) → ShowMessage (Tool ready)
+```
+
+### Object Replacement Pattern
+```
+GameObjectSetActiveStep (hide old object) → DelayStep → GameObjectSetActiveStep (show new object) → ShowMessage (Object replaced)
+```
+
+### Tool Input Field Pattern
+```
+// User enters data in tool input field
+ToolsInputfieldStep (InputField) → UserInputStep (Data) → ValidateInput → Continue
+
+// Tool configuration with input
+ToolsInputfieldStep (ConfigField) → SetToolParameter → ShowMessage (Tool configured) → Continue
+```
+
+### Tool Menu Interaction Pattern
+```
+// Enable tool interactions menu
+ToolsInteractionsMenuStep (EnableMenu) → UserSelectsOption → ExecuteToolAction → Continue
+
+// Tool selection from menu
+ToolsInteractionsMenuStep (ShowToolMenu) → UserSelectsTool → GameObjectSetActiveStep (ShowSelectedTool) → Continue
+```
+
+### Complete Tool Workflow
+```
+// Complete tool setup and interaction workflow
+GameObjectSetActiveStep (ShowTool) → ToolsInteractionsMenuStep (EnableMenu) → 
+UserSelectsOption → ToolsInputfieldStep (GetParameters) → ExecuteToolFunction → Continue
+```
+
+### Tool Parameter Configuration
+```
+// Configure tool parameters through input fields
+ToolsInputfieldStep (ParameterField1) → ToolsInputfieldStep (ParameterField2) → 
+ValidateParameters → ApplyConfiguration → ShowMessage (Tool configured) → Continue
+```
+
+## ⚠️ Common Mistakes
+
+3. **Wrong visibility logic**: Use clear show/hide patterns
+4. **Missing safety controls**: Use ToggleColliderStep for interaction safety
+5. **Invalid input data**: Always validate input field data before processing
+6. **Missing menu state management**: Ensure tool menus are properly enabled/disabled
+7. **Incomplete tool configuration**: Verify all required parameters are set
+
+## 🔍 Debugging Tips
+
+2. **Test visibility changes** one step at a time
+3. **Check object states** before and after changes
+4. **Use DelayStep** to slow down for debugging
+5. **Monitor object visibility** with console logs
+6. **Validate input field data** before processing
+7. **Check menu states** for tool interactions
+8. **Test tool workflows** end-to-end
+

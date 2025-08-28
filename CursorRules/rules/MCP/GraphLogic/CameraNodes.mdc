@@ -1,0 +1,59 @@
+---
+description: This class contains the logic and common sense on how to deal with any request that contains Camera logic, it may not contain all of the tools used so you will need to use a function step then.
+alwaysApply: false
+---
+# Camera Nodes
+
+## 📋 Overview
+Camera nodes control camera positioning and focus in virtual lab experiments. These nodes are essential for guided attention, view management, and providing detailed views of objects.
+
+## 🔧 Available Nodes
+
+### FocusOnToolStep
+**Purpose**: Focus camera on specific objects
+**Usage**: Guided attention, close-up views
+**Best Practices**:
+- Use for highlighting important objects
+- Connect to immediate response actions
+
+### ReturnCameraStep
+**Purpose**: Return camera to default position
+**Usage**: Reset view, overview mode
+**Best Practices**:
+- Use after detailed views
+- Return to overview for context
+- Connect to continuation actions
+
+## 🏗️ Common Patterns
+
+### Object Examination Pattern
+```
+FocusOnToolStep (Object) → ShowMessage (Object details) → ReturnCameraStep → Continue
+```
+
+### Guided Attention Pattern
+```
+ShowMessage (Look at this) → FocusOnToolStep (Target object) → DelayStep → ReturnCameraStep
+```
+
+### Multiple Object Focus
+```
+FocusOnToolStep (Object A) → ShowMessage (Details A) → FocusOnToolStep (Object B) → ShowMessage (Details B) → ReturnCameraStep
+```
+
+### Interactive Focus Pattern
+```
+ClickStep (Object) → FocusOnToolStep (Object) → ShowMessage (Detailed info) → ReturnCameraStep
+```
+
+### Camera Sequence Pattern
+```
+FocusOnToolStep (Setup area) → ShowMessage (Setup instructions) → FocusOnToolStep (Tool) → ShowMessage (Tool usage) → ReturnCameraStep
+```
+
+
+## 🔍 Debugging Tips
+
+2. **Test camera movements** one step at a time
+3. **Check object visibility** before focusing
+4. **Use DelayStep** to slow down camera movements for debugging

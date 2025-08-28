@@ -1,0 +1,94 @@
+---
+description: This file contains the common sense of dealing with other steps that doesn't belong to any category but is just as important as the other steps for example executing an Animation.
+alwaysApply: false
+---
+# Animation Step Nodes
+
+## 📋 Overview
+Animation Step nodes handle animation control and playback in virtual lab experiments. These nodes are essential for object animations and visual effects.
+
+## 🔧 Available Nodes
+
+### AnimationStep
+**Purpose**: Animation control and playback
+**Usage**: Object animations, visual effects
+**Best Practices**:
+- Use for visual feedback and effects
+
+### GameObjectSetActiveStep
+**Purpose**: Show and Hide GameObjects at scene.
+**Usage**: when you are requested to show or hide objects at scene.
+**Best Practices**:
+- use it in the context of the request.
+
+### GoToStageStep
+**Purpose**: ending the current stage and starting another stage.
+**Usage**: end of a stage, skipping stages.
+
+
+## 🏗️ Common Patterns
+
+### Click to Animation Pattern
+```
+ClickStep (Object) → AnimationStep(object) → Return
+```
+
+### Animation Sequence Pattern
+```
+AnimationStep (Animation 1) → DelayStep → AnimationStep (Animation 2) → Continue
+```
+
+### Interactive Animation Pattern
+```
+UserAction → AnimationStep (Response animation) → ShowMessage (Animation complete) → Continue
+```
+
+### Visual Feedback Pattern
+```
+Action → AnimationStep (Visual feedback) → Continue
+```
+
+### Animation with Sound Pattern
+```
+AnimationStep (Visual effect) → AudioStep (Sound effect) → Continue
+```
+
+### Click ObjectA to Activate/Show Object ObjectB
+```
+ClickStep (ObjectA) →  GameObjectSetActiveStep (ObjectB, True) 
+```
+### Starting an experiment by showing objects
+```
+Start → GameObjectSetActiveStep (Object, True) → Continue
+```
+
+
+## ⚠️ CRITICAL: Complete Requirement Implementation
+**When user mentions "click makes animation" or similar, ALWAYS implement:**
+```
+ClickStep (Object) → AnimationStep(object) 
+```
+**NOT just:**
+```
+ClickStep (Object) → nothing
+```
+
+**Examples:**
+- "Click tube makes shaking animation" = ClickStep → AnimationStep
+- "Click dropper triggers effect" = ClickStep → AnimationStep  
+- "Click button plays animation" = ClickStep → AnimationStep
+
+**Always verify each step includes ALL required components, not just the primary action.**
+
+## ⚠️ Common Mistakes
+
+1. **Incomplete animation implementation**: When user mentions "click makes animation", implement ClickStep → AnimationStep, not just ClickStep
+2. **Missing object verification**: Always verify object exists in registry
+3. **Wrong animation timing**: Use appropriate animation durations
+4. **Missing visual feedback**: Provide clear animation responses
+
+## 🔍 Debugging Tips
+
+2. **Test animations** one step at a time
+4. **Use DelayStep** to slow down for debugging
+

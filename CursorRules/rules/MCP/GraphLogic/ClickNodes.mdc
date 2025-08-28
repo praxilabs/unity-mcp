@@ -1,0 +1,102 @@
+---
+description: this file contains the common sense on how to deal with a request that asks you to do something that involves mouse interaction like clicking or rotating.
+alwaysApply: false
+---
+# Click Nodes
+
+## 📋 Overview
+Click nodes handle user clicking interactions in virtual lab experiments. These nodes are essential for user interface interactions, object selection, and interactive object manipulation.
+
+## 🔧 Available Nodes
+
+### ClickStep
+**File**: [ClickStep.cs](mdc:Assets/Scripts/System/xNode/Steps/ActionExecuted/ClickStep.cs)
+**Purpose**: Handle object clicking interactions
+**Usage Pattern**: Connect to immediate response actions
+**Best Practices**:
+- Use with flashing tools for visual feedback
+- Connect to immediate response actions
+
+### RotateKnobStep
+**Purpose**: Handle knob rotation interactions
+**Usage**: Instrument controls, value adjustments
+**Best Practices**:
+- Connect to value change responses
+
+### ExploreStep
+**Purpose**: Handle object exploration interactions
+**Usage**: Object inspection, detailed examination
+**Best Practices**:
+- Use with camera focus for detailed view
+- Connect to exploration responses
+
+### ClickUIButtonStep
+**Purpose**: Automating a UI button click.
+**Usage**: Whenever you need to automate a button click.
+**Best Practices**:
+
+
+## 🏗️ Common Patterns
+
+### Using ClickStep to do something
+```
+ClickStep (Object) → GameObjectSetActive(hide)
+
+or
+
+ClickStep (Object) → FunctionCallStep(Functionality) → DelayStep → GameObjectSetActive(show)
+
+or
+
+ClickStep (Object) → AnimationStep(object)     Animating an object on click.
+
+or any pattern that comes like the previously addressed patterns.
+```
+
+### ⚠️ CRITICAL: Complete Requirement Implementation
+**When user mentions "click makes animation" or similar, ALWAYS implement:**
+```
+ClickStep (Object) → AnimationStep(object) → Return
+```
+**NOT just:**
+```
+ClickStep (Object) → Return
+```
+
+**Examples:**
+- "Click tube makes shaking animation" = ClickStep → AnimationStep
+- "Click dropper triggers effect" = ClickStep → AnimationStep  
+- "Click button plays animation" = ClickStep → AnimationStep
+
+**Always verify each step includes ALL required components, not just the primary action.**
+
+### Knob Rotation Pattern
+```
+RotateKnobStep (Knob) → FunctionCallStep (Update value) → ShowMessage (Value changed)
+```
+
+### Object Exploration Pattern
+```
+ExploreStep (Object) → FocusOnToolStep (Object) → ShowMessage (Object details)
+```
+
+### Multiple Click Interactions
+```
+CompositeStep.entry ← Setup
+CompositeStep.routes → ClickStep A → Action A → CompositeStep.entry
+CompositeStep.routes → ClickStep B → Action B → CompositeStep.entry
+CompositeStep.exit → Completion
+```
+
+## ⚠️ Common Mistakes
+
+1. **Incomplete animation implementation**: When user mentions "click makes animation", implement ClickStep → AnimationStep, not just ClickStep
+3. **Wrong connection order**: ClickStep should connect to immediate response
+4. **Missing visual feedback**: Users need confirmation of click actions
+
+## 🔍 Debugging Tips
+
+2. **Test click interactions** one step at a time
+3. **Check object states** before and after clicks
+4. **Use DelayStep** to slow down for debugging
+5. **Verify complete implementation**: When user mentions multi-step requirements, ensure ALL components are # Click Nodes
