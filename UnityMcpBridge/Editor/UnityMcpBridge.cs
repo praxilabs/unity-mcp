@@ -457,6 +457,10 @@ namespace UnityMcpBridge.Editor
                     //Connection Management
 
                     "make_connection_between_nodes" => MakeAConnectionBetweenNodes.HandleCommand(paramsObject),
+                    "delete_connection_between_nodes" => MakeAConnectionBetweenNodes.HandleCommand(paramsObject),
+                    "delete_all_connections_from_node" => MakeAConnectionBetweenNodes.HandleCommand(paramsObject),
+                    "delete_all_connections_to_node" => MakeAConnectionBetweenNodes.HandleCommand(paramsObject),
+                    "delete_all_connections_in_graph" => MakeAConnectionBetweenNodes.HandleCommand(paramsObject),
                     
                     // //!! Under Construction
                     

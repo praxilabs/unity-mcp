@@ -31,6 +31,10 @@ namespace UnityMcpBridge.Editor.Tools
         { "HandleGetComponentMethods", ManageRegistryData.HandleGetComponentMethods },
 
         { "MakeConnectionBetweenNodes", MakeAConnectionBetweenNodes.HandleCommand },
+        { "DeleteConnectionBetweenNodes", MakeAConnectionBetweenNodes.HandleCommand },
+        { "DeleteAllConnectionsFromNode", MakeAConnectionBetweenNodes.HandleCommand },
+        { "DeleteAllConnectionsToNode", MakeAConnectionBetweenNodes.HandleCommand },
+        { "DeleteAllConnectionsInGraph", MakeAConnectionBetweenNodes.HandleCommand },
 
         //XNode Management
 
