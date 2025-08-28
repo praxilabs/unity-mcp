@@ -40,26 +40,19 @@ This section contains detailed documentation for each tool group in the Unity MC
 - **check_node_exists** - Verify node existence
 - **set_node_position** - Position nodes in graph editor
 
-### Node Parameter Management Tools
-- **manage_node_parameters** - Main parameter management tool
-- **set_node_parameter** - Set specific node parameter
-- **get_node_parameter** - Get current parameter value
-- **list_node_parameters** - List all available parameters
 
 ### Utility Tools
 - **print** - System verification and debugging tool
 - **create_scriptable_object** - Create ScriptableObject assets
 
-### Registry Management Tools
-- **list_registry_all** - List all registry items
-- **list_registry_children** - List children of specific parent
-- **get_child_components** - Get components for specific child
-- **get_component_methods** - Get methods for component type
-
 ### Node Connection Tools
-- **make_connection_between_nodes** - Main connection tool
+- **manage_connection_between_nodes** - Main connection tool
 - **connect_nodes_by_name** - Connect nodes by name (convenience)
 - **connect_nodes_by_id** - Connect nodes by ID (convenience)
+- **delete_connection_by_name** - Delete modes by name
+- **delete_connection_by_id** - Delete modes by name
+- **delete_connections_in_graph** - Delete all the nodes in a graph 
+- **delete_connections_by_node** - Delete all the nodes in a graph 
 
 ## 🔍 Quick Reference
 
@@ -68,14 +61,12 @@ This section contains detailed documentation for each tool group in the Unity MC
 # Create experiments
 create_xnode_node(graph_path="Assets/Experiment.asset", node_type_name="ClickStep")
 
-# Manage parameters
-manage_node_parameters(action="set", graph_path="Assets/Experiment.asset", node_name="ClickStep_123", parameter_name="_targetName", parameter_value={"prefabName": "Tools", "childName": "Cube (1)"})
 
 # Connect nodes
 make_connection_between_nodes(graph_path="Assets/Experiment.asset", from_node="ClickStep_123", to_node="DelayStep_456")
 
 # System verification
-print_hello_world(random_string="test")
+print(random_string="test")
 ```
 
 ### Common Workflows
