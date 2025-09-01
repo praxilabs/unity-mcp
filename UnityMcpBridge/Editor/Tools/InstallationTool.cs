@@ -94,7 +94,7 @@ namespace UnityMcpBridge.Editor.Tools
                 "The Unity MCP Bridge requires a Python server to be installed on your system. " +
                 "This server handles communication between Unity and MCP clients like Claude Desktop or Cursor.\n\n" +
                 "After installation, the main MCP Bridge tool will become available in the Tools menu.",
-                MessageType.Info);
+                UnityEditor.MessageType.Info);
             
             EditorGUILayout.EndScrollView();
         }

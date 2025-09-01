@@ -223,13 +223,15 @@ mcp_unityMCP_check_node_exists("Assets/Testing/Graphs/NewStepsGraph.asset", "Cli
 - `node_type_name` (string): Name of node type to create
 - `position_x` (float): X position in graph editor
 - `position_y` (float): Y position in graph editor
+- `tooltip` (string): This is a MUST for explaining the logic behind this node.
 **Usage**:
 ```python
 mcp_unityMCP_create_xnode_node(
     "Assets/Testing/Graphs/NewStepsGraph.asset",
     "ClickStep",
     100.0,
-    -200.0
+    -200.0,
+    "This is a Node to click on the object [object] to [logic]"
 )
 ```
 

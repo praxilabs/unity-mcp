@@ -142,7 +142,7 @@ namespace UnityMcpBridge.Editor.Windows
             {
                 EditorGUILayout.Space(10);
                 EditorGUILayout.LabelField("Server Not Installed", EditorStyles.boldLabel);
-                EditorGUILayout.HelpBox("The MCP server is not installed. Please use the Installation Manager to install the server first.", MessageType.Warning);
+                EditorGUILayout.HelpBox("The MCP server is not installed. Please use the Installation Manager to install the server first.", UnityEditor.MessageType.Warning);
                 return;
             }
             
@@ -313,7 +313,7 @@ namespace UnityMcpBridge.Editor.Windows
             
             EditorGUILayout.Space(8);
             string description = GetValidationLevelDescription(validationLevelIndex);
-            EditorGUILayout.HelpBox(description, MessageType.Info);
+            EditorGUILayout.HelpBox(description, UnityEditor.MessageType.Info);
             EditorGUILayout.Space(5);
             EditorGUILayout.EndVertical();
         }

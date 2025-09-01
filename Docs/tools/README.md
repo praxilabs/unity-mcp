@@ -6,7 +6,6 @@ Complete documentation for all Unity MCP Bridge tools with detailed internal imp
 
 This section contains detailed documentation for each tool group in the Unity MCP Bridge system. Each tool documentation includes:
 - **Implementation Details** - How the tool's code works internally
-- **Use Cases** - When and why to use each tool
 - **Code Snippets** - Key implementation patterns
 
 ## 🎯 Tool Groups
