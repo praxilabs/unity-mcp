@@ -1,5 +1,5 @@
 ---
-description: This file contains the logic and common sense and how to deal with a request containing attaching and detaching logic.
+description: Object attachment and detachment operations. Contains AttachStep, DetachStep, and patterns for equipment assembly and component connections.
 alwaysApply: false
 ---
 # Attach-Detach Nodes
@@ -61,5 +61,10 @@ IfStatementStep (Check condition) → True: AttachStep → Continue
 ## 🔍 Debugging Tips
 
 1. **Test attachment/detachment** one step at a time
-2. **Check object states** before and after operations
-3. **Use DelayStep** to slow down for debugging
+2. **Verify object states** before and after operations
+3. **Check attachment points** exist and are valid
+4. **Use DelayStep** to slow down for debugging
+5. **Monitor attachment states** with console logs
+6. **Test attachment sequences** end-to-end
+7. **Validate attachment results** and visual feedback
+8. **Check attachment dependencies** and prerequisites

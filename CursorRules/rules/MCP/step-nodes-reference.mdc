@@ -90,6 +90,7 @@
 **Purpose**: Animation control and playback
 **Nodes**: AnimationStep
 **Usage**: Object animations, visual effects
+**Reference**: [Misc Nodes](mdc:.cursor/rules/MCP/GraphLogic/MiscNodes.mdc)
 
 ## 🔗 Related Rule Files
 
@@ -106,4 +107,4 @@ For detailed information about each category, see the specific rule files:
 - [NewEvents Nodes](mdc:.cursor/rules/MCP/NewEventsNodes.mdc)
 - [Table Nodes](mdc:.cursor/rules/MCP/TableNodes.mdc)
 - [Progress Map Nodes](mdc:.cursor/rules/MCP/ProgressMapNodes.mdc)
-- [Animation Step Nodes](mdc:.cursor/rules/MCP/AnimationStepNodes.mdc)
+- [Misc Nodes](mdc:.cursor/rules/MCP/GraphLogic/MiscNodes.mdc)

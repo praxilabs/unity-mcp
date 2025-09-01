@@ -1,5 +1,5 @@
 ---
-description: This file cotnains any logic or common sense that has to do with the Progression system any request that requires you to keep track of the Progression system then you will need that file.
+description: Progress tracking, navigation control, and stage management. Contains progress map steps, stage navigation, and experiment progression control.
 alwaysApply: false
 ---
 # Progress Map Nodes
@@ -47,6 +47,53 @@ Progress Map nodes handle progress tracking and navigation in virtual lab experi
 normal usage: at the end of a stage or after finishing an experiment step to get to the next progression level.
 ```
 
+### Sequential Step Progression Pattern
+```
+ProgressMapManualNextStep (stepNumber: 1) → SubGraphStep (Step_01) → 
+ProgressMapManualNextStep (stepNumber: 2) → SubGraphStep (Step_01.5) → 
+ProgressMapManualNextStep (stepNumber: 3) → SubGraphStep (Step_02) → Continue
+
+context: Use stepNumber parameter to control exact progression sequence
+```
+
+### Step Completion Navigation Pattern
+```
+SubGraphStep (Complete step) → ProgressMapManualNextStep (_nextStepIndex: next) → Continue
+
+context: Navigate to next step after completing current subgraph
+```
+
+### Multi-Step Experiment Flow Pattern
+```
+ProgressMapManualNextStep (stepNumber: 1) → SubGraphStep (Phase 1) → 
+ProgressMapManualNextStep (stepNumber: 2) → SubGraphStep (Phase 2) → 
+ProgressMapManualNextStep (stepNumber: 3) → SubGraphStep (Phase 3) → Continue
+
+context: Control multi-phase experiment progression with numbered steps
+```
+
+### Auto Progress Navigation Pattern
+```
+SubGraphStep (Complete phase) → ProgressMapAutoNextStep → SubGraphStep (Next phase) → Continue
+
+context: Use automatic progress navigation for seamless phase transitions
+```
+
+### Hint with Auto Progress Pattern
+```
+HintStep (stepNumber: current) → SubGraphStep (Complete phase) → ProgressMapAutoNextStep → Continue
+
+context: Combine hint guidance with automatic progress navigation
+```
+
+### Sequential Auto Progress Pattern
+```
+SubGraphStep (Step_01) → ProgressMapAutoNextStep → SubGraphStep (Step_02) → 
+ProgressMapAutoNextStep → SubGraphStep (Step_03) → ProgressMapAutoNextStep → Continue
+
+context: Use automatic progress navigation for sequential step execution
+```
+
 ## ⚠️ Common Mistakes
 
 1. **Missing progress updates**: Always update progress appropriately
@@ -55,7 +102,11 @@ normal usage: at the end of a stage or after finishing an experiment step to get
 
 ## 🔍 Debugging Tips
 
-1. **Test progress tracking** one step at a time
-2. **Verify navigation flow** is complete
-3. **Check progress references** are valid
+1. **Test progress operations** one step at a time
+2. **Verify progress states** are correct
+3. **Check progress references** exist
 4. **Use DelayStep** to slow down for debugging
+5. **Monitor progress transitions** with console logs
+6. **Test progress sequences** end-to-end
+7. **Validate progress results** and outputs
+8. **Check progress dependencies** and prerequisites

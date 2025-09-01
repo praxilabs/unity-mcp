@@ -1,7 +1,8 @@
 ---
-description: This could be considered as a part of the ControlFlow Categorie as it is important in deciding the core sequence flow and how will it go use it if you want to execute some logic until something happens or a number of times.
 alwaysApply: false
+description: Iterative operations and loop control. Contains ForLoopStep, WhileLoopStep, and loop patterns for repeated actions and data collection.
 ---
+
 # Loop Nodes
 
 ## 📋 Overview
@@ -52,17 +53,24 @@ WhileLoopStep (user continues) → continueLoop: UserAction → WhileLoopStep (c
                               → exit: Complete
 ```
 
-
 ## ⚠️ Common Mistakes
 
 1. **Infinite loops**: Always ensure exit conditions are met
 2. **Wrong port connections**: Use continueLoop for loop body, exit for completion
+3. **Missing global variables**: Always connect global variables to WhileLoopStep conditions
 4. **Unclear conditions**: Use clear boolean conditions for WhileLoopStep
 
 ## 🔍 Debugging Tips
 
-1. **Test loop logic** with small iteration counts
-2. **Verify exit conditions** are reachable
+1. **Test loop execution** one step at a time
+2. **Verify loop conditions** are correct
+3. **Check loop counters** and limits
+4. **Use DelayStep** to slow down loop execution for debugging
+5. **Monitor loop iterations** with console logs
+6. **Test loop sequences** end-to-end
+7. **Validate loop results** and outputs
+8. **Check loop dependencies** and prerequisites
+
 3. **Check port connections** (continueLoop vs exit)
 4. **Use DelayStep** to slow down loop execution for debugging
 5. **Monitor loop progress** with console logs# Loop Nodes

@@ -1,6 +1,6 @@
 ---
-description: This is responsible for anything that is related to Table for example adding a record to a table, it also contains some functionality to the Stage so check it out if the use want anything to do with stages.
 alwaysApply: false
+description: Data table operations, record management, and stage data handling. Contains table interaction steps, record operations, and data management patterns.
 ---
 # Table Nodes
 
@@ -232,13 +232,12 @@ ExperimentLogic → IfStatementStep (Success) → SetStagePassedStep (CurrentSta
 
 ## 🔍 Debugging Tips
 
-1. **Test stage progression** one stage at a time
-2. **Verify table data** is being recorded correctly
-3. **Check stage status** after each stage operation
-4. **Monitor button states** for record operations
-5. **Use DelayStep** to slow down for debugging
-6. **Verify stage names** are consistent throughout the experiment
-2. **Verify data flow** is complete
-3. **Check table references** are valid
+1. **Test table operations** one step at a time
+2. **Verify table data** is correct
+3. **Check table references** exist
 4. **Use DelayStep** to slow down for debugging
+5. **Monitor table operations** with console logs
+6. **Test table sequences** end-to-end
+7. **Validate table results** and outputs
+8. **Check table dependencies** and prerequisites
 

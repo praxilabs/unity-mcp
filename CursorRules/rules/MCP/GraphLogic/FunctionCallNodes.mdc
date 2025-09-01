@@ -1,3 +1,8 @@
+---
+alwaysApply: false
+description: Method execution on GameObjects and system interactions. Contains FunctionCallStep variants and patterns for component method execution.
+---
+
 # Function Call Nodes
 
 ## 📋 Overview
@@ -92,6 +97,35 @@ IfStatementStep (Check condition) → True: FunctionCallStep (Execute function) 
 FunctionCallStep (Setup function) → DelayStep → FunctionCallStep (Main function) → ShowMessage (Complete)
 ```
 
+### Completion Status Check Pattern
+```
+FunctionCallStep (HasCompletedScenario) → IfStatementStep → True: ShowCompletionMessage
+                                        → False: ContinueExperiment
+
+context: Check completion status before proceeding with experiment flow
+```
+
+### Scenario Completion Marking Pattern
+```
+FunctionCallStep (MarkScenarioAsCompleted) → DelayStep → ShowCompletionMessage
+
+context: Mark a scenario as complete after user finishes all required steps
+```
+
+### UI State Management Pattern
+```
+FunctionCallStep (ToggleFirstPersonUI) → FunctionCallStep (ToggleBirdEyeUI) → Continue
+
+context: Switch between different UI modes for better user experience
+```
+
+### Loading Screen Pattern
+```
+FunctionCallStep (ShowLoadingScreen, 4.0s) → DelayStep (1.0s) → Continue
+
+context: Display loading screen with specific duration parameter
+```
+
 ### Coroutine with Event Control
 ```
 FunctionCallCoroutineStep (Start coroutine) → Wait for GoToNextStep event → Continue
@@ -108,10 +142,14 @@ FunctionCallCoroutineStep (Start coroutine) → Wait for GoToNextStep event → 
 
 ## 🔍 Debugging Tips
 
-3. **Test function calls** one step at a time
+1. **Test function calls** one step at a time
+2. **Verify function parameters** are correct
+3. **Check function references** exist
 4. **Use DelayStep** to slow down execution for debugging
-5. **Check Unity console** for function execution logs
-6. **Monitor coroutine execution** for FunctionCallCoroutineStep
+5. **Monitor function execution** with console logs
+6. **Test function sequences** end-to-end
+7. **Validate function responses** and outputs
+8. **Check function dependencies** and prerequisites
 
 ## 🎯 When to Use Each Type
 

@@ -1,6 +1,6 @@
 ---
-description: this file contains the common sense on how to deal with a request that asks you to do something that involves mouse interaction like clicking or rotating.
 alwaysApply: false
+description: User clicking interactions, object selection, and interactive manipulation. Contains ClickStep, RotateKnobStep, ExploreStep, and click response patterns.
 ---
 # Click Nodes
 
@@ -10,12 +10,11 @@ Click nodes handle user clicking interactions in virtual lab experiments. These 
 ## 🔧 Available Nodes
 
 ### ClickStep
-**File**: [ClickStep.cs](mdc:Assets/Scripts/System/xNode/Steps/ActionExecuted/ClickStep.cs)
 **Purpose**: Handle object clicking interactions
-**Usage Pattern**: Connect to immediate response actions
+**Usage**: Object selection, interactive responses
 **Best Practices**:
-- Use with flashing tools for visual feedback
 - Connect to immediate response actions
+- Use for interactive object manipulation
 
 ### RotateKnobStep
 **Purpose**: Handle knob rotation interactions
@@ -31,10 +30,10 @@ Click nodes handle user clicking interactions in virtual lab experiments. These 
 - Connect to exploration responses
 
 ### ClickUIButtonStep
-**Purpose**: Automating a UI button click.
-**Usage**: Whenever you need to automate a button click.
+**Purpose**: Automating a UI button click
+**Usage**: Whenever you need to automate a button click
 **Best Practices**:
-
+- Use for automated UI interactions
 
 ## 🏗️ Common Patterns
 
@@ -48,7 +47,7 @@ ClickStep (Object) → FunctionCallStep(Functionality) → DelayStep → GameObj
 
 or
 
-ClickStep (Object) → AnimationStep(object)     Animating an object on click.
+ClickStep (Object) → AnimationStep(object)     Animating an object on click. (See MiscNodes.mdc for AnimationStep details)
 
 or any pattern that comes like the previously addressed patterns.
 ```
@@ -72,8 +71,10 @@ ClickStep (Object) → Return
 
 ### Knob Rotation Pattern
 ```
-RotateKnobStep (Knob) → FunctionCallStep (Update value) → ShowMessage (Value changed)
+RotateKnobStep (Knob) → Action → ShowMessage (Value changed)
 ```
+
+**Note**: For FunctionCallStep patterns, see [FunctionCallNodes.mdc](mdc:.cursor/rules/MCP/GraphLogic/FunctionCallNodes.mdc). For AnimationStep details, see [MiscNodes.mdc](mdc:.cursor/rules/MCP/GraphLogic/MiscNodes.mdc)
 
 ### Object Exploration Pattern
 ```
@@ -82,21 +83,36 @@ ExploreStep (Object) → FocusOnToolStep (Object) → ShowMessage (Object detail
 
 ### Multiple Click Interactions
 ```
-CompositeStep.entry ← Setup
-CompositeStep.routes → ClickStep A → Action A → CompositeStep.entry
-CompositeStep.routes → ClickStep B → Action B → CompositeStep.entry
-CompositeStep.exit → Completion
+ClickStep A → Action A → Continue
+ClickStep B → Action B → Continue
 ```
+
+**Note**: For parallel execution patterns, see [ControlFlowNodes.mdc](mdc:.cursor/rules/MCP/GraphLogic/ControlFlowNodes.mdc)
+
+### Click with Camera Focus Pattern
+```
+ClickStep (Bench Position) → FunctionCallStep (SetMainBenchCamera) → Continue
+
+context: Click to focus camera on specific bench position
+```
+
+**Note**: For ToggleCollider patterns, see [ToolNodes.mdc](mdc:.cursor/rules/MCP/GraphLogic/ToolNodes.mdc)
 
 ## ⚠️ Common Mistakes
 
 1. **Incomplete animation implementation**: When user mentions "click makes animation", implement ClickStep → AnimationStep, not just ClickStep
+2. **Missing object verification**: Always verify object exists in registry
 3. **Wrong connection order**: ClickStep should connect to immediate response
 4. **Missing visual feedback**: Users need confirmation of click actions
 
 ## 🔍 Debugging Tips
 
-2. **Test click interactions** one step at a time
-3. **Check object states** before and after clicks
-4. **Use DelayStep** to slow down for debugging
-5. **Verify complete implementation**: When user mentions multi-step requirements, ensure ALL components are # Click Nodes
+1. **Test click interactions** one step at a time
+2. **Verify object states** before and after clicks
+3. **Check collider states** for interaction
+4. **Monitor click responses** with console logs
+5. **Test click sequences** end-to-end
+6. **Validate object references** in registry
+7. **Check click event handling** and responses
+
+**Note**: For DelayStep debugging patterns, see [UtilityNodes.mdc](mdc:.cursor/rules/MCP/GraphLogic/UtilityNodes.mdc)

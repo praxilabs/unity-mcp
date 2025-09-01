@@ -1,5 +1,5 @@
 ---
-description: This class contains the logic and common sense on how to deal with any request that contains Camera logic, it may not contain all of the tools used so you will need to use a function step then.
+description: Camera positioning, focus control, and view management. Contains FocusOnToolStep, ReturnCameraStep, and camera sequence patterns for guided attention.
 alwaysApply: false
 ---
 # Camera Nodes
@@ -51,9 +51,28 @@ ClickStep (Object) → FocusOnToolStep (Object) → ShowMessage (Detailed info) 
 FocusOnToolStep (Setup area) → ShowMessage (Setup instructions) → FocusOnToolStep (Tool) → ShowMessage (Tool usage) → ReturnCameraStep
 ```
 
+### Bench Position Camera Pattern
+```
+ClickStep (Bench Position) → FunctionCallStep (SetMainBenchCamera) → ToggleColliderStep (Enable) → Continue
+
+context: Focus camera on specific bench position when user clicks on it
+```
+
+### Bird's Eye View Pattern
+```
+FunctionCallStep (GoToBirdEye) → DelayStep → FunctionCallStep (ToggleBirdEyeUI) → Continue
+
+context: Switch to overhead view for better spatial understanding
+```
+
 
 ## 🔍 Debugging Tips
 
-2. **Test camera movements** one step at a time
-3. **Check object visibility** before focusing
+1. **Test camera movements** one step at a time
+2. **Verify camera targets** exist in scene
+3. **Check camera states** before and after movements
 4. **Use DelayStep** to slow down camera movements for debugging
+5. **Monitor camera transitions** with console logs
+6. **Test camera sequences** end-to-end
+7. **Validate camera positioning** and focus
+8. **Check camera dependencies** and prerequisites

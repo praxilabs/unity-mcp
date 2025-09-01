@@ -1,8 +1,8 @@
 ---
-description: This file contains the common sense of dealing with other steps that doesn't belong to any category but is just as important as the other steps for example executing an Animation.
+description: Animation control, GameObject management, SubGraph execution, and stage progression. Contains AnimationStep, GameObjectSetActiveStep, GoToStageStep, and SubGraphStep patterns.
 alwaysApply: false
 ---
-# Animation Step Nodes
+# Misc Nodes
 
 ## 📋 Overview
 Animation Step nodes handle animation control and playback in virtual lab experiments. These nodes are essential for object animations and visual effects.
@@ -11,9 +11,12 @@ Animation Step nodes handle animation control and playback in virtual lab experi
 
 ### AnimationStep
 **Purpose**: Animation control and playback
-**Usage**: Object animations, visual effects
+**Usage**: Object animations, visual effects, click-triggered responses
 **Best Practices**:
 - Use for visual feedback and effects
+- **MANDATORY**: When user mentions "click makes animation", implement ClickStep → AnimationStep
+- Always connect AnimationStep.exit to maintain execution flow
+- Use animation triggers over full clips when possible
 
 ### GameObjectSetActiveStep
 **Purpose**: Show and Hide GameObjects at scene.
@@ -27,11 +30,6 @@ Animation Step nodes handle animation control and playback in virtual lab experi
 
 
 ## 🏗️ Common Patterns
-
-### Click to Animation Pattern
-```
-ClickStep (Object) → AnimationStep(object) → Return
-```
 
 ### Animation Sequence Pattern
 ```
@@ -62,23 +60,66 @@ ClickStep (ObjectA) →  GameObjectSetActiveStep (ObjectB, True)
 Start → GameObjectSetActiveStep (Object, True) → Continue
 ```
 
+### SubGraph Modular Execution Pattern
+```
+SubGraphStep (Safety Tools) → Main Experiment Steps → SubGraphStep (Cleanup)
 
-## ⚠️ CRITICAL: Complete Requirement Implementation
-**When user mentions "click makes animation" or similar, ALWAYS implement:**
-```
-ClickStep (Object) → AnimationStep(object) 
-```
-**NOT just:**
-```
-ClickStep (Object) → nothing
+context: Use SubGraphStep for modular, reusable experiment components
 ```
 
-**Examples:**
-- "Click tube makes shaking animation" = ClickStep → AnimationStep
-- "Click dropper triggers effect" = ClickStep → AnimationStep  
-- "Click button plays animation" = ClickStep → AnimationStep
+### SubGraph Safety Protocol Pattern
+```
+SubGraphStep (Safety Tools) → UserAction → Continue
 
-**Always verify each step includes ALL required components, not just the primary action.**
+context: Include safety protocols as reusable SubGraph components
+```
+
+### Multi-Phase Experiment Pattern
+```
+SubGraphStep (Phase 1) → SubGraphStep (Phase 2) → SubGraphStep (Phase 3) → Continue
+
+context: Break complex experiments into modular, manageable phases
+```
+
+### Sequential SubGraph Execution Pattern
+```
+SubGraphStep (Step_01) → SubGraphStep (Step_01.5) → SubGraphStep (Step_02) → Continue
+
+context: Execute subgraphs in specific sequential order for experiment progression
+```
+
+### Exploration to Execution Pattern
+```
+Exploration_Step (User orientation) → SubGraphStep (Main experiment) → Continue
+
+context: Start with exploration phase before executing main experiment steps
+```
+
+### Sequential SubGraph with Hints Pattern
+```
+SubGraphStep (Step_01) → HintStep (stepNumber: 2) → SubGraphStep (Step_02) → 
+HintStep (stepNumber: 3) → SubGraphStep (Step_03) → Continue
+
+context: Execute subgraphs sequentially with hint guidance between phases
+```
+
+### Multi-Step SubGraph Execution Pattern
+```
+SubGraphStep (Step_01) → SubGraphStep (Step_02) → SubGraphStep (Step_03) → 
+SubGraphStep (Step_04) → SubGraphStep (Step_05) → SubGraphStep (Step_06) → Continue
+
+context: Execute multiple subgraph steps in sequence for complex experiment phases
+```
+
+### SubGraph with Auto Progress Pattern
+```
+SubGraphStep (Complete phase) → ProgressMapAutoNextStep → SubGraphStep (Next phase) → Continue
+
+context: Use automatic progress navigation between subgraph phases
+```
+
+
+
 
 ## ⚠️ Common Mistakes
 
@@ -89,6 +130,12 @@ ClickStep (Object) → nothing
 
 ## 🔍 Debugging Tips
 
-2. **Test animations** one step at a time
+1. **Test misc operations** one step at a time
+2. **Verify object states** before and after operations
+3. **Check object references** exist and are valid
 4. **Use DelayStep** to slow down for debugging
+5. **Monitor operations** with console logs
+6. **Test sequences** end-to-end
+7. **Validate results** and visual feedback
+8. **Check dependencies** and prerequisites
 

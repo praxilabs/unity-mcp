@@ -1,5 +1,5 @@
 ---
-description: This file contains any Node that has anything to do with Event for example invoking an Event it is Self-Executed.
+description: Event-driven interactions and reactive programming. Contains event caller nodes and event-based step patterns for reactive experiment flows.
 alwaysApply: false
 ---
 # NewEvents Nodes
@@ -30,7 +30,11 @@ AnyNode → EventCaller(Specifically Registered Event Name) → AnyNode
 
 ## 🔍 Debugging Tips
 
-1. **Test event triggers** one step at a time
-2. **Verify event handlers** are connected properly
-3. **Check event flow** is complete
+1. **Test event execution** one step at a time
+2. **Verify event triggers** are correct
+3. **Check event conditions** and states
 4. **Use DelayStep** to slow down for debugging
+5. **Monitor event execution** with console logs
+6. **Test event sequences** end-to-end
+7. **Validate event responses** and outputs
+8. **Check event dependencies** and prerequisites

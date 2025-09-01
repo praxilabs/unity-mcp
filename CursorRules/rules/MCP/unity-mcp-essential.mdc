@@ -2,14 +2,28 @@
 alwaysApply: true
 ---
 
-
-
 # Unity MCP Bridge - Essential Rules & Category Reference
+
+## 🚨 CRITICAL RULES ⚠️
+
+### **COLLIDER MANAGEMENT RULE**
+**"Enable collider" = `ToggleColliderStep` (NOT `GameObjectSetActiveStep`)**
+- ❌ **Wrong**: `GameObjectSetActiveStep` for colliders
+- ✅ **Correct**: `ToggleColliderStep` for collider management
+
+### **VALIDATION LOOP RULE**
+**After ANY correction, you MUST re-validate and continue the fix→validate cycle until 100% error-free.**
+- Never stop at first fix
+- Always complete the full validation cycle
+- Use `list_graph_nodes` after each correction
 
 ## 🎯 QUICK DECISION TREE
 
 ### Need to show/hide objects?
 → **Tools** category → [GameObjectSetActiveStep](mdc:.cursor/rules/MCP/GraphLogic/ToolNodes.mdc)
+
+### Need to enable/disable colliders?
+→ **Tools** category → [ToggleColliderStep](mdc:.cursor/rules/MCP/GraphLogic/ToolNodes.mdc) ⭐ **CRITICAL RULE**
 
 ### Need user interaction in any order?
 → **Control Flow** category → [CompositeStep pattern](mdc:.cursor/rules/MCP/GraphLogic/ControlFlowNodes.mdc)
@@ -66,9 +80,11 @@ alwaysApply: true
 
 ### 🛠️ Tools
 **Purpose**: Object manipulation and visibility control
-**Use Cases**: Object state management, interaction control, visibility
+**Use Cases**: Object state management, interaction control, visibility, collider management
 **Key Nodes**: GameObjectSetActiveStep, ToggleColliderStep
-**When to Use**: When you need to show/hide objects or control interactions
+**When to Use**: 
+- **GameObjectSetActiveStep**: Show/hide objects
+- **ToggleColliderStep**: Enable/disable colliders ⭐ **CRITICAL RULE**
 **Reference**: [Tool Nodes](mdc:.cursor/rules/MCP/GraphLogic/ToolNodes.mdc)
 
 ### 🖥️ UI
@@ -111,8 +127,7 @@ alwaysApply: true
 **Use Cases**: Object animations, visual effects
 **Key Nodes**: AnimationStep
 **When to Use**: When you need to animate objects or create visual effects
-**Reference**: [Animation Step Nodes](mdc:.cursor/rules/MCP/GraphLogic/AnimationStepNodes.mdc)
-
+**Reference**: [Misc Nodes](mdc:.cursor/rules/MCP/GraphLogic/MiscNodes.mdc)
 
 ## 📐 NODE POSITIONING
 
@@ -127,14 +142,53 @@ Sequential: Node1.exit → Node2.entry → Node3.entry
 Parallel: CompositeStep.routes → [Node1, Node2, Node3] → CompositeStep.entry
 ```
 
+## 🚨 CRITICAL CONNECTION RULES ⚠️
+
+### **MANDATORY NODE CONNECTION REQUIREMENTS**
+
+1. **First Step Node Rule**: 
+   - **NEVER connect TO the entry port of a first step node**
+   - **MUST connect FROM the exit port of a first step node**
+   - First step nodes can only have outgoing connections
+
+2. **End Node Rule**: 
+   - **NEVER connect FROM the exit port of an end node**
+   - **MUST connect TO the entry port of an end node**
+   - End nodes can only have incoming connections
+
+3. **Middle Node Rule**: 
+   - **ALL middle nodes MUST have BOTH incoming AND outgoing connections**
+   - **Incoming**: From previous node's exit port
+   - **Outgoing**: To next node's entry port
+   - **Violation**: If a middle node lacks either connection, your logic is 100% incorrect
+
+4. **Sequential Execution Rule**: 
+   - **When disabling/enabling multiple colliders sequentially**: Execute ONE at a time
+   - **NOT parallel execution**: Our graphs are NOT designed for parallel execution
+   - **Key Difference**: Parallel execution ≠ Parallel order
+   - **Correct Pattern**: Node1.exit → Node2.entry → Node3.entry → Node4.entry
+   - **Wrong Pattern**: Multiple nodes → Single target (creates parallel execution)
+
+### **CONNECTION VALIDATION CHECKLIST**
+- ✅ First step: Only outgoing connections (exit port)
+- ✅ Middle nodes: Both incoming (entry) and outgoing (exit) connections
+- ✅ End nodes: Only incoming connections (entry port)
+- ✅ Sequential operations: One node at a time, not parallel
+- ✅ No floating nodes: Every node must be part of the execution flow
+
+**VIOLATION OF THESE RULES WILL RESULT IN BROKEN EXPERIMENTS**
+
 ## 🔗 ADDITIONAL REFERENCES
 
 - [MCP Tools Reference](mdc:.cursor/rules/MCP/mcp-tools-reference.mdc) - Complete tool reference
 - [Step Nodes Reference](mdc:.cursor/rules/MCP/step-nodes-reference.mdc) - Core step nodes overview
+
+**Remember**: When in doubt, always verify in the codebase first!
 
 
 **Remember**: When in doubt, always verify in the codebase first!
 
+
 # Unity MCP Bridge - Essential Rules & Category Reference
 
 ## 🎯 QUICK DECISION TREE
@@ -242,8 +296,7 @@ Parallel: CompositeStep.routes → [Node1, Node2, Node3] → CompositeStep.entry
 **Use Cases**: Object animations, visual effects
 **Key Nodes**: AnimationStep
 **When to Use**: When you need to animate objects or create visual effects
-**Reference**: [Animation Step Nodes](mdc:.cursor/rules/MCP/GraphLogic/AnimationStepNodes.mdc)
-
+**Reference**: [Misc Nodes](mdc:.cursor/rules/MCP/GraphLogic/MiscNodes.mdc)
 
 ## 📐 NODE POSITIONING
 
@@ -258,10 +311,48 @@ Sequential: Node1.exit → Node2.entry → Node3.entry
 Parallel: CompositeStep.routes → [Node1, Node2, Node3] → CompositeStep.entry
 ```
 
+## 🚨 CRITICAL CONNECTION RULES ⚠️
+
+### **MANDATORY NODE CONNECTION REQUIREMENTS**
+
+1. **First Step Node Rule**: 
+   - **NEVER connect TO the entry port of a first step node**
+   - **MUST connect FROM the exit port of a first step node**
+   - First step nodes can only have outgoing connections
+
+2. **End Node Rule**: 
+   - **NEVER connect FROM the exit port of an end node**
+   - **MUST connect TO the entry port of an end node**
+   - End nodes can only have incoming connections
+
+3. **Middle Node Rule**: 
+   - **ALL middle nodes MUST have BOTH incoming AND outgoing connections**
+   - **Incoming**: From previous node's exit port
+   - **Outgoing**: To next node's entry port
+   - **Violation**: If a middle node lacks either connection, your logic is 100% incorrect
+
+4. **Sequential Execution Rule**: 
+   - **When disabling/enabling multiple colliders sequentially**: Execute ONE at a time
+   - **NOT parallel execution**: Our graphs are NOT designed for parallel execution
+   - **Key Difference**: Parallel execution ≠ Parallel order
+   - **Correct Pattern**: Node1.exit → Node2.entry → Node3.entry → Node4.entry
+   - **Wrong Pattern**: Multiple nodes → Single target (creates parallel execution)
+
+### **CONNECTION VALIDATION CHECKLIST**
+- ✅ First step: Only outgoing connections (exit port)
+- ✅ Middle nodes: Both incoming (entry) and outgoing (exit) connections
+- ✅ End nodes: Only incoming connections (entry port)
+- ✅ Sequential operations: One node at a time, not parallel
+- ✅ No floating nodes: Every node must be part of the execution flow
+
+**VIOLATION OF THESE RULES WILL RESULT IN BROKEN EXPERIMENTS**
+
 ## 🔗 ADDITIONAL REFERENCES
 
 - [MCP Tools Reference](mdc:.cursor/rules/MCP/mcp-tools-reference.mdc) - Complete tool reference
 - [Step Nodes Reference](mdc:.cursor/rules/MCP/step-nodes-reference.mdc) - Core step nodes overview
+
+**Remember**: When in doubt, always verify in the codebase first!
 
 
 **Remember**: When in doubt, always verify in the codebase first!
