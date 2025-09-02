@@ -267,7 +267,7 @@ context: Guide user through scenario selection process
 6. **Missing dependency handling**: Properly handle stage dependencies in dependent messages
 7. **Incomplete MCQ options**: Provide all necessary answer choices
 8. **Inadequate safety warnings**: Ensure safety messages are prominent and clear
-
+8. **Miss-Usage of UINodes**: Don't use a SideMessageStep instead of IntroEndMessageStep 
 ## 🔍 Debugging Tips
 
 1. **Test message display** one step at a time

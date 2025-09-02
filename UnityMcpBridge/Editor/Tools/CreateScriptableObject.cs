@@ -32,6 +32,13 @@ namespace UnityMcpBridge.Editor.Tools
                     return ToolUtils.CreateErrorResponse(pathError);
                 }
 
+                // Get optional asset name parameter
+                string assetName = null;
+                if (@params.ContainsKey("assetName"))
+                {
+                    assetName = @params["assetName"]?.ToString();
+                }
+
                 // Ensure directory exists
                 string directory = Path.GetDirectoryName(assetPath);
                 if (!Directory.Exists(directory))
@@ -44,6 +51,21 @@ namespace UnityMcpBridge.Editor.Tools
                 if (asset == null)
                 {
                     return ToolUtils.CreateErrorResponse($"Failed to create ScriptableObject of type '{scriptableObjectType}'. Type may not exist or may not be a ScriptableObject.");
+                }
+
+                // Generate asset path with custom name if provided
+                if (!string.IsNullOrEmpty(assetName))
+                {
+                    // Ensure the asset name has the correct extension
+                    string extension = Path.GetExtension(assetPath);
+                    if (string.IsNullOrEmpty(extension))
+                    {
+                        extension = ".asset";
+                    }
+                    
+                    // Create new path with custom name
+                    string fileName = assetName.EndsWith(extension) ? assetName : assetName + extension;
+                    assetPath = Path.Combine(directory, fileName);
                 }
 
                 // Ensure unique filename

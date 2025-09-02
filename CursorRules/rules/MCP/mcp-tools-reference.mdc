@@ -1,194 +1,54 @@
 
-# Unity MCP Bridge Tools Reference
+# Unity MCP Bridge - Complete Tool Reference
 
-## 🔧 Core Unity Management Tools
+## 🚨 CRITICAL POSITIONING WARNING ⚠️
 
-### Script Management
+**NEVER use negative Y coordinates that create bottom-up flow!**
+- ❌ **FORBIDDEN**: `position_y: -200, -300, -400` (creates bottom-up structure)
+- ✅ **REQUIRED**: Use `position_y: 0, -200, -400` (creates top-to-bottom structure)
+- ✅ **ALTERNATIVE**: Use `position_x: 0, 300, 600` (creates left-to-right structure)
+
+---
+
+## 📋 Core Tools
+
+### Script & Asset Management
 
 #### `mcp_unityMCP_manage_script`
 **Purpose**: Create, read, update, delete C# scripts
-**Parameters**:
-- `action` (string): 'create', 'read', 'update', 'delete'
-- `name` (string): Script name (no .cs extension)
-- `path` (string): Asset path (default: "Assets/")
-- `contents` (string): C# code for 'create'/'update'
-- `script_type` (string): Type hint (e.g., 'MonoBehaviour')
-- `namespace` (string): Script namespace
-**Usage**:
-```python
-mcp_unityMCP_manage_script(
-    action="create",
-    name="MyScript",
-    path="Assets/Scripts/",
-    contents="using UnityEngine; public class MyScript : MonoBehaviour {}",
-    script_type="MonoBehaviour",
-    namespace="MyNamespace"
-)
-```
+**Key Parameters**: `action`, `name`, `path`, `contents`, `script_type`, `namespace`
 
-### Scene Management
+#### `mcp_unityMCP_manage_asset`
+**Purpose**: Import, create, modify, delete assets
+**Key Parameters**: `action`, `path`, `asset_type`, `properties`, `search_pattern`
+
+#### `mcp_unityMCP_create_scriptable_object`
+**Purpose**: Create new ScriptableObject of specified type
+**Key Parameters**: `scriptable_object_type`, `asset_name`, `folder`
+
+#### `mcp_unityMCP_manage_shader`
+**Purpose**: Create, read, update, delete shader scripts
+**Key Parameters**: `action`, `name`, `path`, `contents`
+
+### Scene & Editor Control
 
 #### `mcp_unityMCP_manage_scene`
 **Purpose**: Load, save, create scenes and get hierarchy
-**Parameters**:
-- `action` (string): 'load', 'save', 'create', 'get_hierarchy'
-- `name` (string): Scene name (no extension)
-- `path` (string): Asset path (default: "Assets/")
-- `build_index` (int): Build index for load/build settings
-**Usage**:
-```python
-# Load scene
-mcp_unityMCP_manage_scene(action="load", name="MainScene", path="Assets/Scenes/")
-
-# Get hierarchy
-mcp_unityMCP_manage_scene(action="get_hierarchy", name="MainScene", path="Assets/Scenes/")
-```
-
-### Editor Control
+**Key Parameters**: `action`, `name`, `path`, `build_index`
 
 #### `mcp_unityMCP_manage_editor`
 **Purpose**: Control Unity editor state and settings
-**Parameters**:
-- `action` (string): 'play', 'pause', 'get_state', 'set_active_tool', 'add_tag'
-- `wait_for_completion` (bool): Wait for certain actions
-- `tool_name` (string): Tool name for set_active_tool
-- `tag_name` (string): Tag name for add_tag
-- `layer_name` (string): Layer name for add_layer
-**Usage**:
-```python
-# Play mode
-mcp_unityMCP_manage_editor(action="play", wait_for_completion=True)
+**Key Parameters**: `action`, `wait_for_completion`, `tool_name`, `tag_name`, `layer_name`
 
-# Get editor state
-mcp_unityMCP_manage_editor(action="get_state")
-```
-
-## 🎮 GameObject Management
+#### `mcp_unityMCP_execute_menu_item`
+**Purpose**: Execute Unity Editor menu item via path
+**Key Parameters**: `menu_path`, `action`, `parameters`
 
 ### GameObject Operations
 
 #### `mcp_unityMCP_manage_gameobject`
 **Purpose**: Create, modify, delete, find GameObjects and manage components
-**Parameters**:
-- `action` (string): 'create', 'modify', 'find', 'add_component', 'remove_component', 'set_component_property', 'get_components'
-- `target` (string): GameObject identifier (name or path)
-- `search_method` (string): How to find objects ('by_name', 'by_id', 'by_path')
-- `name` (string): GameObject name
-- `tag` (string): Tag name
-- `parent` (string): Parent GameObject reference
-- `layer` (string): Layer name
-- `position` (array): [x, y, z] position
-- `rotation` (array): [x, y, z] rotation
-- `scale` (array): [x, y, z] scale
-- `components_to_add` (array): List of component names
-- `component_properties` (object): Component properties to set
-- `primitive_type` (string): Type for primitive creation
-- `save_as_prefab` (bool): Save as prefab
-- `prefab_path` (string): Prefab save path
-- `set_active` (bool): Set GameObject active state
-- `components_to_remove` (array): Components to remove
-- `search_term` (string): Search term for find
-- `find_all` (bool): Find all matching objects
-- `search_in_children` (bool): Search in children
-- `search_inactive` (bool): Search inactive objects
-- `component_name` (string): Component name for operations
-- `includeNonPublicSerialized` (bool): Include private serialized fields
-**Usage**:
-```python
-# Create GameObject
-mcp_unityMCP_manage_gameobject(
-    action="create",
-    name="MyObject",
-    position=[0, 0, 0],
-    components_to_add=["Rigidbody", "Collider"]
-)
-
-# Find GameObject
-mcp_unityMCP_manage_gameobject(
-    action="find",
-    search_method="by_name",
-    search_term="Player"
-)
-
-# Set component property
-mcp_unityMCP_manage_gameobject(
-    action="set_component_property",
-    target="Player",
-    search_method="by_name",
-    component_properties={"Rigidbody": {"mass": 10.0}}
-)
-```
-
-## 📦 Asset Management
-
-### Asset Operations
-
-#### `mcp_unityMCP_manage_asset`
-**Purpose**: Import, create, modify, delete assets
-**Parameters**:
-- `action` (string): 'import', 'create', 'modify', 'delete', 'duplicate', 'move', 'rename', 'search', 'get_info', 'create_folder', 'get_components'
-- `path` (string): Asset path or search scope
-- `asset_type` (string): Asset type (e.g., 'Material', 'Folder')
-- `properties` (object): Properties for 'create'/'modify'
-- `destination` (string): Target path for 'duplicate'/'move'
-- `search_pattern` (string): Search pattern (e.g., '*.prefab')
-- `filter_type` (string): Filter by type
-- `filter_date_after` (string): Filter by date
-- `page_size` (int): Pagination size
-- `page_number` (int): Page number
-- `generate_preview` (bool): Generate preview
-**Usage**:
-```python
-# Create material
-mcp_unityMCP_manage_asset(
-    action="create",
-    path="Assets/Materials/",
-    asset_type="Material",
-    properties={"color": [1, 0, 0, 1], "shader": "Standard"}
-)
-
-# Search assets
-mcp_unityMCP_manage_asset(
-    action="search",
-    path="Assets/",
-    search_pattern="*.prefab",
-    filter_type="Prefab"
-)
-```
-
-### ScriptableObject Creation
-
-#### `mcp_unityMCP_create_scriptable_object`
-**Purpose**: Create new ScriptableObject of specified type
-**Parameters**:
-- `scriptable_object_type` (string): Type of ScriptableObject
-- `folder` (string): Folder path for creation
-**Usage**:
-```python
-mcp_unityMCP_create_scriptable_object(
-    scriptable_object_type="StepsGraph",
-    folder="Assets/Testing/"
-)
-```
-
-## 🎨 Shader Management
-
-#### `mcp_unityMCP_manage_shader`
-**Purpose**: Create, read, update, delete shader scripts
-**Parameters**:
-- `action` (string): 'create', 'read', 'update', 'delete'
-- `name` (string): Shader name (no .shader extension)
-- `path` (string): Asset path (default: "Assets/")
-- `contents` (string): Shader code for 'create'/'update'
-**Usage**:
-```python
-mcp_unityMCP_manage_shader(
-    action="create",
-    name="MyShader",
-    path="Assets/Shaders/",
-    contents="Shader \"Custom/MyShader\" { ... }"
-)
-```
+**Key Parameters**: `action`, `target`, `search_method`, `name`, `position`, `rotation`, `scale`, `components_to_add`, `component_properties`
 
 ## 🎯 Node Graph Management
 
@@ -196,326 +56,100 @@ mcp_unityMCP_manage_shader(
 
 #### `mcp_unityMCP_list_graph_nodes`
 **Purpose**: List all nodes in a StepsGraph
-**Parameters**:
-- `graph_path` (string): Path to StepsGraph asset
-**Returns**: Complete node list with positions, types, and IDs
-**Usage**:
-```python
-mcp_unityMCP_list_graph_nodes("Assets/Testing/Graphs/NewStepsGraph.asset")
-```
+**Parameters**: `graph_path`
 
 #### `mcp_unityMCP_check_node_exists`
 **Purpose**: Verify if a node exists in the graph
-**Parameters**:
-- `graph_path` (string): Path to StepsGraph asset
-- `node_name` (string): Name of node to check
-**Usage**:
-```python
-mcp_unityMCP_check_node_exists("Assets/Testing/Graphs/NewStepsGraph.asset", "ClickStep_-123456")
-```
+**Parameters**: `graph_path`, `node_name`
 
-### Node Creation
+#### `mcp_unityMCP_list_available_node_types`
+**Purpose**: List all available node types for xNode graphs
+**Parameters**: `random_string` (dummy parameter required)
+
+### Node Operations
 
 #### `mcp_unityMCP_create_xnode_node`
 **Purpose**: Create new node in existing xNode graph
-**Parameters**:
-- `graph_path` (string): Path to NodeGraph asset
-- `node_type_name` (string): Name of node type to create
-- `position_x` (float): X position in graph editor
-- `position_y` (float): Y position in graph editor
-- `tooltip` (string): This is a MUST for explaining the logic behind this node.
-**Usage**:
-```python
-mcp_unityMCP_create_xnode_node(
-    "Assets/Testing/Graphs/NewStepsGraph.asset",
-    "ClickStep",
-    100.0,
-    -200.0,
-    "This is a Node to click on the object [object] to [logic]"
-)
-```
+**Key Parameters**: `graph_path`, `node_type_name`, `position_x`, `position_y`, `tooltip`
 
 #### `mcp_unityMCP_delete_xnode_node`
 **Purpose**: Delete node from xNode graph
-**Parameters**:
-- `graph_path` (string): Path to NodeGraph asset
-- `node_identifier` (string): Node name or instance ID
-- `identifier_type` (string): "name" or "id" (default: "name")
-**Usage**:
-```python
-mcp_unityMCP_delete_xnode_node(
-    "Assets/Testing/Graphs/NewStepsGraph.asset",
-    "ClickStep_-123456",
-    "name"
-)
-```
+**Key Parameters**: `graph_path`, `node_identifier`, `identifier_type`
 
 #### `mcp_unityMCP_delete_multiple_nodes`
 **Purpose**: Delete multiple nodes from xNode graph
-**Parameters**:
-- `graph_path` (string): Path to NodeGraph asset
-- `node_identifiers` (array): List of node names or IDs
-- `identifier_type` (string): "name" or "id" (default: "name")
-**Usage**:
-```python
-mcp_unityMCP_delete_multiple_nodes(
-    "Assets/Testing/Graphs/NewStepsGraph.asset",
-    ["ClickStep_-123456", "DelayStep_-789012"],
-    "name"
-)
-```
+**Key Parameters**: `graph_path`, `node_identifiers`, `identifier_type`
 
 #### `mcp_unityMCP_set_node_position`
 **Purpose**: Set position of specific node in xNode graph
-**Parameters**:
-- `graph_path` (string): Path to NodeGraph asset
-- `node_name` (string): Name of node to modify
-- `position_x` (float): X position in graph editor
-- `position_y` (float): Y position in graph editor
-**Usage**:
-```python
-mcp_unityMCP_set_node_position(
-    "Assets/Testing/Graphs/NewStepsGraph.asset",
-    "ClickStep_-123456",
-    200.0,
-    -300.0
-)
-```
+**Key Parameters**: `graph_path`, `node_name`, `position_x`, `position_y`
 
-### Node Connection Management
+### Node Connections
 
 #### `mcp_unityMCP_make_connection_between_nodes`
 **Purpose**: Create connection between two nodes
-**Parameters**:
-- `graph_path` (string): Path to NodeGraph asset
-- `from_node` (string/int): Source node name or instance ID
-- `to_node` (string/int): Target node name or instance ID
-- `from_port` (string, optional): Output port name
-- `to_port` (string, optional): Input port name
-**Usage**:
-```python
-mcp_unityMCP_make_connection_between_nodes(
-    "Assets/Testing/Graphs/NewStepsGraph.asset",
-    "ClickStep_-123456",
-    "DelayStep_-789012"
-)
-```
+**Key Parameters**: `graph_path`, `from_node`, `to_node`, `from_port`, `to_port`
 
 #### `mcp_unityMCP_connect_nodes_by_name`
-**Purpose**: Connect nodes using their names
-**Parameters**:
-- `graph_path` (string): Path to NodeGraph asset
-- `from_node_name` (string): Source node name
-- `to_node_name` (string): Target node name
-- `from_port` (string, optional): Output port name
-- `to_port` (string, optional): Input port name
-**Usage**:
-```python
-mcp_unityMCP_connect_nodes_by_name(
-    "Assets/Testing/Graphs/NewStepsGraph.asset",
-    "DelayStep_-123456",
-    "ClickStep_-789012"
-)
-```
+**Purpose**: Connect nodes using their names (convenience wrapper)
+**Key Parameters**: `graph_path`, `from_node_name`, `to_node_name`, `from_port`, `to_port`
 
 #### `mcp_unityMCP_connect_nodes_by_id`
-**Purpose**: Connect nodes using their instance IDs
-**Parameters**:
-- `graph_path` (string): Path to NodeGraph asset
-- `from_node_id` (int): Instance ID of source node
-- `to_node_id` (int): Instance ID of target node
-- `from_port` (string, optional): Output port name
-- `to_port` (string, optional): Input port name
-**Usage**:
-```python
-mcp_unityMCP_connect_nodes_by_id(
-    "Assets/Testing/Graphs/NewStepsGraph.asset",
-    123456,
-    789012
-)
-```
+**Purpose**: Connect nodes using their instance IDs (convenience wrapper)
+**Key Parameters**: `graph_path`, `from_node_id`, `to_node_id`, `from_port`, `to_port`
 
-### Connection Deletion
+### Connection Management
 
 #### `mcp_unityMCP_delete_connection_between_nodes`
 **Purpose**: Delete connection between two nodes
-**Parameters**:
-- `graph_path` (string): Path to NodeGraph asset
-- `from_node` (string/int): Source node name or instance ID
-- `to_node` (string/int): Target node name or instance ID
-- `from_port` (string, optional): Output port name
-- `to_port` (string, optional): Input port name
-**Usage**:
-```python
-mcp_unityMCP_delete_connection_between_nodes(
-    "Assets/Testing/Graphs/NewStepsGraph.asset",
-    "ClickStep_-123456",
-    "DelayStep_-789012"
-)
-```
-
-#### `mcp_unityMCP_delete_connection_by_name`
-**Purpose**: Delete connection using node names
-**Parameters**:
-- `graph_path` (string): Path to NodeGraph asset
-- `from_node_name` (string): Source node name
-- `to_node_name` (string): Target node name
-- `from_port` (string, optional): Output port name
-- `to_port` (string, optional): Input port name
-**Usage**:
-```python
-mcp_unityMCP_delete_connection_by_name(
-    "Assets/Testing/Graphs/NewStepsGraph.asset",
-    "ClickStep_-123456",
-    "DelayStep_-789012"
-)
-```
-
-#### `mcp_unityMCP_delete_connection_by_id`
-**Purpose**: Delete connection using node IDs
-**Parameters**:
-- `graph_path` (string): Path to NodeGraph asset
-- `from_node_id` (int): Instance ID of source node
-- `to_node_id` (int): Instance ID of target node
-- `from_port` (string, optional): Output port name
-- `to_port` (string, optional): Input port name
-**Usage**:
-```python
-mcp_unityMCP_delete_connection_by_id(
-    "Assets/Testing/Graphs/NewStepsGraph.asset",
-    123456,
-    789012
-)
-```
+**Key Parameters**: `graph_path`, `from_node`, `to_node`, `from_port`, `to_port`
 
 #### `mcp_unityMCP_delete_all_connections_from_node`
 **Purpose**: Delete all connections from a specific node
-**Parameters**:
-- `graph_path` (string): Path to NodeGraph asset
-- `node` (string/int): Node name or instance ID
-- `port` (string, optional): Output port name
-**Usage**:
-```python
-mcp_unityMCP_delete_all_connections_from_node(
-    "Assets/Testing/Graphs/NewStepsGraph.asset",
-    "ClickStep_-123456"
-)
-```
+**Key Parameters**: `graph_path`, `node`, `port`
 
 #### `mcp_unityMCP_delete_all_connections_to_node`
 **Purpose**: Delete all connections to a specific node
-**Parameters**:
-- `graph_path` (string): Path to NodeGraph asset
-- `node` (string/int): Node name or instance ID
-- `port` (string, optional): Input port name
-**Usage**:
-```python
-mcp_unityMCP_delete_all_connections_to_node(
-    "Assets/Testing/Graphs/NewStepsGraph.asset",
-    "ClickStep_-123456"
-)
-```
+**Key Parameters**: `graph_path`, `node`, `port`
 
 #### `mcp_unityMCP_delete_all_connections_in_graph`
 **Purpose**: Delete all connections in a NodeGraph
-**Parameters**:
-- `graph_path` (string): Path to NodeGraph asset
-**Usage**:
-```python
-mcp_unityMCP_delete_all_connections_in_graph("Assets/Testing/Graphs/NewStepsGraph.asset")
-```
+**Key Parameters**: `graph_path`
 
 ### Graph Configuration
 
 #### `mcp_unityMCP_set_node_as_first_step`
 **Purpose**: Set specific node as first step in StepsGraph
-**Parameters**:
-- `graph_path` (string): Path to StepsGraph asset
-- `node_name` (string): Name of node to set as first step
-**Usage**:
-```python
-mcp_unityMCP_set_node_as_first_step(
-    "Assets/Testing/Graphs/NewStepsGraph.asset",
-    "ClickStep_-123456"
-)
-```
+**Key Parameters**: `graph_path`, `node_name`
 
-#### `mcp_unityMCP_list_available_node_types`
-**Purpose**: List all available node types for xNode graphs
-**Parameters**:
-- `random_string` (string): Dummy parameter required
-**Usage**:
-```python
-mcp_unityMCP_list_available_node_types("dummy")
-```
-
-## 🔍 Debugging & Console Tools
-
-### Console Management
+## 🔍 Debugging & Console
 
 #### `mcp_unityMCP_read_console`
 **Purpose**: Get messages from or clear Unity Editor console
-**Parameters**:
-- `action` (string): 'get' or 'clear'
-- `types` (array, optional): Message types ('error', 'warning', 'log', 'all')
-- `count` (int, optional): Max messages to return
-- `filter_text` (string, optional): Text filter for messages
-- `since_timestamp` (string, optional): Get messages after timestamp (ISO 8601)
-- `format` (string, optional): Output format ('plain', 'detailed', 'json')
-- `include_stacktrace` (bool, optional): Include stack traces
-**Usage**:
-```python
-# Get recent errors and warnings
-mcp_unityMCP_read_console(
-    action="get",
-    types=["error", "warning"],
-    count=10
-)
-
-# Clear console
-mcp_unityMCP_read_console(action="clear")
-```
-
-### Debug Output
+**Key Parameters**: `action`, `types`, `count`, `filter_text`, `format`
 
 #### `mcp_unityMCP_print`
 **Purpose**: Print custom message to Unity console
-**Parameters**:
-- `value` (string, optional): Custom message (defaults to 'Hello, World!')
-**Usage**:
-```python
-mcp_unityMCP_print("Debug message from MCP")
-```
+**Key Parameters**: `value` (optional, defaults to 'Hello, World!')
 
-## 🎛️ Menu & Editor Integration
+---
 
-#### `mcp_unityMCP_execute_menu_item`
-**Purpose**: Execute Unity Editor menu item via path
-**Parameters**:
-- `menu_path` (string): Full path of menu item (e.g., "File/Save Project")
-- `action` (string, optional): Operation to perform (default: 'execute')
-- `parameters` (object, optional): Parameters for menu item
-**Usage**:
-```python
-mcp_unityMCP_execute_menu_item("File/Save Project")
-```
+## 🎯 Standard Workflows
 
-## 🎯 Tool Usage Patterns
-
-### Standard Graph Creation Workflow
+### Graph Creation Workflow
 ```python
 # 1. Create graph
-mcp_unityMCP_create_scriptable_object("StepsGraph", "Assets/Testing/Graphs/")
+graph_path = mcp_unityMCP_create_scriptable_object("StepsGraph", "MyGraph", "Assets/Testing/Graphs/")
 
-# 2. Create nodes
-mcp_unityMCP_create_xnode_node(graph_path, "ClickStep", 100, -200)
-mcp_unityMCP_create_xnode_node(graph_path, "DelayStep", 500, -200)
+# 2. Create nodes (TOP-TO-BOTTOM structure - RECOMMENDED)
+mcp_unityMCP_create_xnode_node(graph_path, "ClickStep", 0, 0, "Click on object")
+mcp_unityMCP_create_xnode_node(graph_path, "DelayStep", 0, -300, "2 second delay")
 
 # 3. Connect nodes
-mcp_unityMCP_connect_nodes_by_name(graph_path, "ClickStep_-123456", "DelayStep_-789012")
+mcp_unityMCP_connect_nodes_by_name(graph_path, "ClickStep_123", "DelayStep_456")
 
 # 4. Set first step
-mcp_unityMCP_set_node_as_first_step(graph_path, "ClickStep_-123456")
+mcp_unityMCP_set_node_as_first_step(graph_path, "ClickStep_123")
 
 # 5. Verify setup
 mcp_unityMCP_list_graph_nodes(graph_path)
@@ -531,14 +165,7 @@ mcp_unityMCP_manage_gameobject(
     components_to_add=["Rigidbody"]
 )
 
-# 2. Find and modify
-mcp_unityMCP_manage_gameobject(
-    action="find",
-    search_method="by_name",
-    search_term="MyObject"
-)
-
-# 3. Set properties
+# 2. Set properties
 mcp_unityMCP_manage_gameobject(
     action="set_component_property",
     target="MyObject",
@@ -547,60 +174,32 @@ mcp_unityMCP_manage_gameobject(
 )
 ```
 
-### Asset Management Workflow
-```python
-# 1. Create folder
-mcp_unityMCP_manage_asset(action="create_folder", path="Assets/MyAssets/")
-
-# 2. Create material
-mcp_unityMCP_manage_asset(
-    action="create",
-    path="Assets/MyAssets/",
-    asset_type="Material",
-    properties={"color": [1, 0, 0, 1]}
-)
-
-# 3. Search assets
-mcp_unityMCP_manage_asset(
-    action="search",
-    path="Assets/MyAssets/",
-    search_pattern="*.mat"
-)
-```
+---
 
 ## ⚠️ Critical Best Practices
 
 ### ScriptableObject Creation
-- **Exact Class Names**: Always use exact class names from codebase
-- **Common Names**: `"ExperimentItemsRegistry"`, `"ExperimentData"`, `"StepsGraph"`
+- **Exact Class Names**: Use exact class names: `"ExperimentItemsRegistry"`, `"ExperimentData"`, `"StepsGraph"`
 - **Verification**: Search codebase before creating to prevent "Instance couldn't be created" errors
 
 ### Node Graph Management
-- **Position Planning**: Plan node positions to avoid overlaps (400 units horizontal, 300 vertical)
-- **Connection Patterns**: Understand CompositeStep pattern (routes → logic → entry)
-- **Port Verification**: Verify port names exist before connecting
-- **Incremental Testing**: Test nodes and connections one at a time
+- **Positioning Rules**: 
+  - ✅ **TOP-TO-BOTTOM**: `position_y: 0, -300, -600` (recommended)
+  - ✅ **LEFT-TO-RIGHT**: `position_x: 0, 450, 900`
+  - ❌ **NEVER bottom-up**: Avoid `position_y: -300, -100, 0`
+- **Spacing**: Minimum 450px horizontal, 300px vertical between sequential nodes
+- **Directional Connections**: ✅ **FORWARD ONLY**, ❌ **NEVER BACKWARDS**
 
-### GameObject Operations
-- **Name Matching**: Match object names exactly (case-sensitive, spaces matter)
-- **Component Verification**: Check component availability before function calls
-- **Property Format**: Use correct property format for component assignments
-
-### Registry Usage
-- **RegistryItem Format**: Use exact format: `{"prefabName": "ParentName", "childName": "ChildName"}`
-- **Double Quotes**: Always use double quotes around keys AND values
-- **Exploration**: Explore registry structure before using objects
-
-## 🚨 Error Prevention
+## 🚨 Error Prevention & Debugging
 
 ### Common Issues
-1. **ScriptableObject Errors**: Use exact class names, never assume
+1. **ScriptableObject Errors**: Use exact class names
 2. **Connection Errors**: Verify ports exist, test incrementally
-3. **Registry Errors**: Match names exactly, explore before using
+3. **Registry Errors**: Match names exactly
 4. **Component Errors**: Verify components exist before calling methods
 
 ### Debugging Steps
-1. Check console for errors: `mcp_unityMCP_read_console(action="get", types=["error"])`
+1. Check console: `mcp_unityMCP_read_console(action="get", types=["error"])`
 2. Verify node exists: `mcp_unityMCP_check_node_exists(graph_path, node_name)`
 3. List graph nodes: `mcp_unityMCP_list_graph_nodes(graph_path)`
 4. Print debug info: `mcp_unityMCP_print("Debug message")`

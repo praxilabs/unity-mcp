@@ -10,6 +10,7 @@ def register_create_scriptable_object_tools(mcp: FastMCP):
     def create_scriptable_object(
         ctx: Context,
         scriptable_object_type: str,
+        asset_name: str,
         folder: str = "Assets/Testing/"
     ) -> Dict[str, Any]:
         """
@@ -17,34 +18,25 @@ def register_create_scriptable_object_tools(mcp: FastMCP):
 
         Args:
             scriptable_object_type: The type of ScriptableObject to create (e.g., "StepsGraph", "ExperimentData").
+            asset_name: The name for the asset (without extension).
             folder: Folder path where the asset will be created.
 
         Returns:
             Dictionary with results ('success', 'message', 'assetPath', 'timestamp').
         """
         try:
-            # Generate appropriate asset name based on the ScriptableObject type
-            if scriptable_object_type.lower() in ["stepsgraph", "steps_graph"]:
-                asset_name = "NewStepsGraph"
-            elif scriptable_object_type.lower() in ["experimentdata", "experiment_data"]:
-                asset_name = "NewExperimentData"
-            elif scriptable_object_type.lower() in ["itemregistry", "item_registry"]:
-                asset_name = "NewItemRegistry"
-            else:
-                # Default naming pattern: "New" + ScriptableObject type
-                asset_name = f"New{scriptable_object_type}"
-            
             # Ensure folder ends with /
             if not folder.endswith("/"):
                 folder += "/"
             
-            # Create full asset path
+            # Create full asset path with the provided asset name
             asset_path = f"{folder}{asset_name}.asset"
             
             connection = get_unity_connection()
             params = {
                 "scriptableObjectType": scriptable_object_type,
-                "assetPath": asset_path
+                "assetPath": asset_path,
+                "assetName": asset_name
             }
             result = connection.send_command("create_scriptable_object", params)
             return result

@@ -6,6 +6,33 @@ alwaysApply: true
 
 ## 🚨 CRITICAL RULES ⚠️
 
+### **THE ULTIMATE RULE**
+- ALWAYS check out the common mistakes section of all the files of the nodes you are about to use. this rule should never be broken this rule is the most important out of all the other rules.
+- while interpretting the prompt you have to always go to the Verbal Clearance section of each file to never mis-interpret text which would lead to an error.
+
+### **GRAPH NAMING RULE** ⭐ **MANDATORY DESCRIPTIVE NAMING**
+**ALWAYS create graphs with descriptive, meaningful names that explain the graph's purpose and content.**
+
+#### **Naming Convention Structure**
+```
+[ExperimentType]_[SpecificPurpose]_[GraphType]
+```
+
+#### **Naming Examples by Experiment Type**
+- **Physics**: `PhysicsLab_Mechanics_StepGraph`, `PhysicsLab_Electricity_StepGraph`
+- **Chemistry**: `ChemistryLab_Titration_StepGraph`, `ChemistryLab_Reactions_StepGraph`
+- **Biology**: `BiologyLab_Microscopy_StepGraph`, `BiologyLab_Dissection_StepGraph`
+- **Interactive**: `InteractiveLab_EquipmentSetup_StepGraph`, `InteractiveLab_DataCollection_StepGraph`
+- **Multi-Phase**: `PhysicsLab_Phase1_Introduction_StepGraph`, `PhysicsLab_Phase2_Exploration_StepGraph`
+
+#### **Naming Guidelines**
+1. **🎯 Be Specific**: Include exact experiment type and purpose
+2. **📋 Include Phase**: If multi-phase, include phase number/name
+3. **🔧 Indicate Type**: Always include `StepGraph` suffix
+4. **📁 Use Underscores**: Separate words with underscores
+5. **🎨 Be Descriptive**: Name should immediately tell you what the graph does
+6. **🔍 Avoid Generic Names**: Never use "NewStepsGraph", "Graph1", "Experiment", "Test"
+
 ### **COLLIDER MANAGEMENT RULE**
 **"Enable collider" = `ToggleColliderStep` (NOT `GameObjectSetActiveStep`)**
 - ❌ **Wrong**: `GameObjectSetActiveStep` for colliders
@@ -34,325 +61,66 @@ alwaysApply: true
 ### Need function calls?
 → **Function Call** category → [FunctionCallStep](mdc:.cursor/rules/MCP/GraphLogic/FunctionCallNodes.mdc)
 
-## 📂 STEP NODE CATEGORIES OVERVIEW
+## 📂 STEP NODE CATEGORIES
 
-### 🔗 Attach-Detach
-**Purpose**: Handle object attachment and detachment operations
-**Use Cases**: Equipment assembly, component connections, interactive object manipulation
-**Key Nodes**: AttachStep, DetachStep
-**When to Use**: When objects need to be physically connected or disconnected
-**Reference**: [Attach-Detach Nodes](mdc:.cursor/rules/MCP/GraphLogic/Attach-DetachNodes.mdc)
+**Quick Reference**: [Attach-Detach](mdc:.cursor/rules/MCP/GraphLogic/Attach-DetachNodes.mdc) | [Click](mdc:.cursor/rules/MCP/GraphLogic/ClickNodes.mdc) | [Control Flow](mdc:.cursor/rules/MCP/GraphLogic/ControlFlowNodes.mdc) | [Camera](mdc:.cursor/rules/MCP/GraphLogic/CameraNodes.mdc) | [Function Call](mdc:.cursor/rules/MCP/GraphLogic/FunctionCallNodes.mdc) | [Loops](mdc:.cursor/rules/MCP/GraphLogic/LoopNodes.mdc) | [Tools](mdc:.cursor/rules/MCP/GraphLogic/ToolNodes.mdc) | [UI](mdc:.cursor/rules/MCP/GraphLogic/UINodes.mdc) | [Utility](mdc:.cursor/rules/MCP/GraphLogic/UtilityNodes.mdc) | [NewEvents](mdc:.cursor/rules/MCP/GraphLogic/NewEventsNodes.mdc) | [Table](mdc:.cursor/rules/MCP/GraphLogic/TableNodes.mdc) | [Progress Map](mdc:.cursor/rules/MCP/GraphLogic/ProgressMapNodes.mdc) | [Misc](mdc:.cursor/rules/MCP/GraphLogic/MiscNodes.mdc)
 
-### 🖱️ Click
-**Purpose**: Handle user clicking interactions
-**Use Cases**: User interface interactions, object selection, interactive object manipulation
-**Key Nodes**: ClickStep, RotateKnobStep, ExploreStep
-**When to Use**: When user needs to interact with objects via clicking, rotating, or exploring
-**Reference**: [Click Nodes](mdc:.cursor/rules/MCP/GraphLogic/ClickNodes.mdc)
+## 🔗 **CRITICAL POSITIONING & CONNECTION RULES** ⚠️
 
-### 🔄 Control Flow
-**Purpose**: Manage execution flow and branching logic
-**Use Cases**: Decision making, parallel execution, state management
-**Key Nodes**: CompositeStep, IfStatementStep, SwitchStep, SwitchEnumStep
-**When to Use**: When you need conditional logic, parallel execution, or state machines
-**Reference**: [Control Flow Nodes](mdc:.cursor/rules/MCP/GraphLogic/ControlFlowNodes.mdc)
+### **POSITIONING STRATEGY REFERENCE** ⭐ **MANDATORY**
+**ALWAYS refer to the comprehensive positioning strategy guide before positioning any nodes:**
+- [PositioningStrategy](mdc:.cursor/rules/MCP/GraphLogic/PositioningStrategy.mdc) - Complete positioning decision tree and implementation guide
 
-### 📷 Camera
-**Purpose**: Control camera positioning and focus
-**Use Cases**: Guided attention, view management, detailed object examination
-**Key Nodes**: FocusOnToolStep, ReturnCameraStep
-**When to Use**: When you need to guide user attention or provide detailed views
-**Reference**: [Camera Nodes](mdc:.cursor/rules/MCP/GraphLogic/CameraNodes.mdc)
+### **MANDATORY POSITIONING STANDARDS**
+**ALWAYS follow these positioning rules for professional, readable graphs:**
 
-### ⚙️ Function Call
-**Purpose**: Execute methods on GameObjects
-**Use Cases**: Component method execution, system interactions
-**Key Nodes**: FunctionCallStep
-**When to Use**: When you need to call specific methods on objects (NOT for visibility)
-**Reference**: [Function Call Nodes](mdc:.cursor/rules/MCP/GraphLogic/FunctionCallNodes.mdc)
+#### **Spacing Requirements**
+- **Horizontal Spacing**: Minimum 450px between sequential nodes
+- **Vertical Spacing**: Minimum 300px between sequential nodes  
+- **Flow Direction**: TOP-TO-BOTTOM (use positive Y values: 0, 300, 600, 900)
+- **Horizontal Flow**: LEFT-TO-RIGHT (use positive X values: 0, 450, 900, 1350)
+- **Y-Axis Logic**: Increasing Y values move DOWNWARD (top-to-bottom flow)
+- **X-Axis Logic**: Increasing X values move RIGHTWARD (left-to-right flow)
 
-### 🔁 Loops
-**Purpose**: Handle iterative operations
-**Use Cases**: Repeated actions, data collection, iterative processes
-**Key Nodes**: ForLoopStep, WhileLoopStep
-**When to Use**: When you need to repeat actions a fixed number of times or until a condition is met
-**Reference**: [Loop Nodes](mdc:.cursor/rules/MCP/GraphLogic/LoopNodes.mdc)
+#### **🚫 FORBIDDEN POSITIONING**
+- **No backwards Y flow**: Never connect from lower Y to higher Y
+- **No backwards X flow**: Never connect from higher X to lower X
+- **No overlapping nodes**: Always maintain minimum spacing
+- **No negative Y for downward flow**: Use positive Y values (0, 300, 600, 900)
 
-### 🛠️ Tools
-**Purpose**: Object manipulation and visibility control
-**Use Cases**: Object state management, interaction control, visibility, collider management
-**Key Nodes**: GameObjectSetActiveStep, ToggleColliderStep
-**When to Use**: 
-- **GameObjectSetActiveStep**: Show/hide objects
-- **ToggleColliderStep**: Enable/disable colliders ⭐ **CRITICAL RULE**
-**Reference**: [Tool Nodes](mdc:.cursor/rules/MCP/GraphLogic/ToolNodes.mdc)
+### **Special Looping Node Rules**
+**Looping nodes (CompositeStep, WhileLoopStep, ForLoopStep) can use reduced spacing:**
+- **Reduced Vertical**: 200px minimum (instead of 300px)
+- **Reduced Horizontal**: 300px minimum (instead of 450px)
+- **Loop connections**: Can connect back to create circular flow
 
-### 🖥️ UI
-**Purpose**: User interface and messaging
-**Use Cases**: User guidance, feedback, timing controls, educational content
-**Key Nodes**: SideMessageStep, HintStep, TimerStep
-**When to Use**: When you need to communicate with users or provide timing controls
-**Reference**: [UI Nodes](mdc:.cursor/rules/MCP/GraphLogic/UINodes.mdc)
+### **Quick Reference Examples**
+```bash
+# ✅ CORRECT: Top-to-bottom with proper spacing
+mcp_unityMCP_create_xnode_node --position_x 0 --position_y 0
+mcp_unityMCP_create_xnode_node --position_x 0 --position_y 300
+mcp_unityMCP_create_xnode_node --position_x 0 --position_y 600
 
-### ⚡ Utility
-**Purpose**: System utility operations
-**Use Cases**: System control, timing, modular execution
-**Key Nodes**: FreezeLabStep, DelayStep, SubGraphStep
-**When to Use**: When you need system-wide control, timing, or modular execution
-**Reference**: [Utility Nodes](mdc:.cursor/rules/MCP/GraphLogic/UtilityNodes.mdc)
-
-### 🎯 NewEvents
-**Purpose**: Event-driven interactions
-**Use Cases**: Reactive programming, event handling
-**Key Nodes**: Event-based step nodes
-**When to Use**: When you need reactive programming or event-driven logic
-**Reference**: [NewEvents Nodes](mdc:.cursor/rules/MCP/GraphLogic/NewEventsNodes.mdc)
-
-### 📊 Table
-**Purpose**: Data table operations
-**Use Cases**: Data management, table interactions
-**Key Nodes**: Table-related step nodes
-**When to Use**: When you need to manage data in table format
-**Reference**: [Table Nodes](mdc:.cursor/rules/MCP/GraphLogic/TableNodes.mdc)
-
-### 🗺️ Progress Map
-**Purpose**: Progress tracking and navigation
-**Use Cases**: Experiment progress, navigation control
-**Key Nodes**: Progress-related step nodes
-**When to Use**: When you need to track experiment progress or control navigation
-**Reference**: [Progress Map Nodes](mdc:.cursor/rules/MCP/GraphLogic/ProgressMapNodes.mdc)
-
-### 🎬 Animation Step
-**Purpose**: Animation control and playback
-**Use Cases**: Object animations, visual effects
-**Key Nodes**: AnimationStep
-**When to Use**: When you need to animate objects or create visual effects
-**Reference**: [Misc Nodes](mdc:.cursor/rules/MCP/GraphLogic/MiscNodes.mdc)
-
-## 📐 NODE POSITIONING
-
-### Spacing Rules
-- **Horizontal**: 400 units between sequential nodes
-- **Vertical**: 300 units between parallel routes
-- **Start**: (100, 100) for first node
-
-### Connection Patterns
-```
-Sequential: Node1.exit → Node2.entry → Node3.entry
-Parallel: CompositeStep.routes → [Node1, Node2, Node3] → CompositeStep.entry
+# ✅ CORRECT: Left-to-right with proper spacing
+mcp_unityMCP_create_xnode_node --position_x 0 --position_y 0
+mcp_unityMCP_create_xnode_node --position_x 450 --position_y 0
+mcp_unityMCP_create_xnode_node --position_x 900 --position_y 0
 ```
 
-## 🚨 CRITICAL CONNECTION RULES ⚠️
-
-### **MANDATORY NODE CONNECTION REQUIREMENTS**
-
-1. **First Step Node Rule**: 
-   - **NEVER connect TO the entry port of a first step node**
-   - **MUST connect FROM the exit port of a first step node**
-   - First step nodes can only have outgoing connections
-
-2. **End Node Rule**: 
-   - **NEVER connect FROM the exit port of an end node**
-   - **MUST connect TO the entry port of an end node**
-   - End nodes can only have incoming connections
-
-3. **Middle Node Rule**: 
-   - **ALL middle nodes MUST have BOTH incoming AND outgoing connections**
-   - **Incoming**: From previous node's exit port
-   - **Outgoing**: To next node's entry port
-   - **Violation**: If a middle node lacks either connection, your logic is 100% incorrect
-
-4. **Sequential Execution Rule**: 
-   - **When disabling/enabling multiple colliders sequentially**: Execute ONE at a time
-   - **NOT parallel execution**: Our graphs are NOT designed for parallel execution
-   - **Key Difference**: Parallel execution ≠ Parallel order
-   - **Correct Pattern**: Node1.exit → Node2.entry → Node3.entry → Node4.entry
-   - **Wrong Pattern**: Multiple nodes → Single target (creates parallel execution)
-
-### **CONNECTION VALIDATION CHECKLIST**
-- ✅ First step: Only outgoing connections (exit port)
-- ✅ Middle nodes: Both incoming (entry) and outgoing (exit) connections
-- ✅ End nodes: Only incoming connections (entry port)
-- ✅ Sequential operations: One node at a time, not parallel
-- ✅ No floating nodes: Every node must be part of the execution flow
-
-**VIOLATION OF THESE RULES WILL RESULT IN BROKEN EXPERIMENTS**
+### **Validation Checklist**
+- ✅ **Positioning strategy analyzed** using [PositioningStrategy](mdc:.cursor/rules/MCP/GraphLogic/PositioningStrategy.mdc)
+- ✅ **Minimum 450px horizontal spacing** between sequential nodes
+- ✅ **Minimum 300px vertical spacing** between sequential nodes
+- ✅ **No visual overlapping** between any nodes
+- ✅ **Logical flow direction** maintained (TOP-TO-BOTTOM)
+- ✅ **Positive Y values used** for downward flow (0, 300, 600, 900)
+- ✅ **No backwards connections** in any direction
 
 ## 🔗 ADDITIONAL REFERENCES
 
+- [PositioningStrategy](mdc:.cursor/rules/MCP/GraphLogic/PositioningStrategy.mdc) - **CRITICAL**: Complete positioning decision tree and implementation guide
 - [MCP Tools Reference](mdc:.cursor/rules/MCP/mcp-tools-reference.mdc) - Complete tool reference
-- [Step Nodes Reference](mdc:.cursor/rules/MCP/step-nodes-reference.mdc) - Core step nodes overview
-
-**Remember**: When in doubt, always verify in the codebase first!
-
-
-**Remember**: When in doubt, always verify in the codebase first!
-
-
-# Unity MCP Bridge - Essential Rules & Category Reference
-
-## 🎯 QUICK DECISION TREE
-
-### Need to show/hide objects?
-→ **Tools** category → [GameObjectSetActiveStep](mdc:.cursor/rules/MCP/GraphLogic/ToolNodes.mdc)
-
-### Need user interaction in any order?
-→ **Control Flow** category → [CompositeStep pattern](mdc:.cursor/rules/MCP/GraphLogic/ControlFlowNodes.mdc)
-
-### Need sequential execution?
-→ **Chain: Node1.exit → Node2.entry**
-
-### Need function calls?
-→ **Function Call** category → [FunctionCallStep](mdc:.cursor/rules/MCP/GraphLogic/FunctionCallNodes.mdc)
-
-## 📂 STEP NODE CATEGORIES OVERVIEW
-
-### 🔗 Attach-Detach
-**Purpose**: Handle object attachment and detachment operations
-**Use Cases**: Equipment assembly, component connections, interactive object manipulation
-**Key Nodes**: AttachStep, DetachStep
-**When to Use**: When objects need to be physically connected or disconnected
-**Reference**: [Attach-Detach Nodes](mdc:.cursor/rules/MCP/GraphLogic/Attach-DetachNodes.mdc)
-
-### 🖱️ Click
-**Purpose**: Handle user clicking interactions
-**Use Cases**: User interface interactions, object selection, interactive object manipulation
-**Key Nodes**: ClickStep, RotateKnobStep, ExploreStep
-**When to Use**: When user needs to interact with objects via clicking, rotating, or exploring
-**Reference**: [Click Nodes](mdc:.cursor/rules/MCP/GraphLogic/ClickNodes.mdc)
-
-### 🔄 Control Flow
-**Purpose**: Manage execution flow and branching logic
-**Use Cases**: Decision making, parallel execution, state management
-**Key Nodes**: CompositeStep, IfStatementStep, SwitchStep, SwitchEnumStep
-**When to Use**: When you need conditional logic, parallel execution, or state machines
-**Reference**: [Control Flow Nodes](mdc:.cursor/rules/MCP/GraphLogic/ControlFlowNodes.mdc)
-
-### 📷 Camera
-**Purpose**: Control camera positioning and focus
-**Use Cases**: Guided attention, view management, detailed object examination
-**Key Nodes**: FocusOnToolStep, ReturnCameraStep
-**When to Use**: When you need to guide user attention or provide detailed views
-**Reference**: [Camera Nodes](mdc:.cursor/rules/MCP/GraphLogic/CameraNodes.mdc)
-
-### ⚙️ Function Call
-**Purpose**: Execute methods on GameObjects
-**Use Cases**: Component method execution, system interactions
-**Key Nodes**: FunctionCallStep
-**When to Use**: When you need to call specific methods on objects (NOT for visibility)
-**Reference**: [Function Call Nodes](mdc:.cursor/rules/MCP/GraphLogic/FunctionCallNodes.mdc)
-
-### 🔁 Loops
-**Purpose**: Handle iterative operations
-**Use Cases**: Repeated actions, data collection, iterative processes
-**Key Nodes**: ForLoopStep, WhileLoopStep
-**When to Use**: When you need to repeat actions a fixed number of times or until a condition is met
-**Reference**: [Loop Nodes](mdc:.cursor/rules/MCP/GraphLogic/LoopNodes.mdc)
-
-### 🛠️ Tools
-**Purpose**: Object manipulation and visibility control
-**Use Cases**: Object state management, interaction control, visibility
-**Key Nodes**: GameObjectSetActiveStep, ToggleColliderStep
-**When to Use**: When you need to show/hide objects or control interactions
-**Reference**: [Tool Nodes](mdc:.cursor/rules/MCP/GraphLogic/ToolNodes.mdc)
-
-### 🖥️ UI
-**Purpose**: User interface and messaging
-**Use Cases**: User guidance, feedback, timing controls, educational content
-**Key Nodes**: SideMessageStep, HintStep, TimerStep
-**When to Use**: When you need to communicate with users or provide timing controls
-**Reference**: [UI Nodes](mdc:.cursor/rules/MCP/GraphLogic/UINodes.mdc)
-
-### ⚡ Utility
-**Purpose**: System utility operations
-**Use Cases**: System control, timing, modular execution
-**Key Nodes**: FreezeLabStep, DelayStep, SubGraphStep
-**When to Use**: When you need system-wide control, timing, or modular execution
-**Reference**: [Utility Nodes](mdc:.cursor/rules/MCP/GraphLogic/UtilityNodes.mdc)
-
-### 🎯 NewEvents
-**Purpose**: Event-driven interactions
-**Use Cases**: Reactive programming, event handling
-**Key Nodes**: Event-based step nodes
-**When to Use**: When you need reactive programming or event-driven logic
-**Reference**: [NewEvents Nodes](mdc:.cursor/rules/MCP/GraphLogic/NewEventsNodes.mdc)
-
-### 📊 Table
-**Purpose**: Data table operations
-**Use Cases**: Data management, table interactions
-**Key Nodes**: Table-related step nodes
-**When to Use**: When you need to manage data in table format
-**Reference**: [Table Nodes](mdc:.cursor/rules/MCP/GraphLogic/TableNodes.mdc)
-
-### 🗺️ Progress Map
-**Purpose**: Progress tracking and navigation
-**Use Cases**: Experiment progress, navigation control
-**Key Nodes**: Progress-related step nodes
-**When to Use**: When you need to track experiment progress or control navigation
-**Reference**: [Progress Map Nodes](mdc:.cursor/rules/MCP/GraphLogic/ProgressMapNodes.mdc)
-
-### 🎬 Animation Step
-**Purpose**: Animation control and playback
-**Use Cases**: Object animations, visual effects
-**Key Nodes**: AnimationStep
-**When to Use**: When you need to animate objects or create visual effects
-**Reference**: [Misc Nodes](mdc:.cursor/rules/MCP/GraphLogic/MiscNodes.mdc)
-
-## 📐 NODE POSITIONING
-
-### Spacing Rules
-- **Horizontal**: 400 units between sequential nodes
-- **Vertical**: 300 units between parallel routes
-- **Start**: (100, 100) for first node
-
-### Connection Patterns
-```
-Sequential: Node1.exit → Node2.entry → Node3.entry
-Parallel: CompositeStep.routes → [Node1, Node2, Node3] → CompositeStep.entry
-```
-
-## 🚨 CRITICAL CONNECTION RULES ⚠️
-
-### **MANDATORY NODE CONNECTION REQUIREMENTS**
-
-1. **First Step Node Rule**: 
-   - **NEVER connect TO the entry port of a first step node**
-   - **MUST connect FROM the exit port of a first step node**
-   - First step nodes can only have outgoing connections
-
-2. **End Node Rule**: 
-   - **NEVER connect FROM the exit port of an end node**
-   - **MUST connect TO the entry port of an end node**
-   - End nodes can only have incoming connections
-
-3. **Middle Node Rule**: 
-   - **ALL middle nodes MUST have BOTH incoming AND outgoing connections**
-   - **Incoming**: From previous node's exit port
-   - **Outgoing**: To next node's entry port
-   - **Violation**: If a middle node lacks either connection, your logic is 100% incorrect
-
-4. **Sequential Execution Rule**: 
-   - **When disabling/enabling multiple colliders sequentially**: Execute ONE at a time
-   - **NOT parallel execution**: Our graphs are NOT designed for parallel execution
-   - **Key Difference**: Parallel execution ≠ Parallel order
-   - **Correct Pattern**: Node1.exit → Node2.entry → Node3.entry → Node4.entry
-   - **Wrong Pattern**: Multiple nodes → Single target (creates parallel execution)
-
-### **CONNECTION VALIDATION CHECKLIST**
-- ✅ First step: Only outgoing connections (exit port)
-- ✅ Middle nodes: Both incoming (entry) and outgoing (exit) connections
-- ✅ End nodes: Only incoming connections (entry port)
-- ✅ Sequential operations: One node at a time, not parallel
-- ✅ No floating nodes: Every node must be part of the execution flow
-
-**VIOLATION OF THESE RULES WILL RESULT IN BROKEN EXPERIMENTS**
-
-## 🔗 ADDITIONAL REFERENCES
-
-- [MCP Tools Reference](mdc:.cursor/rules/MCP/mcp-tools-reference.mdc) - Complete tool reference
-- [Step Nodes Reference](mdc:.cursor/rules/MCP/step-nodes-reference.mdc) - Core step nodes overview
-
-**Remember**: When in doubt, always verify in the codebase first!
-
+- [Graph Connection Rules](mdc:.cursor/rules/MCP/graph-connection-rules.mdc) - Critical connection requirements
+- [Graph Validation Rules](mdc:.cursor/rules/MCP/graph-validation-rules.mdc) - Post-creation validation
 
 **Remember**: When in doubt, always verify in the codebase first!

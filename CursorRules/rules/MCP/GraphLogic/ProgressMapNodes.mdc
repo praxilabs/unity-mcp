@@ -94,12 +94,16 @@ ProgressMapAutoNextStep → SubGraphStep (Step_03) → ProgressMapAutoNextStep �
 context: Use automatic progress navigation for sequential step execution
 ```
 
+## Verbal Clearance
+```
+when user says mark the current step as finished or any variance of this sentence, that involves using ProgressMapAutoNextStep with
+```
 ## ⚠️ Common Mistakes
 
 1. **Missing progress updates**: Always update progress appropriately
 2. **Wrong navigation triggers**: Use appropriate navigation controls
 3. **Incomplete progress flow**: Ensure complete progress handling
-
+4. **Miss-interpretation**: Using GoToStageStep Node instead of using ProgressMapAutoNextStep when a user tells the model to mark current step as finished or any Variance of this sentence.  
 ## 🔍 Debugging Tips
 
 1. **Test progress operations** one step at a time

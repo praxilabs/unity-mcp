@@ -28,7 +28,7 @@ This section contains detailed documentation for each tool group in the Unity MC
 ## 🔧 Tool Inventory
 
 ### XNode Node Management Tools
-- **create_xnode_node** - Create new nodes in XNode graphs
+- **create_xnode_node** - Create new nodes in XNode graphs with a Tooltip of the node's purpose
 - **list_available_node_types** - List all available node types
 - **delete_xnode_node** - Delete nodes by name or ID
 - **delete_node_by_name** - Delete node by name (convenience)

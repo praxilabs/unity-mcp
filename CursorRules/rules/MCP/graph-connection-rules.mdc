@@ -1,0 +1,84 @@
+---
+alwaysApply: false
+description: Critical connection requirements and validation rules for Unity MCP graphs
+---
+
+# Graph Connection Rules
+
+## 🚨 CRITICAL CONNECTION RULES ⚠️
+
+### **MANDATORY NODE CONNECTION REQUIREMENTS**
+
+1. **First Step Node Rule**: 
+   - **NEVER connect TO the entry port of a first step node**
+   - **MUST connect FROM the exit port of a first step node**
+   - First step nodes can only have outgoing connections
+
+2. **End Node Rule**: 
+   - **NEVER connect FROM the exit port of an end node**
+   - **MUST connect TO the entry port of an end node**
+   - End nodes can only have incoming connections
+
+3. **Middle Node Rule**: 
+   - **ALL middle nodes MUST have BOTH incoming AND outgoing connections**
+   - **Incoming**: From previous node's exit port
+   - **Outgoing**: To next node's entry port
+   - **Violation**: If a middle node lacks either connection, your logic is 100% incorrect
+
+4. **Sequential Execution Rule**: 
+   - **When disabling/enabling multiple colliders sequentially**: Execute ONE at a time
+   - **NOT parallel execution**: Our graphs are NOT designed for parallel execution
+   - **Key Difference**: Parallel execution ≠ Parallel order
+   - **Correct Pattern**: Node1.exit → Node2.entry → Node3.entry → Node4.entry
+   - **Wrong Pattern**: Multiple nodes → Single target (creates parallel execution)
+
+5. **Clean and Tidy Structure** 
+   ```
+   Keep the nodes that are of the same purpose in a Clean and Compiled Shape and structure
+   position the nodes together in harmony instead of just putting them in rows, columns or even matricies
+   do what suits the best in terms for readablility and cleanliness to the user, keep in mind that nodes contains a Width so  position the nodes away from each other a bit to avoid stacking nodes on top of each other
+   ```
+
+### **CONNECTION VALIDATION CHECKLIST**
+- ✅ First step: Only outgoing connections (exit port)
+- ✅ Middle nodes: Both incoming (entry) and outgoing (exit) connections
+- ✅ End nodes: Only incoming connections (entry port)
+- ✅ Sequential operations: One node at a time, not parallel
+- ✅ No floating nodes: Every node must be part of the execution flow
+
+**VIOLATION OF THESE RULES WILL RESULT IN BROKEN EXPERIMENTS**
+
+## 🔗 Connection Patterns
+
+### Sequential Execution
+```
+Node1.exit → Node2.entry → Node3.entry → Node4.entry
+```
+
+### Parallel Execution (CompositeStep)
+```
+CompositeStep.routes → [Node1, Node2, Node3] → CompositeStep.entry
+```
+
+### Conditional Branching
+```
+IfStatementStep.True → ActionA → Continue
+IfStatementStep.False → ActionB → Continue
+```
+
+## ⚠️ Common Connection Mistakes
+
+1. **Connecting TO first step entry**: Never connect to the entry port of a first step
+2. **Connecting FROM end step exit**: Never connect from the exit port of an end step
+3. **Missing connections**: Middle nodes must have both incoming and outgoing
+4. **Parallel collider operations**: Always execute collider operations sequentially
+5. **Floating nodes**: Every node must be part of the execution flow
+
+## 🛠️ Validation Commands
+
+Use these commands to validate your graph structure:
+- `list_graph_nodes` - Check for disconnected nodes
+- `set_node_as_first_step` - Establish entry point
+- Always validate after any corrections
+
+

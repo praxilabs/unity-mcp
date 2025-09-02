@@ -1,0 +1,112 @@
+---
+alwaysApply: true
+description: Comprehensive positioning strategy guide for Unity MCP graphs. Addresses when to use different positioning approaches based on graph complexity and structure.
+---
+
+# 🎯 **GRAPH POSITIONING STRATEGY GUIDE** ⭐ **CRITICAL**
+
+## 🚨 **POSITIONING DECISION PRINCIPLE**
+**NEVER default to top-down positioning without analyzing the actual graph structure and complexity.**
+
+## 🔍 **ANALYSIS FIRST, POSITIONING SECOND**
+
+### **Step 1: Analyze Graph Structure**
+Before positioning ANY nodes, answer these questions:
+1. **How many nodes total?** (Simple: ≤5, Complex: >5)
+2. **Are there parallel operations?** (Yes = horizontal flow)
+3. **Is there user choice/branching?** (Yes = hybrid approach)
+4. **Are operations independent?** (Yes = horizontal flow)
+5. **Is there a strict sequence?** (Yes = vertical flow)
+
+### **Step 2: Choose Positioning Strategy**
+Based on analysis, NOT preference:
+
+#### **Top-Down (Vertical) - ONLY for:**
+- **Simple Linear**: 3-5 nodes in strict sequence
+- **Tutorial Flows**: Step-by-step learning
+- **Single Path**: No branching, no choice
+- **Minimal Complexity**: Basic procedures
+
+#### **Left-Right (Horizontal) - Use for:**
+- **Parallel Operations**: Multiple independent actions
+- **Equipment Setup**: Tools prepared simultaneously
+- **Data Collection**: Multiple data points at once
+- **Independent Phases**: Can be done in any order
+
+#### **Hybrid (Strategic Grouping) - Use for:**
+- **Complex Multi-Route**: Multiple paths with dependencies
+- **User Choice**: Interactive decision points
+- **Modular Assembly**: Flexible execution order
+- **Mixed Complexity**: Some sequential, some parallel
+
+## 📐 **POSITIONING IMPLEMENTATION**
+
+### **Top-Down (Vertical) Pattern**
+```bash
+# ✅ CORRECT: Simple linear flow
+mcp_unityMCP_create_xnode_node --position_x 0 --position_y 0      # Start
+mcp_unityMCP_create_xnode_node --position_x 0 --position_y 300    # Step 1
+mcp_unityMCP_create_xnode_node --position_x 0 --position_y 600    # Step 2
+mcp_unityMCP_create_xnode_node --position_x 0 --position_y 900    # Complete
+```
+
+### **Left-Right (Horizontal) Pattern**
+```bash
+# ✅ CORRECT: Parallel operations
+mcp_unityMCP_create_xnode_node --position_x 0 --position_y 0      # Start
+mcp_unityMCP_create_xnode_node --position_x 450 --position_y 0    # Tool 1
+mcp_unityMCP_create_xnode_node --position_x 900 --position_y 0    # Tool 2
+mcp_unityMCP_create_xnode_node --position_x 1350 --position_y 0   # Tool 3
+mcp_unityMCP_create_xnode_node --position_x 1800 --position_y 0   # Complete
+```
+
+### **Hybrid (Strategic Grouping) Pattern**
+```bash
+# ✅ CORRECT: Complex multi-route
+mcp_unityMCP_create_xnode_node --position_x 0 --position_y 0      # Start
+mcp_unityMCP_create_xnode_node --position_x 0 --position_y 300    # Setup
+mcp_unityMCP_create_xnode_node --position_x 0 --position_y 600    # Phase Intro
+mcp_unityMCP_create_xnode_node --position_x -450 --position_y 900 # Route A
+mcp_unityMCP_create_xnode_node --position_x 0 --position_y 900    # Route B
+mcp_unityMCP_create_xnode_node --position_x 450 --position_y 900  # Route C
+mcp_unityMCP_create_xnode_node --position_x 0 --position_y 1200   # Completion
+mcp_unityMCP_create_xnode_node --position_x 0 --position_y 1500   # End
+```
+
+## 🚫 **FORBIDDEN POSITIONING PATTERNS**
+
+### **❌ NEVER Force Top-Down When:**
+- Operations are parallel
+- User has choice between paths
+- Tools can be used in any order
+- Multiple independent actions exist
+- Graph has branching logic
+
+### **❌ NEVER Use Horizontal When:**
+- Operations must be sequential
+- Steps depend on previous completion
+- Tutorial-style learning flow
+- Single-path experiment
+
+## ✅ **VALIDATION CHECKLIST**
+
+Before finalizing positioning, verify:
+- [ ] **Graph complexity matches positioning strategy**
+- [ ] **No forced top-down for parallel operations**
+- [ ] **Horizontal flow used for independent actions**
+- [ ] **Hybrid approach for complex branching**
+- [ ] **User experience optimized for chosen strategy**
+- [ ] **Spacing requirements met** (450px horizontal, 300px vertical)
+
+## 🎯 **QUICK DECISION MATRIX**
+
+| Graph Type | Node Count | Parallel Ops | User Choice | **Recommended Strategy** |
+|------------|------------|--------------|-------------|--------------------------|
+| Simple Tutorial | 3-5 | No | No | **Top-Down** |
+| Equipment Setup | 4-8 | Yes | No | **Left-Right** |
+| Interactive Lab | 6-12 | Some | Yes | **Hybrid** |
+| Complex Experiment | 8+ | Yes | Yes | **Hybrid** |
+| Single Procedure | 3-6 | No | No | **Top-Down** |
+
+## 🚨 **CRITICAL REMINDER**
+**The graph structure determines positioning strategy, NOT personal preference. Always analyze first, position second.**

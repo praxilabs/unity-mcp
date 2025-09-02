@@ -26,6 +26,16 @@ Utility nodes handle system utility operations in virtual lab experiments. These
 - Use for pacing and timing control
 - Connect to timing-dependent actions
 
+### ExplorationStep
+**Purpose**: A Transition Step to make you explore each item that you will use in the scene.
+**Usage**: Exploring Tools for Beginners,
+**Best Practices**:
+- Set appropriate delay duration
+- Use for pacing and timing control
+- Connect to timing-dependent actions
+
+
+
 ### SubGraphStep
 **Purpose**: Execute other graphs as subroutines
 **Usage**: Modular experiment design, reusable procedures
@@ -78,6 +88,12 @@ context: Add small delay after marking completion for better user experience
 ShowMessage → DelayStep (0.5s) → ShowNextMessage
 
 context: Use delays between messages for better readability and pacing
+```
+
+### Exploration Step usage
+```
+IntroEndMessageStep → MiddleMessageTwoActionsStep(do you want to get to exploration phase?) [yes] → ExplorationStep
+                                                                                            [No] → continue
 ```
 
 ### Loading Screen Delay Pattern

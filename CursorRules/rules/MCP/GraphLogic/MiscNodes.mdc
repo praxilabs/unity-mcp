@@ -27,7 +27,7 @@ Animation Step nodes handle animation control and playback in virtual lab experi
 ### GoToStageStep
 **Purpose**: ending the current stage and starting another stage.
 **Usage**: end of a stage, skipping stages.
-
+**Common Mistakes**: Don't use The GoToStageStep for marking the current Step as Finished instead use ProgressMapAutoNextStep, only use GoToStageStep for ending the current **STAGE** and not the Step.
 
 ## 🏗️ Common Patterns
 
@@ -40,6 +40,7 @@ AnimationStep (Animation 1) → DelayStep → AnimationStep (Animation 2) → Co
 ```
 UserAction → AnimationStep (Response animation) → ShowMessage (Animation complete) → Continue
 ```
+
 
 ### Visual Feedback Pattern
 ```

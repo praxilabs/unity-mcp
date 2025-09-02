@@ -82,6 +82,25 @@ mcp_unityMCP_list_graph_nodes "path/to/your/graph.asset"
 
 ---
 
+## 🚨 CRITICAL NODE SELECTION RULES ⚠️
+
+### **RULE 3: CHOOSE THE RIGHT NODE BY CHECKING ITS RULE FILE**
+**BEFORE creating ANY node from text interpretation:**
+- **MANDATORY**: Read the rule file for the specific node type you plan to use
+- **MANDATORY**: Check the "Common Mistakes" section of that node's rule file
+- **MANDATORY**: Verify the node's purpose matches your intended use case
+- **MANDATORY**: Understand the node's limitations and requirements before implementation
+- **PURPOSE**: Ensure you're using the correct node for the correct purpose
+- **IMPACT**: Wrong node selection leads to broken experiments and wasted time
+
+### **Node Selection Process:**
+1. **Interpret the text** to understand what action is needed
+2. **Identify the node category** (UI, Tool, Control Flow, etc.)
+3. **Read the specific rule file** for that node type
+4. **Check the "Common Mistakes" section** to avoid documented errors
+5. **Verify the node's purpose** matches your use case
+6. **Only then create the node** with confidence
+
 ## 🚨 CRITICAL NODE CONNECTION RULES ⚠️
 
 ### **MANDATORY NODE CONNECTION REQUIREMENTS**
@@ -312,6 +331,9 @@ context: Use sequential hints to guide users through experiment phases
 7. **Multiple disconnected graphs**: All logic must share single entry point
 8. **Missing post-creation validation**: ALWAYS verify node connectivity after graph creation
 9. **Orphaned nodes**: Remove any nodes that aren't part of the execution flow
+10. **Wrong node selection**: ALWAYS check the rule file for the specific node type before creating it
+11. **Text interpretation errors**: When interpreting text as a node, verify the node's purpose in its rule file first
+12. **Missing node validation**: Before creating any node, read its "Common Mistakes" section to avoid documented errors
 
 ## 🔍 Debugging Tips
 
