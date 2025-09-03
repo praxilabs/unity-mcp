@@ -131,32 +131,117 @@ mcp_unityMCP_list_graph_nodes "path/to/your/graph.asset"
 
 ## 🔧 Available Nodes
 
-### CompositeStep ⭐ CRITICAL PATTERN
+### CompositeStep ⭐ CRITICAL PATTERN - MANDATORY IMPLEMENTATION RULES ⚠️
+
 **File**: [CompositeStep.cs](mdc:Assets/Scripts/System/xNode/Steps/SelfExecuted/ControlFlow/CompositeStep.cs)
 **Purpose**: Parallel execution management
-**Usage**: used in the cases where we have multiple branches and all of the branches must be executing at any order.
+**Usage**: Used in cases where we have multiple branches and all of the branches must be executing at any order.
 
+#### **🚨 MANDATORY COMPOSITESTEP IMPLEMENTATION RULES** ⚠️ **ABSOLUTELY CRITICAL**
 
-**Connection Pattern**:
+**BEFORE creating ANY CompositeStep, you MUST follow these rules:**
+
+1. **MANDATORY CONNECTION PATTERN** ⚠️ **NEVER VIOLATE**
+   ```
+   Start → CompositeStep.entry
+   CompositeStep.routes → Route A → Logic → CompositeStep.entry  ← MUST CONNECT BACK
+   CompositeStep.routes → Route B → Logic → CompositeStep.entry  ← MUST CONNECT BACK
+   CompositeStep.routes → Route C → Logic → CompositeStep.entry  ← MUST CONNECT BACK
+   CompositeStep.exit → Continue
+   ```
+
+2. **CRITICAL ROUTES CONNECTION RULE** ⚠️ **ABSOLUTELY MANDATORY**
+   - **ALL ClickStep nodes MUST connect TO `CompositeStep.routes` output port**
+   - **NEVER connect ClickStep nodes to CompositeStep.entry**
+   - **NEVER connect ClickStep nodes to CompositeStep.exit**
+   - **ONLY use `CompositeStep.routes` for ClickStep connections**
+
+3. **CRITICAL RETURN CONNECTION RULE** ⚠️ **ABSOLUTELY MANDATORY**
+   - **ALL route completion nodes MUST connect BACK to `CompositeStep.entry`**
+   - **NEVER connect route completion to CompositeStep.exit**
+   - **NEVER connect route completion to CompositeStep.routes**
+   - **ONLY use `CompositeStep.entry` for return connections**
+
+4. **MANDATORY COMPLETION TRACKING RULE** ⚠️ **ABSOLUTELY MANDATORY**
+   - **CompositeStep tracks completion of ALL routes**
+   - **CompositeStep.exit ONLY triggers when ALL routes are completed**
+   - **User can complete routes in ANY order**
+   - **System waits for ALL routes before proceeding**
+
+#### **✅ CORRECT COMPOSITESTEP IMPLEMENTATION EXAMPLE** ⚠️ **FOLLOW EXACTLY**
+
+```bash
+# ✅ CORRECT: Device interaction in any order
+CompositeStep.entry ← Enable Colliders
+CompositeStep.routes → ClickStep(Device1) → FocusOnTool → Delay → ReturnCamera → CompositeStep.entry
+CompositeStep.routes → ClickStep(Device2) → FocusOnTool → Delay → ReturnCamera → CompositeStep.entry
+CompositeStep.routes → ClickStep(Device3) → FocusOnTool → Delay → ReturnCamera → CompositeStep.entry
+CompositeStep.routes → ClickStep(Device4) → FocusOnTool → Delay → ReturnCamera → CompositeStep.entry
+CompositeStep.exit → Continue (when ALL 4 devices clicked)
 ```
-Start → CompositeStep.entry
-CompositeStep.routes → Route A → Logic → CompositeStep.entry
-CompositeStep.routes → Route B → Logic → CompositeStep.entry  
+
+#### **❌ WRONG COMPOSITESTEP IMPLEMENTATIONS** ⚠️ **NEVER DO THESE**
+
+```bash
+# ❌ WRONG: Missing routes connections
+CompositeStep.entry ← Enable Colliders
+ClickStep(Device1) → FocusOnTool → Delay → ReturnCamera  # NO CONNECTION TO ROUTES
+ClickStep(Device2) → FocusOnTool → Delay → ReturnCamera  # NO CONNECTION TO ROUTES
 CompositeStep.exit → Continue
+
+# ❌ WRONG: Missing return connections
+CompositeStep.entry ← Enable Colliders
+CompositeStep.routes → ClickStep(Device1) → FocusOnTool → Delay → ReturnCamera  # NO RETURN TO ENTRY
+CompositeStep.routes → ClickStep(Device2) → FocusOnTool → Delay → ReturnCamera  # NO RETURN TO ENTRY
+CompositeStep.exit → Continue
+
+# ❌ WRONG: Wrong port connections
+CompositeStep.entry ← Enable Colliders
+ClickStep(Device1) → CompositeStep.entry  # WRONG - should be routes
+ClickStep(Device2) → CompositeStep.exit   # WRONG - should be routes
 ```
-**When to Use**:
-- Multiple user interactions in any order
-- Parallel data collection
-- Independent setup procedures
+
+#### **MANDATORY COMPOSITESTEP VALIDATION CHECKLIST** ⚠️ **ALWAYS VERIFY**
+
+After creating ANY CompositeStep, verify:
+- ✅ **ClickStep nodes connect TO `CompositeStep.routes`**
+- ✅ **Route completion nodes connect BACK to `CompositeStep.entry`**
+- ✅ **CompositeStep.exit connects to next step**
+- ✅ **NO floating nodes** - all nodes must be connected
+- ✅ **Run `list_graph_nodes`** to verify connectivity
+
+#### **WHEN TO USE COMPOSITESTEP** ⚠️ **ONLY FOR THESE SCENARIOS**
+
+- **Multiple user interactions in any order** (click 4 devices, any order)
+- **Parallel data collection** (collect samples from multiple locations)
+- **Independent setup procedures** (prepare multiple tools simultaneously)
+- **User choice freedom** (complete tasks in preferred sequence)
+
+#### **WHEN NOT TO USE COMPOSITESTEP** ⚠️ **NEVER FOR THESE SCENARIOS**
+
+- **Sequential operations** (use normal chain: Node1 → Node2 → Node3)
+- **Single user interaction** (use normal ClickStep → Action → Continue)
+- **Conditional branching** (use IfStatementStep instead)
+- **Single choice scenarios** (use OR Step instead)
+
+**VIOLATION OF THESE COMPOSITESTEP RULES WILL RESULT IN BROKEN PARALLEL EXECUTION**
+
+---
 
 ### IfStatementStep
 **Purpose**: Boolean conditional branching
 **Outputs**: `True`, `False`
 **Usage**: Decision points, error checking
+
+**⚠️ CRITICAL PORT LOGIC**: 
+- **True Port**: Contains the logic that executes when the condition is met (condition = true)
+- **False Port**: Contains the logic that executes when the condition is unmet (condition = false)
+
 **Best Practices**:
 - Use clear boolean conditions
 - Handle both True and False cases
 - Connect to appropriate responses
+- **ALWAYS verify**: True port = condition met, False port = condition unmet
 
 ### SwitchStep / SwitchEnumStep
 **Purpose**: Multi-way branching
@@ -335,11 +420,44 @@ context: Use sequential hints to guide users through experiment phases
 11. **Text interpretation errors**: When interpreting text as a node, verify the node's purpose in its rule file first
 12. **Missing node validation**: Before creating any node, read its "Common Mistakes" section to avoid documented errors
 
+## 🚨 **CRITICAL COMPOSITESTEP FAILURE PREVENTION** ⚠️ **NEW RULE**
+
+### **MANDATORY COMPOSITESTEP IMPLEMENTATION CHECKLIST** ⚠️ **ALWAYS FOLLOW**
+
+**BEFORE creating ANY CompositeStep, verify these requirements:**
+
+1. **✅ Do you need parallel execution in any order?**
+   - If NO → Use normal sequential chain instead
+   - If YES → Continue to step 2
+
+2. **✅ Are you connecting ClickStep nodes to `CompositeStep.routes`?**
+   - If NO → You're doing it wrong, fix immediately
+   - If YES → Continue to step 3
+
+3. **✅ Are you connecting route completion back to `CompositeStep.entry`?**
+   - If NO → You're doing it wrong, fix immediately
+   - If YES → Continue to step 4
+
+4. **✅ Are you connecting `CompositeStep.exit` to the next step?**
+   - If NO → You're doing it wrong, fix immediately
+   - If YES → Continue to step 5
+
+5. **✅ Are you running `list_graph_nodes` to validate?**
+   - If NO → You're doing it wrong, validate immediately
+   - If YES → Your CompositeStep should work correctly
+
+**VIOLATION OF ANY OF THESE STEPS WILL RESULT IN BROKEN PARALLEL EXECUTION**
+
 ## 🔍 Debugging Tips
 
 1. **Test connections** one route at a time
 2. **Verify port names** exist on nodes
 3. **Check flow direction** (output → input)
+4. **Use DelayStep** to slow down execution for debugging (see [UtilityNodes.mdc](mdc:.cursor/rules/MCP/GraphLogic/UtilityNodes.mdc))
+5. **Validate graph structure** using the critical rules above
+6. **Post-Creation Validation**: Always run `list_graph_nodes` after graph creation to identify disconnected nodes
+7. **Clean Up Orphans**: Remove any nodes that aren't connected to the execution flow
+8. **CompositeStep Validation**: ALWAYS verify routes and return connections for parallel execution
 4. **Use DelayStep** to slow down execution for debugging (see [UtilityNodes.mdc](mdc:.cursor/rules/MCP/GraphLogic/UtilityNodes.mdc))
 5. **Validate graph structure** using the critical rules above
 6. **Post-Creation Validation**: Always run `list_graph_nodes` after graph creation to identify disconnected nodes
