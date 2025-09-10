@@ -1,0 +1,37 @@
+---
+alwaysApply: false
+description: Camera positioning, focus control, and view management. Contains FocusOnToolStep, ReturnCameraStep, and camera sequence patterns for guided attention.
+---
+
+# Camera Nodes
+
+## 📋 Overview
+Camera nodes control camera positioning and focus in virtual lab experiments. Essential for guided attention, close-up views, and view management.
+
+## 🔧 Available Nodes
+
+### FocusOnToolStep
+**Rule File**: [FocusOnToolStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Camera/FocusOnToolStep.mdc)
+**Purpose**: Focus camera on specific objects
+**Usage**: Guided attention, close-up views
+**⚠️ Critical**: Must be paired with ReturnCameraStep
+
+### ReturnCameraStep
+**Rule File**: [ReturnCameraStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Camera/ReturnCameraStep.mdc)
+**Purpose**: Return camera to default position
+**Usage**: Reset view, overview mode
+**⚠️ Critical**: Required between any two FocusOnToolStep operations
+
+## 🚨 Critical Camera Rules
+
+### **System Architecture**
+The camera system tracks only **ONE previous camera position** (main camera), not a stack. This requires strict management.
+
+### **Mandatory ReturnCameraStep Rules**
+1. **Focus → Focus (Different Tools)**: `FocusOnToolStep(Tool1)` → [any nodes] → `ReturnCameraStep` → `FocusOnToolStep(Tool2)` (**MANDATORY**)
+2. **Focus → Focus (Same Tool)**: `FocusOnToolStep(Tool1)` → [any nodes] → `ReturnCameraStep` → `FocusOnToolStep(Tool1)` (**MANDATORY**)
+3. **Single Focus Only**: `FocusOnToolStep(Tool)` → [non-focus operations] → Continue (**ReturnCameraStep OPTIONAL**)
+4. **Experiment End**: Final `ReturnCameraStep` (**RECOMMENDED** for polish, not mandatory)
+
+### **Core Rule**
+**ANY time you use FocusOnToolStep and later want to use FocusOnToolStep again (same or different tool), you MUST use ReturnCameraStep between them.**

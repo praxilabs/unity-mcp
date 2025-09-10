@@ -1,8 +1,6 @@
 ---
-alwaysApply: false
-description: Post-creation validation rules and mandatory validation workflows for Unity MCP graphs
+alwaysApply: true
 ---
-
 # Graph Validation Rules
 
 ## 🚨 MANDATORY POST-CREATION VALIDATION ⚠️
@@ -11,8 +9,8 @@ description: Post-creation validation rules and mandatory validation workflows f
 
 **You MUST perform these validation steps before considering the graph complete:**
 
-1. **Run `list_graph_nodes`** to get complete node list
-2. **Check for disconnected nodes** - any node without proper connections
+1. **Run `mcp_unityMCP_list_graph_nodes`** to get complete node list
+2. **Check for orphaned nodes** - any node without proper connections
 3. **Remove orphaned nodes** that aren't part of execution flow
 4. **Verify all nodes have both input AND output connections** (except first/last)
 5. **Confirm execution flow is complete** from entry to exit
@@ -27,75 +25,40 @@ description: Post-creation validation rules and mandatory validation workflows f
 4. Continue until validation shows 0 errors
 5. **NEVER stop at first fix - always complete the full validation cycle**
 
-### **Validation Commands**
-```bash
-# Check graph structure
-mcp_unityMCP_list_graph_nodes "path/to/your/graph.asset"
-
-# Look for nodes with 0 connections or missing ports
-# Remove any disconnected nodes immediately
-```
-
-## 🔍 VALIDATION CHECKLIST
-
-### **Pre-Validation (Before Running)**
-- ✅ Graph has exactly one first step set
-- ✅ All nodes are connected to the execution flow
-- ✅ No floating/disconnected nodes exist
-- ✅ Single unified execution path from entry
-- ✅ All routes eventually lead to completion
-
-### **Post-Creation Validation (MANDATORY)**
-- ✅ Run `list_graph_nodes` to verify structure
-- ✅ Check for orphaned/disconnected nodes
-- ✅ Remove any nodes not part of execution flow
-- ✅ Verify all connections are properly established
-- ✅ Confirm execution path is complete
-
 ## ⚠️ COMMON VALIDATION FAILURES
 
-### **Disconnected Nodes**
-- **Problem**: Nodes created but never connected to execution flow
-- **Solution**: Remove immediately or connect properly
-- **Example**: `Go To Stage Step` node with no connections
-
 ### **Orphaned Nodes**
-- **Problem**: Nodes that serve no purpose in the experiment
-- **Solution**: Delete if not needed, connect if needed
+- **Problem**: Nodes created but never connected to execution flow
+- **Solution**: Remove immediately using `mcp_unityMCP_delete_xnode_node`
+- **Example**: `Go To Stage Step` node with no connections
 - **Impact**: Can cause graph execution to fail
 
 ### **Incomplete Connections**
 - **Problem**: Nodes with missing input or output connections
-- **Solution**: Complete all required connections
+- **Solution**: Complete all required connections using `mcp_unityMCP_connect_nodes_by_name`
 - **Impact**: Execution will stop at incomplete nodes
 
 ## 🛠️ VALIDATION WORKFLOW
 
-### **Step 1: Create Graph Structure**
-- Build your graph with all required nodes
-- Connect nodes in proper execution order
-- Set first step node
-
-### **Step 2: Run Validation**
+### **Step 1: Run Validation**
 ```bash
 mcp_unityMCP_list_graph_nodes "your_graph_path.asset"
 ```
 
-### **Step 3: Analyze Results**
-- Check total node count
+### **Step 2: Analyze Results**
+- Check total node count matches expected
 - Verify all nodes have proper connections
-- Look for any disconnected nodes
+- Look for any orphaned nodes
 
-### **Step 4: Clean Up**
-- Remove orphaned nodes
-- Fix incomplete connections
+### **Step 3: Clean Up**
+- Remove orphaned nodes using `mcp_unityMCP_delete_xnode_node`
+- Fix incomplete connections using `mcp_unityMCP_connect_nodes_by_name`
 - **MANDATORY**: Re-run validation after EACH fix
 - Continue fix→validate cycle until 100% clean
 
-### **Step 5: Final Verification**
+### **Step 4: Final Verification**
 - Confirm execution flow is complete
 - Test graph execution if possible
-- Document any special requirements
 
 ## 🎯 VALIDATION EXAMPLES
 
@@ -108,7 +71,7 @@ All nodes connected, clear execution path
 ### **Bad Graph Structure**
 ```
 Node A (First) → Node B → Node C
-Node X (disconnected, orphaned)
+Node X (orphaned, no connections)
 Missing connection to end
 ```
 
@@ -118,7 +81,7 @@ Missing connection to end
 "Found 4 StepNodes in graph"
 "All nodes have proper input/output connections"
 
-# Bad output - disconnected nodes
+# Bad output - orphaned nodes
 "Found 5 StepNodes in graph"  # But only 4 should exist
 "Node X has 0 connections"    # Orphaned node detected
 ```
@@ -129,15 +92,15 @@ Missing connection to end
 
 **FAILURE TO VALIDATE WILL RESULT IN BROKEN EXPERIMENTS**
 
-**ALWAYS use `list_graph_nodes` after graph creation to identify and fix issues.**
+**ALWAYS use `mcp_unityMCP_list_graph_nodes` after graph creation to identify and fix issues.**
 
 ## 📋 VALIDATION COMMANDS REFERENCE
 
 ### **Essential Validation Commands**
-- `list_graph_nodes` - Check graph structure and connections
-- `set_node_as_first_step` - Establish entry point
-- `delete_xnode_node` - Remove orphaned nodes
-- `connect_nodes_by_name` - Fix missing connections
+- `mcp_unityMCP_list_graph_nodes` - Check graph structure and connections
+- `mcp_unityMCP_set_node_as_first_step` - Establish entry point
+- `mcp_unityMCP_delete_xnode_node` - Remove orphaned nodes
+- `mcp_unityMCP_connect_nodes_by_name` - Fix missing connections
 
 ### **Validation Best Practices**
 1. **Always validate after creation**

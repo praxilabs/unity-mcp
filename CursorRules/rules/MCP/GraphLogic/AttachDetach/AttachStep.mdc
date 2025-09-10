@@ -1,0 +1,86 @@
+---
+alwaysApply: false
+description: Handle object attachment for equipment assembly and component connections
+---
+
+# AttachStep Node
+
+## 📋 Overview
+AttachStep handles object attachment in virtual lab experiments. This node is essential for equipment assembly, component connections, and interactive object manipulation.
+
+**IMPORTANT**: AttachStep only handles basic attachment - objects are NOT locked by default. Locking is a separate system that requires FunctionCallStep.
+
+## 🔧 Node Details
+
+**Node Type**: AttachStep
+**Purpose**: Attach one object to another object (attachment only, not locking)
+**Usage**: Equipment assembly, component connections, interactive object manipulation
+**Locking**: Use FunctionCallStep for locking after attachment
+
+## 📋 Basic Prerequisites
+<!-- Required data and setup needed for this node step to work -->
+
+**For the object being attached:**
+1. AttachableTool Script
+2. Trigger Collider
+3. Draggable tag
+4. DraggableObject Script
+5. Hologram (Optional)
+
+## 📝 Parameters
+
+- **Object 1**: The object to be attached (source object)
+- **Object 2**: The target object to attach to (destination object)
+- **Attachment Point**: Specific attachment location/transform
+- **Visual Feedback**: Optional visual confirmation of attachment
+
+## 🏗️ Common Patterns
+
+### Basic Attachment
+```
+AttachStep (SourceObject, TargetObject) → ShowMessage (Attachment Complete)
+```
+
+### Sequential Assembly
+```
+AttachStep (Battery, Remote) → DelayStep → AttachStep (Cover, Remote) → ShowMessage (Assembly Complete)
+```
+
+### Conditional Attachment
+```
+IfStatementStep (Check condition) → True: AttachStep → Continue
+                                → False: ShowMessage (Cannot attach)
+```
+
+### Attachment with Visual Feedback
+```
+AttachStep → GameObjectSetActiveStep (show attachment indicator) → ShowMessage (Attached successfully)
+```
+
+### Attachment with Locking (if needed)
+```
+AttachStep (ObjectA, ObjectB) → FunctionCallStep (Lock ObjectA) → ShowMessage (Object locked)
+```
+
+### Sequential Attachment and Locking
+```
+AttachStep (Capsule, WeighingPaper) → FunctionCallStep (Lock Capsule) → Continue
+```
+
+## ⚠️ Common Mistakes
+
+1. **Missing object verification**: Always verify both objects exist in registry
+2. **Wrong object references**: Verify object references are valid
+3. **Missing attachment points**: Ensure attachment points exist and are valid
+4. **Incomplete attachment flow**: Ensure attachment leads to appropriate actions
+5. **Confusing attachment with locking**: AttachStep only attaches, use FunctionCallStep for locking
+
+## 🎯 Best Practices
+
+1. **Verify objects exist** before attempting attachment
+2. **Provide visual feedback** for successful attachments
+3. **Use appropriate delays** between attachment steps
+4. **Test attachment sequences** thoroughly
+5. **Handle attachment failures** gracefully
+6. **Separate attachment from locking**: Use AttachStep for attachment, FunctionCallStep for locking
+7. **Follow attachment-locking pattern**: AttachStep → FunctionCallStep (Lock) → Continue

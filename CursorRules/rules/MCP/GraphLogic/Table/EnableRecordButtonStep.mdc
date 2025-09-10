@@ -1,0 +1,54 @@
+---
+alwaysApply: false
+description: Enable or disable a UI button responsible for triggering a record operation
+---
+
+# EnableRecordButtonStep Node
+
+## 📋 Overview
+Controls the interactable state of a record button in the UI for user-controlled data capture flows.
+
+## 🔧 Node Details
+
+**Node Type**: EnableRecordButtonStep
+**Purpose**: Toggle record button interactability
+**Usage**: User-controlled data capture flows
+
+## 📋 Basic Prerequisites
+
+1. **UI Button Element**: Record button must exist in the UI
+2. **Button Configuration**: Button must be properly configured
+3. **UI Binding**: Button must be accessible via buttonId
+
+## 📝 Parameters
+
+- **buttonId**: UI element identifier
+- **enabled**: Boolean to enable/disable
+
+## 🏗️ Common Patterns
+
+### User Adds Data via UI
+```
+EnableRecordButtonStep (RecordButton, true) → UserInputStep (Data) → AddRecordStep (ActiveTable, UserInputData)
+```
+
+## 🚨 Critical EnableRecordButtonStep Rules
+- **UI Button Control**: Use for controlling UI button states for data recording
+- **Button State Management**: Provides enable/disable functionality for record buttons
+- **User Interaction**: Enables user-controlled data capture flows
+
+## ⚠️ Common Mistakes
+
+1. **Wrong button identifier**: Verify buttonId matches existing UI element
+2. **Forgetting to disable after capture**: Disable button when no longer needed
+3. **Using for non-record buttons**: Use for record operation buttons only
+4. **Missing UI binding**: Ensure button exists and is accessible
+
+## 🎯 Best Practices
+
+1. **Keep button state consistent with flow** for predictable behavior
+2. **Provide visual feedback for disabled state** for better UX
+3. **Log button state changes** for debugging purposes
+4. **Verify UI binding exists** before execution
+5. **Use for user-controlled data recording** scenarios
+

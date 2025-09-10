@@ -1,0 +1,46 @@
+---
+alwaysApply: false
+description: Logical Or-ing of two or more sequence branches for multiple choice scenarios
+---
+
+# ORStep
+
+## 📋 Overview
+ORStep provides logical Or-ing of sequence branches for multiple choice scenarios where only one option needs to be selected in virtual lab experiments.
+
+## 🔧 Node Details
+
+**File**: [ORStep.cs](mdc:Assets/Scripts/System/xNode/Steps/ActionExecuted/ORStep.cs)
+**Purpose**: Logical Or-ing of sequence branches
+**Usage**: Multiple routes where only one must be taken
+
+## 🏗️ Common Patterns
+
+### Multiple Choice Selection
+```
+ORStep (User choice) → Option A: ExecuteOptionA → Continue
+                    → Option B: ExecuteOptionB → Continue
+                    → Option C: ExecuteOptionC → Continue
+```
+
+## 🚨 Critical ORStep Rules
+- **Single Selection**: Only one option needs to be selected to proceed
+- **Multiple Options**: Provide multiple alternative paths
+- **Clear Options**: Use descriptive option names for user clarity
+
+## ⚠️ Common Mistakes
+
+1. **Wrong port connections**: Verify OR port names and connections
+2. **Missing option handling**: Ensure all options lead to appropriate outcomes
+3. **Unclear option logic**: Use clear, descriptive option names
+4. **Incomplete option paths**: Handle all possible option paths
+5. **Using for sequential operations**: Use normal chain for sequential operations
+
+## 🎯 Best Practices
+
+1. **Use for multiple choice scenarios** where only one selection is needed
+2. **Handle all possible options** with appropriate responses
+3. **Connect to appropriate responses** for each option
+4. **Provide clear option descriptions** for user understanding
+5. **Use for user choice scenarios** requiring single selection
+6. **Ensure all options are properly connected** to avoid execution issues

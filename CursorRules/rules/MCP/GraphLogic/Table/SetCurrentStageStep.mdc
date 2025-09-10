@@ -1,0 +1,54 @@
+---
+alwaysApply: false
+description: Explicitly set the current active stage of the experiment
+---
+
+# SetCurrentStageStep Node
+
+## 📋 Overview
+Sets the experiment's current stage to a specified stage for explicit stage navigation and resuming from specific points.
+
+## 🔧 Node Details
+
+**Node Type**: SetCurrentStageStep
+**Purpose**: Set active stage
+**Usage**: Navigate/resume from a specific stage
+
+## 📋 Basic Prerequisites
+
+1. **Valid Stage Name**: Target stage must exist in the experiment
+2. **Stage Configuration**: Stage must be properly configured
+3. **Stage Registry**: Stage must be registered in the stage registry
+
+## 📝 Parameters
+
+- **stageName**: Target stage identifier
+
+## 🏗️ Common Patterns
+
+### Conditional Stage Setting
+```
+IfStatementStep (Condition) → SetCurrentStageStep (SuccessStage)
+IfStatementStep (NOT Condition) → SetCurrentStageStep (FailureStage)
+```
+
+## 🚨 Critical SetCurrentStageStep Rules
+- **Explicit Stage Navigation**: Use for explicit stage navigation and resuming
+- **Stage Setting**: Sets the current active stage to specified stage
+- **Conditional Routing**: Enables conditional stage routing based on conditions
+
+## ⚠️ Common Mistakes
+
+1. **Mismatched stage names**: Verify stage name matches exactly
+2. **Using for data operations**: Use data nodes for data operations
+3. **Invalid stage name**: Verify stage exists in registry
+4. **Using for stage progression**: Use EnableStageStep for stage progression
+
+## 🎯 Best Practices
+
+1. **Centralize stage name constants** to avoid typos and maintain consistency
+2. **Log stage changes** for debugging purposes
+3. **Use for explicit stage navigation** when precise control is needed
+4. **Verify stage exists in registry** before execution
+5. **Use for conditional stage routing** based on experiment conditions
+

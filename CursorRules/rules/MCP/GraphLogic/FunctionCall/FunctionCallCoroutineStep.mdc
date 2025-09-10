@@ -1,0 +1,61 @@
+---
+alwaysApply: false
+description: Execute IEnumerator methods with step control; inherits FunctionCallBase
+---
+
+# FunctionCallCoroutineStep Node
+
+## 📋 Overview
+Executes coroutine methods (IEnumerator) on scene objects for asynchronous operations that can proceed without waiting depending on graph design.
+
+## 🔧 Node Details
+
+**Node Type**: FunctionCallCoroutineStep
+**Menu Path**: "Function Call/Function Call Coroutine"
+**Inherits**: FunctionCallBase
+
+## 📋 Basic Prerequisites
+
+1. **Coroutine Method**: Public method that returns IEnumerator
+2. **Object Registration**: Target object must be registered in the registry
+3. **Method Visibility**: Method must be public to be accessible
+
+## 📝 Parameters
+
+- **_calledObjectName**: {"prefabName": "ParentName", "childName": "ChildName"}
+- **selectedComponent**: Component type
+- **selectedFunction**: Coroutine method (returns IEnumerator)
+- **parameterValues**: SerializableParameter array
+
+## 🏗️ Common Patterns
+
+### Background Coroutine
+```
+FunctionCallCoroutineStep(Object) → nextNode   // continues without waiting
+```
+
+### Coroutine with Event Gate
+```
+FunctionCallCoroutineStep (Start coroutine) → Wait for GoToNextStep event → Continue
+```
+
+## 🚨 Critical FunctionCallCoroutineStep Rules
+- **IEnumerator Methods Only**: Use for methods that return IEnumerator
+- **Asynchronous Operations**: Methods run asynchronously without blocking execution
+- **Scene Objects**: Target specific scene objects, not global methods
+
+## ⚠️ Common Mistakes
+
+1. **Using regular FunctionCallStep for IEnumerator methods**: Use FunctionCallCoroutineStep for coroutines
+2. **Not handling completion signaling when needed**: Emit events for sequence control
+3. **Using for global coroutines**: Use FunctionCallCoroutineGlobalStep for global coroutines
+4. **Using for synchronous methods**: Use FunctionCallStep for synchronous methods
+
+## 🎯 Best Practices
+
+1. **Emit completion events** when sequence must wait for coroutine completion
+2. **Keep coroutines cancellable** where possible for better control
+3. **Use for asynchronous operations** on scene objects
+4. **Verify method returns IEnumerator** before execution
+5. **Log coroutine start/stop** for debugging purposes
+

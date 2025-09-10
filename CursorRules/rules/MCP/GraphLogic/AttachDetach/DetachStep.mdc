@@ -1,0 +1,79 @@
+---
+alwaysApply: false
+description: Handle object detachment for equipment disassembly and component removal
+---
+
+# DetachStep Node
+
+## 📋 Overview
+DetachStep handles object detachment in virtual lab experiments. This node is essential for equipment disassembly, component removal, and interactive object manipulation.
+
+## 🔧 Node Details
+
+**Node Type**: DetachStep
+**Purpose**: Detach one object from another object
+**Usage**: Equipment disassembly, component removal, interactive object manipulation
+
+## 📋 Basic Prerequisites
+
+<!-- Required data and setup needed for this node step to work -->
+
+**For the object being detached:**
+1. Must be attached to other object
+2. AttachableTool Script
+3. Trigger Collider
+4. Draggable tag
+5. DraggableObject Script
+
+## 📝 Parameters
+
+- **Object 1**: The object to be detached (source object)
+- **Object 2**: The object to detach from (destination object)
+- **Detachment Point**: Specific detachment location/transform
+- **Visual Feedback**: Optional visual confirmation of detachment
+
+## 🏗️ Common Patterns
+
+### Basic Detachment
+```
+DetachStep (SourceObject, TargetObject) → ShowMessage (Detachment Complete)
+```
+
+### Component Removal Flow
+```
+DetachStep (Component, Base) → GameObjectSetActiveStep (hide component) → ShowMessage (Component Removed)
+```
+
+### Sequential Disassembly
+```
+DetachStep (Cover, Remote) → DelayStep → DetachStep (Battery, Remote) → ShowMessage (Disassembly Complete)
+```
+
+### Conditional Detachment
+```
+IfStatementStep (Check condition) → True: DetachStep → Continue
+                                → False: ShowMessage (Cannot detach)
+```
+
+### Detachment with Visual Feedback
+```
+DetachStep → GameObjectSetActiveStep (show detachment indicator) → ShowMessage (Detached successfully)
+```
+
+## ⚠️ Common Mistakes
+
+1. **Missing object verification**: Always verify both objects exist in registry
+2. **Wrong object references**: Verify object references are valid
+3. **Missing detachment points**: Ensure detachment points exist and are valid
+4. **Incomplete detachment flow**: Ensure detachment leads to appropriate actions
+5. **Missing detachment handling**: Always handle detachment operations properly
+
+## 🎯 Best Practices
+
+1. **Verify objects exist** before attempting detachment
+2. **Provide visual feedback** for successful detachments
+3. **Use appropriate delays** between detachment steps
+4. **Test detachment sequences** thoroughly
+5. **Handle detachment failures** gracefully
+6. **Consider object state** after detachment
+7. **Plan for object cleanup** after detachment

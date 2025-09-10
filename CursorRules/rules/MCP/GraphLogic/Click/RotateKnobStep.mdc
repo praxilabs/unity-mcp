@@ -1,0 +1,90 @@
+---
+alwaysApply: false
+description: Handle knob rotation interactions for instrument controls and value adjustments
+---
+
+# RotateKnobStep Node
+
+## 📋 Overview
+RotateKnobStep handles knob rotation interactions in virtual lab experiments. This node is essential for instrument controls, value adjustments, and interactive parameter manipulation.
+
+## 🔧 Node Details
+
+**Node Type**: RotateKnobStep
+**Purpose**: Handle knob rotation interactions
+**Usage**: Instrument controls, value adjustments, parameter manipulation
+
+## 📋 Basic Prerequisites
+
+<!-- Required data and setup needed for this node step to work -->
+
+
+## 📝 Parameters
+
+- **Target Knob**: The knob object to rotate
+- **Rotation Direction**: Direction of rotation (clockwise, counterclockwise)
+- **Rotation Amount**: Amount of rotation (degrees, steps, etc.)
+- **Rotation Speed**: Speed of rotation animation
+- **Value Change**: Associated value change from rotation
+
+## 🏗️ Common Patterns
+
+### Basic Knob Rotation
+```
+RotateKnobStep (Knob) → ShowMessage (Value changed)
+```
+
+### Knob Rotation with Action
+```
+RotateKnobStep (Knob) → Action → ShowMessage (Value changed)
+```
+
+### Knob Rotation with Function Call
+```
+RotateKnobStep (Knob) → FunctionCallStep (UpdateValue) → ShowMessage (Value updated)
+```
+
+### Knob Rotation with Visual Feedback
+```
+RotateKnobStep (Knob) → AnimationStep (Knob) → ShowMessage (Value changed)
+```
+
+### Multiple Knob Interactions
+```
+RotateKnobStep (Knob A) → Action A → RotateKnobStep (Knob B) → Action B
+```
+
+### Knob Rotation with Delay
+```
+RotateKnobStep (Knob) → DelayStep → ShowMessage (Value changed) → Continue
+```
+
+## ⚠️ Common Mistakes
+
+1. **Missing object verification**: Always verify knob exists in registry
+2. **Wrong rotation direction**: Verify rotation direction is correct
+3. **Missing visual feedback**: Users need confirmation of rotation actions
+4. **Invalid knob references**: Verify target knobs are valid
+5. **Missing value updates**: Ensure rotation updates associated values
+
+## 🔍 Debugging Tips
+
+1. **Test knob rotations** one step at a time
+2. **Verify knob states** before and after rotations
+3. **Check rotation values** and associated changes
+4. **Monitor rotation responses** with console logs
+5. **Test rotation sequences** end-to-end
+6. **Validate knob references** in registry
+7. **Check rotation event handling** and responses
+
+## 🎯 Best Practices
+
+1. **Always verify knobs exist** before setting up rotation interactions
+2. **Provide visual feedback** for rotation actions
+3. **Use appropriate delays** between rotation and response
+4. **Test rotation sequences** thoroughly
+5. **Handle rotation failures** gracefully
+6. **Document rotation requirements** clearly
+7. **Consider user experience** during rotation interactions
+8. **Ensure rotation targets are accessible** and visible
+9. **Validate rotation ranges** and limits

@@ -1,0 +1,46 @@
+---
+alwaysApply: false
+description: System utility operations, timing control, and modular execution. Contains FreezeLabStep, DelayStep, SubGraphStep, and utility operation patterns.
+---
+
+# Utility Nodes
+
+## 📋 Overview
+Utility nodes handle system utility operations in virtual lab experiments. These nodes are essential for system control, timing, and modular execution.
+
+## 🔧 Available Nodes
+
+### FreezeLabStep
+**Rule File**: [FreezeLabStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Utility/FreezeLabStep.mdc)
+**Purpose**: Freeze/unfreeze lab interactions
+**Usage**: Pause functionality, modal dialogs
+
+### DelayStep
+**Rule File**: [DelayStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Utility/DelayStep.mdc)
+**Purpose**: Wait for specified time
+**Usage**: Timing between actions, pacing experiments
+
+### ExplorationStep
+**Rule File**: [ExplorationStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Utility/ExplorationStep.mdc)
+**Purpose**: A Transition Step to make you explore each item that you will use in the scene
+**Usage**: Exploring Tools for Beginners
+
+### SubGraphStep
+**Rule File**: [SubGraphStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Utility/SubGraphStep.mdc)
+**Purpose**: Execute other graphs as subroutines
+**Usage**: Modular experiment design, reusable procedures
+
+### ToggleColliderStep
+**Rule File**: [ToggleColliderStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Utility/ToggleColliderStep.mdc)
+**Purpose**: Enable/disable collider on a SINGLE object only
+**Usage**: Interaction control, safety systems, collider management
+
+### ToggleDeviceCollidersStep
+**Rule File**: [ToggleDeviceCollidersStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Utility/ToggleDeviceCollidersStep.mdc)
+**Purpose**: Enable/disable colliders on multiple devices
+**Usage**: Device interaction control, safety systems
+
+### ToggleUIButtonInteractionStep
+**Rule File**: [ToggleUIButtonInteractionStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Utility/ToggleUIButtonInteractionStep.mdc)
+**Purpose**: Enable/disable UI button interactions
+**Usage**: UI control, button state management

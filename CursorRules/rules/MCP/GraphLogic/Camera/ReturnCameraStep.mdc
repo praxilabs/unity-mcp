@@ -1,0 +1,88 @@
+---
+alwaysApply: false
+description: Return camera to default position for reset view and overview mode
+---
+
+# ReturnCameraStep Node
+
+## 📋 Overview
+ReturnCameraStep controls camera positioning to return to default position in virtual lab experiments. This node is essential for resetting view, overview mode, and completing camera sequences.
+
+## 🔧 Node Details
+
+**Node Type**: ReturnCameraStep
+**Purpose**: Return camera to default position
+**Usage**: Reset view, overview mode, complete camera sequences
+
+## 📋 Basic Prerequisites
+
+<!-- Required data and setup needed for this node step to work -->
+1. Camera is currently focused on an object or used the FocusOnToolStep before on an object.
+2. ToolsCameraTarget Script.
+
+## 📝 Parameters
+
+- **Default Position**: The default camera position to return to
+- **Transition Duration**: Time for camera movement back to default
+- **Return Type**: Type of return (smooth, instant, etc.)
+- **Reset View**: Whether to reset view settings
+
+## 🏗️ Common Patterns
+
+### Basic Camera Return
+```
+FocusOnToolStep (Object) → ShowMessage (Object details) → ReturnCameraStep
+```
+
+### Multiple Object Focus Completion (Correct Pattern)
+```
+FocusOnToolStep (Object A) → ShowMessage (Details A) → ReturnCameraStep → FocusOnToolStep (Object B) → ShowMessage (Details B) → ReturnCameraStep
+```
+
+### Camera Sequence Completion (Correct Pattern)
+```
+FocusOnToolStep (Setup area) → ShowMessage (Setup instructions) → ReturnCameraStep → FocusOnToolStep (Tool) → ShowMessage (Tool usage) → ReturnCameraStep
+```
+
+### Interactive Focus Completion
+```
+ClickStep (Object) → FocusOnToolStep (Object) → ShowMessage (Detailed info) → ReturnCameraStep
+```
+
+### View Reset Pattern
+```
+ReturnCameraStep → ShowMessage (Back to overview) → Continue
+```
+
+## 🚨 Critical Camera Rules
+
+### **System Architecture**
+The camera system tracks only **ONE previous camera position** (main camera), not a stack. This requires strict management.
+
+### **Mandatory ReturnCameraStep Rules**
+1. **Focus → Focus (Different Tools)**: `FocusOnToolStep(Tool1)` → [any nodes] → `ReturnCameraStep` → `FocusOnToolStep(Tool2)` (**MANDATORY**)
+2. **Focus → Focus (Same Tool)**: `FocusOnToolStep(Tool1)` → [any nodes] → `ReturnCameraStep` → `FocusOnToolStep(Tool1)` (**MANDATORY**)
+3. **Single Focus Only**: `FocusOnToolStep(Tool)` → [non-focus operations] → Continue (**ReturnCameraStep OPTIONAL**)
+4. **Experiment End**: Final `ReturnCameraStep` (**RECOMMENDED** for polish, not mandatory)
+
+### **Core Rule**
+**ANY time you use FocusOnToolStep and later want to use FocusOnToolStep again (same or different tool), you MUST use ReturnCameraStep between them.**
+
+## ⚠️ Common Mistakes
+
+1. **Missing ReturnCameraStep between focus operations**: If you use FocusOnToolStep twice (same or different tools), you MUST use ReturnCameraStep between them
+2. **Wrong default position**: Verify default position is set correctly
+3. **Chaining focus steps**: Never use FocusOnToolStep → FocusOnToolStep directly without ReturnCameraStep
+4. **Invalid return position**: Verify default position is valid
+5. **Missing camera transitions**: Use appropriate delays for camera movements
+6. **Misunderstanding "always use after FocusOnToolStep"**: Only required between focus operations, not after every single focus
+
+## 🎯 Best Practices
+
+1. **Use between focus operations** to maintain proper camera tracking
+2. **Provide clear user feedback** for camera movements
+3. **Use appropriate delays** for smooth camera transitions
+4. **Verify default position exists** before returning
+5. **Test camera sequences** thoroughly
+6. **Handle return failures** gracefully
+7. **End experiments with ReturnCameraStep** for professional polish (recommended)

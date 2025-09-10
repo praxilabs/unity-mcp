@@ -1,0 +1,120 @@
+---
+alwaysApply: false
+description: User interface, messaging, timing controls, and educational content. Contains SideMessageStep, HintStep, TimerStep, and UI interaction patterns.
+---
+
+# UI Nodes
+
+## 📋 Overview
+UI nodes handle user interface and messaging in virtual lab experiments. These nodes are essential for user guidance, feedback, timing controls, and interactive elements.
+
+## 🔧 Available Nodes
+
+### 📨 Messages Category
+
+#### IntroEndMessageStep ⭐ PROMINENT ANNOUNCEMENTS
+**Rule File**: [IntroEndMessageStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/UI/IntroEndMessageStep.mdc)
+**Purpose**: Display prominent panel in middle of screen for intro/end messages
+**Usage**: Prominent announcements, experiment/stage introductions, completion messages
+
+#### SideMessageStep ⭐ NON-BLOCKING GUIDANCE
+**Rule File**: [SideMessageStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/UI/SideMessageStep.mdc)
+**Purpose**: Display side panel messages for non-blocking guidance
+**Usage**: Non-blocking instructions, feedback, guidance messages
+
+#### MiddleMessageOneActionStep ⭐ SINGLE CONFIRMATION
+**Rule File**: [MiddleMessageOneActionStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/UI/MiddleMessageOneActionStep.mdc)
+**Purpose**: Display middle screen message with one action button
+**Usage**: Confirmation dialogs, single-choice prompts, simple decisions
+
+#### MiddleMessageTwoActionsStep ⭐ BINARY CHOICES
+**Rule File**: [MiddleMessageTwoActionsStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/UI/MiddleMessageTwoActionsStep.mdc)
+**Purpose**: Display middle screen message with two action buttons
+**Usage**: Multiple choice dialogs, decision points, option selection
+
+#### StageEndMessageIndependentStep ⭐ STANDALONE COMPLETION
+**Rule File**: [StageEndMessageIndependentStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/UI/StageEndMessageIndependentStep.mdc)
+**Purpose**: Display stage completion message that doesn't depend on other stages
+**Usage**: Independent stage completion, standalone achievements
+
+#### StageEndMessageDependentStep ⭐ DEPENDENT COMPLETION
+**Rule File**: [StageEndMessageDependentStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/UI/StageEndMessageDependentStep.mdc)
+**Purpose**: Display stage completion message that depends on other stages
+**Usage**: Dependent stage completion, conditional achievements
+
+#### StageEndMessageMultiScenarioStep ⭐ COMPLEX COMPLETION
+**Rule File**: [StageEndMessageMultiScenarioStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/UI/StageEndMessageMultiScenarioStep.mdc)
+**Purpose**: Display stage completion message for multiple scenarios
+**Usage**: Complex stage completion, multiple outcome scenarios
+
+### ⏱️ Timer Category
+
+#### TimerStep ⭐ USER-CONTROLLED TIMING
+**Rule File**: [TimerStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/UI/TimerStep.mdc)
+**Purpose**: Display countdown timer with UI controls for user-controlled timing
+**Usage**: Experiment timing, procedure pacing, user-controlled countdowns
+
+### ❓ MCQ (Multiple Choice Question) Category
+
+#### MCQStep ⭐ KNOWLEDGE ASSESSMENT
+**Rule File**: [MCQStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/UI/MCQStep.mdc)
+**Purpose**: Display multiple choice questions to users
+**Usage**: Knowledge assessment, decision making, educational testing
+
+### 🛡️ SafetyTools Category
+
+#### SafetyToolsStep ⭐ SAFETY PROTOCOLS
+**Rule File**: [SafetyToolsStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/UI/SafetyToolsStep.mdc)
+**Purpose**: Display safety-related tools and warnings
+**Usage**: Safety protocols, hazard warnings, safety equipment guidance
+
+### 💡 HintStep ⭐ EDUCATIONAL GUIDANCE
+**Rule File**: [HintStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/UI/HintStep.mdc)
+**Purpose**: Display educational hints for progressive guidance
+**Usage**: Educational guidance, help systems, step-by-step learning
+
+## 🚨 Critical UI Node Rules
+
+### **Message Positioning Guide**
+- **Middle Screen**: IntroEndMessageStep, MiddleMessageOneActionStep, MiddleMessageTwoActionsStep
+- **Side Panel**: SideMessageStep
+- **Prominent**: IntroEndMessageStep for important announcements
+- **Non-blocking**: SideMessageStep for guidance that doesn't interrupt workflow
+
+### **Button Interaction Guide**
+- **One Button**: MiddleMessageOneActionStep for single confirmations
+- **Two Buttons**: MiddleMessageTwoActionsStep for binary choices
+- **Multiple Choice**: MCQStep for knowledge assessment
+
+### **Stage Completion Guide**
+- **Independent**: StageEndMessageIndependentStep for standalone completions
+- **Dependent**: StageEndMessageDependentStep for completions that depend on other stages
+- **Multi-Scenario**: StageEndMessageMultiScenarioStep for complex completion logic
+
+### **Timing Control Guide**
+- **User-Controlled**: TimerStep for user-controlled timing with UI controls
+- **Fixed Delays**: Use DelayStep (Utility category) for fixed system delays
+
+## 🎯 Node Selection Guide
+
+### **For Prominent Announcements**
+- **Intro/End Messages** → Use IntroEndMessageStep
+- **Non-blocking Guidance** → Use SideMessageStep
+
+### **For User Interactions**
+- **Single Confirmation** → Use MiddleMessageOneActionStep
+- **Binary Choice** → Use MiddleMessageTwoActionsStep
+- **Multiple Choice Questions** → Use MCQStep
+
+### **For Stage Completion**
+- **Standalone Achievement** → Use StageEndMessageIndependentStep
+- **Dependent on Other Stages** → Use StageEndMessageDependentStep
+- **Multiple Scenarios** → Use StageEndMessageMultiScenarioStep
+
+### **For Timing Control**
+- **User-Controlled Timer** → Use TimerStep
+- **Fixed System Delay** → Use DelayStep (Utility category)
+
+### **For Educational Support**
+- **Progressive Hints** → Use HintStep
+- **Safety Warnings** → Use SafetyToolsStep

@@ -1,0 +1,40 @@
+---
+alwaysApply: false
+description: Iterative operations and loop control. Contains ForLoopStep, WhileLoopStep, and loop patterns for repeated actions and data collection.
+---
+
+# Loop Nodes
+
+## 📋 Overview
+Loop nodes handle iterative operations in virtual lab experiments. Essential for repeated actions and data collection.
+
+## 🔧 Available Nodes
+
+### ForLoopStep
+**Rule File**: [ForLoopStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Loop/ForLoopStep.mdc)
+**Purpose**: Fixed iteration control
+**Usage**: Repeated measurements, data collection
+
+### WhileLoopStep
+**Rule File**: [WhileLoopStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Loop/WhileLoopStep.mdc)
+**Purpose**: Conditional iteration control
+**Usage**: Conditional repetition, dynamic loops
+
+## 🚨 Critical Loop Rules
+- **Port Connections**: Use `continueLoop` for loop body, `exit` for completion
+- **Infinite Loop Prevention**: Ensure conditions can become false (WhileLoop) or iterations are finite (ForLoop)
+- **Loop Safety**: Always provide clear exit pathways
+
+## 🎯 Node Selection Guide
+
+### **Use ForLoopStep for:**
+- Fixed number of iterations
+- Data collection with known count
+- Repeated measurements
+- Sequential operations with known steps
+
+### **Use WhileLoopStep for:**
+- Conditional repetition based on state
+- User interaction loops
+- Dynamic conditions that change during execution
+- Unknown iteration count scenarios

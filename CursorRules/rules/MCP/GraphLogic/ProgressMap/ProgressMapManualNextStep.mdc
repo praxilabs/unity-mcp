@@ -1,0 +1,59 @@
+---
+alwaysApply: false
+description: Manually controls progress by specifying the next step index; supports skipping steps
+---
+
+# ProgressMapManualNextStep Node
+
+## 📋 Overview
+Advances progress to a specific next step index for precise control and step skipping in experiment progression.
+
+## 🔧 Node Details
+
+**Node Type**: ProgressMapManualNextStep
+**Purpose**: Manual progress and navigation
+**Usage**: Experiment progress, navigation control, skipping steps
+
+## 📋 Basic Prerequisites
+
+1. **Progress Map Setup**: Progress map must be properly configured
+2. **Valid Step Index**: Target step index must exist in the progression
+3. **Step Context**: Must be used within a valid step context
+
+## 📝 Parameters
+
+- **_nextStepIndex / stepNumber**: Target step index to navigate to
+
+## 🏗️ Common Patterns
+
+### Sequential Step Progression
+```
+ProgressMapManualNextStep (stepNumber: 1) → SubGraphStep (Step_01) → 
+ProgressMapManualNextStep (stepNumber: 2) → SubGraphStep (Step_01.5) → 
+ProgressMapManualNextStep (stepNumber: 3) → SubGraphStep (Step_02) → Continue
+```
+
+### Step Completion Navigation
+```
+SubGraphStep (Complete step) → ProgressMapManualNextStep (_nextStepIndex: next) → Continue
+```
+
+## 🚨 Critical ProgressMapManualNextStep Rules
+- **Step Progression Only**: Use for step progression, not stage transitions
+- **Manual Control**: Provides precise control over step navigation
+- **Step Skipping**: Supports skipping steps in progression
+
+## ⚠️ Common Mistakes
+
+1. **Invalid step index (out of range)**: Verify step index exists in progression
+2. **Mixing manual and auto navigation**: Use consistent navigation approach
+3. **Using for stage transitions**: Use GoToStageStep for stage transitions
+4. **Using when auto navigation is sufficient**: Use ProgressMapAutoNextStep for automatic progression
+
+## 🎯 Best Practices
+
+1. **Centralize step index constants** to avoid typos and maintain consistency
+2. **Prefer AutoNext when exact index control is unnecessary** for simpler progression
+3. **Validate step exists before navigating** to prevent errors
+4. **Use for precise step control** when manual navigation is needed
+

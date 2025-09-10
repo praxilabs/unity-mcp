@@ -1,0 +1,39 @@
+---
+alwaysApply: false
+description: Animation control, SubGraph execution, and stage progression. Contains AnimationStep, GoToStageStep, and SubGraphStep patterns.
+---
+
+# Misc Nodes
+
+## 📋 Overview
+Misc nodes handle various operations that don't fit into other categories, including animation control, stage progression, and subgraph execution in virtual lab experiments.
+
+## 🔧 Available Nodes
+
+### AnimationStep
+**Rule File**: [AnimationStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Misc/AnimationStep.mdc)
+**Purpose**: Animation control and playback
+**Usage**: Object animations, visual effects, click-triggered responses
+
+### GoToStageStep
+**Rule File**: [GoToStageStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Misc/GoToStageStep.mdc)
+**Purpose**: Stage transition control
+**Usage**: End of a stage, skipping stages
+
+
+## 🚨 Critical Misc Rules
+- **Animation Control**: Use AnimationStep for object animations and visual effects
+- **Stage Management**: Use GoToStageStep for stage transitions, not step progression
+- **Modular Design**: Use SubGraphStep for reusable experiment components
+
+## 🎯 Node Selection Guide
+
+### **Use AnimationStep for:**
+- Object animations and visual effects
+- Click-triggered responses
+- Visual feedback for user actions
+
+### **Use GoToStageStep for:**
+- Stage transitions within experiments
+- Skipping stages based on conditions
+- Ending current stage and starting another

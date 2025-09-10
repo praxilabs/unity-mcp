@@ -1,0 +1,66 @@
+---
+alwaysApply: false
+description: Display stage completion message for multiple scenarios
+---
+
+# StageEndMessageMultiScenarioStep Node
+
+## 📋 Overview
+Displays a stage completion message that handles multiple scenarios and outcomes, suitable for complex completion logic.
+
+## 🔧 Node Details
+
+**Node Type**: StageEndMessageMultiScenarioStep
+**Purpose**: Display multi-scenario stage completion message
+**Usage**: Complex stage completion, multiple outcome scenarios
+
+## 📋 Basic Prerequisites
+
+1. **Multiple Scenarios**: List of possible scenarios/outcomes must be defined
+2. **Scenario Logic**: System to handle different scenario outcomes
+3. **Completion Message**: Message content for multi-scenario completion
+4. **Outcome Processing**: Logic to process all possible outcomes
+
+## 📝 Parameters
+
+- **Stage Name**: Name of the completed stage
+- **Scenarios**: List of possible scenarios/outcomes
+- **Message Text**: Completion message content
+- **Scenario Details**: Details about each scenario outcome
+
+## 🚨 Critical StageEndMessageMultiScenarioStep Rules
+- **Multiple Scenarios Only**: Use for stage completions with multiple possible outcomes
+- **Complex Logic**: Use for complex completion logic with multiple paths
+- **NOT Simple**: Use StageEndMessageIndependentStep for simple completions
+
+## 🏗️ Common Patterns
+
+### Multi-Scenario Stage Pattern
+```
+StageEndMessageMultiScenarioStep (Multiple outcomes) → HandleScenario → Continue
+```
+
+### Complex Completion Logic
+```
+CompleteStage → EvaluateOutcomes → StageEndMessageMultiScenarioStep (Scenario-based completion) → Continue
+```
+
+### Multiple Path Completion
+```
+CompleteStageA → CompleteStageB → StageEndMessageMultiScenarioStep (Multiple paths complete) → Continue
+```
+
+## ⚠️ Common Mistakes
+
+1. **Missing scenario handling**: Properly handle all possible scenarios
+2. **Unclear scenario requirements**: Make scenario conditions clear
+3. **Incomplete outcome processing**: Process all possible outcomes
+4. **Wrong node choice**: Use StageEndMessageIndependentStep for simple completions
+
+## 🎯 Best Practices
+
+1. **Use for complex completions** with multiple possible outcomes
+2. **Clearly define all scenarios** and their conditions
+3. **Handle all possible outcomes** appropriately
+4. **Provide clear feedback** for each scenario
+5. **Ensure scenario logic** is robust and complete

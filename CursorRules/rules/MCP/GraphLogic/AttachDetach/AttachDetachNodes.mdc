@@ -1,0 +1,27 @@
+---
+alwaysApply: false
+description: Object attachment and detachment operations. Contains AttachStep, DetachStep, and patterns for equipment assembly and component connections.
+---
+
+# Attach-Detach Nodes
+
+## 📋 Overview
+Attach-Detach nodes handle object attachment and detachment in virtual lab experiments. Essential for equipment assembly, component connections, and interactive object manipulation.
+
+## 🔧 Available Nodes
+
+### AttachStep
+**Rule File**: [AttachStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/AttachDetach/AttachStep.mdc)
+**Purpose**: Attach objects together (attachment only, not locking)
+**Usage**: Equipment assembly, component connections
+**⚠️ Critical**: Use FunctionCallStep for locking after attachment
+
+### DetachStep
+**Rule File**: [DetachStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/AttachDetach/DetachStep.mdc)
+**Purpose**: Detach objects from each other
+**Usage**: Equipment disassembly, component removal
+
+## 🚨 Common Misinterpretations
+- **AttachStep ≠ Locking**: AttachStep only attaches objects; use FunctionCallStep for locking
+- **Sequential Operations**: Always execute attachment/detachment operations sequentially
+- **Prerequisites**: Objects must have proper colliders and scripts for attachment to work

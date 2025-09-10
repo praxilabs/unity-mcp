@@ -1,0 +1,46 @@
+---
+alwaysApply: false
+description: Advanced branching control node for complex control flow scenarios
+---
+
+# BranchingControlStep
+
+## 📋 Overview
+BranchingControlStep provides advanced branching control for complex control flow scenarios that require sophisticated branching logic beyond simple if/else statements.
+
+## 🔧 Node Details
+
+**File**: [BranchingControlStep.cs](mdc:Assets/Scripts/System/xNode/Steps/SelfExecuted/ControlFlow/BranchingControlStep.cs)
+**Purpose**: Advanced branching control for complex scenarios
+**Usage**: Complex control flow, advanced state machines, multi-condition branching
+
+## 🏗️ Common Patterns
+
+### Advanced Branching Pattern
+```
+BranchingControlStep (Complex condition) → Branch A: ExecuteComplexLogicA → Continue
+                                        → Branch B: ExecuteComplexLogicB → Continue
+                                        → Branch C: ExecuteComplexLogicC → Continue
+```
+
+## 🚨 Critical BranchingControlStep Rules
+- **Advanced Use Only**: Use for complex scenarios that exceed IfStatementStep capabilities
+- **Handle All Branches**: Ensure all possible branching scenarios are covered
+- **Default Branch**: Always provide a default branch for unexpected conditions
+
+## ⚠️ Common Mistakes
+
+1. **Incomplete branching logic**: Handle all possible branching scenarios
+2. **Missing default branch**: Always provide a default branch for unexpected conditions
+3. **Wrong branch connections**: Verify branch port names and connections
+4. **Unclear branch logic**: Use clear, descriptive branch names
+5. **Using for simple conditions**: Use IfStatementStep for simple if/else logic
+
+## 🎯 Best Practices
+
+1. **Use for complex control flow scenarios** that exceed simple branching
+2. **Handle all possible branching cases** with appropriate responses
+3. **Connect to appropriate responses** for each branch
+4. **Provide clear branch descriptions** for maintainability
+5. **Use for advanced state machines** and complex decision trees
+6. **Ensure all branches are properly connected** to avoid execution issues

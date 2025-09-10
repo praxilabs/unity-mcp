@@ -1,0 +1,85 @@
+---
+alwaysApply: false
+description: Method execution on GameObjects and system interactions. Contains FunctionCallStep variants and patterns for component method execution.
+---
+
+# Function Call Nodes
+
+## 📋 Overview
+Function Call nodes execute methods on GameObjects in virtual lab experiments. Essential for component method execution and system interactions. All function call nodes inherit from FunctionCallBase for reflection-based method invocation.
+
+## 🔧 Available Nodes
+
+### FunctionCallStep
+**Rule File**: [FunctionCallStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/FunctionCall/FunctionCallStep.mdc)
+**Purpose**: Standard method execution on GameObjects
+**Usage**: Synchronous operations on scene objects
+
+### FunctionCallGlobalStep
+**Rule File**: [FunctionCallGlobalStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/FunctionCall/FunctionCallGlobalStep.mdc)
+**Purpose**: Global method execution without targeting specific scene objects
+**Usage**: System-wide functions, static methods
+
+### FunctionCallCoroutineStep
+**Rule File**: [FunctionCallCoroutineStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/FunctionCall/FunctionCallCoroutineStep.mdc)
+**Purpose**: Execute coroutine methods with step control
+**Usage**: Asynchronous operations on scene objects
+
+### FunctionCallCoroutineGlobalStep
+**Rule File**: [FunctionCallCoroutineGlobalStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/FunctionCall/FunctionCallCoroutineGlobalStep.mdc)
+**Purpose**: Global coroutine method execution
+**Usage**: System-wide asynchronous operations
+
+## 🚨 Critical Function Call Rules
+- **Object Registration**: All target objects must be registered in the registry
+- **Method Visibility**: Methods must be public to be accessible
+- **Parameter Types**: Use SerializableParameter for method parameters
+- **Inheritance**: All nodes inherit from FunctionCallBase for reflection-based invocation
+
+## 🎯 Node Selection Guide
+
+### **Use FunctionCallStep for:**
+- Standard method calls on scene objects
+- Synchronous operations
+- Component method execution
+
+### **Use FunctionCallGlobalStep for:**
+- Global/static method calls
+- System-wide functions
+- Singleton service methods
+
+### **Use FunctionCallCoroutineStep for:**
+- Methods that return IEnumerator
+- Asynchronous operations on scene objects
+- Long-running operations that shouldn't block execution
+
+### **Use FunctionCallCoroutineGlobalStep for:**
+- Global coroutine calls
+- System-wide asynchronous operations
+- Loading screens and global effects
+
+## 🏗️ Critical Liquid Pouring Pattern
+
+### **Liquid Pouring Sequence**
+This is a critical pattern that cannot be derived through pure thinking - it must be learned:
+
+```
+FunctionCallStep(StartPouring()) → FunctionCallStep(FillLiquid()) → FunctionCallStep(StopPouring())
+```
+
+### **Liquid Pouring with Color Change**
+```
+FunctionCallStep(StartPouring()) → FunctionCallStep(FillLiquid()) → FunctionCallStep(ChangeColor()) → FunctionCallStep(StopPouring())
+```
+
+**Why This Pattern is Critical:**
+- **StartPouring()**: Initiates pouring VFX/animations
+- **FillLiquid()**: Actually fills the container with liquid
+- **ChangeColor()**: Changes liquid color during pouring (optional)
+- **StopPouring()**: Stops pouring VFX/animations
+
+**Common Use Cases:**
+- Pouring chemicals into beakers
+- Filling containers with solutions
+- Adding reagents to mixtures
+- Transferring liquids between containers

@@ -1,0 +1,64 @@
+---
+alwaysApply: false
+description: Display a panel in the middle of the screen at the start or end of the experiment or Stage
+---
+
+# IntroEndMessageStep Node
+
+## 📋 Overview
+Displays a prominent panel in the middle of the screen for experiment/stage introduction or completion messages.
+
+## 🔧 Node Details
+
+**Node Type**: IntroEndMessageStep
+**Purpose**: Display middle screen panel for intro/end messages
+**Usage**: Prominent announcements, experiment/stage introductions, completion messages
+
+## 📋 Basic Prerequisites
+
+1. **Message Content**: Introduction or completion message text must be prepared
+2. **Message Type**: Determine if it's an introduction or end message
+3. **Timing**: Appropriate placement in experiment flow
+
+## 📝 Parameters
+
+- **Message Text**: The content to display
+- **Message Type**: Introduction or end message
+- **Duration**: How long to display (optional)
+- **Auto Close**: Whether to auto-close after duration
+
+## 🚨 Critical IntroEndMessageStep Rules
+- **Middle Screen Only**: Displays prominent panel in center of screen
+- **Prominent Announcements**: Use for important intro/end messages
+- **NOT Side Messages**: Use SideMessageStep for non-blocking guidance
+
+## 🏗️ Common Patterns
+
+### Experiment Introduction
+```
+IntroEndMessageStep (Welcome to experiment) → StartExperiment → Continue
+```
+
+### Stage Completion
+```
+CompleteStage → IntroEndMessageStep (Stage complete) → ShowMessage (Congratulations) → Continue
+```
+
+### Experiment End
+```
+CompleteExperiment → IntroEndMessageStep (Experiment finished) → ShowResults → Continue
+```
+
+## ⚠️ Common Mistakes
+
+1. **Wrong node choice**: Don't use SideMessageStep instead of IntroEndMessageStep for prominent announcements
+2. **Unclear messages**: Use clear, concise language
+3. **Wrong positioning**: Use for middle screen, not side panel messages
+
+## 🎯 Best Practices
+
+1. **Use for prominent announcements** that need center screen attention
+2. **Keep messages concise** and actionable
+3. **Provide clear next steps** in the message
+4. **Use for intro/end messages** that require user attention
+5. **Ensure messages are accessible** and readable

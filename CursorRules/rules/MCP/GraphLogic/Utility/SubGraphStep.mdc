@@ -1,0 +1,84 @@
+---
+alwaysApply: false
+description: Execute other graphs as subroutines for modular experiment design and reusable procedures
+---
+
+# SubGraphStep
+
+## 📋 Overview
+SubGraphStep executes other graphs as subroutines in virtual lab experiments. Used for modular experiment design, reusable procedures, and breaking complex experiments into manageable components.
+
+## 🔧 Node Details
+
+**Node Type**: SubGraphStep
+**Purpose**: Execute other graphs as subroutines for modular design
+**Usage**: Modular experiment design, reusable procedures, complex experiment breakdown
+
+## 📋 Basic Prerequisites
+
+1. **SubGraph Reference**: Valid reference to another StepsGraph asset
+2. **Entry/Exit Points**: SubGraph must have proper entry and exit points
+3. **Step Number**: Use stepNumber parameter for clear progression (optional)
+4. **No Circular References**: Avoid infinite subgraph loops
+
+## 📝 Parameters
+
+- **SubGraph Asset**: Reference to the StepsGraph asset to execute
+- **Step Number**: Sequential step number for progression tracking (optional)
+
+## 🚨 Critical SubGraphStep Rules
+- **Modular Design**: Use for breaking complex experiments into manageable components
+- **Reusable Procedures**: Create reusable sub-procedures for common operations
+- **No Circular References**: Avoid infinite subgraph loops
+- **Proper Entry/Exit**: Ensure subgraphs have proper entry and exit points
+
+## 🏗️ Common Patterns
+
+### Modular Execution Pattern
+```
+SubGraphStep (Setup procedure) → Main experiment → SubGraphStep (Cleanup procedure) → Continue
+```
+
+### Multi-Phase Experiment Pattern
+```
+SubGraphStep (Phase 1) → SubGraphStep (Phase 2) → SubGraphStep (Phase 3) → Continue
+```
+
+### Sequential SubGraph Execution Pattern
+```
+SubGraphStep (Step_01) → SubGraphStep (Step_01.5) → SubGraphStep (Step_02) → Continue
+```
+
+### Step-Numbered Progression Pattern
+```
+SubGraphStep (Step_01, stepNumber: 1) → SubGraphStep (Step_02, stepNumber: 2) → 
+SubGraphStep (Step_03, stepNumber: 3) → SubGraphStep (Step_04, stepNumber: 4) → Continue
+```
+
+### Hint-Guided Sequential Flow Pattern
+```
+HintStep (stepNumber: 1) → SubGraphStep (Phase 1) → HintStep (stepNumber: 2) → 
+SubGraphStep (Phase 2) → HintStep (stepNumber: 3) → SubGraphStep (Phase 3) → Continue
+```
+
+### SubGraph with Auto Progress Pattern
+```
+SubGraphStep (Complete phase) → ProgressMapAutoNextStep → SubGraphStep (Next phase) → Continue
+```
+
+## ⚠️ Common Mistakes
+
+1. **Infinite subgraphs**: Avoid circular subgraph references
+2. **Missing subgraph references**: Ensure subgraph references are valid
+3. **Incomplete subgraph flow**: Ensure subgraphs have proper entry and exit points
+4. **Missing step numbers**: Use stepNumber parameter for clear progression
+5. **Wrong subgraph order**: Ensure subgraphs execute in correct sequence
+
+## 🎯 Best Practices
+
+1. **Use for modular experiment design** and reusable procedures
+2. **Create reusable sub-procedures** for common operations
+3. **Use stepNumber parameter** for clear progression tracking
+4. **Break complex experiments** into manageable phases
+5. **Ensure subgraphs have proper entry and exit points**
+6. **Avoid circular subgraph references** to prevent infinite loops

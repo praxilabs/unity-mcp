@@ -1,0 +1,119 @@
+---
+alwaysApply: false
+description: User clicking interactions, object selection, and interactive manipulation. Contains ClickStep, RotateKnobStep, ExploreStep, and click response patterns.
+---
+
+# Click Nodes
+
+## 📋 Overview
+Click nodes handle user clicking interactions in virtual lab experiments. Essential for user interface interactions, object selection, and interactive object manipulation.
+
+## 🔧 Available Nodes
+
+### ClickStep
+**Rule File**: [ClickStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Click/ClickStep.mdc)
+**Purpose**: Wait for user to click target object, then enable execution flow
+**Usage**: Object interaction gate, world GameObject clicking
+**⚠️ Critical**: ClickStep alone does NOTHING - next step contains the actual logic
+
+### RotateKnobStep
+**Rule File**: [RotateKnobStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Click/RotateKnobStep.mdc)
+**Purpose**: Handle knob rotation interactions
+**Usage**: Instrument controls, value adjustments
+
+### ExploreStep
+**Rule File**: [ExploreStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Click/ExploreStep.mdc)
+**Purpose**: Handle object exploration interactions
+**Usage**: Object inspection, detailed examination
+
+### UIClickStep
+**Rule File**: [ClickUIButtonStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Click/ClickUIButtonStep.mdc)
+**Purpose**: Wait for user to click UI button, then enable execution flow
+**Usage**: UI button interaction gate, interface button clicking
+**⚠️ Critical**: UIClickStep alone does NOTHING - next step contains the actual logic
+
+## 🚨 Critical Click Rules
+- **Click Nodes = Gates**: Click nodes wait for user input, then enable execution flow to continue
+- **No Standalone Logic**: Click nodes alone are USELESS - they do nothing by themselves
+- **Next Step = Actual Logic**: The step AFTER click nodes contains the real functionality
+- **Mandatory Pattern**: ClickStep/UIClickStep → FunctionCallStep/AnimationStep/etc. → Continue
+- **Branching Behavior**: In OR scenarios, whichever click happens first determines the execution path
+
+## 🎯 Button Type Identification
+**Identify button type through context:**
+
+### Use ClickStep for:
+- **World GameObject buttons**: "Click on the On button on the balance/scale"
+- **Physical instrument controls**: "Click on the tare button", "Click on the power button"
+- **3D object interactions**: "Click on the bottle", "Click on the hammer"
+
+### Use UIClickStep for:
+- **UI dialog buttons**: "Click Yes/No button", "Click OK/Cancel"
+- **Menu interface buttons**: "Click Start button", "Click Next button"
+- **Message panel buttons**: "Click Confirm button", "Click Continue button"
+
+**Context Examples:**
+- ✅ "Click on the On button on the scale" → **ClickStep** (world GameObject)
+- ✅ "Click Yes button" → **UIClickStep** (UI dialog)
+- ✅ "Click on the tare button" → **ClickStep** (instrument control)
+- ✅ "Click OK button" → **UIClickStep** (UI message)
+
+## 📝 Complete Implementation Examples
+
+### Example 1: "Click to turn off TV" (Device Functionality)
+```
+❌ WRONG: ClickStep(TV Remote) → Continue
+✅ CORRECT: ClickStep(TV Remote) → FunctionCallStep(TVController.TurnOff) → Continue
+```
+
+### Example 2: "Click tare button to zero the scale" (Device Functionality)
+```
+❌ WRONG: ClickStep(Tare Button) → Continue
+✅ CORRECT: ClickStep(Tare Button) → FunctionCallStep(ScaleController.TareZero) → Continue
+```
+
+### Example 3: "Click bottle to open it" (Motion/Physical Action)
+```
+❌ WRONG: ClickStep(Bottle) → Continue
+✅ CORRECT: ClickStep(Bottle) → AnimationStep(Bottle Opening Animation) → Continue
+```
+
+### Example 4: "Click hammer to crush tablet" (Motion/Physical Action)
+```
+❌ WRONG: ClickStep(Hammer) → Continue
+✅ CORRECT: ClickStep(Hammer) → AnimationStep(Crushing Animation) → Continue
+```
+
+### Example 5: "Click Yes to confirm deletion" (UI Functionality)
+```
+❌ WRONG: UIClickStep(Yes Button) → Continue
+✅ CORRECT: UIClickStep(Yes Button) → FunctionCallStep(DataManager.DeleteItem) → SideMessageStep(Deleted successfully)
+```
+
+### Example 6: Branching scenario with OR Step
+```
+OR Step
+├── ClickStep(Option A Button) → FunctionCallStep(ExecuteOptionA) → Continue
+└── ClickStep(Option B Button) → FunctionCallStep(ExecuteOptionB) → Continue
+```
+**Note**: Whichever button gets clicked first determines which branch executes.
+
+## 🎯 Action Type Decision Guide
+
+**Use AnimationStep for Motion/Physical Actions:**
+- Opening/closing (bottles, doors, drawers, containers)
+- Moving objects (dragging, lifting, placing)
+- Physical transformations (crushing, breaking, mixing)
+- Any visible motion or physical change
+
+**Use FunctionCallStep for Device/System Functionality:**
+- Device controls (power on/off, tare/zero, mode changes)
+- System functions (save, load, calculate, process)  
+- Data operations (record, measure, analyze)
+- Logical state changes (enable/disable, activate/deactivate)
+
+**Examples:**
+- ✅ "Click bottle to open" → AnimationStep (physical motion)
+- ✅ "Click tare to zero scale" → FunctionCallStep (device function)
+- ✅ "Click hammer to crush" → AnimationStep (physical motion)
+- ✅ "Click power to turn on" → FunctionCallStep (device function)

@@ -1,0 +1,81 @@
+---
+alwaysApply: false
+description: Handle input field interactions for tools and data entry
+---
+
+# ToolsInputfieldStep Node
+
+## 📋 Overview
+Handles input field interactions for tools, enabling data entry, parameter input, and tool configuration.
+
+## 🔧 Node Details
+
+**Node Type**: ToolsInputfieldStep
+**Purpose**: Handle input field interactions for tools
+**Usage**: Data entry for tools, parameter input, tool configuration
+
+## 📋 Basic Prerequisites
+
+<!-- Required data and setup needed for this node step to work -->
+
+## 📝 Parameters
+
+- **Input Field**: The input field component to interact with
+- **Input Type**: Type of input expected (text, number, etc.)
+- **Validation Rules**: Rules for input validation
+- **Default Value**: Default value for the input field
+
+## 🏗️ Common Patterns
+
+### User Data Entry
+```
+ToolsInputfieldStep (InputField) → UserInputStep (Data) → ValidateInput → Continue
+```
+
+### Tool Configuration
+```
+ToolsInputfieldStep (ConfigField) → SetToolParameter → ShowMessage (Tool configured) → Continue
+```
+
+### Complete Tool Workflow
+```
+GameObjectSetActiveStep (ShowTool) → ToolsInteractionsMenuStep (EnableMenu) → 
+UserSelectsOption → ToolsInputfieldStep (GetParameters) → ExecuteToolFunction → Continue
+```
+
+### Input Validation Pattern
+```
+ToolsInputfieldStep (InputField) → ValidateInput → IfStatementStep (Valid) → ProcessInput → Continue
+                                 → False: ShowMessage (Invalid input) → RetryInput
+```
+
+## ⚠️ Common Mistakes
+
+1. **Missing input validation**: Always validate input field data before processing
+2. **Invalid input data**: Always validate input field data before processing
+3. **Missing input field reference**: Verify input field exists and is accessible
+4. **Wrong input type**: Ensure input type matches expected data format
+5. **Missing error handling**: Handle invalid input gracefully
+
+## 🔍 Debugging Tips
+
+1. **Test input field interactions** one step at a time
+2. **Validate input field data** before processing
+3. **Check input field states** before and after interactions
+4. **Use DelayStep** to slow down for debugging
+5. **Monitor input field responses** with console logs
+6. **Test input validation** thoroughly
+7. **Validate input field references** exist and are valid
+
+## 🎯 Best Practices
+
+1. **Always validate input data** before processing
+2. **Provide clear feedback** for input validation
+3. **Use appropriate input types** for different data formats
+4. **Test input sequences** thoroughly
+5. **Handle input failures** gracefully
+6. **Document input requirements** clearly
+7. **Consider user experience** during input interactions
+8. **Ensure input fields are accessible** and properly configured
+9. **Use appropriate validation rules** for different input types
+10. **Provide helpful error messages** for invalid input

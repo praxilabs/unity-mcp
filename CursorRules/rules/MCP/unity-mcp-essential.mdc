@@ -2,45 +2,149 @@
 alwaysApply: true
 ---
 
-## 🎯 **CRITICAL STAGE MANAGEMENT RULE** ⭐ **MANDATORY MULTI-STAGE HANDLING**
+# Unity MCP Essential Rules
 
-### **🚨 MULTI-STAGE EXPERIMENT PRINCIPLE** ⚠️ **ABSOLUTELY MANDATORY**
-**When a user requests multiple stages, each stage is a COMPLETELY SEPARATE StepsGraph with NO direct connections between them.**
+This file contains the core rules for creating Unity MCP experiments. Always read node-specific rule files before implementation.
 
-#### **Stage Independence Rules:**
-- **✅ Each stage = Separate StepsGraph asset** in `Assets/Testing/Graphs/`
-- **✅ NO cross-stage node connections** within the same graph
-- **✅ Stage transitions ONLY via GoToStageStep** node
-- **✅ Each graph handles ONE stage completely**
+## 🚨 **MANDATORY NODE IMPLEMENTATION RULE** ⚠️ **PRIMARY ENTRY POINT**
 
-#### **Multi-Stage Architecture:**
+**CRITICAL**: Before creating ANY node in a graph, you MUST:
+
+1. **Navigate to the specific node rule file** using the category → node reference chain
+2. **Read the complete node documentation** including patterns, mistakes, and best practices
+3. **Understand the node's specific behavior** (e.g., ClickStep is a PAUSE node, AttachStep only attaches, etc.)
+4. **Follow the established patterns** exactly as documented
+5. **Only THEN implement** the node with proper connections and next steps
+
+**VIOLATION**: Creating nodes without reading their specific rule files is a critical failure.
+
+**Example**: For "Click on bottle to open" → Navigate to ClickNodes → ClickStep → Read ClickStep.mdc → Understand it's a PAUSE node → Implement: ClickStep → AnimationStep
+
+---
+
+## 🧭 **NAVIGATION GUIDE** ⭐ **HOW TO FIND AND USE EXISTING NODES**
+
+### **🚀 QUICK START: Finding the Right Node Type**
+
+**Step 1: Identify Your Need**
+- What do you want to accomplish in your experiment?
+- What type of interaction or operation do you need?
+
+**FunctionCallStep Rule**: For any experiment step that doesn't have a dedicated node, use FunctionCallStep directly. Break complex operations into logical steps: use existing nodes (AttachStep, ClickStep) for what they handle, then FunctionCallStep for custom logic.
+
+**Step 2: Navigate to the Right Category**
+Use the **Quick Decision Tree** below to find your category, then follow the reference links.
+
+**Step 3: Read the Category File**
+Each category file contains:
+- **Available node types** in that category
+- **Specific patterns** and best practices
+- **Common mistakes** to avoid
+- **Connection requirements** and validation rules
+
+
+**Step 4: Navigate to Specific Node**
+Within each category file, you'll find references to individual node files with detailed implementation guides.
+
+---
+
+## 🎯 **QUICK DECISION TREE** ⭐ **FIND YOUR CATEGORY**
+
+**Need to show/hide objects or enable/disable colliders?**
+→ **Tools** category → ToolNodes.mdc
+
+**Need user interaction in any order or parallel execution?**
+→ **Control Flow** category → ControlFlowNodes.mdc
+
+**Need to attach/detach objects or equipment assembly?**
+→ **Attach-Detach** category → AttachDetachNodes.mdc
+
+**Need clicking, selection, or interactive manipulation?**
+→ **Click** category → ClickNodes.mdc
+
+**Need camera positioning, focus, or view management?**
+→ **Camera** category → CameraNodes.mdc
+
+**Need to call methods on GameObjects or system functions?**
+→ **Function Call** category → FunctionCallNodes.mdc
+
+**Need loops, iterations, or repeated actions?**
+→ **Loops** category → LoopNodes.mdc
+
+**Need UI messages, hints, timers, or user interface?**
+→ **UI** category → UINodes.mdc
+
+**Need delays, subgraphs, or utility operations?**
+→ **Utility** category → UtilityNodes.mdc
+
+**Need event-driven interactions or reactive programming?**
+→ **New Events** category → NewEventsNodes.mdc
+
+**Need data tables, records, or stage management?**
+→ **Table** category → TableNodes.mdc
+
+**Need progress tracking or stage navigation?**
+→ **Progress Map** category → ProgressMapNodes.mdc
+
+**Need animations, subgraphs, or miscellaneous operations?**
+→ **Misc** category → MiscNodes.mdc
+
+
+## 🔍 **NAVIGATION WORKFLOW**
+
+**Standard Process**:
+1. **Identify Need** → Use decision tree to find category
+2. **Read Category File** → Understand patterns and requirements
+3. **Find Specific Node** → Locate exact node type needed
+4. **Read Node Details** → Follow implementation patterns
+5. **Apply Pattern** → Use established best practices
+
+**Example Workflow**:
+- Need: "Click on bottle to open"
+- Category: Click category
+- Node: ClickStep
+- Pattern: ClickStep (pause) → AnimationStep (open animation)
+- Implementation: Create ClickStep node, then AnimationStep node, connect them
+
+**Reference Chain**:
+```
+Category File → Specific Node File → Implementation Pattern → Validation Rules
+```
+
+---
+
+## 🎯 **MULTI-STAGE HANDLING RULE**
+
+**Multi-Stage Principle**:
+When a user requests multiple stages, each stage is a separate StepsGraph with no direct connections between them.
+
+**Stage Rules**:
+- Each stage = Separate StepsGraph asset in `Assets/Testing/Graphs/`
+- No cross-stage node connections within the same graph
+- Stage transitions only via GoToStageStep node
+- Each graph handles one stage completely
+
+**Architecture**:
 ```bash
-# ✅ CORRECT: Separate graphs for each stage
 Assets/Testing/Graphs/
 ├── ChemistryLab_VitaminCAnalysis_Stage1_StepGraph.asset
 ├── ChemistryLab_VitaminCAnalysis_Stage2_StepGraph.asset
 └── ChemistryLab_VitaminCAnalysis_Stage3_StepGraph.asset
-
-# ❌ WRONG: Single graph trying to handle multiple stages
-Assets/Testing/Graphs/
-└── ChemistryLab_VitaminCAnalysis_AllStages_StepGraph.asset  # FORBIDDEN
 ```
 
-#### **Stage Transition Pattern:**
+**Transition Pattern**:
 ```bash
-# ✅ CORRECT: Use GoToStageStep for stage changes
 Stage1_Graph: FinalNode → GoToStageStep(Stage2) → End
 Stage2_Graph: Start → Stage2Content → End
 ```
 
 ---
 
-## 🎭 **CRITICAL SCENARIO PATTERN RULE** ⭐ **MANDATORY SCENARIO HANDLING**
+## 🎭 **SCENARIO PATTERN RULE**
 
-### **🚨 SCENARIO SELECTION PATTERN** ⚠️ **ABSOLUTELY MANDATORY**
-**ALL scenario-based experiments MUST follow this EXACT pattern for user choice handling:**
+**Scenario Selection Pattern**:
+All scenario-based experiments follow this pattern for user choice handling:
 
-#### **MANDATORY SCENARIO PATTERN:**
 ```bash
 1. GameObjectSetActiveStep(ChoicesCanvasUI) → Enable choice UI
 2. ClickUIStep(ConfirmScenarioButton) → User clicks to confirm
@@ -50,9 +154,8 @@ Stage2_Graph: Start → Stage2Content → End
    └── False: Execute Scenario 2
 ```
 
-#### **Scenario Pattern Implementation:**
+**Implementation**:
 ```bash
-# ✅ CORRECT: Standard scenario pattern
 GameObjectSetActiveStep(ChoicesCanvasUI) 
     ↓
 ClickUIStep(ConfirmScenarioButton)
@@ -60,292 +163,55 @@ ClickUIStep(ConfirmScenarioButton)
 FunctionCallStep(ChoicesUIScript.isScenarioA)
     ↓
 IfStatementStep
-    ├── True → Scenario1_SubGraph
-    └── False → Scenario2_SubGraph
-```
-
-#### **SubGraph Usage for Scenarios:**
-```bash
-# ✅ CORRECT: Use SubGraphStep for complex scenarios
-IfStatementStep
     ├── True → SubGraphStep(Scenario1_Graph)
     └── False → SubGraphStep(Scenario2_Graph)
 ```
 
 ---
 
-## 🎯 **CRITICAL POSITIONING & STAGING RULES** ⭐ **MANDATORY NODE POSITIONING**
+## 📝 **GRAPH NAMING RULE**
 
-### **🚨 PRIMARY POSITIONING PRINCIPLE** ⚠️ **ABSOLUTELY MANDATORY**
-**ALWAYS default to left-right (horizontal) flow unless there is a COMPELLING reason for vertical positioning.**
+**Create graphs with descriptive, meaningful names that explain the graph's purpose.**
 
-### **📐 MANDATORY SPACING STANDARDS** ⚠️
-- **Horizontal**: 450px between sequential nodes (left-right flow) - **PRIMARY**
-- **Vertical**: 300px between parallel routes or levels - **SECONDARY**
-- **Level Separation**: 600px between major logic groups
-- **Start Position**: (0, 0) for first node
-
-### **🚫 FORBIDDEN POSITIONING PATTERNS** ⚠️
-- ❌ **NEVER stack nodes on top of each other** (same X position)
-- ❌ **NEVER force vertical flow for complex experiments** (6+ nodes)
-- ❌ **NEVER use vertical as default** - requires explicit justification
-- ❌ **NEVER create rigid vertical matrices** for complex logic
-
-### **✅ MANDATORY POSITIONING STRATEGY** ⚠️
-**For ANY experiment with 6+ nodes or parallel operations:**
-```bash
-# ✅ CORRECT: Left-right horizontal flow (DEFAULT)
-mcp_unityMCP_create_xnode_node --position_x 0 --position_y 0      # Start
-mcp_unityMCP_create_xnode_node --position_x 450 --position_y 0    # Step 1
-mcp_unityMCP_create_xnode_node --position_x 900 --position_y 0    # Step 2
-mcp_unityMCP_create_xnode_node --position_x 1350 --position_y 0   # Step 3
-mcp_unityMCP_create_xnode_node --position_x 1800 --position_y 0   # Complete
-```
-
-**For complex multi-route experiments:**
-```bash
-# ✅ CORRECT: Level-based horizontal organization
-Level 1: Start (0, 0) → Setup (450, 0) → Branch (900, 0)
-Level 2: Route A (0, 300) → Route B (450, 300) → Route C (900, 300)
-Level 3: Completion (1350, 300) → End (1800, 300)
-```
-
-### **🎯 POSITIONING DECISION MATRIX** ⚠️ **MANDATORY**
-| Graph Type | Node Count | **Required Strategy** |
-|---|---|----|
-| Simple Linear | 3-5 nodes | **Left-Right (DEFAULT)** |
-| Equipment Setup | 4-8 nodes | **Left-Right (DEFAULT)** |
-| Interactive Lab | 6+ nodes | **Left-Right (MANDATORY)** |
-| Complex Experiment | 8+ nodes | **Left-Right (MANDATORY)** |
-| Multi-Route | Any count | **Left-Right (MANDATORY)** |
-
----
-
-## 🎭 **MANDATORY NODE STAGING RULES** ⭐ **READABILITY ENFORCEMENT**
-
-### **🚨 STAGING REQUIREMENT** ⚠️ **ABSOLUTELY MANDATORY**
-**ALWAYS stage nodes in logical groups with clear visual separation for better readability.**
-
-### **📐 STAGING SPACING STANDARDS** ⚠️
-- **Stage Separation**: 600px between major logical stages
-- **Stage Grouping**: Group related nodes within 300px vertical range
-- **Visual Hierarchy**: Use Y positioning to show logical relationships
-- **Clear Boundaries**: Each stage should have distinct visual separation
-
-### **✅ MANDATORY STAGING STRATEGY** ⚠️
-**For experiments with multiple logical stages:**
-```bash
-# ✅ CORRECT: Staged horizontal flow with logical grouping
-Stage 1 - Setup: (0, 0) → (450, 0) → (900, 0)
-Stage 2 - Interaction: (1350, 0) → (1800, 0) → (2250, 0)
-Stage 3 - Validation: (2700, 0) → (3150, 0) → (3600, 0)
-Stage 4 - Completion: (4050, 0) → (4500, 0) → (4950, 0)
-```
-
-**For parallel operations within stages:**
-```bash
-# ✅ CORRECT: Stage-based parallel organization
-Stage 1: Setup (0, 0) → Branch (450, 0)
-Stage 2: Route A (0, 300) → Route B (450, 300) → Merge (900, 300)
-Stage 3: Validation (1350, 300) → Complete (1800, 300)
-```
-
-### **🎯 STAGING DECISION MATRIX** ⚠️ **MANDATORY**
-| Graph Complexity | **Required Staging** |
-|---|----|
-| Simple (3-5 nodes) | **Single Stage** (0, 0) to (1800, 0) |
-| Medium (6-10 nodes) | **Two Stages** with 600px separation |
-| Complex (11-15 nodes) | **Three Stages** with clear boundaries |
-| Advanced (16+ nodes) | **Four+ Stages** with logical grouping |
-
-### **🚫 FORBIDDEN STAGING PATTERNS** ⚠️
-- ❌ **NEVER create unorganized node clusters** without logical grouping
-- ❌ **NEVER place all nodes in single horizontal line** for complex experiments
-- ❌ **NEVER ignore logical stage boundaries** for readability
-- ❌ **NEVER create dense node arrangements** without visual breathing room
-
----
-
-## 📝 **GRAPH NAMING RULE** ⭐ **MANDATORY DESCRIPTIVE NAMING**
-
-**ALWAYS create graphs with descriptive, meaningful names that explain the graph's purpose and content.**
-
-#### **Naming Convention Structure**
+**Naming Convention**:
 ```
 [ExperimentType]_[SpecificPurpose]_[GraphType]
 ```
 
-#### **Naming Examples by Experiment Type**
-- **Physics**: `PhysicsLab_Mechanics_StepGraph`, `PhysicsLab_Electricity_StepGraph`
-- **Chemistry**: `ChemistryLab_Titration_StepGraph`, `ChemistryLab_Reactions_StepGraph`
-- **Biology**: `BiologyLab_Microscopy_StepGraph`, `BiologyLab_Dissection_StepGraph`
-- **Interactive**: `InteractiveLab_EquipmentSetup_StepGraph`, `InteractiveLab_DataCollection_StepGraph`
+**Examples**:
+- `PhysicsLab_Mechanics_StepGraph`
+- `ChemistryLab_Titration_StepGraph`
+- `BiologyLab_Microscopy_StepGraph`
+- `InteractiveLab_EquipmentSetup_StepGraph`
 
-#### **Naming Guidelines**
-1. **🎯 Be Specific**: Include exact experiment type and purpose
-2. **📋 Include Phase**: If multi-phase, include phase number/name
-3. **🔧 Indicate Type**: Always include `StepGraph` suffix
-4. **📁 Use Underscores**: Separate words with underscores
-5. **🎨 Be Descriptive**: Name should immediately tell you what the graph does
-6. **🔍 Avoid Generic Names**: Never use "NewStepsGraph", "Graph1", "Experiment", "Test"
+**Guidelines**:
+1. Be specific: Include exact experiment type and purpose
+2. Include phase number/name if multi-phase
+3. Always include `StepGraph` suffix
+4. Use underscores to separate words
+5. Avoid generic names like "NewStepsGraph", "Graph1", "Experiment", "Test"
 
 ---
 
-## 🎯 **EXPERIMENT TYPE DECISION RULE** ⭐ **CRITICAL DISTINCTION**
+## 🎯 **SCRIPTABLE OBJECT CREATION RULE**
 
-### **Random/Demo Graph Protocol (OPTIONAL assets):**
+**Standard Protocol**:
 ```bash
-# 1. Create ExperimentData (optional but recommended)
-mcp_unityMCP_create_scriptable_object --scriptable_object_type "ExperimentData" --asset_name "[Type]_RandomDemo_ExperimentData" --folder "Assets/Testing/"
-
-# 2. Create ItemsRegistry (optional but recommended)  
-mcp_unityMCP_create_scriptable_object --scriptable_object_type "ExperimentItemsRegistry" --asset_name "[Type]_RandomDemo_ItemsRegistry" --folder "Assets/Testing/"
-
-# 3. Create StepsGraph (required)
-mcp_unityMCP_create_scriptable_object --scriptable_object_type "StepsGraph" --asset_name "[Type]_RandomDemo_StepGraph" --folder "Assets/Testing/Graphs/"
-```
-
-### **Full Experiment Protocol (MANDATORY assets):**
-```bash
-# 1. Create ExperimentData (MANDATORY)
+# 1. Create ExperimentData
 mcp_unityMCP_create_scriptable_object --scriptable_object_type "ExperimentData" --asset_name "[ExperimentType]_[Purpose]_ExperimentData" --folder "Assets/Testing/"
 
-# 2. Create ItemsRegistry (MANDATORY)
+# 2. Create ItemsRegistry
 mcp_unityMCP_create_scriptable_object --scriptable_object_type "ExperimentItemsRegistry" --asset_name "[ExperimentType]_[Purpose]_ItemsRegistry" --folder "Assets/Testing/"
 
-# 3. Create StepsGraph (MANDATORY)
+# 3. Create StepsGraph
 mcp_unityMCP_create_scriptable_object --scriptable_object_type "StepsGraph" --asset_name "[ExperimentType]_[Purpose]_StepGraph" --folder "Assets/Testing/Graphs/"
 ```
 
 ---
 
-## 🔧 **CRITICAL TECHNICAL RULES** ⚠️
-
-### **RegistryItem Parameter Format** ⭐ **MANDATORY EXACT SYNTAX**
-**ALWAYS use this EXACT format for RegistryItem parameters:**
-```csharp
-{"prefabName": "ParentName", "childName": "ChildName"}
-```
-**NEVER use:** `{prefabName: "Tools"}` or `{"prefabName: Tools"}` or any malformed syntax
-
-### **ScriptableObject Class Names** ⭐ **MANDATORY EXACT NAMES**
-**ALWAYS use these EXACT class names:**
-- `"ExperimentItemsRegistry"` (NOT `"RegistryItemData"`)
-- `"ExperimentData"` (NOT `"ExperimentDataSO"`)
-- `"StepsGraph"`
-
-### **Validation Loop Rule** ⭐ **MANDATORY**
-**After ANY correction, you MUST re-validate and continue the fix→validate cycle until 100% error-free.**
-- Never stop at first fix
-- Always complete the full validation cycle
-- Use `list_graph_nodes` after each correction
-
----
-
-## 🧠 **MANDATORY PRE-NODE CREATION RULE** ⭐ **ABSOLUTELY CRITICAL**
-
-### **🚨 GRAPH LOGIC PATTERN ANALYSIS** ⚠️ **REQUIRED BEFORE ANY NODE CREATION**
-**BEFORE generating ANY node, you MUST analyze the graph logic patterns and common mistakes for the node types you plan to use.**
-
-#### **✅ MANDATORY PRE-CREATION CHECKLIST** ⚠️
-1. **✅ Read relevant GraphLogic rule files** for your node types
-2. **✅ Study established patterns** and best practices
-3. **✅ Identify common mistakes** and failure modes
-4. **✅ Understand critical connection requirements** and validation rules
-5. **✅ Only THEN create nodes** with proper implementation
-
-#### **🔍 REQUIRED GRAPH LOGIC ANALYSIS** ⚠️
-**For ANY node creation, you MUST consult these rule files:**
-
-- **Attach-Detach Operations**: [Attach-DetachNodes](mdc:.cursor/rules/MCP/GraphLogic/Attach-DetachNodes.mdc)
-- **Click Interactions**: [ClickNodes](mdc:.cursor/rules/MCP/GraphLogic/ClickNodes.mdc)
-- **Control Flow**: [ControlFlowNodes](mdc:.cursor/rules/MCP/GraphLogic/ControlFlowNodes.mdc) ⭐ **CRITICAL**
-- **Camera Operations**: [CameraNodes](mdc:.cursor/rules/MCP/GraphLogic/CameraNodes.mdc)
-- **Function Calls**: [FunctionCallNodes](mdc:.cursor/rules/MCP/GraphLogic/FunctionCallNodes.mdc)
-- **Loops**: [LoopNodes](mdc:.cursor/rules/MCP/GraphLogic/LoopNodes.mdc)
-- **Tool Operations**: [ToolNodes](mdc:.cursor/rules/MCP/GraphLogic/ToolNodes.mdc) ⭐ **CRITICAL**
-- **UI Interactions**: [UINodes](mdc:.cursor/rules/MCP/GraphLogic/UINodes.mdc)
-- **Utility Operations**: [UtilityNodes](mdc:.cursor/rules/MCP/GraphLogic/UtilityNodes.mdc)
-- **Event Systems**: [NewEventsNodes](mdc:.cursor/rules/MCP/GraphLogic/NewEventsNodes.mdc)
-- **Data Tables**: [TableNodes](mdc:.cursor/rules/MCP/GraphLogic/TableNodes.mdc)
-- **Progress Management**: [ProgressMapNodes](mdc:.cursor/rules/MCP/GraphLogic/ProgressMapNodes.mdc)
-- **Misc Operations**: [MiscNodes](mdc:.cursor/rules/MCP/GraphLogic/MiscNodes.mdc)
-
-#### **🚨 CRITICAL PATTERN REQUIREMENTS** ⚠️
-**Each node type has specific patterns you MUST follow:**
-
-- **Control Flow**: Mandatory connection requirements, parallel execution patterns
-- **Tool Operations**: Sequential collider operation rules, critical safety patterns
-- **Attach-Detach**: Equipment assembly patterns, component connection rules
-- **Click Operations**: Interactive response patterns, user interaction flows
-- **Function Calls**: Method execution patterns, component interaction rules
-
-#### **⚠️ COMMON MISTAKES TO AVOID** ⚠️
-**Study these failure modes before implementation:**
-
-- **Disconnected nodes** without proper input/output connections
-- **Missing validation** after graph creation
-- **Incorrect positioning** that creates unreadable graphs
-- **Broken execution flow** that stops at incomplete nodes
-- **Missing critical connections** that break experiment logic
-
-#### **✅ IMPLEMENTATION SAFETY CHECK** ⚠️
-**Before creating ANY node, verify:**
-
-1. **Pattern Understanding**: Have you read the relevant GraphLogic rules?
-2. **Connection Strategy**: Do you understand how this node connects to others?
-3. **Validation Plan**: Do you know how to validate this node's implementation?
-4. **Error Prevention**: Are you aware of common mistakes for this node type?
-5. **Best Practices**: Do you understand the established patterns?
-
-**🚨 FAILURE TO FOLLOW THIS RULE RESULTS IN BROKEN GRAPHS AND EXPERIMENT FAILURES**
-
----
-
-## 🎯 **QUICK DECISION TREE**
-
-### Need to show/hide objects?
-→ **Tools** category → [GameObjectSetActiveStep](mdc:.cursor/rules/MCP/GraphLogic/ToolNodes.mdc)
-
-### Need to enable/disable colliders?
-→ **Tools** category → [ToggleColliderStep](mdc:.cursor/rules/MCP/GraphLogic/ToolNodes.mdc) ⭐ **CRITICAL RULE**
-
-### Need user interaction in any order?
-→ **Control Flow** category → [CompositeStep pattern](mdc:.cursor/rules/MCP/GraphLogic/ControlFlowNodes.mdc)
-
-### Need sequential execution?
-→ **Chain: Node1.exit → Node2.entry**
-
-### Need function calls?
-→ **Function Call** category → [FunctionCallStep](mdc:.cursor/rules/MCP/GraphLogic/FunctionCallNodes.mdc)
-
-### Need multiple stages?
-→ **Create separate StepsGraph for each stage** → Use GoToStageStep for transitions
-
-### Need scenario selection?
-→ **Follow mandatory scenario pattern**: GameObjectSetActive → ClickUI → FunctionCall → IfStatement
-
----
-
-## 📂 **STEP NODE CATEGORIES**
-
-**Quick Reference**: [Attach-Detach](mdc:.cursor/rules/MCP/GraphLogic/Attach-DetachNodes.mdc) | [Click](mdc:.cursor/rules/MCP/GraphLogic/ClickNodes.mdc) | [Control Flow](mdc:.cursor/rules/MCP/GraphLogic/ControlFlowNodes.mdc) | [Camera](mdc:.cursor/rules/MCP/GraphLogic/CameraNodes.mdc) | [Function Call](mdc:.cursor/rules/MCP/GraphLogic/FunctionCallNodes.mdc) | [Loops](mdc:.cursor/rules/MCP/GraphLogic/LoopNodes.mdc) | [Tools](mdc:.cursor/rules/MCP/GraphLogic/ToolNodes.mdc) | [UI](mdc:.cursor/rules/MCP/GraphLogic/UINodes.mdc) | [Utility](mdc:.cursor/rules/MCP/GraphLogic/UtilityNodes.mdc) | [NewEvents](mdc:.cursor/rules/MCP/GraphLogic/NewEventsNodes.mdc) | [Table](mdc:.cursor/rules/MCP/GraphLogic/TableNodes.mdc) | [Progress Map](mdc:.cursor/rules/MCP/GraphLogic/ProgressMapNodes.mdc) | [Misc](mdc:.cursor/rules/MCP/GraphLogic/MiscNodes.mdc)
-
----
-
 ## 🔗 **ADDITIONAL REFERENCES**
 
-- [Graph Validation Rules](mdc:.cursor/rules/MCP/graph-validation-rules.mdc) - Post-creation validation
-- [Graph Connection Rules](mdc:.cursor/rules/MCP/graph-connection-rules.mdc) - Critical connection requirements
-- [Positioning Strategy](mdc:.cursor/rules/MCP/positioning-strategy.mdc) - Node positioning guide
-- [MCP Tools Reference](mdc:.cursor/rules/MCP/mcp-tools-reference.mdc) - Complete tool reference
-
-**Remember**: When in doubt, always verify in the codebase first!
-
-
-
-
-
-
-
-
+- **Graph Validation Rules** - Post-creation validation
+- **Graph Connection Rules** - Critical connection requirements
+- **Positioning Strategy** - Node positioning and staging rules
+- **MCP Tools Reference** - Complete tool reference

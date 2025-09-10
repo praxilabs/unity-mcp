@@ -1,0 +1,57 @@
+---
+alwaysApply: false
+description: Object manipulation, visibility control, and tool-specific interactions. Contains GameObjectSetActiveStep, ToggleColliderStep, and critical sequential collider operation rules.
+---
+
+# Tool Nodes
+
+## 📋 Overview
+Tool nodes handle object manipulation, visibility control, and tool-specific interactions in virtual lab experiments. These nodes are essential for object state management, interaction control, and tool presentation.
+
+## 🔧 Available Nodes
+
+### GameObjectSetActiveStep ⭐ VISIBILITY CONTROL
+**Rule File**: [GameObjectSetActiveStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Tool/GameObjectSetActiveStep.mdc)
+**Purpose**: Show/hide single objects for visibility control
+**Usage**: Object visibility management, tool presentation, state control
+**Key Features**:
+- **Single Object Only**: Works on ONE object at a time
+- **Visibility Control**: Show/hide objects, not collider management
+- **Better than FunctionCallStep**: Use for visibility operations
+
+### ToggleColliderStep ⭐ COLLIDER MANAGEMENT
+**Rule File**: [ToggleColliderStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Tool/ToggleColliderStep.mdc)
+**Purpose**: Enable/disable collider on a SINGLE object only
+**Usage**: Interaction control, safety systems, collider management
+**Key Features**:
+- **Single Object Only**: Works on ONE object at a time
+- **Collider Control**: Enable/disable colliders, not visibility
+- **Sequential Operations**: For multiple objects, use multiple nodes
+
+### ToolsInputfieldStep
+**Rule File**: [ToolsInputfieldStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Tool/ToolsInputfieldStep.mdc)
+**Purpose**: Handle input field interactions for tools
+**Usage**: Data entry for tools, parameter input, tool configuration
+
+### ToolsInteractionsMenuStep
+**Rule File**: [ToolsInteractionsMenuStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Tool/ToolsInteractionsMenuStep.mdc)
+**Purpose**: Control interactions menu for tools
+**Usage**: Tool menu management, interaction options, tool selection
+
+## 🚨 Critical Tool Rules
+
+### **Single Object Limitation**
+- **GameObjectSetActiveStep**: Only works on ONE single object at a time
+- **ToggleColliderStep**: Only works on ONE single object at a time
+- **For Multiple Objects**: Use multiple nodes sequentially
+
+### **Node Selection Guide**
+- **"Show/Hide Object"** → Use GameObjectSetActiveStep
+- **"Enable/Disable Collider"** → Use ToggleColliderStep
+- **"Input Field Interaction"** → Use ToolsInputfieldStep
+- **"Tool Menu Control"** → Use ToolsInteractionsMenuStep
+
+### **Common Mistakes to Avoid**
+- **Wrong Node Choice**: Using GameObjectSetActiveStep for colliders (use ToggleColliderStep)
+- **Multiple Objects**: Trying to control multiple objects with one node (use multiple nodes)
+- **Function Calls**: Using FunctionCallStep for visibility (use GameObjectSetActiveStep)

@@ -1,73 +1,86 @@
 ---
-description: it is used when the AI wants to have an insight on the current tools we have in the system and how to use them.
-alwaysApply: false
+alwaysApply: true
 ---
-## 🎯 Standard Workflows
+# MCP Tools Reference
 
-### Graph Creation Workflow
-```python
-# 1. Create graph
-graph_path = mcp_unityMCP_create_scriptable_object("StepsGraph", "MyGraph", "Assets/Testing/Graphs/")
+This is a knowledge base index for Unity MCP tools. Use this for quick reference on available tools and their capabilities.
 
-# 2. Create nodes (TOP-TO-BOTTOM structure - RECOMMENDED)
-mcp_unityMCP_create_xnode_node(graph_path, "ClickStep", 0, 0, "Click on object")
-mcp_unityMCP_create_xnode_node(graph_path, "DelayStep", 0, -300, "2 second delay")
+## 🎯 **SCRIPTABLE OBJECT TOOLS**
 
-# 3. Connect nodes
-mcp_unityMCP_connect_nodes_by_name(graph_path, "ClickStep_123", "DelayStep_456")
+### `mcp_unityMCP_create_scriptable_object`
+- **Purpose**: Create Unity ScriptableObject assets
+- **Types**: "ExperimentData", "ExperimentItemsRegistry", "StepsGraph"
+- **Location**: Assets/Testing/ folder structure
 
-# 4. Set first step
-mcp_unityMCP_set_node_as_first_step(graph_path, "ClickStep_123")
+### `mcp_unityMCP_manage_asset`
+- **Purpose**: Import, create, modify, delete Unity assets
+- **Actions**: 'import', 'create', 'modify', 'delete', 'duplicate', 'move', 'rename'
 
-# 5. Verify setup
-mcp_unityMCP_list_graph_nodes(graph_path)
-```
+## 🎯 **GRAPH MANAGEMENT TOOLS**
 
-### GameObject Management Workflow
-```python
-# 1. Create GameObject
-mcp_unityMCP_manage_gameobject(
-    action="create",
-    name="MyObject",
-    position=[0, 0, 0],
-    components_to_add=["Rigidbody"]
-)
+### `mcp_unityMCP_create_xnode_node`
+- **Purpose**: Create nodes in xNode graphs
+- **Parameters**: graph_path, node_type_name, position_x, position_y, tooltip
+- **Returns**: nodeId, nodeName for connections
 
-# 2. Set properties
-mcp_unityMCP_manage_gameobject(
-    action="set_component_property",
-    target="MyObject",
-    search_method="by_name",
-    component_properties={"Rigidbody": {"mass": 10.0}}
-)
-```
+### `mcp_unityMCP_connect_nodes_by_name`
+- **Purpose**: Connect nodes using their names
+- **Parameters**: graph_path, from_node_name, to_node_name, ports (optional)
 
----
+### `mcp_unityMCP_set_node_as_first_step`
+- **Purpose**: Set entry point for graph execution
+- **Parameters**: graph_path, node_name
 
-## ⚠️ Critical Best Practices
+### `mcp_unityMCP_list_graph_nodes`
+- **Purpose**: Get complete node list and structure
+- **Use**: Validation and debugging
 
-### ScriptableObject Creation
-- **Exact Class Names**: Use exact class names: `"ExperimentItemsRegistry"`, `"ExperimentData"`, `"StepsGraph"`
-- **Verification**: Search codebase before creating to prevent "Instance couldn't be created" errors
+### `mcp_unityMCP_delete_xnode_node`
+- **Purpose**: Remove nodes from graphs
+- **Parameters**: graph_path, node_identifier, identifier_type
 
-### Node Graph Management
-- **Positioning Rules**: 
-  - ✅ **TOP-TO-BOTTOM**: `position_y: 0, -300, -600` (recommended)
-  - ✅ **LEFT-TO-RIGHT**: `position_x: 0, 450, 900`
-  - ❌ **NEVER bottom-up**: Avoid `position_y: -300, -100, 0`
-- **Spacing**: Minimum 450px horizontal, 300px vertical between sequential nodes
-- **Directional Connections**: ✅ **FORWARD ONLY**, ❌ **NEVER BACKWARDS**
+## 🎯 **GAMEOBJECT MANAGEMENT TOOLS**
 
-## 🚨 Error Prevention & Debugging
+### `mcp_unityMCP_manage_gameobject`
+- **Purpose**: Create, modify, delete GameObjects
+- **Actions**: 'create', 'modify', 'find', 'add_component', 'remove_component'
+- **Component Properties**: Set via component_properties parameter
 
-### Common Issues
-1. **ScriptableObject Errors**: Use exact class names
-2. **Connection Errors**: Verify ports exist, test incrementally
-3. **Registry Errors**: Match names exactly
-4. **Component Errors**: Verify components exist before calling methods
+## 🎯 **DEBUGGING & VALIDATION TOOLS**
 
-### Debugging Steps
-1. Check console: `mcp_unityMCP_read_console(action="get", types=["error"])`
-2. Verify node exists: `mcp_unityMCP_check_node_exists(graph_path, node_name)`
-3. List graph nodes: `mcp_unityMCP_list_graph_nodes(graph_path)`
-4. Print debug info: `mcp_unityMCP_print("Debug message")`
+### `mcp_unityMCP_read_console`
+- **Purpose**: Get Unity console messages
+- **Types**: 'error', 'warning', 'log', 'all'
+
+### `mcp_unityMCP_check_node_exists`
+- **Purpose**: Verify node exists in graph
+- **Parameters**: graph_path, node_name
+
+### `mcp_unityMCP_print`
+- **Purpose**: Print messages to Unity console
+- **Use**: Debug output and status messages
+
+## 🎯 **EDITOR CONTROL TOOLS**
+
+### `mcp_unityMCP_manage_editor`
+- **Purpose**: Control Unity editor state
+- **Actions**: 'play', 'pause', 'get_state', 'set_active_tool'
+
+### `mcp_unityMCP_execute_menu_item`
+- **Purpose**: Execute Unity menu items
+- **Parameters**: menu_path (e.g., "File/Save Project")
+
+## ⚠️ **CRITICAL TOOL NOTES**
+
+### **Connection Direction**
+- ✅ **FORWARD ONLY**: Always connect from exit to entry ports
+- ❌ **NEVER BACKWARDS**: No reverse connections allowed
+
+### **Node Naming**
+- Nodes get auto-generated names: "NodeType_InstanceID"
+- Use exact names for connections and operations
+
+### **Validation Pattern**
+- Always use `list_graph_nodes` after graph creation
+- Use `check_node_exists` before operations
+- Use `read_console` for error diagnosis

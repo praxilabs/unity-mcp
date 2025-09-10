@@ -1,0 +1,78 @@
+---
+alwaysApply: false
+description: Data table operations, record management, and stage data handling. Contains table interaction steps, record operations, and data management patterns.
+---
+
+# Table Nodes
+
+## 📋 Overview
+Table nodes handle data table operations and stage management in virtual lab experiments. Essential for data collection, record management, and experiment stage tracking.
+
+## 🔧 Available Nodes
+
+### AddRecordStep
+**Rule File**: [AddRecordStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Table/AddRecordStep.mdc)
+**Purpose**: Add a new record (row) to the active data table
+**Usage**: Data collection, logging experiment results
+
+### EnableRecordButtonStep
+**Rule File**: [EnableRecordButtonStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Table/EnableRecordButtonStep.mdc)
+**Purpose**: Enable or disable a UI button responsible for triggering a record operation
+**Usage**: User-controlled data recording, interactive data capture
+
+### EnableStageStep
+**Rule File**: [EnableStageStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Table/EnableStageStep.mdc)
+**Purpose**: Activate or initialize a new stage in the experiment flow
+**Usage**: Start of a phase or stage
+
+### SetCurrentStageStep
+**Rule File**: [SetCurrentStageStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Table/SetCurrentStageStep.mdc)
+**Purpose**: Explicitly set the current active stage of the experiment
+**Usage**: Navigate/resume from a specific stage
+
+### SetStagePassedStep
+**Rule File**: [SetStagePassedStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Table/SetStagePassedStep.mdc)
+**Purpose**: Mark a specific stage as successfully completed
+**Usage**: Tracking progress, unlocking next stages
+
+### UnsetStagePassedStep
+**Rule File**: [UnsetStagePassedStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Table/UnsetStagePassedStep.mdc)
+**Purpose**: Revert the 'passed' status of a stage, marking it as incomplete
+**Usage**: Error handling, retry flows
+
+## 🚨 Critical Table Rules
+- **Data vs Stage**: Use AddRecordStep/EnableRecordButtonStep for data operations, stage nodes for stage management
+- **Stage Progression**: Use EnableStageStep to start, SetStagePassedStep to complete, UnsetStagePassedStep to reset
+- **Stage Navigation**: Use SetCurrentStageStep for explicit stage navigation
+
+## 🎯 Node Selection Guide
+
+### **Use AddRecordStep for:**
+- Adding new data records to tables
+- Logging experiment results
+- Data collection operations
+
+### **Use EnableRecordButtonStep for:**
+- Controlling UI button states for data recording
+- User-controlled data capture flows
+- Interactive data collection
+
+### **Use EnableStageStep for:**
+- Starting new experiment stages
+- Initializing stage-specific functionality
+- Beginning new phases
+
+### **Use SetCurrentStageStep for:**
+- Explicit stage navigation
+- Resuming from specific stages
+- Conditional stage routing
+
+### **Use SetStagePassedStep for:**
+- Marking stages as completed
+- Unlocking subsequent stages
+- Progress tracking
+
+### **Use UnsetStagePassedStep for:**
+- Resetting stage completion status
+- Error handling and retry flows
+- Reverting stage progress

@@ -1,0 +1,46 @@
+---
+alwaysApply: false
+description: Multi-way branching node for state machines and menu systems
+---
+
+# FirstThenStep
+
+## 📋 Overview
+FirstThenStep provides multi-way branching for state machines, menu systems, and complex decision trees in virtual lab experiments.
+
+## 🔧 Node Details
+
+**File**: [FirstThenStep.cs](mdc:Assets/Scripts/System/xNode/Steps/SelfExecuted/ControlFlow/FirstThenStep.cs)
+**Purpose**: Multi-way branching for complex scenarios
+**Usage**: State machines, menu systems, complex decision trees
+
+## 🏗️ Common Patterns
+
+### Multi-way Decision Pattern
+```
+FirstThenStep (User choice) → Case 1: Action A → Continue
+                            → Case 2: Action B → Continue
+                            → Case 3: Action C → Continue
+```
+
+## 🚨 Critical FirstThenStep Rules
+- **Handle All Cases**: Ensure all possible cases are covered
+- **Default Case**: Always provide a default case for unexpected values
+- **Clear Case Names**: Use descriptive case names for maintainability
+
+## ⚠️ Common Mistakes
+
+1. **Incomplete FirstThen cases**: Handle all possible cases in FirstThenStep
+2. **Missing default case**: Always provide a default case for unexpected values
+3. **Wrong case connections**: Verify case port names and connections
+4. **Unclear case logic**: Use clear, descriptive case names
+5. **Using for simple branching**: Use IfStatementStep for simple true/false logic
+
+## 🎯 Best Practices
+
+1. **Use for complex multi-way branching** scenarios
+2. **Handle all possible cases** with appropriate responses
+3. **Connect to appropriate responses** for each case
+4. **Provide clear case descriptions** for maintainability
+5. **Use for state machines** and complex menu systems
+6. **Ensure all cases are properly connected** to avoid execution issues

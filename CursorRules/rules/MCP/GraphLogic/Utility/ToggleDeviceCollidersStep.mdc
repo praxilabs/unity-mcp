@@ -1,0 +1,74 @@
+---
+alwaysApply: false
+description: Enable/disable colliders on multiple devices for device interaction control and safety systems
+---
+
+# ToggleDeviceCollidersStep
+
+## 📋 Overview
+ToggleDeviceCollidersStep enables or disables colliders on multiple devices in virtual lab experiments. Used for device interaction control, safety systems, and managing multiple device colliders simultaneously.
+
+## 🔧 Node Details
+
+**Node Type**: ToggleDeviceCollidersStep
+**Purpose**: Enable/disable colliders on multiple devices simultaneously
+**Usage**: Device interaction control, safety systems, multiple device management
+
+## 📋 Basic Prerequisites
+
+1. **Device References**: Valid references to multiple devices
+2. **Collider Components**: Devices must have collider components
+3. **Device Grouping**: Proper grouping of devices for operations
+4. **State Management**: System to track device collider states
+
+## 📝 Parameters
+
+- **Device List**: List of devices to toggle colliders on
+- **Collider State**: Boolean to enable (true) or disable (false) colliders
+- **Device Group**: Optional grouping for device operations
+
+## 🚨 Critical ToggleDeviceCollidersStep Rules
+- **Multiple Devices**: Use for controlling multiple device colliders simultaneously
+- **Device Grouping**: Properly group devices for efficient operations
+- **State Management**: Always manage device collider states properly
+- **NOT Single Device**: Use ToggleColliderStep for single device operations
+
+## 🏗️ Common Patterns
+
+### Multiple Device Collider Control Pattern
+```
+ToggleDeviceCollidersStep (Device1, Device2, Device3, Enable) → UserAction → ToggleDeviceCollidersStep (Device1, Device2, Device3, Disable) → Continue
+```
+
+### Device Safety Pattern
+```
+IfStatementStep (Check safety) → True: ToggleDeviceCollidersStep (All devices, Enable) → Continue
+                             → False: ToggleDeviceCollidersStep (All devices, Disable) → ShowMessage (Safety warning)
+```
+
+### Device Group Management Pattern
+```
+ToggleDeviceCollidersStep (Group A devices, Enable) → ToggleDeviceCollidersStep (Group B devices, Disable) → Continue
+```
+
+### Device Setup Pattern
+```
+ToggleDeviceCollidersStep (All devices, Disable) → SetupPhase → ToggleDeviceCollidersStep (Active devices, Enable) → Continue
+```
+
+## ⚠️ Common Mistakes
+
+1. **Wrong device references**: Ensure all device references are valid
+2. **Missing device state management**: Always manage device collider states properly
+3. **Incomplete device setup**: Ensure all device colliders are configured
+4. **Wrong node choice**: Use ToggleColliderStep for single device operations
+5. **Incorrect device grouping**: Ensure devices are properly grouped for operations
+
+## 🎯 Best Practices
+
+1. **Use for device interaction control** and safety systems
+2. **Manage multiple device colliders** simultaneously
+3. **Use for device group management** and operations
+4. **Always verify device collider states** before and after operations
+5. **Ensure proper device grouping** for efficient operations
+6. **Provide clear feedback** for device collider state changes

@@ -1,8 +1,6 @@
 ---
-alwaysApply: false
-description: Critical connection requirements and validation rules for Unity MCP graphs
+alwaysApply: true
 ---
-
 # Graph Connection Rules
 
 ## 🚨 CRITICAL CONNECTION RULES ⚠️
@@ -27,24 +25,10 @@ description: Critical connection requirements and validation rules for Unity MCP
 
 4. **Sequential Execution Rule**: 
    - **When disabling/enabling multiple colliders sequentially**: Execute ONE at a time
-   - **NOT parallel execution**: Our graphs are NOT designed for parallel execution
-   - **Key Difference**: Parallel execution ≠ Parallel order
-   - **Correct Pattern**: Node1.exit → Node2.entry → Node3.entry → Node4.entry
-   - **Wrong Pattern**: Multiple nodes → Single target (creates parallel execution)
-
-5. **Clean and Tidy Structure** 
-   ```
-   Keep the nodes that are of the same purpose in a Clean and Compiled Shape and structure
-   position the nodes together in harmony instead of just putting them in rows, columns or even matricies
-   do what suits the best in terms for readablility and cleanliness to the user, keep in mind that nodes contains a Width so  position the nodes away from each other a bit to avoid stacking nodes on top of each other
-   ```
-
-### **CONNECTION VALIDATION CHECKLIST**
-- ✅ First step: Only outgoing connections (exit port)
-- ✅ Middle nodes: Both incoming (entry) and outgoing (exit) connections
-- ✅ End nodes: Only incoming connections (entry port)
-- ✅ Sequential operations: One node at a time, not parallel
-- ✅ No floating nodes: Every node must be part of the execution flow
+   - **Standard operations**: Use sequential execution for most operations
+   - **Parallel execution**: Only allowed with CompositeStep for specific scenarios
+   - **Correct Pattern**: Node1.exit → Node2.entry → Node2.exit → Node3.entry → Node3.exit → Node4.entry
+   - **Wrong Pattern**: Multiple nodes → Single target (creates unintended parallel execution)
 
 **VIOLATION OF THESE RULES WILL RESULT IN BROKEN EXPERIMENTS**
 
@@ -52,7 +36,7 @@ description: Critical connection requirements and validation rules for Unity MCP
 
 ### Sequential Execution
 ```
-Node1.exit → Node2.entry → Node3.entry → Node4.entry
+Node1.exit → Node2.entry → Node2.exit → Node3.entry → Node3.exit → Node4.entry
 ```
 
 ### Parallel Execution (CompositeStep)
@@ -74,11 +58,5 @@ IfStatementStep.False → ActionB → Continue
 4. **Parallel collider operations**: Always execute collider operations sequentially
 5. **Floating nodes**: Every node must be part of the execution flow
 
-## 🛠️ Validation Commands
-
-Use these commands to validate your graph structure:
-- `list_graph_nodes` - Check for disconnected nodes
-- `set_node_as_first_step` - Establish entry point
-- Always validate after any corrections
 
 

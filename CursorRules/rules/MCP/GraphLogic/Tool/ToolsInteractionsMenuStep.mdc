@@ -1,0 +1,86 @@
+---
+alwaysApply: false
+description: Control interactions menu for tools and tool selection
+---
+
+# ToolsInteractionsMenuStep Node
+
+## 📋 Overview
+Controls the interactions menu for tools, enabling tool menu management, interaction options, and tool selection.
+
+## 🔧 Node Details
+
+**Node Type**: ToolsInteractionsMenuStep
+**Purpose**: Control interactions menu for tools
+**Usage**: Tool menu management, interaction options, tool selection
+
+## 📋 Basic Prerequisites
+
+<!-- Required data and setup needed for this node step to work -->
+
+## 📝 Parameters
+
+- **Menu State**: State of the menu (enable, disable, show, hide)
+- **Menu Type**: Type of menu to control
+- **Menu Options**: Available options in the menu
+- **Menu Position**: Position of the menu (optional)
+
+## 🏗️ Common Patterns
+
+### Enable Tool Interactions Menu
+```
+ToolsInteractionsMenuStep (EnableMenu) → UserSelectsOption → ExecuteToolAction → Continue
+```
+
+### Tool Selection from Menu
+```
+ToolsInteractionsMenuStep (ShowToolMenu) → UserSelectsTool → GameObjectSetActiveStep (ShowSelectedTool) → Continue
+```
+
+### Complete Tool Workflow
+```
+GameObjectSetActiveStep (ShowTool) → ToolsInteractionsMenuStep (EnableMenu) → 
+UserSelectsOption → ToolsInputfieldStep (GetParameters) → ExecuteToolFunction → Continue
+```
+
+### Menu State Management
+```
+ToolsInteractionsMenuStep (EnableMenu) → UserInteraction → ToolsInteractionsMenuStep (DisableMenu) → Continue
+```
+
+### Conditional Menu Display
+```
+IfStatementStep (HasPermission) → True: ToolsInteractionsMenuStep (ShowMenu) → Continue
+                              → False: ShowMessage (No permission) → Continue
+```
+
+## ⚠️ Common Mistakes
+
+1. **Missing menu state management**: Ensure tool menus are properly enabled/disabled
+2. **Incomplete tool configuration**: Verify all required parameters are set
+3. **Missing menu reference**: Verify menu exists and is accessible
+4. **Wrong menu state**: Ensure menu state is set correctly
+5. **Missing user feedback**: Provide clear feedback for menu interactions
+
+## 🔍 Debugging Tips
+
+1. **Test menu interactions** one step at a time
+2. **Check menu states** for tool interactions
+3. **Verify menu references** exist and are valid
+4. **Use DelayStep** to slow down for debugging
+5. **Monitor menu responses** with console logs
+6. **Test menu sequences** end-to-end
+7. **Validate menu configurations** and options
+
+## 🎯 Best Practices
+
+1. **Manage menu state appropriately**
+2. **Provide clear navigation options**
+3. **Use for tool interaction control**
+4. **Test menu workflows** thoroughly
+5. **Handle menu failures** gracefully
+6. **Document menu requirements** clearly
+7. **Consider user experience** during menu interactions
+8. **Ensure menus are accessible** and properly configured
+9. **Use appropriate menu states** for different scenarios
+10. **Provide helpful menu options** and clear navigation

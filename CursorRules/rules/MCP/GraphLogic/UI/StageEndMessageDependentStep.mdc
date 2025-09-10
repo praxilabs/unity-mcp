@@ -1,0 +1,66 @@
+---
+alwaysApply: false
+description: Display stage completion message that depends on other stages
+---
+
+# StageEndMessageDependentStep Node
+
+## 📋 Overview
+Displays a stage completion message that depends on the completion of other stages, suitable for conditional achievements.
+
+## 🔧 Node Details
+
+**Node Type**: StageEndMessageDependentStep
+**Purpose**: Display dependent stage completion message
+**Usage**: Dependent stage completion, conditional achievements
+
+## 📋 Basic Prerequisites
+
+1. **Stage Dependencies**: List of stages that must be completed first
+2. **Dependency Logic**: System to check if dependencies are met
+3. **Completion Message**: Message content for dependent completion
+4. **Conditional Handling**: Logic to handle missing dependencies
+
+## 📝 Parameters
+
+- **Stage Name**: Name of the completed stage
+- **Dependencies**: List of stages that must be completed first
+- **Message Text**: Completion message content
+- **Conditional Details**: Details about dependency conditions
+
+## 🚨 Critical StageEndMessageDependentStep Rules
+- **Dependent Only**: Use for stage completions that depend on other stages
+- **Dependency Checking**: Must verify all dependencies are met before showing completion
+- **NOT Independent**: Use StageEndMessageIndependentStep for standalone completions
+
+## 🏗️ Common Patterns
+
+### Dependent Stage Pattern
+```
+StageEndMessageDependentStep (Stage complete, depends on others) → CheckDependencies → Continue
+```
+
+### Conditional Achievement
+```
+CompleteStage → CheckPrerequisites → StageEndMessageDependentStep (Conditional achievement) → Continue
+```
+
+### Sequential Completion
+```
+CompleteStageA → CompleteStageB → StageEndMessageDependentStep (Both stages complete) → Continue
+```
+
+## ⚠️ Common Mistakes
+
+1. **Missing dependency handling**: Properly handle stage dependencies in dependent messages
+2. **Unclear dependency requirements**: Make dependency conditions clear
+3. **Missing prerequisite checking**: Verify all dependencies are met
+4. **Wrong node choice**: Use StageEndMessageIndependentStep for standalone completions
+
+## 🎯 Best Practices
+
+1. **Use for conditional achievements** that depend on other stages
+2. **Clearly define dependencies** and requirements
+3. **Check all prerequisites** before showing completion
+4. **Provide clear feedback** about dependency status
+5. **Handle missing dependencies** gracefully

@@ -1,0 +1,117 @@
+---
+alwaysApply: false
+description: Pause graph execution until user clicks target object for interaction control
+---
+
+# ClickStep Node
+
+## 📋 Overview
+ClickStep is a **WAIT-FOR-USER-INPUT** node that waits for user click before allowing execution to continue. **ClickStep does NOTHING by itself** - it only enables the execution path. The actual logic/functionality happens in the NEXT step(s) after the click.
+
+## 🔧 Node Details
+
+**Node Type**: ClickStep
+**Purpose**: Wait for user click, then allow execution to continue to next step
+**Usage**: User interaction gate, execution flow enabler
+**⚠️ CRITICAL**: ClickStep alone does NOTHING - the next step contains the actual logic
+
+## 📋 Basic Prerequisites
+
+1. **Collider**: Required on target object for click detection
+2. **ClickableTool Script**: Required on target object to handle click events
+3. **Hologram**: Optional visual indicator for clickable objects
+
+## 📝 Parameters
+
+- **Target Object**: The object to be clicked (required for pause to work)
+
+## 🏗️ Common Patterns
+
+### Click for Device Functionality (Non-Motion)
+```
+ClickStep (TV Remote) → FunctionCallStep(TVController.TurnOff) → Continue
+ClickStep (Scale On Button) → FunctionCallStep(ScaleController.TurnOn) → Continue
+ClickStep (Tare Button) → FunctionCallStep(ScaleController.TareZero) → Continue
+ClickStep (Power Button) → FunctionCallStep(DeviceController.PowerToggle) → Continue
+```
+
+### Click for Motion/Physical Actions (Animation)
+```
+ClickStep (Bottle) → AnimationStep(Bottle Opening Animation) → Continue
+ClickStep (Door) → AnimationStep(Door Opening Animation) → Continue
+ClickStep (Drawer Handle) → AnimationStep(Drawer Opening Animation) → Continue
+ClickStep (Hammer) → AnimationStep(Crushing Animation) → Continue
+```
+
+### Click to Show/Hide Objects
+```
+ClickStep (Panel Close Button) → GameObjectSetActive(Panel, false) → Continue
+ClickStep (Menu Button) → GameObjectSetActive(Menu, true) → Continue
+```
+
+### Click to Control Camera
+```
+ClickStep (Microscope) → FocusOnToolStep(Microscope) → Continue
+ClickStep (Bench Position) → FunctionCallStep(SetMainBenchCamera) → Continue
+```
+
+### Click in Branching Scenarios (OR Step)
+```
+OR Step
+├── ClickStep (Option A) → FunctionCall(ExecuteOptionA) → Continue
+└── ClickStep (Option B) → FunctionCall(ExecuteOptionB) → Continue
+```
+**Note**: Whichever click happens first determines the execution branch.
+
+## 🚨 Critical ClickStep Rules
+- **ClickStep = Gate**: ClickStep waits for user input, then enables execution flow to continue
+- **No Standalone Logic**: ClickStep alone is USELESS - it does nothing by itself
+- **Next Step = Actual Logic**: The step AFTER ClickStep contains the real functionality
+- **Always Connect**: ClickStep MUST connect to the step that executes the desired logic
+- **Branching Behavior**: In OR/branching scenarios, whichever ClickStep gets clicked first determines the execution path
+
+## ⚠️ Common Mistakes
+
+1. **Using ClickStep alone**: ClickStep without next steps is completely useless
+2. **Expecting ClickStep to do logic**: ClickStep does NOTHING - the next step does the actual work
+3. **Missing the actual logic step**: Forgetting to add FunctionCallStep/AnimationStep/etc. after ClickStep
+4. **Wrong function reference**: "Click to turn off TV" needs TVController.TurnOff function call after ClickStep
+5. **Missing object verification**: Always verify clicked object exists in registry
+6. **Invalid object references**: Verify target objects are valid and have required scripts
+
+## 🎯 Best Practices
+
+1. **Always connect to logic step**: Every ClickStep MUST connect to a step that does actual work
+2. **Choose correct action type**:
+   - **Motion/Physical actions** → AnimationStep (opening, closing, moving, crushing, etc.)
+   - **Device functionality** → FunctionCallStep (turn on/off, tare/zero, power toggle, etc.)
+3. **Identify the required controller**: "Click to turn off TV" → find TVController with TurnOff method
+4. **Provide visual feedback**: Use next steps to show the result of the click action
+5. **Verify object existence**: Always verify clicked objects exist in registry before setup
+6. **Test click sequences**: Thoroughly test that clicks trigger the expected functionality
+7. **Handle edge cases**: Consider what happens if required controllers/methods don't exist
+
+## 📝 Implementation Checklist
+
+When implementing "Click X to do Y":
+1. ✅ Create ClickStep targeting object X
+2. ✅ Determine if Y is motion-related or device functionality:
+   - **Motion** (open, close, move, crush) → AnimationStep
+   - **Device function** (turn on/off, tare, power) → FunctionCallStep
+3. ✅ Connect ClickStep → AnimationStep(Y Animation) OR FunctionCallStep(XController.DoY)
+4. ✅ Add any visual feedback steps after the action
+5. ✅ Test that clicking X actually executes Y functionality
+
+## 🎯 Action Type Decision Guide
+
+**Use AnimationStep for:**
+- Opening/closing (bottles, doors, drawers, containers)
+- Moving objects (dragging, lifting, placing)
+- Physical transformations (crushing, breaking, mixing)
+- Any visible motion or physical change
+
+**Use FunctionCallStep for:**
+- Device controls (power on/off, tare/zero, mode changes)
+- System functions (save, load, calculate, process)
+- Data operations (record, measure, analyze)
+- Logical state changes (enable/disable, activate/deactivate)

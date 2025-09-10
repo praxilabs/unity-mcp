@@ -1,0 +1,54 @@
+---
+alwaysApply: false
+description: Revert the 'passed' status of a stage, marking it as incomplete
+---
+
+# UnsetStagePassedStep Node
+
+## 📋 Overview
+Clears the passed/completed status for a stage so it can be retried for error handling and retry flows.
+
+## 🔧 Node Details
+
+**Node Type**: UnsetStagePassedStep
+**Purpose**: Revert stage completion
+**Usage**: Error handling, retry flows
+
+## 📋 Basic Prerequisites
+
+1. **Valid Stage Name**: Target stage must exist in the experiment
+2. **Stage Configuration**: Stage must be properly configured
+3. **Stage Registry**: Stage must be registered in the stage registry
+
+## 📝 Parameters
+
+- **stageName**: Target stage identifier
+
+## 🏗️ Common Patterns
+
+### Error Handling with Stage Reset
+```
+ExperimentLogic → IfStatementStep (Success) → SetStagePassedStep (CurrentStage)
+                              → False: UnsetStagePassedStep (CurrentStage) → ShowMessage (Retry) → RetryLogic
+```
+
+## 🚨 Critical UnsetStagePassedStep Rules
+- **Stage Reset**: Use for reverting stage completion status
+- **Error Handling**: Enables error handling and retry flows
+- **Stage Retry**: Allows stages to be retried after failure
+
+## ⚠️ Common Mistakes
+
+1. **Unsetting the wrong stage**: Verify stage name matches exactly
+2. **Using for data operations**: Use data nodes for data operations
+3. **Invalid stage name**: Verify stage exists in registry
+4. **Using for stage initialization**: Use EnableStageStep for stage initialization
+
+## 🎯 Best Practices
+
+1. **Pair with clear user messaging when resetting stages** for user awareness
+2. **Log before/after stage status** for debugging purposes
+3. **Use for error handling and retry flows** when stages need to be retried
+4. **Verify stage exists in registry** before execution
+5. **Use for reverting stage completion status** when retry is needed
+

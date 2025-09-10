@@ -1,0 +1,76 @@
+---
+alwaysApply: false
+description: Core logic for control flow nodes and critical graph validation rules. Contains mandatory connection requirements, graph structure validation, and parallel execution patterns using CompositeStep.
+---
+
+# Control Flow Nodes
+
+## 📋 Overview
+Control Flow nodes manage execution flow and branching logic in virtual lab experiments. Essential for decision making, parallel execution, and state management.
+
+## 🔧 Available Nodes
+
+### CompositeStep
+**Rule File**: [CompositeStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/ControlFlow/CompositeStep.mdc)
+**Purpose**: Parallel execution management
+**Usage**: Multiple branches that must execute in any order
+**⚠️ Critical**: Routes must connect back to entry
+
+### IfStatementStep
+**Rule File**: [IfStatementStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/ControlFlow/IfStatementStep.mdc)
+**Purpose**: Boolean conditional branching
+**Outputs**: `True`, `False`
+**Usage**: Decision points, error checking
+
+### SwitchStep
+**Rule File**: [SwitchStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/ControlFlow/SwitchStep.mdc)
+**Purpose**: Multi-way branching
+**Usage**: State machines, menu systems
+
+### SwitchEnumStep
+**Rule File**: [SwitchEnumStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/ControlFlow/SwitchEnumStep.mdc)
+**Purpose**: Multi-way branching with enum values
+**Usage**: State machines, menu systems
+
+### ORStep
+**Rule File**: [ORStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/ControlFlow/ORStep.mdc)
+**Purpose**: Logical Or-ing of sequence branches
+**Usage**: Multiple routes where only one must be taken
+
+### FirstThenStep
+**Rule File**: [FirstThenStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/ControlFlow/FirstThenStep.mdc)
+**Purpose**: Multi-way branching
+**Usage**: State machines, menu systems
+
+### BranchingControlStep
+**Rule File**: [BranchingControlStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/ControlFlow/BranchingControlStep.mdc)
+**Purpose**: Advanced branching control
+**Usage**: Complex control flow scenarios
+
+## 🚨 Critical Control Flow Rules
+- **Mandatory Connections**: All control flow nodes must have proper input/output connections
+- **Graph Validation**: Always validate graph structure after creation
+- **Parallel Execution**: Use CompositeStep for parallel execution in any order
+- **Sequential Execution**: Use normal chain for sequential operations
+
+## 🎯 Node Selection Guide
+
+### **Use CompositeStep for:**
+- Multiple user interactions in any order
+- Parallel data collection
+- Independent setup procedures
+
+### **Use IfStatementStep for:**
+- Simple true/false decisions
+- Error checking
+- Basic conditional logic
+
+### **Use SwitchStep for:**
+- Multiple choice scenarios
+- State machine transitions
+- Menu system navigation
+
+### **Use ORStep for:**
+- Multiple routes where only one is needed
+- Alternative execution paths
+- Choice-based scenarios

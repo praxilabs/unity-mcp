@@ -1,0 +1,55 @@
+---
+alwaysApply: false
+description: Global coroutine execution for system-wide asynchronous operations
+---
+
+# FunctionCallCoroutineGlobalStep Node
+
+## 📋 Overview
+Executes global or singleton coroutines (IEnumerator) for system-wide asynchronous operations without targeting specific scene objects.
+
+## 🔧 Node Details
+
+**Node Type**: FunctionCallCoroutineGlobalStep
+**Menu Path**: "Function Call/Function Call Coroutine Global"
+**Inherits**: FunctionCallCoroutineStep
+
+## 📋 Basic Prerequisites
+
+1. **Global Coroutine Method**: Static coroutine method or singleton service coroutine
+2. **Method Visibility**: Method must be public to be accessible
+3. **Type Registration**: Type must be accessible for reflection
+
+## 📝 Parameters
+
+- **selectedComponent**: Type containing the coroutine
+- **selectedFunction**: Coroutine method name (returns IEnumerator)
+- **parameterValues**: SerializableParameter array
+
+## 🏗️ Common Patterns
+
+### Loading Screen
+```
+FunctionCallCoroutineGlobalStep (ShowLoadingScreen, duration) → DelayStep → Continue
+```
+
+## 🚨 Critical FunctionCallCoroutineGlobalStep Rules
+- **Global Coroutines Only**: Use for static/global coroutines, not scene object coroutines
+- **IEnumerator Methods**: Methods must return IEnumerator
+- **System-Wide Effects**: Coroutines affect the entire system
+
+## ⚠️ Common Mistakes
+
+1. **Target method is not a coroutine**: Verify method returns IEnumerator
+2. **Assuming scene-object context**: Use for global/static methods only
+3. **Using for scene object coroutines**: Use FunctionCallCoroutineStep for scene object coroutines
+4. **Using for synchronous methods**: Use FunctionCallGlobalStep for synchronous global methods
+
+## 🎯 Best Practices
+
+1. **Keep global async effects bounded and reversible** to avoid system-wide issues
+2. **Provide user feedback during long tasks** for better user experience
+3. **Use for system-wide asynchronous operations** like loading screens
+4. **Validate method signature (IEnumerator)** before execution
+5. **Ensure global access path exists** for the target method
+

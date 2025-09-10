@@ -1,0 +1,61 @@
+---
+alwaysApply: false
+description: Fixed iteration control for repeated actions and data collection
+---
+
+# ForLoopStep Node
+
+## 📋 Overview
+Executes its body a fixed number of times for repeated measurements and data collection with known iteration count.
+
+## 🔧 Node Details
+
+**Node Type**: ForLoopStep
+**Purpose**: Fixed iteration control
+**Usage**: Repeated measurements, data collection
+
+## 📝 Parameters
+
+- **iterations**: Integer number of times to execute the loop body
+- **startIndex**: Optional starting index (default 0)
+- **step**: Optional increment (default 1)
+
+## 🔌 Ports
+
+- **continueLoop (Output)**: Connect the loop body here; called each iteration
+- **exit (Output)**: Called after the final iteration completes
+
+## 🏗️ Common Patterns
+
+### Fixed Iteration Pattern
+```
+ForLoopStep (iterations: 5) → continueLoop: Action → ForLoopStep (continue)
+                           → exit: Continue
+```
+
+### Data Collection Pattern
+```
+ForLoopStep (iterations: 10) → continueLoop: CollectData → Self
+                             → exit: ShowResults
+```
+
+## 🚨 Critical ForLoopStep Rules
+- **Fixed Iterations**: Use for known, finite iteration counts
+- **Port Connections**: Use `continueLoop` for loop body, `exit` for completion
+- **Finite Execution**: Loop will always terminate after specified iterations
+
+## ⚠️ Common Mistakes
+
+1. **Infinite loops due to negative/zero step**: Ensure step value allows progression
+2. **Wrong port connections**: Use continueLoop for body, exit for completion
+3. **Off-by-one errors**: Verify iteration count matches expectations
+4. **Using for unknown iteration count**: Use WhileLoopStep for conditional loops
+
+## 🎯 Best Practices
+
+1. **Keep loop body idempotent** for predictable behavior
+2. **Avoid heavy blocking work per iteration**; use coroutines if needed
+3. **Use descriptive actions connected to continueLoop** for clarity
+4. **Validate iterations > 0** before execution
+5. **Use for fixed, known iteration counts** only
+

@@ -1,0 +1,64 @@
+---
+alwaysApply: false
+description: Display middle screen message with one action button for confirmation dialogs
+---
+
+# MiddleMessageOneActionStep Node
+
+## 📋 Overview
+Displays a message in the middle of the screen with a single action button for confirmation dialogs and simple decisions.
+
+## 🔧 Node Details
+
+**Node Type**: MiddleMessageOneActionStep
+**Purpose**: Display middle screen message with one action button
+**Usage**: Confirmation dialogs, single-choice prompts, simple decisions
+
+## 📋 Basic Prerequisites
+
+1. **Message Content**: Confirmation or decision message text must be prepared
+2. **Button Text**: Clear, actionable button text
+3. **Action Logic**: Action to perform when button is clicked
+
+## 📝 Parameters
+
+- **Message Text**: The content to display
+- **Button Text**: Text for the action button
+- **Button Action**: Action to perform when button is clicked
+- **Auto Close**: Whether to auto-close after action
+
+## 🚨 Critical MiddleMessageOneActionStep Rules
+- **Single Action Only**: Use for one-button confirmations and decisions
+- **Middle Screen**: Displays in center of screen with prominent button
+- **NOT Multiple Choice**: Use MiddleMessageTwoActionsStep for multiple options
+
+## 🏗️ Common Patterns
+
+### Confirmation Dialog Pattern
+```
+MiddleMessageOneActionStep (Confirm action) → UserAction → ExecuteAction → Continue
+```
+
+### Simple Decision Pattern
+```
+MiddleMessageOneActionStep (Proceed with experiment?) → UserClicksYes → StartExperiment → Continue
+```
+
+### Acknowledgment Pattern
+```
+ShowWarning → MiddleMessageOneActionStep (I understand) → UserAcknowledges → Continue
+```
+
+## ⚠️ Common Mistakes
+
+1. **Unclear action descriptions**: Ensure action button has clear, understandable text
+2. **Wrong node choice**: Use MiddleMessageTwoActionsStep for multiple options
+3. **Missing user guidance**: Provide clear instructions
+
+## 🎯 Best Practices
+
+1. **Use for simple confirmations** that require user acknowledgment
+2. **Keep button text clear** and action-oriented
+3. **Provide clear context** in the message
+4. **Use for single-choice decisions** only
+5. **Ensure accessibility** for button interactions

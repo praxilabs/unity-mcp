@@ -1,0 +1,58 @@
+---
+alwaysApply: false
+description: Progress tracking, navigation control, and stage management. Contains progress map steps, stage navigation, and experiment progression control.
+---
+
+# Progress Map Nodes
+
+## 📋 Overview
+Progress Map nodes handle progress tracking and navigation in virtual lab experiments. Essential for experiment progression, step management, and stage control.
+
+## 🔧 Available Nodes
+
+### ProgressMapAutoNextStep
+**Rule File**: [ProgressMapAutoNextStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/ProgressMap/ProgressMapAutoNextStep.mdc)
+**Purpose**: Automatically handles progress tracking and navigation to the next step
+**Usage**: End of step/phase to move forward without manual indices
+
+### ProgressMapManualNextStep
+**Rule File**: [ProgressMapManualNextStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/ProgressMap/ProgressMapManualNextStep.mdc)
+**Purpose**: Manually controls progress by specifying the next step index
+**Usage**: Precise control and skipping steps
+
+### ResetCurrentStageStep
+**Rule File**: [ResetCurrentStageStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/ProgressMap/ResetCurrentStageStep.mdc)
+**Purpose**: Resets the current progression of the current stage
+**Usage**: Retrying experiment sequence within the same stage
+
+### ResetStageByNumberStep
+**Rule File**: [ResetStageByNumberStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/ProgressMap/ResetStageByNumberStep.mdc)
+**Purpose**: Resets the stage progression by a specified stage number
+**Usage**: Retrying experiment from a particular stage, jumping back
+
+## 🚨 Critical Progress Map Rules
+- **Step vs Stage**: Use ProgressMap nodes for step progression, GoToStageStep for stage transitions
+- **Auto vs Manual**: Use AutoNext for automatic progression, ManualNext for precise control
+- **Reset Types**: Use ResetCurrent for current stage, ResetByNumber for specific stages
+
+## 🎯 Node Selection Guide
+
+### **Use ProgressMapAutoNextStep for:**
+- Automatic step progression
+- End of step/phase completion
+- Moving forward without manual indices
+
+### **Use ProgressMapManualNextStep for:**
+- Precise step control
+- Skipping steps in progression
+- Specific step index navigation
+
+### **Use ResetCurrentStageStep for:**
+- Resetting current stage progression
+- Retrying experiment within same stage
+- Clearing current stage state
+
+### **Use ResetStageByNumberStep for:**
+- Resetting specific stage by number
+- Jumping back to particular stage
+- Targeted stage reset operations

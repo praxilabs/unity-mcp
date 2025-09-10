@@ -1,0 +1,62 @@
+---
+alwaysApply: false
+description: Standard method execution on GameObjects via FunctionCallBase
+---
+
+# FunctionCallStep Node
+
+## 📋 Overview
+Executes a method on a specific GameObject's component for synchronous operations on scene objects.
+
+## 🔧 Node Details
+
+**Node Type**: FunctionCallStep
+**Menu Path**: "Function Call/Function Call"
+**Inherits**: FunctionCallBase
+
+## 📋 Basic Prerequisites
+
+1. **Script Component**: Public method on a MonoBehaviour component
+2. **Object Registration**: Target object must be registered in the registry
+3. **Method Visibility**: Method must be public to be accessible
+
+## 📝 Parameters
+
+- **_calledObjectName**: {"prefabName": "ParentName", "childName": "ChildName"}
+- **selectedComponent**: Component type (e.g., "MyBehaviour")
+- **selectedFunction**: Method name (e.g., "DoWork")
+- **parameterValues**: Array of SerializableParameter values
+
+## 🏗️ Common Patterns
+
+### Basic Function Call
+```
+FunctionCallStep (Object, Component, Method) → Continue
+```
+
+### Click → Function
+```
+ClickStep (Object) → FunctionCallStep (Object) → ShowMessage (Function executed)
+```
+
+## 🚨 Critical FunctionCallStep Rules
+- **Synchronous Only**: Use for synchronous operations only
+- **Scene Objects**: Target specific scene objects, not global/static methods
+- **Public Methods**: Methods must be public to be accessible
+
+## ⚠️ Common Mistakes
+
+1. **Using for visibility changes**: Use GameObjectSetActiveStep instead
+2. **Wrong component or method name**: Verify names match exactly
+3. **Wrong parameter types/order**: Match parameter signatures exactly
+4. **Using for global methods**: Use FunctionCallGlobalStep for static/global methods
+5. **Using for coroutines**: Use FunctionCallCoroutineStep for IEnumerator methods
+
+## 🎯 Best Practices
+
+1. **Verify object via registry** before calling methods
+2. **Prefer explicit parameter typing** for clarity
+3. **Keep methods idempotent** when possible
+4. **Use for synchronous operations** on scene objects
+5. **Validate component and method exist** before execution
+
