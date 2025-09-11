@@ -20,8 +20,24 @@ This is a knowledge base index for Unity MCP tools. Use this for quick reference
 
 ### `mcp_unityMCP_create_xnode_node`
 - **Purpose**: Create nodes in xNode graphs
-- **Parameters**: graph_path, node_type_name, position_x, position_y, tooltip
+- **Parameters**: graph_path, node_type_name, position_x, position_y, tooltip, description
 - **Returns**: nodeId, nodeName for connections
+- **⚠️ CRITICAL**: Always pass description MUST contain required Components from the rule file of the nodes. This rules is a must and neglecting it will lead to unwanted behaviour.
+- **Description Format**
+2. Node Functionality: This Node does X and Y.
+3. Required Components.
+
+Example:
+```
+This Node is responsible for 1, 2, and 3.
+
+Required Components:
+    1. Collider.
+    2. AttachableTool Script.
+    3. DraggableObject Script.
+    4. Draggable tag.
+    etc..
+```
 
 ### `mcp_unityMCP_connect_nodes_by_name`
 - **Purpose**: Connect nodes using their names
@@ -84,3 +100,8 @@ This is a knowledge base index for Unity MCP tools. Use this for quick reference
 - Always use `list_graph_nodes` after graph creation
 - Use `check_node_exists` before operations
 - Use `read_console` for error diagnosis
+
+### **Node Creation with Metadata**
+- **description**: Detailed explanation of what the node does
+- **Rule File Pattern**: Navigate to category → specific node → read documentation for metadata
+- **Example**: For ClickStep → ClickNodes → ClickStep → use documented description and components
