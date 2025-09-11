@@ -5,10 +5,10 @@ description: Animation control, SubGraph execution, and stage progression. Conta
 
 # Misc Nodes
 
-## 📋 Overview
+## Overview
 Misc nodes handle various operations that don't fit into other categories, including animation control, stage progression, and subgraph execution in virtual lab experiments.
 
-## 🔧 Available Nodes
+## Available Nodes
 
 ### AnimationStep
 **Rule File**: [AnimationStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Misc/AnimationStep.mdc)
@@ -20,13 +20,14 @@ Misc nodes handle various operations that don't fit into other categories, inclu
 **Purpose**: Stage transition control
 **Usage**: End of a stage, skipping stages
 
+## Common Misinterpretations
 
-## 🚨 Critical Misc Rules
+## Critical Misc Rules
 - **Animation Control**: Use AnimationStep for object animations and visual effects
 - **Stage Management**: Use GoToStageStep for stage transitions, not step progression
 - **Modular Design**: Use SubGraphStep for reusable experiment components
 
-## 🎯 Node Selection Guide
+## Node Selection Guide
 
 ### **Use AnimationStep for:**
 - Object animations and visual effects

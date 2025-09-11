@@ -5,16 +5,16 @@ description: Advanced branching control node for complex control flow scenarios
 
 # BranchingControlStep
 
-## 📋 Overview
+## Overview
 BranchingControlStep provides advanced branching control for complex control flow scenarios that require sophisticated branching logic beyond simple if/else statements.
 
-## 🔧 Node Details
+## Node Details
 
 **File**: [BranchingControlStep.cs](mdc:Assets/Scripts/System/xNode/Steps/SelfExecuted/ControlFlow/BranchingControlStep.cs)
 **Purpose**: Advanced branching control for complex scenarios
 **Usage**: Complex control flow, advanced state machines, multi-condition branching
 
-## 🏗️ Common Patterns
+## Common Patterns
 
 ### Advanced Branching Pattern
 ```
@@ -23,12 +23,12 @@ BranchingControlStep (Complex condition) → Branch A: ExecuteComplexLogicA → 
                                         → Branch C: ExecuteComplexLogicC → Continue
 ```
 
-## 🚨 Critical BranchingControlStep Rules
+## Critical BranchingControlStep Rules
 - **Advanced Use Only**: Use for complex scenarios that exceed IfStatementStep capabilities
 - **Handle All Branches**: Ensure all possible branching scenarios are covered
 - **Default Branch**: Always provide a default branch for unexpected conditions
 
-## ⚠️ Common Mistakes
+## Common Mistakes
 
 1. **Incomplete branching logic**: Handle all possible branching scenarios
 2. **Missing default branch**: Always provide a default branch for unexpected conditions
@@ -36,7 +36,7 @@ BranchingControlStep (Complex condition) → Branch A: ExecuteComplexLogicA → 
 4. **Unclear branch logic**: Use clear, descriptive branch names
 5. **Using for simple conditions**: Use IfStatementStep for simple if/else logic
 
-## 🎯 Best Practices
+## Best Practices
 
 1. **Use for complex control flow scenarios** that exceed simple branching
 2. **Handle all possible branching cases** with appropriate responses

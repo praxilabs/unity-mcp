@@ -5,22 +5,21 @@ description: Focus camera on specific objects for guided attention and close-up 
 
 # FocusOnToolStep Node
 
-## 📋 Overview
+## Overview
 FocusOnToolStep controls camera positioning to focus on specific objects in virtual lab experiments. This node is essential for guided attention, close-up views, and providing detailed views of objects.
 
-## 🔧 Node Details
+## Node Details
 
 **Node Type**: FocusOnToolStep
 **Purpose**: Focus camera on specific objects
 **Usage**: Guided attention, close-up views, object examination
 
-## 📋 Basic Prerequisites
+## Basic Prerequisites
 
-<!-- Required data and setup needed for this node step to work -->
 1. ToolsCameraTarget Script.
 2. Virtual Camera that focuses on the Object you want to use the step on.
 
-## 📝 Parameters
+## Parameters
 
 - **Target Object**: The object to focus the camera on
 - **Focus Distance**: Distance from the target object
@@ -28,7 +27,7 @@ FocusOnToolStep controls camera positioning to focus on specific objects in virt
 - **Transition Duration**: Time for camera movement
 - **Focus Type**: Type of focus (close-up, overview, etc.)
 
-## 🏗️ Common Patterns
+## Common Patterns
 
 ### Basic Object Focus
 ```
@@ -60,7 +59,7 @@ FocusOnToolStep (Setup area) → ShowMessage (Setup instructions) → ReturnCame
 FocusOnToolStep (Object) → DelayStep → ShowMessage (Examine this) → ReturnCameraStep → Continue
 ```
 
-## 🚨 Critical Camera Rules
+## Critical Camera Rules
 
 ### **System Architecture**
 The camera system tracks only **ONE previous camera position** (main camera), not a stack. This requires strict management.
@@ -74,7 +73,7 @@ The camera system tracks only **ONE previous camera position** (main camera), no
 ### **Core Rule**
 **ANY time you use FocusOnToolStep and later want to use FocusOnToolStep again (same or different tool), you MUST use ReturnCameraStep between them.**
 
-## ⚠️ Common Mistakes
+## Common Mistakes
 
 1. **Missing ReturnCameraStep between focus operations**: If you use FocusOnToolStep twice (same or different tools), you MUST use ReturnCameraStep between them
 2. **Wrong focus targets**: Verify focus targets exist in scene  
@@ -83,7 +82,7 @@ The camera system tracks only **ONE previous camera position** (main camera), no
 5. **Missing camera transitions**: Use appropriate delays for camera movements
 6. **Misunderstanding "always required"**: ReturnCameraStep is only required between focus operations, not after every single focus
 
-## 🎯 Best Practices
+## Best Practices
 
 1. **Use ReturnCameraStep between focus operations** to maintain proper camera tracking
 2. **Provide clear user feedback** for camera movements

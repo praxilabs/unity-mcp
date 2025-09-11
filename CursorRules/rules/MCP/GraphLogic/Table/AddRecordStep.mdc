@@ -5,28 +5,28 @@ description: Add a new record (row) to the active data table
 
 # AddRecordStep Node
 
-## 📋 Overview
+## Overview
 Adds a new row to the active data table using provided data for data collection and experiment result logging.
 
-## 🔧 Node Details
+## Node Details
 
 **Node Type**: AddRecordStep
 **Purpose**: Insert a new record
 **Usage**: Data collection, logging experiment results
 
-## 📋 Basic Prerequisites
+## Basic Prerequisites
 
 1. **Active Data Table**: Target table must be active and accessible
 2. **Valid Record Data**: Record data must match table schema
 3. **Table Configuration**: Table must be properly configured
 
-## 📝 Parameters
+## Parameters
 
 - **tableName**: Target table identifier (optional if active table is implied)
 - **recordData**: Key/value data for the new row
 - **appendTimestamp**: Whether to add time fields
 
-## 🏗️ Common Patterns
+## Common Patterns
 
 ### Basic Insert
 ```
@@ -39,19 +39,19 @@ EnableRecordButtonStep (RecordButton) → UserInputStep (Data)
 → AddRecordStep (ActiveTable, UserInputData) → Continue
 ```
 
-## 🚨 Critical AddRecordStep Rules
+## Critical AddRecordStep Rules
 - **Data Operations Only**: Use for adding data records, not stage management
 - **Valid Schema**: Record data must match table schema
 - **Active Table**: Target table must be active and accessible
 
-## ⚠️ Common Mistakes
+## Common Mistakes
 
 1. **Missing required fields**: Ensure all required fields are provided
 2. **Wrong table name or inactive table**: Verify table exists and is active
 3. **Using for stage management**: Use stage nodes for stage operations
 4. **Invalid record data**: Verify data matches table schema
 
-## 🎯 Best Practices
+## Best Practices
 
 1. **Normalize field names** for consistency
 2. **Keep records atomic and consistent** for data integrity

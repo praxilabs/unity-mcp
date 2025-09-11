@@ -5,7 +5,7 @@ description: Node positioning guidelines and layout rules for Unity MCP graphs
 
 # Node Positioning Guide
 
-## 📐 NODE POSITIONING RULES
+## NODE POSITIONING RULES
 
 ### **Spacing Rules**
 - **Horizontal**: 400 units between sequential nodes
@@ -34,7 +34,7 @@ DecisionNode (100, 100)
 └── False: ActionB (500, 100) → Continue
 ```
 
-## 🎨 VISUAL ORGANIZATION PRINCIPLES
+## VISUAL ORGANIZATION PRINCIPLES
 
 ### **1. Logical Grouping**
 - Group related nodes together
@@ -53,7 +53,7 @@ position the nodes together in harmony instead of just putting them in rows, col
 do what suits the best in terms for readability and cleanliness to the user, keep in mind that nodes contains a Width so position the nodes away from each other a bit to avoid stacking nodes on top of each other
 ```
 
-## 📏 POSITIONING EXAMPLES
+## POSITIONING EXAMPLES
 
 ### **Simple Sequential Flow**
 ```
@@ -75,7 +75,7 @@ IfStatement (100, 100)
 └── False: HideObject (500, 100) → Continue
 ```
 
-## ⚠️ POSITIONING MISTAKES TO AVOID
+## POSITIONING MISTAKES TO AVOID
 
 1. **Overlapping nodes**: Ensure adequate spacing
 2. **Inconsistent spacing**: Use standard 400/300 unit spacing
@@ -83,7 +83,7 @@ IfStatement (100, 100)
 4. **Cluttered layouts**: Group related nodes logically
 5. **Hidden connections**: Ensure connection lines are visible and clear
 
-## 🛠️ POSITIONING TOOLS
+## POSITIONING TOOLS
 
 ### **Node Creation with Positioning**
 ```python
@@ -107,13 +107,13 @@ set_node_position(
 )
 ```
 
-## 📋 POSITIONING CHECKLIST
+## POSITIONING CHECKLIST
 
-- ✅ **Adequate spacing**: 400 horizontal, 300 vertical
-- ✅ **Logical flow**: Left to right progression
-- ✅ **Clear grouping**: Related nodes positioned together
-- ✅ **Visible connections**: No overlapping or hidden lines
-- ✅ **Consistent layout**: Standard positioning conventions
-- ✅ **Readable structure**: Easy to follow execution flow
+- **Adequate spacing**: 400 horizontal, 300 vertical
+- **Logical flow**: Left to right progression
+- **Clear grouping**: Related nodes positioned together
+- **Visible connections**: No overlapping or hidden lines
+- **Consistent layout**: Standard positioning conventions
+- **Readable structure**: Easy to follow execution flow
 
 

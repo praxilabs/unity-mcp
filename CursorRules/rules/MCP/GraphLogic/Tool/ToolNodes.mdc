@@ -5,12 +5,12 @@ description: Object manipulation, visibility control, and tool-specific interact
 
 # Tool Nodes
 
-## 📋 Overview
+## Overview
 Tool nodes handle object manipulation, visibility control, and tool-specific interactions in virtual lab experiments. These nodes are essential for object state management, interaction control, and tool presentation.
 
-## 🔧 Available Nodes
+## Available Nodes
 
-### GameObjectSetActiveStep ⭐ VISIBILITY CONTROL
+### GameObjectSetActiveStep / VISIBILITY CONTROL
 **Rule File**: [GameObjectSetActiveStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Tool/GameObjectSetActiveStep.mdc)
 **Purpose**: Show/hide single objects for visibility control
 **Usage**: Object visibility management, tool presentation, state control
@@ -19,7 +19,7 @@ Tool nodes handle object manipulation, visibility control, and tool-specific int
 - **Visibility Control**: Show/hide objects, not collider management
 - **Better than FunctionCallStep**: Use for visibility operations
 
-### ToggleColliderStep ⭐ COLLIDER MANAGEMENT
+### ToggleColliderStep / COLLIDER MANAGEMENT
 **Rule File**: [ToggleColliderStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Tool/ToggleColliderStep.mdc)
 **Purpose**: Enable/disable collider on a SINGLE object only
 **Usage**: Interaction control, safety systems, collider management
@@ -38,7 +38,9 @@ Tool nodes handle object manipulation, visibility control, and tool-specific int
 **Purpose**: Control interactions menu for tools
 **Usage**: Tool menu management, interaction options, tool selection
 
-## 🚨 Critical Tool Rules
+## Common Misinterpretations
+
+## Critical Tool Rules
 
 ### **Single Object Limitation**
 - **GameObjectSetActiveStep**: Only works on ONE single object at a time

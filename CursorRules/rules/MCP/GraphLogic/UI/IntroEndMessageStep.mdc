@@ -5,34 +5,34 @@ description: Display a panel in the middle of the screen at the start or end of 
 
 # IntroEndMessageStep Node
 
-## 📋 Overview
+## Overview
 Displays a prominent panel in the middle of the screen for experiment/stage introduction or completion messages.
 
-## 🔧 Node Details
+## Node Details
 
 **Node Type**: IntroEndMessageStep
 **Purpose**: Display middle screen panel for intro/end messages
 **Usage**: Prominent announcements, experiment/stage introductions, completion messages
 
-## 📋 Basic Prerequisites
+## Basic Prerequisites
 
 1. **Message Content**: Introduction or completion message text must be prepared
 2. **Message Type**: Determine if it's an introduction or end message
 3. **Timing**: Appropriate placement in experiment flow
 
-## 📝 Parameters
+## Parameters
 
 - **Message Text**: The content to display
 - **Message Type**: Introduction or end message
 - **Duration**: How long to display (optional)
 - **Auto Close**: Whether to auto-close after duration
 
-## 🚨 Critical IntroEndMessageStep Rules
+## Critical IntroEndMessageStep Rules
 - **Middle Screen Only**: Displays prominent panel in center of screen
 - **Prominent Announcements**: Use for important intro/end messages
 - **NOT Side Messages**: Use SideMessageStep for non-blocking guidance
 
-## 🏗️ Common Patterns
+## Common Patterns
 
 ### Experiment Introduction
 ```
@@ -49,13 +49,13 @@ CompleteStage → IntroEndMessageStep (Stage complete) → ShowMessage (Congratu
 CompleteExperiment → IntroEndMessageStep (Experiment finished) → ShowResults → Continue
 ```
 
-## ⚠️ Common Mistakes
+## Common Mistakes
 
 1. **Wrong node choice**: Don't use SideMessageStep instead of IntroEndMessageStep for prominent announcements
 2. **Unclear messages**: Use clear, concise language
 3. **Wrong positioning**: Use for middle screen, not side panel messages
 
-## 🎯 Best Practices
+## Best Practices
 
 1. **Use for prominent announcements** that need center screen attention
 2. **Keep messages concise** and actionable

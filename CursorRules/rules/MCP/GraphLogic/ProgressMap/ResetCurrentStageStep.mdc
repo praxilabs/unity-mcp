@@ -5,44 +5,44 @@ description: Resets the current progression of the current stage
 
 # ResetCurrentStageStep Node
 
-## 📋 Overview
+## Overview
 Resets progress within the active stage, allowing a retry or restart of the current stage progression.
 
-## 🔧 Node Details
+## Node Details
 
 **Node Type**: ResetCurrentStageStep
 **Purpose**: Reset current stage progression
 **Usage**: Retrying an experiment sequence within the same stage
 
-## 📋 Basic Prerequisites
+## Basic Prerequisites
 
 1. **Current Stage Context**: Must be used within an active stage
 2. **Stage Progression**: Current stage must have progression to reset
 3. **Reset Permission**: User/system must have permission to reset stage
 
-## 📝 Parameters
+## Parameters
 
 - (None) Operates on current stage context
 
-## 🏗️ Common Patterns
+## Common Patterns
 
 ### Retry Stage Flow
 ```
 ShowMessage (Retrying stage) → ResetCurrentStageStep → ProgressMapAutoNextStep
 ```
 
-## 🚨 Critical ResetCurrentStageStep Rules
+## Critical ResetCurrentStageStep Rules
 - **Current Stage Only**: Resets only the current active stage
 - **Stage Progression**: Clears current stage progression for retry
 - **Not for Specific Stages**: Use ResetStageByNumberStep for specific stage resets
 
-## ⚠️ Common Mistakes
+## Common Mistakes
 
 1. **Confusing with ResetStageByNumberStep**: Use ResetStageByNumberStep for specific stage resets
 2. **Using for stage transitions**: Use GoToStageStep for stage transitions
 3. **Using without user confirmation**: Always confirm user intent before destructive resets
 
-## 🎯 Best Practices
+## Best Practices
 
 1. **Confirm user intent before destructive resets** to prevent accidental data loss
 2. **Provide UI feedback that stage has been reset** for user awareness

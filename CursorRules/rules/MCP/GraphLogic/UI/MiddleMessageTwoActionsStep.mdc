@@ -5,23 +5,23 @@ description: Display middle screen message with two action buttons for multiple 
 
 # MiddleMessageTwoActionsStep Node
 
-## 📋 Overview
+## Overview
 Displays a message in the middle of the screen with two action buttons for multiple choice dialogs and decision points.
 
-## 🔧 Node Details
+## Node Details
 
 **Node Type**: MiddleMessageTwoActionsStep
 **Purpose**: Display middle screen message with two action buttons
 **Usage**: Multiple choice dialogs, decision points, option selection
 
-## 📋 Basic Prerequisites
+## Basic Prerequisites
 
 1. **Message Content**: Decision or choice message text must be prepared
 2. **Button Text**: Clear, actionable text for both buttons
 3. **Action Logic**: Actions to perform for each button selection
 4. **Choice Handling**: Logic to handle user's choice
 
-## 📝 Parameters
+## Parameters
 
 - **Message Text**: The content to display
 - **Button One Text**: Text for the first action button
@@ -29,12 +29,12 @@ Displays a message in the middle of the screen with two action buttons for multi
 - **Button Actions**: Actions to perform for each button
 - **Close Button**: Optional close button functionality
 
-## 🚨 Critical MiddleMessageTwoActionsStep Rules
+## Critical MiddleMessageTwoActionsStep Rules
 - **Two Actions Only**: Use for binary choices with two options
 - **Middle Screen**: Displays in center of screen with two prominent buttons
 - **NOT Single Action**: Use MiddleMessageOneActionStep for single confirmations
 
-## 🏗️ Common Patterns
+## Common Patterns
 
 ### Decision Making Pattern
 ```
@@ -54,14 +54,14 @@ MiddleMessageTwoActionsStep (Proceed with experiment?) → Yes: StartExperiment 
                                                       → No: ShowAlternative → Continue
 ```
 
-## ⚠️ Common Mistakes
+## Common Mistakes
 
 1. **Unclear action descriptions**: Ensure action buttons have clear, understandable text
 2. **Wrong node choice**: Use MiddleMessageOneActionStep for single confirmations
 3. **Incomplete option handling**: Handle all button options appropriately
 4. **Missing user guidance**: Provide clear instructions
 
-## 🎯 Best Practices
+## Best Practices
 
 1. **Use for binary choices** that require user decision
 2. **Keep button text clear** and action-oriented

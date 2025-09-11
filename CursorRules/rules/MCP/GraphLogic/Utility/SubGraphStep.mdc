@@ -5,34 +5,34 @@ description: Execute other graphs as subroutines for modular experiment design a
 
 # SubGraphStep
 
-## 📋 Overview
+## Overview
 SubGraphStep executes other graphs as subroutines in virtual lab experiments. Used for modular experiment design, reusable procedures, and breaking complex experiments into manageable components.
 
-## 🔧 Node Details
+## Node Details
 
 **Node Type**: SubGraphStep
 **Purpose**: Execute other graphs as subroutines for modular design
 **Usage**: Modular experiment design, reusable procedures, complex experiment breakdown
 
-## 📋 Basic Prerequisites
+## Basic Prerequisites
 
 1. **SubGraph Reference**: Valid reference to another StepsGraph asset
 2. **Entry/Exit Points**: SubGraph must have proper entry and exit points
 3. **Step Number**: Use stepNumber parameter for clear progression (optional)
 4. **No Circular References**: Avoid infinite subgraph loops
 
-## 📝 Parameters
+## Parameters
 
 - **SubGraph Asset**: Reference to the StepsGraph asset to execute
 - **Step Number**: Sequential step number for progression tracking (optional)
 
-## 🚨 Critical SubGraphStep Rules
+## Critical SubGraphStep Rules
 - **Modular Design**: Use for breaking complex experiments into manageable components
 - **Reusable Procedures**: Create reusable sub-procedures for common operations
 - **No Circular References**: Avoid infinite subgraph loops
 - **Proper Entry/Exit**: Ensure subgraphs have proper entry and exit points
 
-## 🏗️ Common Patterns
+## Common Patterns
 
 ### Modular Execution Pattern
 ```
@@ -66,7 +66,7 @@ SubGraphStep (Phase 2) → HintStep (stepNumber: 3) → SubGraphStep (Phase 3) �
 SubGraphStep (Complete phase) → ProgressMapAutoNextStep → SubGraphStep (Next phase) → Continue
 ```
 
-## ⚠️ Common Mistakes
+## Common Mistakes
 
 1. **Infinite subgraphs**: Avoid circular subgraph references
 2. **Missing subgraph references**: Ensure subgraph references are valid
@@ -74,7 +74,7 @@ SubGraphStep (Complete phase) → ProgressMapAutoNextStep → SubGraphStep (Next
 4. **Missing step numbers**: Use stepNumber parameter for clear progression
 5. **Wrong subgraph order**: Ensure subgraphs execute in correct sequence
 
-## 🎯 Best Practices
+## Best Practices
 
 1. **Use for modular experiment design** and reusable procedures
 2. **Create reusable sub-procedures** for common operations

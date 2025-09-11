@@ -5,22 +5,22 @@ description: Animation control and playback for object animations and visual eff
 
 # AnimationStep Node
 
-## 📋 Overview
+## Overview
 Plays an animation or triggers an animated effect on a target object for visual feedback and interactive responses.
 
-## 🔧 Node Details
+## Node Details
 
 **Node Type**: AnimationStep
 **Purpose**: Animation control and playback
 **Usage**: Object animations, visual effects, click-triggered responses
 
-## 📋 Basic Prerequisites
+## Basic Prerequisites
 
 1. **Animator Component**: Object must have an Animator component
 2. **Object Registration**: Target object must be registered in the Item Registry
 3. **Animation Clip**: Animation clip or state must exist on the Animator
 
-## 📝 Parameters
+## Parameters
 
 - **Target Object**: Object that holds the Animator/animation
 - **Animation Name**: Clip or state to play
@@ -28,7 +28,7 @@ Plays an animation or triggers an animated effect on a target object for visual 
 - **Transition Duration**: Crossfade time (s)
 - **Speed**: Playback speed multiplier
 
-## 🏗️ Common Patterns
+## Common Patterns
 
 ### Interactive Animation
 ```
@@ -45,19 +45,19 @@ Action → AnimationStep (Visual feedback) → Continue
 AnimationStep (Visual effect) → AudioStep (Sound effect) → Continue
 ```
 
-## 🚨 Critical AnimationStep Rules
+## Critical AnimationStep Rules
 - **Animator Required**: Target object must have Animator component
 - **Animation State**: Animation clip/state must exist on the Animator
 - **Timing Control**: Use appropriate play modes for different scenarios
 
-## ⚠️ Common Mistakes
+## Common Mistakes
 
 1. **Missing Animator/clip on target**: Verify Animator component and animation clips exist
 2. **Wrong animation state name**: Verify animation state names match exactly
 3. **No transition time for crossfades**: Use appropriate transition duration to avoid pops
 4. **Using for non-animation effects**: Use other nodes for non-animation visual effects
 
-## 🎯 Best Practices
+## Best Practices
 
 1. **Keep clips short and responsive** for better user experience
 2. **Use crossfades for UX polish** to avoid jarring transitions

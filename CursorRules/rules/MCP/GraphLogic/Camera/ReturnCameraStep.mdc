@@ -5,29 +5,28 @@ description: Return camera to default position for reset view and overview mode
 
 # ReturnCameraStep Node
 
-## 📋 Overview
+## Overview
 ReturnCameraStep controls camera positioning to return to default position in virtual lab experiments. This node is essential for resetting view, overview mode, and completing camera sequences.
 
-## 🔧 Node Details
+## Node Details
 
 **Node Type**: ReturnCameraStep
 **Purpose**: Return camera to default position
 **Usage**: Reset view, overview mode, complete camera sequences
 
-## 📋 Basic Prerequisites
+## Basic Prerequisites
 
-<!-- Required data and setup needed for this node step to work -->
 1. Camera is currently focused on an object or used the FocusOnToolStep before on an object.
 2. ToolsCameraTarget Script.
 
-## 📝 Parameters
+## Parameters
 
 - **Default Position**: The default camera position to return to
 - **Transition Duration**: Time for camera movement back to default
 - **Return Type**: Type of return (smooth, instant, etc.)
 - **Reset View**: Whether to reset view settings
 
-## 🏗️ Common Patterns
+## Common Patterns
 
 ### Basic Camera Return
 ```
@@ -54,7 +53,7 @@ ClickStep (Object) → FocusOnToolStep (Object) → ShowMessage (Detailed info) 
 ReturnCameraStep → ShowMessage (Back to overview) → Continue
 ```
 
-## 🚨 Critical Camera Rules
+## Critical Camera Rules
 
 ### **System Architecture**
 The camera system tracks only **ONE previous camera position** (main camera), not a stack. This requires strict management.
@@ -68,7 +67,7 @@ The camera system tracks only **ONE previous camera position** (main camera), no
 ### **Core Rule**
 **ANY time you use FocusOnToolStep and later want to use FocusOnToolStep again (same or different tool), you MUST use ReturnCameraStep between them.**
 
-## ⚠️ Common Mistakes
+## Common Mistakes
 
 1. **Missing ReturnCameraStep between focus operations**: If you use FocusOnToolStep twice (same or different tools), you MUST use ReturnCameraStep between them
 2. **Wrong default position**: Verify default position is set correctly
@@ -77,7 +76,7 @@ The camera system tracks only **ONE previous camera position** (main camera), no
 5. **Missing camera transitions**: Use appropriate delays for camera movements
 6. **Misunderstanding "always use after FocusOnToolStep"**: Only required between focus operations, not after every single focus
 
-## 🎯 Best Practices
+## Best Practices
 
 1. **Use between focus operations** to maintain proper camera tracking
 2. **Provide clear user feedback** for camera movements

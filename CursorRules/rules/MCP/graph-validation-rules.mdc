@@ -3,7 +3,7 @@ alwaysApply: true
 ---
 # Graph Validation Rules
 
-## 🚨 MANDATORY POST-CREATION VALIDATION ⚠️
+## MANDATORY POST-CREATION VALIDATION
 
 ### **CRITICAL: After Creating ANY Graph**
 
@@ -15,7 +15,7 @@ alwaysApply: true
 4. **Verify all nodes have both input AND output connections** (except first/last)
 5. **Confirm execution flow is complete** from entry to exit
 
-### **MANDATORY VALIDATION LOOP RULE** ⚠️
+### **MANDATORY VALIDATION LOOP RULE**
 **After ANY correction, you MUST re-validate and continue the fix→validate cycle until 100% error-free.**
 
 **Example Flow:**
@@ -25,7 +25,7 @@ alwaysApply: true
 4. Continue until validation shows 0 errors
 5. **NEVER stop at first fix - always complete the full validation cycle**
 
-## ⚠️ COMMON VALIDATION FAILURES
+## COMMON VALIDATION FAILURES
 
 ### **Orphaned Nodes**
 - **Problem**: Nodes created but never connected to execution flow
@@ -38,7 +38,7 @@ alwaysApply: true
 - **Solution**: Complete all required connections using `mcp_unityMCP_connect_nodes_by_name`
 - **Impact**: Execution will stop at incomplete nodes
 
-## 🛠️ VALIDATION WORKFLOW
+## VALIDATION WORKFLOW
 
 ### **Step 1: Run Validation**
 ```bash
@@ -60,7 +60,7 @@ mcp_unityMCP_list_graph_nodes "your_graph_path.asset"
 - Confirm execution flow is complete
 - Test graph execution if possible
 
-## 🎯 VALIDATION EXAMPLES
+## VALIDATION EXAMPLES
 
 ### **Good Graph Structure**
 ```
@@ -86,7 +86,7 @@ Missing connection to end
 "Node X has 0 connections"    # Orphaned node detected
 ```
 
-## 🚨 CRITICAL REMINDER
+## CRITICAL REMINDER
 
 **NEVER consider a graph complete without running post-creation validation.**
 
@@ -94,7 +94,7 @@ Missing connection to end
 
 **ALWAYS use `mcp_unityMCP_list_graph_nodes` after graph creation to identify and fix issues.**
 
-## 📋 VALIDATION COMMANDS REFERENCE
+## VALIDATION COMMANDS REFERENCE
 
 ### **Essential Validation Commands**
 - `mcp_unityMCP_list_graph_nodes` - Check graph structure and connections

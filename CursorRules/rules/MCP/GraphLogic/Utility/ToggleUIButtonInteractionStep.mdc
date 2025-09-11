@@ -5,35 +5,35 @@ description: Enable/disable UI button interactions for UI control and button sta
 
 # ToggleUIButtonInteractionStep
 
-## 📋 Overview
+## Overview
 ToggleUIButtonInteractionStep enables or disables UI button interactions in virtual lab experiments. Used for UI control, button state management, and controlling user interface interactions.
 
-## 🔧 Node Details
+## Node Details
 
 **Node Type**: ToggleUIButtonInteractionStep
 **Purpose**: Enable/disable UI button interactions for UI control
 **Usage**: UI control, button state management, user interface interaction control
 
-## 📋 Basic Prerequisites
+## Basic Prerequisites
 
 1. **Button References**: Valid references to UI buttons
 2. **Button Components**: Buttons must have interaction components
 3. **Button Grouping**: Proper grouping of buttons for operations
 4. **State Management**: System to track button interaction states
 
-## 📝 Parameters
+## Parameters
 
 - **Button List**: List of UI buttons to toggle interactions on
 - **Interaction State**: Boolean to enable (true) or disable (false) interactions
 - **Button Group**: Optional grouping for button operations
 
-## 🚨 Critical ToggleUIButtonInteractionStep Rules
+## Critical ToggleUIButtonInteractionStep Rules
 - **UI Button Control**: Use for controlling UI button interactions
 - **Button Grouping**: Properly group buttons for efficient operations
 - **State Management**: Always manage button interaction states properly
 - **UI Safety**: Use for safety systems and UI interaction control
 
-## 🏗️ Common Patterns
+## Common Patterns
 
 ### UI Button Control Pattern
 ```
@@ -61,7 +61,7 @@ IfStatementStep (Check safety) → True: ToggleUIButtonInteractionStep (All butt
 ToggleUIButtonInteractionStep (Button1, Button2, Enable) → UserInteraction → ToggleUIButtonInteractionStep (Button1, Button2, Disable) → Continue
 ```
 
-## ⚠️ Common Mistakes
+## Common Mistakes
 
 1. **Wrong button references**: Ensure all button references are valid
 2. **Missing button state management**: Always manage button interaction states properly
@@ -69,7 +69,7 @@ ToggleUIButtonInteractionStep (Button1, Button2, Enable) → UserInteraction →
 4. **Wrong button timing**: Use appropriate timing for button interaction operations
 5. **Incorrect button grouping**: Ensure buttons are properly grouped for operations
 
-## 🎯 Best Practices
+## Best Practices
 
 1. **Use for UI control** and button state management
 2. **Manage multiple button interactions** simultaneously

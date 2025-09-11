@@ -6,7 +6,7 @@ alwaysApply: true
 
 This file contains the core rules for creating Unity MCP experiments. Always read node-specific rule files before implementation.
 
-## 🚨 **MANDATORY NODE IMPLEMENTATION RULE** ⚠️ **PRIMARY ENTRY POINT**
+## **MANDATORY NODE IMPLEMENTATION RULE** | **PRIMARY ENTRY POINT**
 
 **CRITICAL**: Before creating ANY node in a graph, you MUST:
 
@@ -22,9 +22,9 @@ This file contains the core rules for creating Unity MCP experiments. Always rea
 
 ---
 
-## 🧭 **NAVIGATION GUIDE** ⭐ **HOW TO FIND AND USE EXISTING NODES**
+## **NAVIGATION GUIDE** | **HOW TO FIND AND USE EXISTING NODES**
 
-### **🚀 QUICK START: Finding the Right Node Type**
+### **QUICK START: Finding the Right Node Type**
 
 **Step 1: Identify Your Need**
 - What do you want to accomplish in your experiment?
@@ -48,7 +48,7 @@ Within each category file, you'll find references to individual node files with 
 
 ---
 
-## 🎯 **QUICK DECISION TREE** ⭐ **FIND YOUR CATEGORY**
+## **QUICK DECISION TREE** | **FIND YOUR CATEGORY**
 
 **Need to show/hide objects or enable/disable colliders?**
 → **Tools** category → ToolNodes.mdc
@@ -90,7 +90,7 @@ Within each category file, you'll find references to individual node files with 
 → **Misc** category → MiscNodes.mdc
 
 
-## 🔍 **NAVIGATION WORKFLOW**
+## **NAVIGATION WORKFLOW**
 
 **Standard Process**:
 1. **Identify Need** → Use decision tree to find category
@@ -113,7 +113,7 @@ Category File → Specific Node File → Implementation Pattern → Validation R
 
 ---
 
-## 🎯 **MULTI-STAGE HANDLING RULE**
+## **MULTI-STAGE HANDLING RULE**
 
 **Multi-Stage Principle**:
 When a user requests multiple stages, each stage is a separate StepsGraph with no direct connections between them.
@@ -140,7 +140,7 @@ Stage2_Graph: Start → Stage2Content → End
 
 ---
 
-## 🎭 **SCENARIO PATTERN RULE**
+## **SCENARIO PATTERN RULE**
 
 **Scenario Selection Pattern**:
 All scenario-based experiments follow this pattern for user choice handling:
@@ -169,7 +169,7 @@ IfStatementStep
 
 ---
 
-## 📝 **GRAPH NAMING RULE**
+## **GRAPH NAMING RULE**
 
 **Create graphs with descriptive, meaningful names that explain the graph's purpose.**
 
@@ -193,7 +193,7 @@ IfStatementStep
 
 ---
 
-## 🎯 **SCRIPTABLE OBJECT CREATION RULE**
+## **SCRIPTABLE OBJECT CREATION RULE**
 
 **Standard Protocol**:
 ```bash
@@ -209,7 +209,7 @@ mcp_unityMCP_create_scriptable_object --scriptable_object_type "StepsGraph" --as
 
 ---
 
-## 🔗 **ADDITIONAL REFERENCES**
+## **ADDITIONAL REFERENCES**
 
 - **Graph Validation Rules** - Post-creation validation
 - **Graph Connection Rules** - Critical connection requirements

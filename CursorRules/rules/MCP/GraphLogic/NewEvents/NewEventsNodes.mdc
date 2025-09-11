@@ -4,22 +4,24 @@ alwaysApply: false
 ---
 # NewEvents Nodes
 
-## 📋 Overview
+## Overview
 NewEvents nodes handle event-driven interactions and reactive programming in virtual lab experiments. Essential for cross-graph signaling and reactive behaviors.
 
-## 🔧 Available Nodes
+## Available Nodes
 
 ### EventCallerStep
 **Rule File**: [EventCallerStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/NewEvents/EventCallerStep.mdc)
 **Purpose**: Event-driven trigger step for invoking registered events
 **Usage**: Reactive programming, event handling, cross-graph signaling
 
-## 🚨 Critical NewEvents Rules
+## Common Misinterpretations
+
+## Critical NewEvents Rules
 - **Event Registration**: All events must be registered in the Event Registry
 - **Event Names**: Use exact event names to avoid typos
 - **Reactive Programming**: Use for event-driven behaviors and cross-graph communication
 
-## 🎯 Node Selection Guide
+## Node Selection Guide
 
 ### **Use EventCallerStep for:**
 - Event-driven interactions and reactive programming

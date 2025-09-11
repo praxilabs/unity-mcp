@@ -5,22 +5,21 @@ description: Handle object exploration interactions for object inspection and de
 
 # ExploreStep Node
 
-## 📋 Overview
+## Overview
 ExploreStep handles object exploration interactions in virtual lab experiments. This node is essential for object inspection, detailed examination, and interactive object discovery.
 
-## 🔧 Node Details
+## Node Details
 
 **Node Type**: ExploreStep
 **Purpose**: Handle object exploration interactions
 **Usage**: Object inspection, detailed examination, interactive discovery
 
-## 📋 Basic Prerequisites
+## Basic Prerequisites
 
-<!-- Required data and setup needed for this node step to work -->
 1. Group Index
 
 
-## 📝 Parameters
+## Parameters
 
 - **Target Object**: The object to explore
 - **Exploration Type**: Type of exploration (inspect, examine, discover)
@@ -28,7 +27,7 @@ ExploreStep handles object exploration interactions in virtual lab experiments. 
 - **Exploration Duration**: Time for exploration interaction
 - **Exploration Feedback**: Information revealed during exploration
 
-## 🏗️ Common Patterns
+## Common Patterns
 
 ### Basic Object Exploration
 ```
@@ -65,7 +64,7 @@ ExploreStep (Object) → DelayStep → ShowMessage (Object details) → Continue
 ExploreStep (Object) → ClickStep (Object) → ShowMessage (Interactive details)
 ```
 
-## ⚠️ Common Mistakes
+## Common Mistakes
 
 1. **Missing object verification**: Always verify object exists in registry
 2. **Missing exploration feedback**: Users need information from exploration
@@ -73,7 +72,7 @@ ExploreStep (Object) → ClickStep (Object) → ShowMessage (Interactive details
 4. **Missing visual feedback**: Provide clear feedback for exploration actions
 5. **Invalid object references**: Verify target objects are valid
 
-## 🔍 Debugging Tips
+## Debugging Tips
 
 1. **Test exploration interactions** one step at a time
 2. **Verify object states** before and after exploration
@@ -83,7 +82,7 @@ ExploreStep (Object) → ClickStep (Object) → ShowMessage (Interactive details
 6. **Validate object references** in registry
 7. **Check exploration event handling** and responses
 
-## 🎯 Best Practices
+## Best Practices
 
 1. **Always verify objects exist** before setting up exploration interactions
 2. **Provide detailed feedback** for exploration actions

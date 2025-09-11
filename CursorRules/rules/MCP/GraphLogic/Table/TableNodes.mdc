@@ -5,10 +5,10 @@ description: Data table operations, record management, and stage data handling. 
 
 # Table Nodes
 
-## 📋 Overview
+## Overview
 Table nodes handle data table operations and stage management in virtual lab experiments. Essential for data collection, record management, and experiment stage tracking.
 
-## 🔧 Available Nodes
+## Available Nodes
 
 ### AddRecordStep
 **Rule File**: [AddRecordStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Table/AddRecordStep.mdc)
@@ -40,12 +40,14 @@ Table nodes handle data table operations and stage management in virtual lab exp
 **Purpose**: Revert the 'passed' status of a stage, marking it as incomplete
 **Usage**: Error handling, retry flows
 
-## 🚨 Critical Table Rules
+## Common Misinterpretations
+
+## Critical Table Rules
 - **Data vs Stage**: Use AddRecordStep/EnableRecordButtonStep for data operations, stage nodes for stage management
 - **Stage Progression**: Use EnableStageStep to start, SetStagePassedStep to complete, UnsetStagePassedStep to reset
 - **Stage Navigation**: Use SetCurrentStageStep for explicit stage navigation
 
-## 🎯 Node Selection Guide
+## Node Selection Guide
 
 ### **Use AddRecordStep for:**
 - Adding new data records to tables

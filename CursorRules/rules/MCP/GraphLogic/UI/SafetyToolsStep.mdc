@@ -5,35 +5,35 @@ description: Display safety-related tools and warnings for safety protocols and 
 
 # SafetyToolsStep Node
 
-## 📋 Overview
+## Overview
 Displays safety-related tools and warnings for safety protocols, hazard warnings, and safety equipment guidance.
 
-## 🔧 Node Details
+## Node Details
 
 **Node Type**: SafetyToolsStep
 **Purpose**: Display safety-related tools and warnings
 **Usage**: Safety protocols, hazard warnings, safety equipment guidance
 
-## 📋 Basic Prerequisites
+## Basic Prerequisites
 
 1. **Safety Content**: Safety warning or instruction text must be prepared
 2. **Safety Level**: Determine level of safety concern (low, medium, high)
 3. **Acknowledgment Logic**: Whether user must acknowledge safety warning
 4. **Safety Tools**: List of safety tools to display (if applicable)
 
-## 📝 Parameters
+## Parameters
 
 - **Safety Message**: The safety warning or instruction
 - **Safety Level**: Level of safety concern (low, medium, high)
 - **Safety Tools**: List of safety tools to display
 - **Acknowledgment Required**: Whether user must acknowledge safety warning
 
-## 🚨 Critical SafetyToolsStep Rules
+## Critical SafetyToolsStep Rules
 - **Safety Focus Only**: Use for safety-related information and warnings
 - **Prominent Display**: Safety messages must be prominent and attention-grabbing
 - **Acknowledgment Required**: Critical safety warnings should require user acknowledgment
 
-## 🏗️ Common Patterns
+## Common Patterns
 
 ### Safety Protocol Pattern
 ```
@@ -50,14 +50,14 @@ SafetyToolsStep (Hazard warning) → UserReadsWarning → AcknowledgeSafety → 
 StartExperiment → SafetyToolsStep (Safety briefing) → UserAcknowledges → BeginExperiment → Continue
 ```
 
-## ⚠️ Common Mistakes
+## Common Mistakes
 
 1. **Inadequate safety warnings**: Ensure safety messages are prominent and clear
 2. **Missing acknowledgment**: Require user acknowledgment for critical safety warnings
 3. **Unclear safety instructions**: Make safety requirements clear and actionable
 4. **Wrong node choice**: Use for safety information, not general messaging
 
-## 🎯 Best Practices
+## Best Practices
 
 1. **Use for critical safety information** that users must see
 2. **Make safety warnings prominent** and attention-grabbing

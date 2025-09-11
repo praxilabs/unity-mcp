@@ -3,7 +3,7 @@ alwaysApply: true
 ---
 # Graph Connection Rules
 
-## 🚨 CRITICAL CONNECTION RULES ⚠️
+## CRITICAL CONNECTION RULES
 
 ### **MANDATORY NODE CONNECTION REQUIREMENTS**
 
@@ -32,7 +32,7 @@ alwaysApply: true
 
 **VIOLATION OF THESE RULES WILL RESULT IN BROKEN EXPERIMENTS**
 
-## 🔗 Connection Patterns
+## Connection Patterns
 
 ### Sequential Execution
 ```
@@ -50,7 +50,7 @@ IfStatementStep.True → ActionA → Continue
 IfStatementStep.False → ActionB → Continue
 ```
 
-## ⚠️ Common Connection Mistakes
+## Common Connection Mistakes
 
 1. **Connecting TO first step entry**: Never connect to the entry port of a first step
 2. **Connecting FROM end step exit**: Never connect from the exit port of an end step

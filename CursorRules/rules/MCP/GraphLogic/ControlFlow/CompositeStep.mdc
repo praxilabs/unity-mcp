@@ -5,22 +5,22 @@ description: Parallel execution management node for multiple branches that must 
 
 # CompositeStep
 
-## 📋 Overview
+## Overview
 CompositeStep manages parallel execution in virtual lab experiments. Used when multiple branches must be executed in any order, with all branches required for completion.
 
-## 🔧 Node Details
+## Node Details
 
 **File**: [CompositeStep.cs](mdc:Assets/Scripts/System/xNode/Steps/SelfExecuted/ControlFlow/CompositeStep.cs)
 **Purpose**: Parallel execution management
 **Usage**: Multiple branches that must execute in any order
 
-## 🚨 Critical CompositeStep Rules
+## Critical CompositeStep Rules
 - **Routes Connection**: ALL ClickStep nodes MUST connect TO `CompositeStep.routes` output port
 - **Return Connection**: ALL route completion nodes MUST connect BACK to `CompositeStep.entry`
 - **Exit Connection**: `CompositeStep.exit` ONLY triggers when ALL routes are completed
 - **Completion Tracking**: CompositeStep tracks completion of ALL routes
 
-## 🏗️ Common Patterns
+## Common Patterns
 
 ### Parallel User Interactions
 ```
@@ -30,7 +30,7 @@ CompositeStep.routes → ClickStep B → Action B → CompositeStep.entry
 CompositeStep.exit → Completion
 ```
 
-## ⚠️ Common Mistakes
+## Common Mistakes
 
 1. **Wrong CompositeStep connections**: Routes must connect back to entry 
 2. **Missing routes connections**: ALL ClickStep nodes must connect to CompositeStep.routes
@@ -38,7 +38,7 @@ CompositeStep.exit → Completion
 4. **Wrong port connections**: Verify entry/exit/routes port names
 5. **Incomplete parallel execution**: All routes must be completed before exit triggers
 
-## 🎯 Best Practices
+## Best Practices
 
 1. **Use for parallel execution** in any order scenarios
 2. **Connect routes properly** to CompositeStep.routes
@@ -46,7 +46,7 @@ CompositeStep.exit → Completion
 4. **Test all routes** individually before testing parallel execution
 5. **Validate graph structure** using the critical rules above
 
-## 🎯 When to Use CompositeStep
+## When to Use CompositeStep
 
 ### **WHEN TO USE COMPOSITESTEP**
 - **Multiple user interactions in any order** (click 4 devices, any order)

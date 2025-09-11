@@ -5,33 +5,33 @@ description: Freeze/unfreeze lab interactions for pause functionality and modal 
 
 # FreezeLabStep
 
-## 📋 Overview
+## Overview
 FreezeLabStep controls lab interaction freezing and unfreezing in virtual lab experiments. Used for pause functionality, modal dialogs, and system-wide interaction control.
 
-## 🔧 Node Details
+## Node Details
 
 **Node Type**: FreezeLabStep
 **Purpose**: Freeze/unfreeze lab interactions for system-wide control
 **Usage**: Pause functionality, modal dialogs, system-wide interaction control
 
-## 📋 Basic Prerequisites
+## Basic Prerequisites
 
 1. **Freeze State**: Determine whether to freeze or unfreeze interactions
 2. **User Feedback**: Provide clear indication when system is frozen/unfrozen
 3. **Complete Cycle**: Always complete the freeze → action → unfreeze cycle
 4. **System State**: Understand current system interaction state
 
-## 📝 Parameters
+## Parameters
 
 - **Freeze State**: Boolean to freeze (true) or unfreeze (false) interactions
 - **User Feedback**: Optional message to show when freezing/unfreezing
 
-## 🚨 Critical FreezeLabStep Rules
+## Critical FreezeLabStep Rules
 - **System-Wide Control**: Freezes/unfreezes ALL lab interactions
 - **Complete Cycle**: Always complete freeze → action → unfreeze cycle
 - **Never Leave Frozen**: Never leave the system frozen permanently
 
-## 🏗️ Common Patterns
+## Common Patterns
 
 ### System Pause Pattern
 ```
@@ -48,7 +48,7 @@ FreezeLabStep (freeze) → ShowMessage (Modal dialog) → UserAction → FreezeL
 ErrorOccurs → FreezeLabStep (freeze) → ShowErrorMessage → UserAcknowledges → FreezeLabStep (unfreeze) → Continue
 ```
 
-## ⚠️ Common Mistakes
+## Common Mistakes
 
 1. **Missing unfreeze**: Always unfreeze after freezing
 2. **Infinite freeze**: Never leave the system frozen permanently
@@ -56,7 +56,7 @@ ErrorOccurs → FreezeLabStep (freeze) → ShowErrorMessage → UserAcknowledges
 4. **Missing user feedback**: Provide clear feedback when freezing/unfreezing
 5. **Incomplete freeze cycle**: Always complete the freeze → action → unfreeze cycle
 
-## 🎯 Best Practices
+## Best Practices
 
 1. **Use for system-wide pause functionality** and modal dialogs
 2. **Always complete the freeze → action → unfreeze cycle**

@@ -5,33 +5,33 @@ description: Wait for specified time for timing control and pacing experiments
 
 # DelayStep
 
-## 📋 Overview
+## Overview
 DelayStep provides timing control in virtual lab experiments. Used for waiting specified time periods, pacing experiments, and controlling timing between actions.
 
-## 🔧 Node Details
+## Node Details
 
 **Node Type**: DelayStep
 **Purpose**: Wait for specified time for system timing control
 **Usage**: Timing between actions, pacing experiments, smooth transitions
 
-## 📋 Basic Prerequisites
+## Basic Prerequisites
 
 1. **Delay Duration**: Set appropriate delay duration in seconds
 2. **Timing Context**: Understand why the delay is needed
 3. **User Experience**: Consider impact on user experience
 4. **Execution Flow**: Place delay appropriately in execution sequence
 
-## 📝 Parameters
+## Parameters
 
 - **Duration**: Time to wait in seconds
 - **Context**: Reason for the delay (optional but recommended)
 
-## 🚨 Critical DelayStep Rules
+## Critical DelayStep Rules
 - **Fixed System Delay**: Use for fixed system timing, not user-controlled timing
 - **NOT User-Controlled**: Use TimerStep for user-controlled timing with UI controls
 - **System Pacing**: Use for smooth transitions and system pacing
 
-## 🏗️ Common Patterns
+## Common Patterns
 
 ### Timing Control Pattern
 ```
@@ -63,7 +63,7 @@ GameObjectSetActiveStep (hide) → DelayStep → GameObjectSetActiveStep (show) 
 FunctionCallStep (Setup function) → DelayStep → FunctionCallStep (Main function) → ShowMessage (Complete)
 ```
 
-## ⚠️ Common Mistakes
+## Common Mistakes
 
 1. **Wrong delay duration**: Set appropriate timing for delays
 2. **Too short delays**: Delays that are too short may cause visual issues
@@ -71,7 +71,7 @@ FunctionCallStep (Setup function) → DelayStep → FunctionCallStep (Main funct
 4. **Wrong node choice**: Use TimerStep for user-controlled timing, not DelayStep
 5. **Inconsistent delay timing**: Use consistent delay durations throughout experiments
 
-## 🎯 Best Practices
+## Best Practices
 
 1. **Set appropriate delay duration** for the context
 2. **Use for system pacing** and smooth transitions

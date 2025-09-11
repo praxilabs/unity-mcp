@@ -5,45 +5,45 @@ description: Mark a specific stage as successfully completed
 
 # SetStagePassedStep Node
 
-## 📋 Overview
+## Overview
 Marks the specified stage as passed/completed for progress tracking and unlocking subsequent stages.
 
-## 🔧 Node Details
+## Node Details
 
 **Node Type**: SetStagePassedStep
 **Purpose**: Mark stage passed
 **Usage**: Tracking progress, unlocking next stages
 
-## 📋 Basic Prerequisites
+## Basic Prerequisites
 
 1. **Valid Stage Name**: Stage must exist in the experiment
 2. **Stage Configuration**: Stage must be properly configured
 3. **Stage Registry**: Stage must be registered in the stage registry
 
-## 📝 Parameters
+## Parameters
 
 - **stageName**: Stage identifier
 
-## 🏗️ Common Patterns
+## Common Patterns
 
 ### Linear Stage Progression
 ```
 EnableStageStep (Stage1) → LogicForStage1 → SetStagePassedStep (Stage1) → EnableStageStep (Stage2)
 ```
 
-## 🚨 Critical SetStagePassedStep Rules
+## Critical SetStagePassedStep Rules
 - **Stage Completion**: Use for marking stages as successfully completed
 - **Progress Tracking**: Enables progress tracking and stage completion status
 - **Stage Unlocking**: Unlocks subsequent stages based on completion
 
-## ⚠️ Common Mistakes
+## Common Mistakes
 
 1. **Inconsistent stage naming**: Use consistent stage identifiers
 2. **Using for data operations**: Use data nodes for data operations
 3. **Invalid stage name**: Verify stage exists in registry
 4. **Using for stage initialization**: Use EnableStageStep for stage initialization
 
-## 🎯 Best Practices
+## Best Practices
 
 1. **Keep a single source of truth for stage status** for consistency
 2. **Verify status after call** to ensure proper completion

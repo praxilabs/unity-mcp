@@ -5,10 +5,10 @@ description: Progress tracking, navigation control, and stage management. Contai
 
 # Progress Map Nodes
 
-## 📋 Overview
+## Overview
 Progress Map nodes handle progress tracking and navigation in virtual lab experiments. Essential for experiment progression, step management, and stage control.
 
-## 🔧 Available Nodes
+## Available Nodes
 
 ### ProgressMapAutoNextStep
 **Rule File**: [ProgressMapAutoNextStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/ProgressMap/ProgressMapAutoNextStep.mdc)
@@ -30,12 +30,14 @@ Progress Map nodes handle progress tracking and navigation in virtual lab experi
 **Purpose**: Resets the stage progression by a specified stage number
 **Usage**: Retrying experiment from a particular stage, jumping back
 
-## 🚨 Critical Progress Map Rules
+## Common Misinterpretations
+
+## Critical Progress Map Rules
 - **Step vs Stage**: Use ProgressMap nodes for step progression, GoToStageStep for stage transitions
 - **Auto vs Manual**: Use AutoNext for automatic progression, ManualNext for precise control
 - **Reset Types**: Use ResetCurrent for current stage, ResetByNumber for specific stages
 
-## 🎯 Node Selection Guide
+## Node Selection Guide
 
 ### **Use ProgressMapAutoNextStep for:**
 - Automatic step progression

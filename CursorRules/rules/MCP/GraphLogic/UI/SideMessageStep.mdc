@@ -5,34 +5,34 @@ description: Display side panel messages for instructions and feedback
 
 # SideMessageStep Node
 
-## 📋 Overview
+## Overview
 Displays messages in a side panel for instructions, feedback, and guidance without blocking the main view.
 
-## 🔧 Node Details
+## Node Details
 
 **Node Type**: SideMessageStep
 **Purpose**: Display side panel messages
 **Usage**: Non-blocking instructions, feedback, guidance messages
 
-## 📋 Basic Prerequisites
+## Basic Prerequisites
 
 1. **Message Content**: Instruction or feedback message text must be prepared
 2. **Position Selection**: Choose side panel position (left, right)
 3. **Non-blocking Design**: Message should not interrupt main workflow
 
-## 📝 Parameters
+## Parameters
 
 - **Message Text**: The content to display
 - **Message Position**: Side panel position (left, right)
 - **Duration**: How long to display (optional)
 - **Auto Close**: Whether to auto-close after duration
 
-## 🚨 Critical SideMessageStep Rules
+## Critical SideMessageStep Rules
 - **Side Panel Only**: Displays in side panel, not center screen
 - **Non-blocking**: Does not interrupt main workflow
 - **NOT Prominent**: Use IntroEndMessageStep for prominent announcements
 
-## 🏗️ Common Patterns
+## Common Patterns
 
 ### Message Sequence Pattern
 ```
@@ -49,13 +49,13 @@ SideMessageStep (Welcome) → HintStep (First step) → UserAction → SideMessa
 SideMessageStep (Step 1 instructions) → UserAction → SideMessageStep (Step 2 instructions) → UserAction → Continue
 ```
 
-## ⚠️ Common Mistakes
+## Common Mistakes
 
 1. **Wrong node choice**: Don't use SideMessageStep instead of IntroEndMessageStep for prominent announcements
 2. **Unclear messages**: Use clear, concise language
 3. **Wrong positioning**: Use for side panel, not center screen messages
 
-## 🎯 Best Practices
+## Best Practices
 
 1. **Use for non-blocking guidance** that doesn't interrupt main workflow
 2. **Keep messages concise** and actionable

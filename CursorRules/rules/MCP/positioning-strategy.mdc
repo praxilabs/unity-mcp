@@ -4,7 +4,7 @@ alwaysApply: true
 
 # Node Positioning Strategy
 
-## 🎯 **HYBRID POSITIONING PRINCIPLE**
+## **HYBRID POSITIONING PRINCIPLE**
 
 **Use horizontal flow as the foundation, but group nodes vertically by logic to create appealing, organized layouts.**
 
@@ -14,13 +14,13 @@ alwaysApply: true
 - **Logical organization**: Groups related operations together
 - **User experience**: Avoids both infinite lines and giant blocks
 
-## 📐 **SPACING STANDARDS**
+## **SPACING STANDARDS**
 - **Horizontal**: 450px between sequential nodes in same logical group
 - **Vertical**: 300px between parallel routes or logical levels
 - **Stage Separation**: 600px between major logical stages
 - **Start Position**: (0, 0) for first node
 
-## 🧱 **FLEXIBLE POSITIONING RULE**
+## **FLEXIBLE POSITIONING RULE**
 **This is NOT a rigid grid system. You can position nodes flexibly like bricks in a wall.**
 
 **When to use flexible positioning:**
@@ -42,21 +42,21 @@ alwaysApply: true
 
 **Key principle**: Prioritize visual appeal and logical flow over rigid grid alignment.
 
-## 🚫 **FORBIDDEN PATTERNS**
-- ❌ **NEVER create infinite horizontal lines** (more than 4-5 nodes in single row)
-- ❌ **NEVER create infinite vertical stacks** (more than 3-4 nodes in single column)
-- ❌ **NEVER create giant blocks** (dense clusters without breathing room)
-- ❌ **NEVER ignore logical grouping** - always group related operations
-- ❌ **NEVER ignore user experience** - prioritize visual appeal and readability
+## **FORBIDDEN PATTERNS**
+- **NEVER create infinite horizontal lines** (more than 4-5 nodes in single row)
+- **NEVER create infinite vertical stacks** (more than 3-4 nodes in single column)
+- **NEVER create giant blocks** (dense clusters without breathing room)
+- **NEVER ignore logical grouping** - always group related operations
+- **NEVER ignore user experience** - prioritize visual appeal and readability
 
-## ✅ **REQUIRED PATTERNS**
-- ✅ **ALWAYS use horizontal flow as foundation** for logical sequence
-- ✅ **ALWAYS group nodes vertically by logic** to prevent infinite lines
-- ✅ **ALWAYS create appealing visual layouts** with proper spacing
-- ✅ **ALWAYS consider user navigation experience** and visual appeal
-- ✅ **ALWAYS balance horizontal flow with vertical grouping**
+## **REQUIRED PATTERNS**
+- **ALWAYS use horizontal flow as foundation** for logical sequence
+- **ALWAYS group nodes vertically by logic** to prevent infinite lines
+- **ALWAYS create appealing visual layouts** with proper spacing
+- **ALWAYS consider user navigation experience** and visual appeal
+- **ALWAYS balance horizontal flow with vertical grouping**
 
-## 🎯 **POSITIONING ALGORITHM**
+## **POSITIONING ALGORITHM**
 
 ### **Step 1: Analyze Graph Complexity**
 ```
@@ -173,7 +173,7 @@ mcp_unityMCP_create_xnode_node --position_x 900 --position_y 900  # End
 
 ---
 
-## 🎯 **KEY PRINCIPLES**
+## **KEY PRINCIPLES**
 
 1. **Visual Appeal First**: Prioritize visual balance and logical flow over rigid positioning rules
 2. **Hybrid Strategy**: Balance horizontal flow with vertical grouping

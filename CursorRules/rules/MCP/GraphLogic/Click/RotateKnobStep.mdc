@@ -5,21 +5,21 @@ description: Handle knob rotation interactions for instrument controls and value
 
 # RotateKnobStep Node
 
-## 📋 Overview
+## Overview
 RotateKnobStep handles knob rotation interactions in virtual lab experiments. This node is essential for instrument controls, value adjustments, and interactive parameter manipulation.
 
-## 🔧 Node Details
+## Node Details
 
 **Node Type**: RotateKnobStep
 **Purpose**: Handle knob rotation interactions
 **Usage**: Instrument controls, value adjustments, parameter manipulation
 
-## 📋 Basic Prerequisites
+## Basic Prerequisites
 
 <!-- Required data and setup needed for this node step to work -->
 
 
-## 📝 Parameters
+## Parameters
 
 - **Target Knob**: The knob object to rotate
 - **Rotation Direction**: Direction of rotation (clockwise, counterclockwise)
@@ -27,7 +27,7 @@ RotateKnobStep handles knob rotation interactions in virtual lab experiments. Th
 - **Rotation Speed**: Speed of rotation animation
 - **Value Change**: Associated value change from rotation
 
-## 🏗️ Common Patterns
+## Common Patterns
 
 ### Basic Knob Rotation
 ```
@@ -59,7 +59,7 @@ RotateKnobStep (Knob A) → Action A → RotateKnobStep (Knob B) → Action B
 RotateKnobStep (Knob) → DelayStep → ShowMessage (Value changed) → Continue
 ```
 
-## ⚠️ Common Mistakes
+## Common Mistakes
 
 1. **Missing object verification**: Always verify knob exists in registry
 2. **Wrong rotation direction**: Verify rotation direction is correct
@@ -67,7 +67,7 @@ RotateKnobStep (Knob) → DelayStep → ShowMessage (Value changed) → Continue
 4. **Invalid knob references**: Verify target knobs are valid
 5. **Missing value updates**: Ensure rotation updates associated values
 
-## 🔍 Debugging Tips
+## Debugging Tips
 
 1. **Test knob rotations** one step at a time
 2. **Verify knob states** before and after rotations
@@ -77,7 +77,7 @@ RotateKnobStep (Knob) → DelayStep → ShowMessage (Value changed) → Continue
 6. **Validate knob references** in registry
 7. **Check rotation event handling** and responses
 
-## 🎯 Best Practices
+## Best Practices
 
 1. **Always verify knobs exist** before setting up rotation interactions
 2. **Provide visual feedback** for rotation actions

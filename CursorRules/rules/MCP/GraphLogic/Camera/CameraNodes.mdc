@@ -5,24 +5,28 @@ description: Camera positioning, focus control, and view management. Contains Fo
 
 # Camera Nodes
 
-## 📋 Overview
+## Overview
 Camera nodes control camera positioning and focus in virtual lab experiments. Essential for guided attention, close-up views, and view management.
 
-## 🔧 Available Nodes
+## Available Nodes
 
 ### FocusOnToolStep
 **Rule File**: [FocusOnToolStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Camera/FocusOnToolStep.mdc)
 **Purpose**: Focus camera on specific objects
 **Usage**: Guided attention, close-up views
-**⚠️ Critical**: Must be paired with ReturnCameraStep
+** Critical**: Must be paired with ReturnCameraStep
 
 ### ReturnCameraStep
 **Rule File**: [ReturnCameraStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Camera/ReturnCameraStep.mdc)
 **Purpose**: Return camera to default position
 **Usage**: Reset view, overview mode
-**⚠️ Critical**: Required between any two FocusOnToolStep operations
+** Critical**: Required between any two FocusOnToolStep operations
 
-## 🚨 Critical Camera Rules
+
+## Common Misinterpretations
+
+
+## Critical Camera Rules
 
 ### **System Architecture**
 The camera system tracks only **ONE previous camera position** (main camera), not a stack. This requires strict management.

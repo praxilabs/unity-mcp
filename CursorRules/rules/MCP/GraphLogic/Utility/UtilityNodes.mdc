@@ -5,10 +5,10 @@ description: System utility operations, timing control, and modular execution. C
 
 # Utility Nodes
 
-## 📋 Overview
+## Overview
 Utility nodes handle system utility operations in virtual lab experiments. These nodes are essential for system control, timing, and modular execution.
 
-## 🔧 Available Nodes
+## Available Nodes
 
 ### FreezeLabStep
 **Rule File**: [FreezeLabStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Utility/FreezeLabStep.mdc)
@@ -44,3 +44,5 @@ Utility nodes handle system utility operations in virtual lab experiments. These
 **Rule File**: [ToggleUIButtonInteractionStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Utility/ToggleUIButtonInteractionStep.mdc)
 **Purpose**: Enable/disable UI button interactions
 **Usage**: UI control, button state management
+
+## Common Misinterpretations

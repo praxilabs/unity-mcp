@@ -5,18 +5,16 @@ description: Handle object detachment for equipment disassembly and component re
 
 # DetachStep Node
 
-## 📋 Overview
+## Overview
 DetachStep handles object detachment in virtual lab experiments. This node is essential for equipment disassembly, component removal, and interactive object manipulation.
 
-## 🔧 Node Details
+## Node Details
 
 **Node Type**: DetachStep
 **Purpose**: Detach one object from another object
 **Usage**: Equipment disassembly, component removal, interactive object manipulation
 
-## 📋 Basic Prerequisites
-
-<!-- Required data and setup needed for this node step to work -->
+## Basic Prerequisites
 
 **For the object being detached:**
 1. Must be attached to other object
@@ -25,14 +23,14 @@ DetachStep handles object detachment in virtual lab experiments. This node is es
 4. Draggable tag
 5. DraggableObject Script
 
-## 📝 Parameters
+## Parameters
 
 - **Object 1**: The object to be detached (source object)
 - **Object 2**: The object to detach from (destination object)
 - **Detachment Point**: Specific detachment location/transform
 - **Visual Feedback**: Optional visual confirmation of detachment
 
-## 🏗️ Common Patterns
+## Common Patterns
 
 ### Basic Detachment
 ```
@@ -60,7 +58,7 @@ IfStatementStep (Check condition) → True: DetachStep → Continue
 DetachStep → GameObjectSetActiveStep (show detachment indicator) → ShowMessage (Detached successfully)
 ```
 
-## ⚠️ Common Mistakes
+## Common Mistakes
 
 1. **Missing object verification**: Always verify both objects exist in registry
 2. **Wrong object references**: Verify object references are valid
@@ -68,7 +66,7 @@ DetachStep → GameObjectSetActiveStep (show detachment indicator) → ShowMessa
 4. **Incomplete detachment flow**: Ensure detachment leads to appropriate actions
 5. **Missing detachment handling**: Always handle detachment operations properly
 
-## 🎯 Best Practices
+## Best Practices
 
 1. **Verify objects exist** before attempting detachment
 2. **Provide visual feedback** for successful detachments

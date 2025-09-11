@@ -5,26 +5,26 @@ description: Conditional iteration control for dynamic repetition based on a boo
 
 # WhileLoopStep Node
 
-## 📋 Overview
+## Overview
 Repeats its body while a boolean condition remains true for conditional repetition and dynamic loops with unknown iteration count.
 
-## 🔧 Node Details
+## Node Details
 
 **Node Type**: WhileLoopStep
 **Purpose**: Conditional iteration control
 **Usage**: Conditional repetition, dynamic loops
 
-## 📝 Parameters
+## Parameters
 
 - **condition**: Boolean expression/source determining whether to continue
 - **pollingInterval**: Optional delay between checks (seconds)
 
-## 🔌 Ports
+## Ports
 
 - **continueLoop (Output)**: Connect the loop body here; executed each time condition is true
 - **exit (Output)**: Called once when condition becomes false
 
-## 🏗️ Common Patterns
+## Common Patterns
 
 ### Conditional Loop Pattern
 ```
@@ -38,19 +38,19 @@ WhileLoopStep (user continues) → continueLoop: UserAction → WhileLoopStep (c
                               → exit: Complete
 ```
 
-## 🚨 Critical WhileLoopStep Rules
+## Critical WhileLoopStep Rules
 - **Conditional Iteration**: Use for unknown iteration count based on changing conditions
 - **Port Connections**: Use `continueLoop` for loop body, `exit` for completion
 - **Condition Safety**: Ensure condition can become false to prevent infinite loops
 
-## ⚠️ Common Mistakes
+## Common Mistakes
 
 1. **Infinite loops**: Ensure the condition can flip to false
 2. **Wrong port connections**: Use continueLoop for body, exit for completion
 3. **Missing global variables/inputs**: Connect condition to proper data sources
 4. **Using for fixed iteration count**: Use ForLoopStep for known iteration counts
 
-## 🎯 Best Practices
+## Best Practices
 
 1. **Keep loop body side effects controlled** to avoid unintended consequences
 2. **Externalize condition evaluation** to test easily

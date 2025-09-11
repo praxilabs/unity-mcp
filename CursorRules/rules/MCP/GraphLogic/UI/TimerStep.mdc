@@ -5,35 +5,35 @@ description: Display countdown timer with UI controls for experiment timing and 
 
 # TimerStep Node
 
-## 📋 Overview
+## Overview
 Displays a countdown timer with UI controls for experiment timing, procedure pacing, and user-controlled countdowns.
 
-## 🔧 Node Details
+## Node Details
 
 **Node Type**: TimerStep
 **Purpose**: Display countdown timer with UI controls
 **Usage**: Experiment timing, procedure pacing, user-controlled countdowns
 
-## 📋 Basic Prerequisites
+## Basic Prerequisites
 
 1. **Timer Duration**: Set appropriate duration in seconds
 2. **Timer Controls**: Configure available controls (start, pause, reset)
 3. **User Interface**: Timer UI must be accessible to users
 4. **Timer Logic**: System to handle timer start/stop/reset functionality
 
-## 📝 Parameters
+## Parameters
 
 - **Duration**: Timer duration in seconds
 - **Timer Type**: Countdown or count-up timer
 - **Controls**: Available timer controls (start, pause, reset)
 - **Auto Start**: Whether to start automatically
 
-## 🚨 Critical TimerStep Rules
+## Critical TimerStep Rules
 - **User Controlled**: Creates a panel with timer for user to control freely
 - **Time-Sensitive**: Use for experiments that require pacing and timing
 - **NOT DelayStep**: Use DelayStep for fixed delays, TimerStep for user-controlled timing
 
-## 🏗️ Common Patterns
+## Common Patterns
 
 ### User Controlled Timer
 ```
@@ -55,14 +55,14 @@ StartExperiment → TimerStep (30 minutes) → MonitorProgress → Continue
 TimerStep (5 minutes) → UserCompletesTask → CheckCompletion → Continue
 ```
 
-## ⚠️ Common Mistakes
+## Common Mistakes
 
 1. **Wrong timing**: Set appropriate durations for TimerStep
 2. **Missing user guidance**: Provide clear instructions for timer usage
 3. **Inadequate timer controls**: Ensure timer has necessary controls
 4. **Wrong node choice**: Use DelayStep for fixed delays, not TimerStep
 
-## 🎯 Best Practices
+## Best Practices
 
 1. **Use for time-sensitive experiments** that require pacing
 2. **Set appropriate durations** for different experiment phases

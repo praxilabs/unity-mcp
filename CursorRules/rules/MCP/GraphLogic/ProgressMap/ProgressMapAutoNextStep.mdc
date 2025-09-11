@@ -5,26 +5,26 @@ description: Automatically handles progress tracking and navigation to the next 
 
 # ProgressMapAutoNextStep Node
 
-## 📋 Overview
+## Overview
 Marks the current step as finished and advances to the next step automatically for seamless step progression.
 
-## 🔧 Node Details
+## Node Details
 
 **Node Type**: ProgressMapAutoNextStep
 **Purpose**: Auto progress and navigation
 **Usage**: End of step/phase to move forward without manual indices
 
-## 📋 Basic Prerequisites
+## Basic Prerequisites
 
 1. **Progress Map Setup**: Progress map must be properly configured
 2. **Current Step Context**: Must be used within a valid step context
 3. **Next Step Available**: Next step must exist in the progression
 
-## 📝 Parameters
+## Parameters
 
 - (None) Operates on current progress context
 
-## 🏗️ Common Patterns
+## Common Patterns
 
 ### Auto Progress Navigation
 ```
@@ -36,19 +36,19 @@ SubGraphStep (Complete phase) → ProgressMapAutoNextStep → SubGraphStep (Next
 SubGraphStep (Step_01) → ProgressMapAutoNextStep → SubGraphStep (Step_02) → ProgressMapAutoNextStep → SubGraphStep (Step_03)
 ```
 
-## 🚨 Critical ProgressMapAutoNextStep Rules
+## Critical ProgressMapAutoNextStep Rules
 - **Step Progression Only**: Use for step progression, not stage transitions
 - **Automatic Navigation**: Advances to next step automatically without manual indices
 - **Step Completion**: Marks current step as finished before advancing
 
-## ⚠️ Common Mistakes
+## Common Mistakes
 
 1. **Using GoToStageStep instead of AutoNext**: Use GoToStageStep for stage transitions, not step completion
 2. **Forgetting to place after completion action**: Place after step completion logic
 3. **Using for stage transitions**: Use GoToStageStep for stage transitions
 4. **Using for manual control**: Use ProgressMapManualNextStep for precise control
 
-## 🎯 Best Practices
+## Best Practices
 
 1. **Use whenever user intent is "mark current step as finished"** for clear progression
 2. **Keep step completion side effects before this node** for proper sequencing

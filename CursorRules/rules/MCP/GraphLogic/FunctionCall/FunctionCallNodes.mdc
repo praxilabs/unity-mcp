@@ -5,10 +5,10 @@ description: Method execution on GameObjects and system interactions. Contains F
 
 # Function Call Nodes
 
-## 📋 Overview
+## Overview
 Function Call nodes execute methods on GameObjects in virtual lab experiments. Essential for component method execution and system interactions. All function call nodes inherit from FunctionCallBase for reflection-based method invocation.
 
-## 🔧 Available Nodes
+## Available Nodes
 
 ### FunctionCallStep
 **Rule File**: [FunctionCallStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/FunctionCall/FunctionCallStep.mdc)
@@ -30,13 +30,15 @@ Function Call nodes execute methods on GameObjects in virtual lab experiments. E
 **Purpose**: Global coroutine method execution
 **Usage**: System-wide asynchronous operations
 
-## 🚨 Critical Function Call Rules
+## Common Misinterpretations
+
+## Critical Function Call Rules
 - **Object Registration**: All target objects must be registered in the registry
 - **Method Visibility**: Methods must be public to be accessible
 - **Parameter Types**: Use SerializableParameter for method parameters
 - **Inheritance**: All nodes inherit from FunctionCallBase for reflection-based invocation
 
-## 🎯 Node Selection Guide
+## Node Selection Guide
 
 ### **Use FunctionCallStep for:**
 - Standard method calls on scene objects
@@ -58,7 +60,7 @@ Function Call nodes execute methods on GameObjects in virtual lab experiments. E
 - System-wide asynchronous operations
 - Loading screens and global effects
 
-## 🏗️ Critical Liquid Pouring Pattern
+## Critical Liquid Pouring Pattern
 
 ### **Liquid Pouring Sequence**
 This is a critical pattern that cannot be derived through pure thinking - it must be learned:

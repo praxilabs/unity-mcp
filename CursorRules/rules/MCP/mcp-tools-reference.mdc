@@ -5,7 +5,7 @@ alwaysApply: true
 
 This is a knowledge base index for Unity MCP tools. Use this for quick reference on available tools and their capabilities.
 
-## 🎯 **SCRIPTABLE OBJECT TOOLS**
+## **SCRIPTABLE OBJECT TOOLS**
 
 ### `mcp_unityMCP_create_scriptable_object`
 - **Purpose**: Create Unity ScriptableObject assets
@@ -16,13 +16,13 @@ This is a knowledge base index for Unity MCP tools. Use this for quick reference
 - **Purpose**: Import, create, modify, delete Unity assets
 - **Actions**: 'import', 'create', 'modify', 'delete', 'duplicate', 'move', 'rename'
 
-## 🎯 **GRAPH MANAGEMENT TOOLS**
+## **GRAPH MANAGEMENT TOOLS**
 
 ### `mcp_unityMCP_create_xnode_node`
 - **Purpose**: Create nodes in xNode graphs
 - **Parameters**: graph_path, node_type_name, position_x, position_y, tooltip, description
 - **Returns**: nodeId, nodeName for connections
-- **⚠️ CRITICAL**: Always pass description MUST contain required Components from the rule file of the nodes. This rules is a must and neglecting it will lead to unwanted behaviour.
+- **CRITICAL**: Always pass description MUST contain required Components from the rule file of the nodes. This rules is a must and neglecting it will lead to unwanted behaviour.
 - **Description Format**
 2. Node Functionality: This Node does X and Y.
 3. Required Components.
@@ -55,14 +55,14 @@ Required Components:
 - **Purpose**: Remove nodes from graphs
 - **Parameters**: graph_path, node_identifier, identifier_type
 
-## 🎯 **GAMEOBJECT MANAGEMENT TOOLS**
+## **GAMEOBJECT MANAGEMENT TOOLS**
 
 ### `mcp_unityMCP_manage_gameobject`
 - **Purpose**: Create, modify, delete GameObjects
 - **Actions**: 'create', 'modify', 'find', 'add_component', 'remove_component'
 - **Component Properties**: Set via component_properties parameter
 
-## 🎯 **DEBUGGING & VALIDATION TOOLS**
+## **DEBUGGING & VALIDATION TOOLS**
 
 ### `mcp_unityMCP_read_console`
 - **Purpose**: Get Unity console messages
@@ -76,7 +76,7 @@ Required Components:
 - **Purpose**: Print messages to Unity console
 - **Use**: Debug output and status messages
 
-## 🎯 **EDITOR CONTROL TOOLS**
+## **EDITOR CONTROL TOOLS**
 
 ### `mcp_unityMCP_manage_editor`
 - **Purpose**: Control Unity editor state
@@ -86,11 +86,11 @@ Required Components:
 - **Purpose**: Execute Unity menu items
 - **Parameters**: menu_path (e.g., "File/Save Project")
 
-## ⚠️ **CRITICAL TOOL NOTES**
+## **CRITICAL TOOL NOTES**
 
 ### **Connection Direction**
-- ✅ **FORWARD ONLY**: Always connect from exit to entry ports
-- ❌ **NEVER BACKWARDS**: No reverse connections allowed
+- **FORWARD ONLY**: Always connect from exit to entry ports
+- **NEVER BACKWARDS**: No reverse connections allowed
 
 ### **Node Naming**
 - Nodes get auto-generated names: "NodeType_InstanceID"

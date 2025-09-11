@@ -1,7 +1,7 @@
 
 # XNode Step Nodes - Core Reference Guide
 
-## 🎯 Node Selection Decision Tree
+## Node Selection Decision Tree
 
 ### User Interaction Required?
 - **ClickStep**: Object clicking interactions
@@ -24,7 +24,7 @@
 - **ForLoopStep**: Fixed iterations
 - **WhileLoopStep**: Conditional loops
 
-## 📂 Step Node Categories
+## Step Node Categories
 
 ### Attach-Detach
 **Purpose**: Handle object attachment and detachment operations
@@ -92,7 +92,7 @@
 **Usage**: Object animations, visual effects
 **Reference**: [Misc Nodes](mdc:.cursor/rules/MCP/GraphLogic/MiscNodes.mdc)
 
-## 🔗 Related Rule Files
+## Related Rule Files
 
 For detailed information about each category, see the specific rule files:
 - [Attach-Detach Nodes](mdc:.cursor/rules/MCP/Attach-DetachNodes.mdc)

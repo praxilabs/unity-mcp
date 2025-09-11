@@ -5,27 +5,27 @@ description: Handle input field interactions for tools and data entry
 
 # ToolsInputfieldStep Node
 
-## 📋 Overview
+## Overview
 Handles input field interactions for tools, enabling data entry, parameter input, and tool configuration.
 
-## 🔧 Node Details
+## Node Details
 
 **Node Type**: ToolsInputfieldStep
 **Purpose**: Handle input field interactions for tools
 **Usage**: Data entry for tools, parameter input, tool configuration
 
-## 📋 Basic Prerequisites
+## Basic Prerequisites
 
 <!-- Required data and setup needed for this node step to work -->
 
-## 📝 Parameters
+## Parameters
 
 - **Input Field**: The input field component to interact with
 - **Input Type**: Type of input expected (text, number, etc.)
 - **Validation Rules**: Rules for input validation
 - **Default Value**: Default value for the input field
 
-## 🏗️ Common Patterns
+## Common Patterns
 
 ### User Data Entry
 ```
@@ -49,7 +49,7 @@ ToolsInputfieldStep (InputField) → ValidateInput → IfStatementStep (Valid) �
                                  → False: ShowMessage (Invalid input) → RetryInput
 ```
 
-## ⚠️ Common Mistakes
+## Common Mistakes
 
 1. **Missing input validation**: Always validate input field data before processing
 2. **Invalid input data**: Always validate input field data before processing
@@ -57,7 +57,7 @@ ToolsInputfieldStep (InputField) → ValidateInput → IfStatementStep (Valid) �
 4. **Wrong input type**: Ensure input type matches expected data format
 5. **Missing error handling**: Handle invalid input gracefully
 
-## 🔍 Debugging Tips
+## Debugging Tips
 
 1. **Test input field interactions** one step at a time
 2. **Validate input field data** before processing
@@ -67,7 +67,7 @@ ToolsInputfieldStep (InputField) → ValidateInput → IfStatementStep (Valid) �
 6. **Test input validation** thoroughly
 7. **Validate input field references** exist and are valid
 
-## 🎯 Best Practices
+## Best Practices
 
 1. **Always validate input data** before processing
 2. **Provide clear feedback** for input validation

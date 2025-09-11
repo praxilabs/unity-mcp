@@ -5,28 +5,28 @@ description: Ending the current stage and starting another stage within the expe
 
 # GoToStageStep Node
 
-## 📋 Overview
+## Overview
 Ends the current stage and transitions to a specified next stage for stage management and experiment flow control.
 
-## 🔧 Node Details
+## Node Details
 
 **Node Type**: GoToStageStep
 **Purpose**: Stage transition control
 **Usage**: End of a stage, skipping stages
 
-## 📋 Basic Prerequisites
+## Basic Prerequisites
 
 1. **Valid Stage Number**: Target stage must exist in the experiment
 2. **Experiment Data Setup**: Stage must be added to Experiment Data with correct references
 3. **Stage Configuration**: Target stage must be properly configured
 
-## 📝 Parameters
+## Parameters
 
 - **Target Stage**: Identifier/name of the stage to transition to
 - **Transition Delay**: Optional delay before switching (s)
 - **Carry State**: Whether to persist certain state across stages
 
-## 🏗️ Common Patterns
+## Common Patterns
 
 ### Stage Transition
 ```
@@ -39,19 +39,19 @@ IfStatementStep (SkipIntro) → True: GoToStageStep (MainStage)
                            → False: Continue
 ```
 
-## 🚨 Critical GoToStageStep Rules
+## Critical GoToStageStep Rules
 - **Stage Transitions Only**: Use for stage transitions, not step progression
 - **Valid Target Stage**: Target stage must exist and be properly configured
 - **Not for Step Completion**: Use ProgressMapAutoNextStep for step progression
 
-## ⚠️ Common Mistakes
+## Common Mistakes
 
 1. **Using to mark a step finished**: Use ProgressMapAutoNextStep instead for step progression
 2. **Target stage not found**: Verify stage exists in progress map/config
 3. **Wrong stage identifier**: Ensure stage name/number matches exactly
 4. **Using for step completion**: Use ProgressMapAutoNextStep for step completion
 
-## 🎯 Best Practices
+## Best Practices
 
 1. **Keep transitions explicit and well-documented** for clarity
 2. **Provide user feedback before switching stages** for better UX

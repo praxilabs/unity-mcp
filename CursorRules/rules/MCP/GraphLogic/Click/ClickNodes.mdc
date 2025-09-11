@@ -5,16 +5,16 @@ description: User clicking interactions, object selection, and interactive manip
 
 # Click Nodes
 
-## 📋 Overview
+## Overview
 Click nodes handle user clicking interactions in virtual lab experiments. Essential for user interface interactions, object selection, and interactive object manipulation.
 
-## 🔧 Available Nodes
+## Available Nodes
 
 ### ClickStep
 **Rule File**: [ClickStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Click/ClickStep.mdc)
 **Purpose**: Wait for user to click target object, then enable execution flow
 **Usage**: Object interaction gate, world GameObject clicking
-**⚠️ Critical**: ClickStep alone does NOTHING - next step contains the actual logic
+**Critical**: ClickStep alone does NOTHING - next step contains the actual logic
 
 ### RotateKnobStep
 **Rule File**: [RotateKnobStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Click/RotateKnobStep.mdc)
@@ -30,90 +30,99 @@ Click nodes handle user clicking interactions in virtual lab experiments. Essent
 **Rule File**: [ClickUIButtonStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Click/ClickUIButtonStep.mdc)
 **Purpose**: Wait for user to click UI button, then enable execution flow
 **Usage**: UI button interaction gate, interface button clicking
-**⚠️ Critical**: UIClickStep alone does NOTHING - next step contains the actual logic
+**Critical**: UIClickStep alone does NOTHING - next step contains the actual logic
 
-## 🚨 Critical Click Rules
-- **Click Nodes = Gates**: Click nodes wait for user input, then enable execution flow to continue
-- **No Standalone Logic**: Click nodes alone are USELESS - they do nothing by themselves
-- **Next Step = Actual Logic**: The step AFTER click nodes contains the real functionality
-- **Mandatory Pattern**: ClickStep/UIClickStep → FunctionCallStep/AnimationStep/etc. → Continue
-- **Branching Behavior**: In OR scenarios, whichever click happens first determines the execution path
+## When Click Nodes Need Additional Steps
 
-## 🎯 Button Type Identification
-**Identify button type through context:**
+### ALWAYS Need Next Step (Complex Operations):
+- **Device state changes**: Power on/off, mode switching, configuration changes
+- **Data operations**: Save, record, calculate, process, analyze
+- **Multi-step processes**: Operations that trigger multiple actions or system changes
+- **Functional logic**: Any operation that changes system state or data
 
-### Use ClickStep for:
-- **World GameObject buttons**: "Click on the On button on the balance/scale"
-- **Physical instrument controls**: "Click on the tare button", "Click on the power button"
-- **3D object interactions**: "Click on the bottle", "Click on the hammer"
+### SOMETIMES Self-Contained (Simple Interactions):
+- **Object selection**: Pick up, select, highlight objects
+- **Navigation triggers**: Continue to next step, page navigation
+- **Basic toggles**: Simple on/off switches without complex logic
+- **Exploration actions**: Inspect, examine, look at objects
 
-### Use UIClickStep for:
-- **UI dialog buttons**: "Click Yes/No button", "Click OK/Cancel"
-- **Menu interface buttons**: "Click Start button", "Click Next button"
-- **Message panel buttons**: "Click Confirm button", "Click Continue button"
+### Decision Guide:
+**Ask: "Does this action change system state, process data, or trigger device functionality?"**
+- **YES** → Add FunctionCallStep or AnimationStep after the click
+- **NO** → Click node can be self-contained
 
-**Context Examples:**
-- ✅ "Click on the On button on the scale" → **ClickStep** (world GameObject)
-- ✅ "Click Yes button" → **UIClickStep** (UI dialog)
-- ✅ "Click on the tare button" → **ClickStep** (instrument control)
-- ✅ "Click OK button" → **UIClickStep** (UI message)
+## Button Type by Implementation Context
 
-## 📝 Complete Implementation Examples
+### ClickStep (3D World Objects):
+- **Physical buttons on 3D instrument models**: Buttons that are part of the 3D equipment mesh/model
+- **Interactive 3D objects in the scene**: GameObjects with colliders in the 3D world
+- **Laboratory equipment controls**: Physical controls on instruments, apparatus, devices
 
-### Example 1: "Click to turn off TV" (Device Functionality)
+### UIClickStep (UI Canvas Elements):
+- **Unity UI buttons on Canvas**: Buttons in dialog boxes, panels, HUDs
+- **Interface popups and dialogs**: Yes/No, OK/Cancel, confirmation dialogs
+- **Menu and navigation elements**: Start, Next, Continue, navigation buttons
+
+**Implementation Examples:**
+- "Click the power button on the microscope" → **ClickStep** (3D instrument button)
+- "Click Yes to confirm" → **UIClickStep** (dialog button)
+- "Click the beaker to select it" → **ClickStep** (3D object interaction)
+- "Click OK to save results" → **UIClickStep** (UI dialog button)
+
+## Implementation Examples by Context
+
+### Laboratory Equipment Interactions:
 ```
-❌ WRONG: ClickStep(TV Remote) → Continue
-✅ CORRECT: ClickStep(TV Remote) → FunctionCallStep(TVController.TurnOff) → Continue
-```
-
-### Example 2: "Click tare button to zero the scale" (Device Functionality)
-```
-❌ WRONG: ClickStep(Tare Button) → Continue
-✅ CORRECT: ClickStep(Tare Button) → FunctionCallStep(ScaleController.TareZero) → Continue
-```
-
-### Example 3: "Click bottle to open it" (Motion/Physical Action)
-```
-❌ WRONG: ClickStep(Bottle) → Continue
-✅ CORRECT: ClickStep(Bottle) → AnimationStep(Bottle Opening Animation) → Continue
-```
-
-### Example 4: "Click hammer to crush tablet" (Motion/Physical Action)
-```
-❌ WRONG: ClickStep(Hammer) → Continue
-✅ CORRECT: ClickStep(Hammer) → AnimationStep(Crushing Animation) → Continue
+ "Click power button on microscope" → ClickStep + FunctionCallStep(MicroscopeController.PowerOn)
+ "Click specimen slide to examine" → ClickStep (selection only)
+ "Click tare button to zero scale" → ClickStep + FunctionCallStep(ScaleController.Tare)
+ "Click beaker to pick it up" → ClickStep (simple interaction)
 ```
 
-### Example 5: "Click Yes to confirm deletion" (UI Functionality)
+### UI Dialog Interactions:
 ```
-❌ WRONG: UIClickStep(Yes Button) → Continue
-✅ CORRECT: UIClickStep(Yes Button) → FunctionCallStep(DataManager.DeleteItem) → SideMessageStep(Deleted successfully)
+ "Click OK to save data" → UIClickStep + FunctionCallStep(DataManager.Save)
+ "Click Next to continue" → UIClickStep (navigation only)
+ "Click Yes to confirm deletion" → UIClickStep + FunctionCallStep(DataManager.Delete)
+ "Click Cancel to close dialog" → UIClickStep (simple close)
 ```
 
-### Example 6: Branching scenario with OR Step
+### Physical Object Interactions:
+```
+ "Click bottle to open it" → ClickStep + AnimationStep(Bottle Opening)
+ "Click hammer to crush tablet" → ClickStep + AnimationStep(Crushing Animation)
+ "Click reagent bottle to select" → ClickStep (selection only)
+ "Click door to open laboratory" → ClickStep + AnimationStep(Door Opening)
+```
+
+### Branching Scenarios:
 ```
 OR Step
-├── ClickStep(Option A Button) → FunctionCallStep(ExecuteOptionA) → Continue
-└── ClickStep(Option B Button) → FunctionCallStep(ExecuteOptionB) → Continue
+├── ClickStep(Option A) → FunctionCallStep(ExecuteA) [if complex] OR Continue [if simple]
+└── ClickStep(Option B) → FunctionCallStep(ExecuteB) [if complex] OR Continue [if simple]
 ```
-**Note**: Whichever button gets clicked first determines which branch executes.
+**Note**: First clicked option determines execution path.
 
-## 🎯 Action Type Decision Guide
+## Action Type Decision Guide
 
-**Use AnimationStep for Motion/Physical Actions:**
-- Opening/closing (bottles, doors, drawers, containers)
-- Moving objects (dragging, lifting, placing)
-- Physical transformations (crushing, breaking, mixing)
-- Any visible motion or physical change
+**Use AnimationStep for Visual/Physical Changes:**
+- **Object motion**: Opening, closing, moving, rotating objects
+- **Physical transformations**: Breaking, crushing, mixing, dissolving
+- **Visual state changes**: Color changes, particle effects, visual feedback
+- **Any action where the user needs to see the change happen**
 
-**Use FunctionCallStep for Device/System Functionality:**
-- Device controls (power on/off, tare/zero, mode changes)
-- System functions (save, load, calculate, process)  
-- Data operations (record, measure, analyze)
-- Logical state changes (enable/disable, activate/deactivate)
+**Use FunctionCallStep for System/Data Operations:**
+- **Device functionality**: Power control, mode changes, calibration
+- **Data processing**: Calculate, measure, record, analyze results
+- **System state changes**: Enable/disable features, change settings
+- **Backend operations**: Save/load data, trigger calculations
+
+**Decision Question**: *"Is this primarily about what the user sees happening, or about what the system does internally?"*
+- **Visual/Physical** → AnimationStep
+- **System/Data** → FunctionCallStep
 
 **Examples:**
-- ✅ "Click bottle to open" → AnimationStep (physical motion)
-- ✅ "Click tare to zero scale" → FunctionCallStep (device function)
-- ✅ "Click hammer to crush" → AnimationStep (physical motion)
-- ✅ "Click power to turn on" → FunctionCallStep (device function)
+- "Click bottle cap to remove it" → AnimationStep (user sees cap removal)
+- "Click tare to zero balance" → FunctionCallStep (system resets weight)
+- "Click to mix solution" → AnimationStep (user sees mixing motion)  
+- "Click to save results" → FunctionCallStep (system saves data)
