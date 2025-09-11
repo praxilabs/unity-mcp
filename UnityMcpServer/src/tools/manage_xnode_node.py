@@ -20,7 +20,8 @@ def register_manage_xnode_node_tools(mcp: FastMCP):
         node_type_name: str,
         position_x: float = 0,
         position_y: float = 0,
-        tooltip: str = ""
+        tooltip: str = "",
+        description: str = "",
     ) -> Dict[str, Any]:
         """
         Creates a new node in an existing xNode graph.
@@ -31,7 +32,7 @@ def register_manage_xnode_node_tools(mcp: FastMCP):
             position_x: X position of the node in the graph editor.
             position_y: Y position of the node in the graph editor.
             tooltip: Optional tooltip text to display when hovering over the node.
-
+            description: Optional detailed description of the node's functionality and purpose.
         Returns:
             Dictionary with results ('success', 'message', 'nodeId', etc.).
         """
@@ -42,7 +43,8 @@ def register_manage_xnode_node_tools(mcp: FastMCP):
                 "nodeTypeName": node_type_name,
                 "positionX": position_x,
                 "positionY": position_y,
-                "tooltip": tooltip
+                "tooltip": tooltip,
+                "description": description,
             }
             result = connection.send_command("create_xnode_node", params)
             return result

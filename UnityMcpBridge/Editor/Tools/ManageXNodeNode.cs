@@ -42,14 +42,20 @@ namespace UnityMcpBridge.Editor.Tools {
                     return ToolUtils.CreateErrorResponse($"Failed to create StepNode of type: {validation.NodeTypeName}");
                 }
 
-                // Configure the StepNode
-                ConfigureNewNode(newNode, validation.NodeTypeName, validation.PositionX, validation.PositionY, validation.Tooltip);
+                // Verify the node was added to the graph
+                if (!graph.nodes.Contains(newNode))
+                {
+                    return ToolUtils.CreateErrorResponse($"StepNode was created but not added to graph nodes collection");
+                }
 
+                // Configure the StepNode
+                ConfigureNewNode(newNode, validation.NodeTypeName, validation.PositionX, validation.PositionY, validation.Tooltip, validation.Description);
                 // Save changes
                 ToolUtils.SaveGraphChanges(graph);
                 EditorUtility.SetDirty(newNode);
+                EditorUtility.SetDirty(graph);
 
-                return CreateNodeSuccessResponse(newNode, validation.GraphPath, validation.NodeTypeName, validation.PositionX, validation.PositionY, validation.Tooltip);
+                return CreateNodeSuccessResponse(newNode, validation.GraphPath, validation.NodeTypeName, validation.PositionX, validation.PositionY, validation.Tooltip, validation.Description);
             }
             catch (Exception ex)
             {
@@ -57,41 +63,54 @@ namespace UnityMcpBridge.Editor.Tools {
             }
         }
 
-        private static (bool IsValid, string GraphPath, string NodeTypeName, float PositionX, float PositionY, string ErrorMessage, string Tooltip) ValidateCreateNodeArgs(JObject args)
+        private static (bool IsValid, string GraphPath, string NodeTypeName, float PositionX, float PositionY, string ErrorMessage, string Tooltip, string Description) ValidateCreateNodeArgs(JObject args)
         {
             string graphPath = args?["graphPath"]?.ToString();
             string nodeTypeName = args?["nodeTypeName"]?.ToString();
             float posX = args?["positionX"]?.ToObject<float>() ?? 0f;
             float posY = args?["positionY"]?.ToObject<float>() ?? 0f;
             string tooltip = args?["tooltip"]?.ToString();
+            string description = args?["description"]?.ToString();
 
             if (string.IsNullOrEmpty(graphPath))
             {
-                return (false, null, null, 0f, 0f, "Missing required argument: graphPath", null);
+                return (false, null, null, 0f, 0f, "Missing required argument: graphPath", null, null);
             }
 
             if (string.IsNullOrEmpty(nodeTypeName))
             {
-                return (false, null, null, 0f, 0f, "Missing required argument: nodeTypeName", null);
+                return (false, null, null, 0f, 0f, "Missing required argument: nodeTypeName", null, null);
             }
 
-            return (true, graphPath, nodeTypeName, posX, posY, null, tooltip);
+            return (true, graphPath, nodeTypeName, posX, posY, null, tooltip, description);
         }
 
-        private static void ConfigureNewNode(StepNode newNode, string nodeTypeName, float posX, float posY, string tooltip)
+        private static void ConfigureNewNode(StepNode newNode, string nodeTypeName, float posX, float posY, string tooltip, string description)
         {
-            newNode.position = new Vector2(posX, posY);
-            newNode.tooltip = tooltip;
-            newNode.name = $"{nodeTypeName}_{newNode.GetInstanceID()}";
-
-            // Add the StepNode as a sub-asset to the graph
-            if (!AssetDatabase.Contains(newNode))
+            try
             {
-                AssetDatabase.AddObjectToAsset(newNode, newNode.graph);
+                // Set position first
+                newNode.position = new Vector2(posX, posY);
+                
+                newNode.metadata.tooltip = tooltip ?? "";
+                newNode.metadata.description = description ?? "";
+
+                newNode.name = $"{nodeTypeName}_{newNode.GetInstanceID()}";
+
+                // Add the StepNode as a sub-asset to the graph
+                if (!AssetDatabase.Contains(newNode))
+                {
+                    AssetDatabase.AddObjectToAsset(newNode, newNode.graph);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Failed to configure node: {ex.Message}");
+                throw;
             }
         }
 
-        private static object CreateNodeSuccessResponse(StepNode newNode, string graphPath, string nodeTypeName, float posX, float posY, string tooltip)
+        private static object CreateNodeSuccessResponse(StepNode newNode, string graphPath, string nodeTypeName, float posX, float posY, string tooltip, string description)
         {
             return new
             {
@@ -103,6 +122,7 @@ namespace UnityMcpBridge.Editor.Tools {
                 nodeType = nodeTypeName,
                 position = new { x = posX, y = posY },
                 tooltip = tooltip,
+                description = description,
                 timestamp = System.DateTime.Now.ToString()
             };
         }
@@ -173,7 +193,7 @@ namespace UnityMcpBridge.Editor.Tools {
         {
             return new {
                 success = true,
-                                message = "StepNode deleted successfully",
+                message = "StepNode deleted successfully",
                 graphPath = graphPath,
                 deletedNode = nodeInfo,
                 timestamp = System.DateTime.Now.ToString()

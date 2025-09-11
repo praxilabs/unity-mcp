@@ -147,6 +147,24 @@ When you ask the AI to "create a click sequence that shows a popup", the rules f
 - Recommend **Progress tracking** for experiment management
 - Ensure proper **Error handling** and validation
 
+### Prompt Engineering a better Prompt
+There are multiple strategies to prompt a better prompt to the AI Model we are going to discuss some of them that are effective on test.
+1. **Q & A Strategy**: using the "Before you continue ask me about relevant questions about any think that is not clear, or should be more clearer" prompt design for example.
+```txt
+@request.mdc
+i want you to create an experiment about 1, 2, 3 and 4
+the steps are A, B, C and D.
+
+before you continue to create the experiment ask me about any relevant questions to the experiment that will help you making a better experiment
+ask me about any unclear terminology or any confusing steps that needs more explaination.
+```
+
+2. **Pros & Cons Strategy**: if you are trying to compare between two things and want the model to specify which is better, you want him to list the pros and cons for each thing. then the ai will get biased towards the better solution according to the pros and cons it listed.
+
+3. **Role Prompt Strategy**: it involves putting the model in a role and make it act upon for example
+```txt
+"you are a bounty hunter and an ethical hacker, review my app to identify any security vulnerabilities".
+```
 ### Customizing Rules
 - Rules are located in `CursorRules/rules/` directory
 - Each `.mdc` file contains specific domain knowledge
