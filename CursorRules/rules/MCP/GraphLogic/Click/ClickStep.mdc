@@ -6,7 +6,7 @@ description: Pause graph execution until user clicks target object for interacti
 # ClickStep Node
 
 ## Overview
-ClickStep is a **WAIT-FOR-USER-INPUT** node that waits for user click before allowing execution to continue. The complexity of what happens after the click depends on the action type - simple interactions can be self-contained, while complex operations need additional steps.
+ClickStep is a **WAIT-FOR-USER-INPUT** node that waits for user click before allowing execution to continue. The complexity of what happens after the click depends on the nodes that gets executed after the click step is done.
 
 ## Node Details
 
@@ -16,7 +16,7 @@ ClickStep is a **WAIT-FOR-USER-INPUT** node that waits for user click before all
 **Context**: Use for physical buttons on 3D instrument models and interactive GameObjects
 
 ## Basic Prerequisites
-
+These Scripts must be found on "Object Name":
 1. **Collider**: Required on target object for click detection
 2. **ClickableTool Script**: Required on target object to handle click events
 3. **Hologram**: Optional visual indicator for clickable objects
@@ -25,14 +25,15 @@ ClickStep is a **WAIT-FOR-USER-INPUT** node that waits for user click before all
 
 - **Target Object**: The object to be clicked (required for pause to work)
 
+## Critical Notes
+Don't use a Click Step on its own, you have to make the logic yourself as the click step itself contains no logic.
+
 ##  Common Patterns
 
-### Complex Operations (Need Additional Steps)
 
 #### Device Functionality:
 ```
 ClickStep (Microscope Power Button) → FunctionCallStep(MicroscopeController.PowerOn) → Continue
-ClickStep (Scale Tare Button) → FunctionCallStep(ScaleController.TareZero) → Continue
 ClickStep (Centrifuge Start Button) → FunctionCallStep(CentrifugeController.Start) → Continue
 ```
 
@@ -40,8 +41,6 @@ ClickStep (Centrifuge Start Button) → FunctionCallStep(CentrifugeController.St
 ```
 ClickStep (Reagent Bottle) → AnimationStep(Bottle Opening Animation) → Continue
 ClickStep (Laboratory Door) → AnimationStep(Door Opening Animation) → Continue
-ClickStep (Drawer Handle) → AnimationStep(Drawer Opening Animation) → Continue
-ClickStep (Mortar Pestle) → AnimationStep(Grinding Animation) → Continue
 ```
 
 #### State Changes:
@@ -50,88 +49,17 @@ ClickStep (Panel Close Button) → GameObjectSetActive(Panel, false) → Continu
 ClickStep (Equipment Cover) → GameObjectSetActive(Cover, false) → Continue
 ```
 
-### Simple Interactions (Self-Contained)
-
-#### Object Selection:
-```
-ClickStep (Beaker) → Continue  // Simple selection/highlighting
-ClickStep (Test Tube) → Continue  // Pick up for use
-ClickStep (Specimen Slide) → Continue  // Examine/inspect
-```
-
-#### Navigation:
-```
-ClickStep (Workstation Area) → Continue  // Move to area
-ClickStep (Equipment Rack) → Continue  // Browse equipment
-```
-
-## When ClickStep Needs Additional Steps
-
-### ALWAYS Need Next Step (Complex Operations):
-- **Device state changes**: Power on/off, mode switching, configuration changes
-- **Data operations**: Save, record, calculate, process, analyze
-- **Physical actions with motion**: Opening, closing, moving, rotating objects
-- **System functionality**: Any operation that changes system state or triggers device logic
-
-### SOMETIMES Self-Contained (Simple Interactions):
-- **Object selection**: Pick up, select, highlight laboratory objects
-- **Navigation triggers**: Move to workstation, browse equipment areas
-- **Basic inspection**: Examine, look at objects without state changes
-- **Simple toggles**: Basic interactions without complex logic
-
-### Decision Guide:
-**Ask: "Does this action change system state, process data, trigger device functionality, or involve motion?"**
-- **YES** → Add FunctionCallStep or AnimationStep after ClickStep
-- **NO** → ClickStep can be self-contained
-
 ## Common Mistakes
-
-1. **Over-engineering simple interactions**: Adding unnecessary steps for basic object selection
-2. **Under-engineering complex operations**: Missing FunctionCallStep for device functionality
-3. **Wrong action type selection**: Using AnimationStep for device functions or FunctionCallStep for motion
-4. **Missing object verification**: Not checking if laboratory objects exist in registry
-5. **Incorrect controller references**: Wrong function calls for equipment controllers
-6. **Ignoring complexity assessment**: Not determining if the action needs additional steps
+1. **Ignoring complexity assessment**: Always know your scope.
 
 ## Best Practices
-
-1. **Assess complexity first**: Determine if the action needs additional steps using the decision guide
-2. **Choose correct action type**:
+1. **Choose correct action type**:
    - **Motion/Physical changes** → AnimationStep (opening, closing, moving, grinding, etc.)
    - **Device functionality** → FunctionCallStep (power controls, measurements, calculations)
-   - **Simple interactions** → Self-contained ClickStep
-3. **Use laboratory-specific examples**: Focus on lab equipment rather than generic objects
-4. **Verify equipment controllers**: Check that required controllers and methods exist
-5. **Test interaction sequences**: Ensure clicks trigger expected laboratory functionality
-6. **Handle missing components**: Consider what happens if equipment scripts don't exist
 
-## Implementation Checklist
-
-When implementing "Click X to do Y":
-1.  Create ClickStep targeting laboratory object X
-2.  **Assess complexity**: Does Y change system state, process data, or involve motion?
-3.  **If YES** (complex): Connect ClickStep → appropriate next step:
-   - **Motion/Physical change** (open, close, move, grind) → AnimationStep
-   - **Device function** (power, measure, calculate) → FunctionCallStep
-   - **State change** (show/hide, enable/disable) → GameObjectSetActive or FunctionCallStep
-4.  **If NO** (simple): ClickStep can be self-contained for selection/navigation
-5.  Add visual feedback steps if needed
-6.  Test that clicking X produces the expected Y result in the laboratory context
 
 ## Action Type Decision Guide
-
-**Use AnimationStep for Visual/Physical Changes:**
-- **Object motion**: Opening bottles, closing drawers, moving equipment
-- **Physical transformations**: Grinding, mixing, crushing laboratory materials
-- **Visual state changes**: Equipment state animations, particle effects
-- **Any action where the user needs to see the physical change happen**
-
-**Use FunctionCallStep for System/Data Operations:**
-- **Equipment functionality**: Power control, measurement, calibration of lab instruments
-- **Data processing**: Calculate results, record measurements, analyze samples
-- **System state changes**: Enable/disable lab equipment, change instrument settings
-- **Backend operations**: Save experimental data, load protocols, trigger calculations
-
-**Decision Question**: *"Is this primarily about what the user sees happening in the lab, or about what the laboratory system does internally?"*
-- **Visual/Physical Lab Action** → AnimationStep
-- **System/Data Lab Operation** → FunctionCallStep
+**AnimationStep** - For visual changes the user sees:
+   - Moving objects (bottles, drawers, equipment)
+   - Physical transformations (grinding, mixing, crushing)
+   - Visual effects (animations, particles)

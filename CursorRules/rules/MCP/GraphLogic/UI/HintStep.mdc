@@ -48,17 +48,3 @@ HintStep (stepNumber: current) → ProgressMapManualNextStep (_nextStepIndex: ne
 ```
 HintStep (stepNumber: 1) → SubGraphStep (Step_01) → HintStep (stepNumber: 2) → SubGraphStep (Step_02) → Continue
 ```
-
-## Common Mistakes
-
-1. **Missing step numbers**: Use sequential step numbers for progressive guidance
-2. **Unclear hints**: Use clear, concise language in hints
-3. **Wrong node choice**: Use for educational guidance, not general messaging
-
-## Best Practices
-
-1. **Use sequential step numbers** for progressive guidance
-2. **Keep hints concise** and actionable
-3. **Provide clear next steps** in hints
-4. **Integrate with progress navigation** for seamless flow
-5. **Use for educational support** and learning assistance

@@ -21,75 +21,15 @@ ExploreStep handles object exploration interactions in virtual lab experiments. 
 
 ## Parameters
 
-- **Target Object**: The object to explore
-- **Exploration Type**: Type of exploration (inspect, examine, discover)
-- **Exploration Depth**: Level of detail in exploration
-- **Exploration Duration**: Time for exploration interaction
-- **Exploration Feedback**: Information revealed during exploration
+- **Group Index**: The Index of the node group that is contained in the exploration step.
 
 ## Common Patterns
 
-### Basic Object Exploration
+### Basic Devices Exploration
 ```
-ExploreStep (Object) → ShowMessage (Object details)
-```
-
-### Exploration with Camera Focus
-```
-ExploreStep (Object) → FocusOnToolStep (Object) → ShowMessage (Object details)
-```
-
-### Exploration with Animation
-```
-ExploreStep (Object) → AnimationStep (Object) → ShowMessage (Object details)
-```
-
-### Exploration with Function Call
-```
-ExploreStep (Object) → FunctionCallStep (RevealDetails) → ShowMessage (Object details)
-```
-
-### Multiple Object Exploration
-```
-ExploreStep (Object A) → ShowMessage (Details A) → ExploreStep (Object B) → ShowMessage (Details B)
-```
-
-### Exploration with Delay
-```
-ExploreStep (Object) → DelayStep → ShowMessage (Object details) → Continue
-```
-
-### Interactive Exploration
-```
-ExploreStep (Object) → ClickStep (Object) → ShowMessage (Interactive details)
+ToggleColldierStep(Device1, false) → ToggleColldierStep(Device2, false) → ToggleColldierStep(Device3, false) → ExplorationStep(1) → ToggleColldierStep(Device1, true) → ToggleColldierStep(Device1, true) → ToggleColldierStep(Device3, true)  
 ```
 
 ## Common Mistakes
 
-1. **Missing object verification**: Always verify object exists in registry
-2. **Missing exploration feedback**: Users need information from exploration
-3. **Wrong exploration targets**: Verify exploration targets are valid
-4. **Missing visual feedback**: Provide clear feedback for exploration actions
-5. **Invalid object references**: Verify target objects are valid
-
-## Debugging Tips
-
-1. **Test exploration interactions** one step at a time
-2. **Verify object states** before and after exploration
-3. **Check exploration responses** and information revealed
-4. **Monitor exploration interactions** with console logs
-5. **Test exploration sequences** end-to-end
-6. **Validate object references** in registry
-7. **Check exploration event handling** and responses
-
-## Best Practices
-
-1. **Always verify objects exist** before setting up exploration interactions
-2. **Provide detailed feedback** for exploration actions
-3. **Use appropriate delays** between exploration and response
-4. **Test exploration sequences** thoroughly
-5. **Handle exploration failures** gracefully
-6. **Document exploration requirements** clearly
-7. **Consider user experience** during exploration interactions
-8. **Ensure exploration targets are accessible** and visible
-9. **Provide meaningful information** from exploration
+1. **Not Disabling the Colliders before exploration**: always Disable the Colliders of all of the Devices before an exploration step, then ask the user to add the nodes in a group. after the exploration step you have to Enable the colliders again.

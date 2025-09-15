@@ -22,9 +22,11 @@ Executes global/static methods or methods on singletons/services for system-wide
 
 ## Parameters
 
-- **selectedComponent**: Type that contains the static/global method
-- **selectedFunction**: Method name
-- **parameterValues**: Array of SerializableParameter values
+- **prefabName**: parent.
+- **childName**: child.
+- **selectedComponent**: Component on Child.
+- **selectedFunction**: Function on Component.
+- **parameterValues**: Parameters (if exist).
 
 ## Common Patterns
 
@@ -42,19 +44,4 @@ FunctionCallGlobalStep (MarkScenarioAsCompleted) → DelayStep → ShowCompletio
 - **Global Methods Only**: Use for static/global methods, not scene object methods
 - **No Scene Context**: Methods don't target specific scene objects
 - **System-Wide Effects**: Methods affect the entire system
-
-## Common Mistakes
-
-1. **Expecting scene object context**: Use non-instance/static targets only
-2. **Wrong assembly/type name**: Verify global target type names
-3. **Using for scene object methods**: Use FunctionCallStep for scene object methods
-4. **Using for coroutines**: Use FunctionCallCoroutineGlobalStep for global coroutines
-
-## Best Practices
-
-1. **Keep global methods side-effect aware** to avoid unintended consequences
-2. **Prefer pure/controlled global changes** for predictable behavior
-3. **Use for system-wide functions** that don't target specific objects
-4. **Verify method is static** or accessible via singleton
-5. **Check parameter signatures** before execution
 

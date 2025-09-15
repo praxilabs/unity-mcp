@@ -22,26 +22,37 @@ This is a knowledge base index for Unity MCP tools. Use this for quick reference
 - **Purpose**: Create nodes in xNode graphs
 - **Parameters**: graph_path, node_type_name, position_x, position_y, tooltip, description
 - **Returns**: nodeId, nodeName for connections
-- **CRITICAL**: Always pass description MUST contain required Components from the rule file of the nodes. This rules is a must and neglecting it will lead to unwanted behaviour.
+- **CRITICAL**: Always pass metadata, description must contain required Components from the rule file of the nodes. This rules is a must and neglecting it will lead to unwanted behaviour, tooltip must contain a brief of what the node does.
 - **Description Format**
-2. Node Functionality: This Node does X and Y.
-3. Required Components.
+1. Node Functionality: This Node does X and Y.
+2. Required Components with reason and instruction of each node.
 
 Example:
 ```
 This Node is responsible for 1, 2, and 3.
 
+a brief about object X and where it should be.
+
+add the following to Object X:
+
 Required Components:
-    1. Collider.
-    2. AttachableTool Script.
-    3. DraggableObject Script.
-    4. Draggable tag.
+    1. `Component 1` - "Reason".
+    2. `Component 2` - "Reason".
+    3. `Component 3` - "Reason".
+    4. `Tag`  - "Reason".
     etc..
 ```
 
+### **Node Creation with Metadata**
+- **description**: add Detailed explanation of what the node does, its requirements and how to make the node works.
+- **tooltip**: add Brief explanation of what the node does
+- **Rule File Pattern**: Navigate to category → specific node → read documentation for metadata
+- **Example**: For ClickStep,  ClickNodes → ClickStep → use documented description and components
+
+
 ### `mcp_unityMCP_connect_nodes_by_name`
 - **Purpose**: Connect nodes using their names
-- **Parameters**: graph_path, from_node_name, to_node_name, ports (optional)
+- **Parameters**: graph_path, from_node_name, to_node_name, ports
 
 ### `mcp_unityMCP_set_node_as_first_step`
 - **Purpose**: Set entry point for graph execution
@@ -100,8 +111,3 @@ Required Components:
 - Always use `list_graph_nodes` after graph creation
 - Use `check_node_exists` before operations
 - Use `read_console` for error diagnosis
-
-### **Node Creation with Metadata**
-- **description**: Detailed explanation of what the node does
-- **Rule File Pattern**: Navigate to category → specific node → read documentation for metadata
-- **Example**: For ClickStep → ClickNodes → ClickStep → use documented description and components

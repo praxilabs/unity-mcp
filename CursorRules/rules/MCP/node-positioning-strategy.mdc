@@ -1,0 +1,254 @@
+---
+alwaysApply: true
+description: Unified node positioning strategy for Unity MCP graph layouts
+tags: [positioning, layout, visual-design, user-experience]
+---
+
+# Unity MCP Node Positioning Strategy
+
+## CORE PHILOSOPHY
+
+**Create visually appealing, logically organized node layouts that prioritize user experience and readability.**
+
+**Key Principles:**
+- **Visual Appeal First**: Balance aesthetics with functionality
+- **Logical Flow**: Natural left-to-right, top-to-bottom reading pattern
+- **Flexible Positioning**: Adapt layout to content, not rigid grids
+- **Breathing Room**: Prevent visual clutter and node overlap
+
+---
+
+## SPACING STANDARDS
+
+### Primary Measurements
+- **Horizontal Sequential**: `450px` between nodes in same logical group
+- **Vertical Separation**: `300px` between parallel routes or logical levels
+- **Stage Separation**: `600px` between major workflow phases
+- **Start Position**: `(0, 0)` for first node
+
+### Flexible Spacing Rules
+```typescript
+// Adaptive spacing based on content
+const spacing = {
+  sequential: 450,     // Same logical flow
+  parallel: 300,      // Different routes
+  stage: 600,         // Major phases
+  minimum: 200        // Absolute minimum to prevent overlap
+}
+```
+
+---
+
+## POSITIONING STRATEGIES
+
+### Strategy Selection Algorithm
+```
+IF nodeCount <= 5:
+    → Single Row Layout (exception for simple workflows)
+    
+ELIF nodeCount <= 8:
+    → 2-3 Row Hybrid Layout
+    
+ELIF nodeCount <= 15:
+    → 3-4 Row Hybrid Layout
+    
+ELSE:
+    → Multi-Row Logical Grouping
+```
+
+### Layout Patterns
+
+#### 1. Sequential Flow (≤5 nodes)
+```
+Start(0,0) → Setup(450,0) → Execute(900,0) → Validate(1350,0) → Complete(1800,0)
+```
+
+#### 2. Hybrid Layout (6-15 nodes)
+```
+// Row 1: Initialization Phase
+Start(0,0) → Setup(450,0) → Initialize(900,0)
+
+// Row 2: Main Operations (flexible centering)
+OpA(225,300) → OpB(675,300) → OpC(1125,300)
+
+// Row 3: Completion
+Validate(0,600) → Finalize(450,600) → Complete(900,600)
+```
+
+#### 3. Complex Branching
+```
+// Decision Point
+Decision(0,0)
+├── TrueBranch: ActionA(450,-150) → ContinueA(900,-150)
+├── MainFlow:   ActionB(450,0)    → ContinueB(900,0)
+└── FalseBranch: ActionC(450,150) → ContinueC(900,150)
+```
+
+#### 4. Composite Steps with Parallel Routes
+```
+CompositeStep(0,0)
+├── Route1: Click1(450,-300) → Focus1(900,-300) → Action1(1350,-300)
+├── Route2: Click2(450,0)    → Focus2(900,0)    → Action2(1350,0)
+└── Route3: Click3(450,300)  → Focus3(900,300)  → Action3(1350,300)
+```
+
+---
+
+## VISUAL ORGANIZATION PRINCIPLES
+
+### 1. Logical Grouping
+- **Phase-based organization**: Group nodes by workflow phases
+- **Function-based clustering**: Keep related operations together
+- **Visual hierarchy**: Use spacing to indicate relationships
+
+### 2. Flow Direction
+- **Primary**: Left-to-right for sequential operations
+- **Secondary**: Top-to-bottom for parallel or conditional routes
+- **Return paths**: Clear visual connections back to main flow
+
+### 3. Flexible Positioning ("Brick Wall" Approach)
+```
+// Instead of rigid grid:
+(0,0) → (450,0) → (900,0) → (1350,0)
+(0,300) → (450,300) → (900,300)
+
+// Use flexible centering:
+(0,0) → (450,0) → (900,0) → (1350,0)
+(225,300) → (675,300) → (1125,300)  // Centered for visual balance
+```
+
+### 4. Adaptive Spacing
+- **Dense workflows**: Reduce spacing to fit content
+- **Sparse workflows**: Increase spacing for visual breathing room
+- **Mixed content**: Adjust per logical group
+
+---
+
+## IMPLEMENTATION GUIDELINES
+
+### Node Creation Template
+```typescript
+// Standard node positioning
+const position = calculatePosition({
+  nodeIndex: currentIndex,
+  logicalPhase: phaseNumber,
+  totalNodes: nodeCount,
+  layoutStrategy: selectedStrategy
+});
+
+mcp_unitymcp_create_xnode_node({
+  position_x: position.x,
+  position_y: position.y,
+  // ... other parameters
+});
+```
+
+### Phase-based Positioning
+```typescript
+const phases = {
+  initialization: { y: 0, color: 'blue' },
+  execution: { y: 300, color: 'green' },
+  validation: { y: 600, color: 'orange' },
+  completion: { y: 900, color: 'purple' }
+};
+```
+
+---
+
+## FORBIDDEN PATTERNS ❌
+
+### Never Do These:
+- **Infinite horizontal lines** (>5 nodes in single row)
+- **Infinite vertical stacks** (>4 nodes in single column)
+- **Overlapping nodes** (insufficient spacing)
+- **Rigid grid forcing** (ignoring logical grouping)
+- **Poor visual hierarchy** (all nodes at same level)
+
+### Anti-patterns:
+```
+// BAD: Infinite horizontal line
+(0,0) → (450,0) → (900,0) → (1350,0) → (1800,0) → (2250,0) → (2700,0) → (3150,0)
+
+// BAD: Dense vertical stack
+(0,0) ↓ (0,300) ↓ (0,600) ↓ (0,900) ↓ (0,1200)
+
+// BAD: Overlapping nodes
+(0,0) → (200,0) → (350,0)  // Too close!
+```
+
+---
+
+## REQUIRED PATTERNS ✅
+
+### Always Do These:
+- **Logical flow organization** (group related operations)
+- **Visual breathing room** (adequate spacing)
+- **Clear connection paths** (visible node relationships)
+- **Consistent spacing standards** (follow defined measurements)
+- **User-friendly navigation** (intuitive flow direction)
+
+---
+
+## EXAMPLES BY COMPLEXITY
+
+### Simple Workflow (≤5 nodes)
+```bash
+# Linear sequence
+IntroMessage(0,0) → EnableCollider(450,0) → FocusCamera(900,0) → Complete(1350,0)
+```
+
+### Medium Workflow (6-8 nodes)
+```bash
+# Phase-based hybrid layout
+# Initialization
+Start(0,0) → Setup(450,0) → Initialize(900,0)
+
+# Execution (centered for balance)
+Execute1(225,300) → Execute2(675,300)
+
+# Completion
+Validate(0,600) → Complete(450,600)
+```
+
+### Complex Workflow (9+ nodes)
+```bash
+# Multi-phase with logical grouping
+# Phase 1: Setup
+Start(0,0) → Config(450,0) → Initialize(900,0)
+
+# Phase 2: Parallel Operations
+OpA(0,300) → ProcessA(450,300) → ValidateA(900,300)
+OpB(0,600) → ProcessB(450,600) → ValidateB(900,600)
+
+# Phase 3: Consolidation
+Merge(225,900) → Finalize(675,900) → Complete(1125,900)
+```
+
+---
+
+## QUALITY CHECKLIST
+
+### Before Finalizing Layout:
+- [ ] **Visual appeal**: Does the layout look professional and organized?
+- [ ] **Logical flow**: Can users easily follow the workflow sequence?
+- [ ] **Adequate spacing**: No overlapping or cramped nodes?
+- [ ] **Consistent standards**: Following defined spacing rules?
+- [ ] **Flexible positioning**: Using adaptive placement where appropriate?
+- [ ] **Clear connections**: Are node relationships obvious?
+
+### Performance Considerations:
+- [ ] **Reasonable canvas size**: Layout fits comfortably in viewport
+- [ ] **Minimal scrolling**: Most important nodes visible without scrolling
+- [ ] **Connection clarity**: No crossing lines or hidden connections
+
+---
+
+## BEST PRACTICES SUMMARY
+
+1. **Start with user experience** - prioritize readability and navigation
+2. **Apply logical grouping** - organize by workflow phases and functions
+3. **Use flexible positioning** - adapt to content rather than force rigid grids
+4. **Maintain visual hierarchy** - use spacing to indicate relationships
+5. **Validate layout quality** - review against checklist before finalizing
+
+**Remember**: The goal is to create visually appealing, functionally organized node layouts that enhance user understanding and workflow navigation.

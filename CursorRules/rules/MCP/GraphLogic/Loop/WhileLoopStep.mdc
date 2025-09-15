@@ -21,40 +21,26 @@ Repeats its body while a boolean condition remains true for conditional repetiti
 
 ## Ports
 
-- **continueLoop (Output)**: Connect the loop body here; executed each time condition is true
-- **exit (Output)**: Called once when condition becomes false
+- **Entry**: the node entry point, and also the port that should be responsible for looping.
+- **continueLoop (Output)**: The continue loop should be connectd to whatever logic is about to execute in the loop then the last node should connect to the entry again.
+- **isTrue**: The node should have a boolean expression or a FunctionCall that returns a boolean expression connected to it.
+- **exit (Output)**: Called after the final iteration completes.
 
 ## Common Patterns
 
-### Conditional Loop Pattern
+###  Pattern
 ```
-WhileLoopStep (condition) → continueLoop: Action → Self
-                         → exit: Continue
+`...` indicates a variable number of nodes that does a certain logic.
+
+                            
+                     ForLoopStep.entry → ForLoopStep (iterations: 5) → continueLoop: ... → ForLoopStep.entry
+boolean expresison → ForLoopStep.isTrue                              → exit: ...
 ```
 
-### Interactive Loop Pattern
-```
-WhileLoopStep (user continues) → continueLoop: UserAction → WhileLoopStep (check)
-                              → exit: Complete
-```
 
 ## Critical WhileLoopStep Rules
 - **Conditional Iteration**: Use for unknown iteration count based on changing conditions
 - **Port Connections**: Use `continueLoop` for loop body, `exit` for completion
 - **Condition Safety**: Ensure condition can become false to prevent infinite loops
 
-## Common Mistakes
-
-1. **Infinite loops**: Ensure the condition can flip to false
-2. **Wrong port connections**: Use continueLoop for body, exit for completion
-3. **Missing global variables/inputs**: Connect condition to proper data sources
-4. **Using for fixed iteration count**: Use ForLoopStep for known iteration counts
-
-## Best Practices
-
-1. **Keep loop body side effects controlled** to avoid unintended consequences
-2. **Externalize condition evaluation** to test easily
-3. **Provide a clear exit pathway** to prevent infinite loops
-4. **Add safety counter or timeout** during testing
-5. **Use DelayStep to throttle checks** for performance
 

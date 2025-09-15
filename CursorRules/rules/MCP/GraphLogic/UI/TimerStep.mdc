@@ -40,33 +40,3 @@ Displays a countdown timer with UI controls for experiment timing, procedure pac
 AnyNode → TimerStep(Time) → AnyNode   // Creates a Panel with a timer for the User to control freely
 ```
 
-### Timer with Action Pattern
-```
-TimerStep (Duration) → UserAction → SideMessageStep (Time complete) → Continue
-```
-
-### Experiment Timing
-```
-StartExperiment → TimerStep (30 minutes) → MonitorProgress → Continue
-```
-
-### Procedure Pacing
-```
-TimerStep (5 minutes) → UserCompletesTask → CheckCompletion → Continue
-```
-
-## Common Mistakes
-
-1. **Wrong timing**: Set appropriate durations for TimerStep
-2. **Missing user guidance**: Provide clear instructions for timer usage
-3. **Inadequate timer controls**: Ensure timer has necessary controls
-4. **Wrong node choice**: Use DelayStep for fixed delays, not TimerStep
-
-## Best Practices
-
-1. **Use for time-sensitive experiments** that require pacing
-2. **Set appropriate durations** for different experiment phases
-3. **Provide clear timer instructions** to users
-4. **Test timer controls** thoroughly
-5. **Ensure timer visibility** and accessibility
-6. **Handle timer completion** appropriately

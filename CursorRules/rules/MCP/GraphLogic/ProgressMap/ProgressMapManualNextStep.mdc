@@ -43,17 +43,3 @@ SubGraphStep (Complete step) → ProgressMapManualNextStep (_nextStepIndex: next
 - **Manual Control**: Provides precise control over step navigation
 - **Step Skipping**: Supports skipping steps in progression
 
-## Common Mistakes
-
-1. **Invalid step index (out of range)**: Verify step index exists in progression
-2. **Mixing manual and auto navigation**: Use consistent navigation approach
-3. **Using for stage transitions**: Use GoToStageStep for stage transitions
-4. **Using when auto navigation is sufficient**: Use ProgressMapAutoNextStep for automatic progression
-
-## Best Practices
-
-1. **Centralize step index constants** to avoid typos and maintain consistency
-2. **Prefer AutoNext when exact index control is unnecessary** for simpler progression
-3. **Validate step exists before navigating** to prevent errors
-4. **Use for precise step control** when manual navigation is needed
-

@@ -49,19 +49,3 @@ SafetyToolsStep (Hazard warning) → UserReadsWarning → AcknowledgeSafety → 
 ```
 StartExperiment → SafetyToolsStep (Safety briefing) → UserAcknowledges → BeginExperiment → Continue
 ```
-
-## Common Mistakes
-
-1. **Inadequate safety warnings**: Ensure safety messages are prominent and clear
-2. **Missing acknowledgment**: Require user acknowledgment for critical safety warnings
-3. **Unclear safety instructions**: Make safety requirements clear and actionable
-4. **Wrong node choice**: Use for safety information, not general messaging
-
-## Best Practices
-
-1. **Use for critical safety information** that users must see
-2. **Make safety warnings prominent** and attention-grabbing
-3. **Require acknowledgment** for critical safety warnings
-4. **Provide clear safety instructions** and requirements
-5. **Follow safety protocol standards** for your domain
-6. **Ensure safety messages are accessible** and readable

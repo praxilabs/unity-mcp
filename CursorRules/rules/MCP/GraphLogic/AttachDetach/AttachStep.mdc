@@ -19,12 +19,10 @@ AttachStep handles object attachment in virtual lab experiments. This node is es
 
 ## Basic Prerequisites
 
-**For the object being attached:**
-1. AttachableTool Script
-2. Trigger Collider
-3. Draggable tag
-4. DraggableObject Script
-5. Hologram (Optional)
+2. DraggableObject Script - The DraggableObject script handles the object Dragging as the attachment proces involves dragging the object to the attachement position.
+3. AttachableTool Script - The Attachable Tool Step is responsible for detecting and finalizing the Attachment of an Object.
+4. Trigger Collider - The Collider that the DraggableObject Script is using is a Trigger.
+5. Draggable tag - The DraggableObject Script requires a Draggable Tag to function.
 
 ## Parameters
 
@@ -34,11 +32,6 @@ AttachStep handles object attachment in virtual lab experiments. This node is es
 - **Visual Feedback**: Optional visual confirmation of attachment
 
 ## Common Patterns
-
-### Basic Attachment
-```
-AttachStep (SourceObject, TargetObject) → ShowMessage (Attachment Complete)
-```
 
 ### Sequential Assembly
 ```
@@ -51,35 +44,11 @@ IfStatementStep (Check condition) → True: AttachStep → Continue
                                 → False: ShowMessage (Cannot attach)
 ```
 
-### Attachment with Visual Feedback
-```
-AttachStep → GameObjectSetActiveStep (show attachment indicator) → ShowMessage (Attached successfully)
-```
-
-### Attachment with Locking (if needed)
-```
-AttachStep (ObjectA, ObjectB) → FunctionCallStep (Lock ObjectA) → ShowMessage (Object locked)
-```
-
 ### Sequential Attachment and Locking
 ```
 AttachStep (Capsule, WeighingPaper) → FunctionCallStep (Lock Capsule) → Continue
 ```
 
 ## Common Mistakes
-
-1. **Missing object verification**: Always verify both objects exist in registry
-2. **Wrong object references**: Verify object references are valid
-3. **Missing attachment points**: Ensure attachment points exist and are valid
-4. **Incomplete attachment flow**: Ensure attachment leads to appropriate actions
-5. **Confusing attachment with locking**: AttachStep only attaches, use FunctionCallStep for locking
-
-## Best Practices
-
-1. **Verify objects exist** before attempting attachment
-2. **Provide visual feedback** for successful attachments
-3. **Use appropriate delays** between attachment steps
-4. **Test attachment sequences** thoroughly
-5. **Handle attachment failures** gracefully
-6. **Separate attachment from locking**: Use AttachStep for attachment, FunctionCallStep for locking
-7. **Follow attachment-locking pattern**: AttachStep → FunctionCallStep (Lock) → Continue
+1. **Incomplete attachment flow**: Ensure attachment leads to appropriate actions
+2. **Confusing attachment with locking**: AttachStep only attaches, use FunctionCallStep for locking

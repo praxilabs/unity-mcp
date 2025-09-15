@@ -49,18 +49,3 @@ CompleteStage → StageEndMessageIndependentStep (Achievement unlocked) → Show
 ```
 FinishTask → StageEndMessageIndependentStep (Task completed successfully) → Continue
 ```
-
-## Common Mistakes
-
-1. **Missing stage identification**: Ensure stage name is clearly specified
-2. **Unclear completion criteria**: Make completion requirements clear
-3. **Missing user feedback**: Provide appropriate celebration/feedback
-4. **Wrong node choice**: Use StageEndMessageDependentStep for dependent completions
-
-## Best Practices
-
-1. **Use for standalone achievements** that don't depend on other stages
-2. **Provide clear completion feedback** to users
-3. **Celebrate achievements** appropriately
-4. **Guide users** to next steps when relevant
-5. **Ensure completion criteria** are clearly defined

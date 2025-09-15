@@ -58,7 +58,6 @@ mcp_unityMCP_list_graph_nodes "your_graph_path.asset"
 
 ### **Step 4: Final Verification**
 - Confirm execution flow is complete
-- Test graph execution if possible
 
 ## VALIDATION EXAMPLES
 
@@ -92,7 +91,6 @@ Missing connection to end
 
 **FAILURE TO VALIDATE WILL RESULT IN BROKEN EXPERIMENTS**
 
-**ALWAYS use `mcp_unityMCP_list_graph_nodes` after graph creation to identify and fix issues.**
 
 ## VALIDATION COMMANDS REFERENCE
 
@@ -102,10 +100,4 @@ Missing connection to end
 - `mcp_unityMCP_delete_xnode_node` - Remove orphaned nodes
 - `mcp_unityMCP_connect_nodes_by_name` - Fix missing connections
 
-### **Validation Best Practices**
-1. **Always validate after creation**
-2. **Fix one issue at a time**
-3. **Re-validate after each fix**
-4. **Continue until 100% clean**
-5. **Document any special requirements**
 

@@ -23,9 +23,6 @@ Camera nodes control camera positioning and focus in virtual lab experiments. Es
 ** Critical**: Required between any two FocusOnToolStep operations
 
 
-## Common Misinterpretations
-
-
 ## Critical Camera Rules
 
 ### **System Architecture**

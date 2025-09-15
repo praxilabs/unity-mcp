@@ -24,18 +24,12 @@ Controls the visibility and active state of GameObjects in the scene for visibil
 
 - **Target Object**: The GameObject to show/hide
 - **Active State**: Boolean to enable (true) or disable (false) the object
-- **Include Children**: Whether to affect child objects (optional)
 
 ## Common Patterns
 
 ### Single Object Show/Hide
 ```
 GameObjectSetActiveStep (hide single object) → DelayStep → GameObjectSetActiveStep (show single object) → Continue
-```
-
-### Tool Setup Pattern
-```
-GameObjectSetActiveStep (hide single tool) → DelayStep → GameObjectSetActiveStep (show single tool) → ShowMessage (Tool ready)
 ```
 
 ### Scenario-Based Single Object Management
@@ -50,20 +44,3 @@ IfStatementStep (IsScenarioA) → True: GameObjectSetActiveStep (ShowSingleScena
 - **Object State Management**: Controls active state of GameObjects
 - **NOT for Colliders**: Use ToggleColliderStep for collider management
 - **NOT for Multiple Objects**: Use multiple GameObjectSetActiveStep nodes for multiple objects
-
-## Common Mistakes
-
-1. **Wrong node choice**: Use GameObjectSetActiveStep for visibility, not FunctionCallStep
-2. **Collider management error**: Use ToggleColliderStep for colliders, NOT GameObjectSetActiveStep
-3. **Trying to control multiple objects**: Use multiple GameObjectSetActiveStep nodes for multiple objects
-4. **Missing state management**: Always manage object states properly
-5. **Using for non-visibility operations**: Use for visibility control only
-
-## Best Practices
-
-1. **Always verify objects exist** before setting active state
-2. **Provide visual feedback** for visibility changes
-3. **Use appropriate delays** between visibility changes
-4. **Test visibility sequences** thoroughly
-5. **Handle visibility failures** gracefully
-6. **Use for visibility control** and object state management

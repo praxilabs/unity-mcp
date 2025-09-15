@@ -15,16 +15,11 @@ DelayStep provides timing control in virtual lab experiments. Used for waiting s
 **Usage**: Timing between actions, pacing experiments, smooth transitions
 
 ## Basic Prerequisites
-
-1. **Delay Duration**: Set appropriate delay duration in seconds
-2. **Timing Context**: Understand why the delay is needed
-3. **User Experience**: Consider impact on user experience
-4. **Execution Flow**: Place delay appropriately in execution sequence
+- None 
 
 ## Parameters
 
 - **Duration**: Time to wait in seconds
-- **Context**: Reason for the delay (optional but recommended)
 
 ## Critical DelayStep Rules
 - **Fixed System Delay**: Use for fixed system timing, not user-controlled timing
@@ -37,45 +32,3 @@ DelayStep provides timing control in virtual lab experiments. Used for waiting s
 ```
 Action A → DelayStep (wait) → Action B → Continue
 ```
-
-### Completion Flow Delay Pattern
-```
-FunctionCallStep (MarkScenarioComplete) → DelayStep (0.3s) → ShowCompletionMessage
-```
-
-### Message Transition Delay Pattern
-```
-ShowMessage → DelayStep (0.5s) → ShowNextMessage
-```
-
-### Camera Transition Delay Pattern
-```
-FunctionCallStep (GoToBirdEye) → DelayStep (0.2s) → FunctionCallStep (ToggleBirdEyeUI) → Continue
-```
-
-### Object Appearance Pattern
-```
-GameObjectSetActiveStep (hide) → DelayStep → GameObjectSetActiveStep (show) → DelayStep → ...
-```
-
-### Sequential Function Calls Pattern
-```
-FunctionCallStep (Setup function) → DelayStep → FunctionCallStep (Main function) → ShowMessage (Complete)
-```
-
-## Common Mistakes
-
-1. **Wrong delay duration**: Set appropriate timing for delays
-2. **Too short delays**: Delays that are too short may cause visual issues
-3. **Too long delays**: Delays that are too long may frustrate users
-4. **Wrong node choice**: Use TimerStep for user-controlled timing, not DelayStep
-5. **Inconsistent delay timing**: Use consistent delay durations throughout experiments
-
-## Best Practices
-
-1. **Set appropriate delay duration** for the context
-2. **Use for system pacing** and smooth transitions
-3. **Use consistent delay durations** for similar operations
-4. **Consider user experience** when setting delay durations
-5. **Use for fixed system timing** only
-6. **Provide context** for why delays are needed

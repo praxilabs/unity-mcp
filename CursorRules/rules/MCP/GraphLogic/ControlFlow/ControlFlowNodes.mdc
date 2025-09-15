@@ -39,8 +39,8 @@ Control Flow nodes manage execution flow and branching logic in virtual lab expe
 
 ### FirstThenStep
 **Rule File**: [FirstThenStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/ControlFlow/FirstThenStep.mdc)
-**Purpose**: Multi-way branching
-**Usage**: State machines, menu systems
+**Purpose**: sequential execution of branches.
+**Usage**: First execute the "First" branch then execute the "Then" Branch. 
 
 ### BranchingControlStep
 **Rule File**: [BranchingControlStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/ControlFlow/BranchingControlStep.mdc)

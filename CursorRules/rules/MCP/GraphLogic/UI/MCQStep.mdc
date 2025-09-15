@@ -49,19 +49,3 @@ MCQStep (Question 1) → UserAnswer → MCQStep (Question 2) → UserAnswer → 
 ```
 MCQStep (Choose your approach) → UserSelectsOption → ExecuteSelectedOption → Continue
 ```
-
-## Common Mistakes
-
-1. **Incomplete MCQ options**: Provide all necessary answer choices
-2. **Missing answer validation**: Validate user answers appropriately
-3. **Unclear question text**: Ensure questions are clear and understandable
-4. **Wrong node choice**: Use for multiple choice questions, not single actions
-
-## Best Practices
-
-1. **Use for knowledge assessment** and decision making
-2. **Provide clear, unambiguous questions**
-3. **Include all necessary answer options**
-4. **Validate answers** appropriately
-5. **Provide helpful feedback** after answer selection
-6. **Ensure accessibility** for question display and answer selection

@@ -44,5 +44,3 @@ Utility nodes handle system utility operations in virtual lab experiments. These
 **Rule File**: [ToggleUIButtonInteractionStep.mdc](mdc:.cursor/rules/MCP/GraphLogic/Utility/ToggleUIButtonInteractionStep.mdc)
 **Purpose**: Enable/disable UI button interactions
 **Usage**: UI control, button state management
-
-## Common Misinterpretations

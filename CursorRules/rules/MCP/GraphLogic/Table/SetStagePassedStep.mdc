@@ -36,18 +36,3 @@ EnableStageStep (Stage1) → LogicForStage1 → SetStagePassedStep (Stage1) → 
 - **Progress Tracking**: Enables progress tracking and stage completion status
 - **Stage Unlocking**: Unlocks subsequent stages based on completion
 
-## Common Mistakes
-
-1. **Inconsistent stage naming**: Use consistent stage identifiers
-2. **Using for data operations**: Use data nodes for data operations
-3. **Invalid stage name**: Verify stage exists in registry
-4. **Using for stage initialization**: Use EnableStageStep for stage initialization
-
-## Best Practices
-
-1. **Keep a single source of truth for stage status** for consistency
-2. **Verify status after call** to ensure proper completion
-3. **Use for stage completion tracking** when stages are successfully completed
-4. **Log stage completion** for debugging purposes
-5. **Use for unlocking subsequent stages** based on completion status
-

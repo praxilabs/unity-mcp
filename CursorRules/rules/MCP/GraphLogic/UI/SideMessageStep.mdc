@@ -48,17 +48,3 @@ SideMessageStep (Welcome) → HintStep (First step) → UserAction → SideMessa
 ```
 SideMessageStep (Step 1 instructions) → UserAction → SideMessageStep (Step 2 instructions) → UserAction → Continue
 ```
-
-## Common Mistakes
-
-1. **Wrong node choice**: Don't use SideMessageStep instead of IntroEndMessageStep for prominent announcements
-2. **Unclear messages**: Use clear, concise language
-3. **Wrong positioning**: Use for side panel, not center screen messages
-
-## Best Practices
-
-1. **Use for non-blocking guidance** that doesn't interrupt main workflow
-2. **Keep messages concise** and actionable
-3. **Provide clear next steps** in the message
-4. **Use for side panel positioning** only
-5. **Ensure messages are accessible** and readable

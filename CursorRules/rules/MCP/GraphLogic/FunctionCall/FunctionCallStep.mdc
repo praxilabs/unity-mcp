@@ -22,10 +22,11 @@ Executes a method on a specific GameObject's component for synchronous operation
 
 ## Parameters
 
-- **_calledObjectName**: {"prefabName": "ParentName", "childName": "ChildName"}
-- **selectedComponent**: Component type (e.g., "MyBehaviour")
-- **selectedFunction**: Method name (e.g., "DoWork")
-- **parameterValues**: Array of SerializableParameter values
+- **prefabName**: parent.
+- **childName**: child.
+- **selectedComponent**: Component on Child.
+- **selectedFunction**: Function on Component.
+- **parameterValues**: Parameters (if exist).
 
 ## Common Patterns
 
@@ -43,20 +44,4 @@ ClickStep (Object) → FunctionCallStep (Object) → ShowMessage (Function execu
 - **Synchronous Only**: Use for synchronous operations only
 - **Scene Objects**: Target specific scene objects, not global/static methods
 - **Public Methods**: Methods must be public to be accessible
-
-## Common Mistakes
-
-1. **Using for visibility changes**: Use GameObjectSetActiveStep instead
-2. **Wrong component or method name**: Verify names match exactly
-3. **Wrong parameter types/order**: Match parameter signatures exactly
-4. **Using for global methods**: Use FunctionCallGlobalStep for static/global methods
-5. **Using for coroutines**: Use FunctionCallCoroutineStep for IEnumerator methods
-
-## Best Practices
-
-1. **Verify object via registry** before calling methods
-2. **Prefer explicit parameter typing** for clarity
-3. **Keep methods idempotent** when possible
-4. **Use for synchronous operations** on scene objects
-5. **Validate component and method exist** before execution
 

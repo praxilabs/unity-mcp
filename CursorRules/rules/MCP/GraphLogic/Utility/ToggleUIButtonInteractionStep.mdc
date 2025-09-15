@@ -60,21 +60,3 @@ IfStatementStep (Check safety) → True: ToggleUIButtonInteractionStep (All butt
 ```
 ToggleUIButtonInteractionStep (Button1, Button2, Enable) → UserInteraction → ToggleUIButtonInteractionStep (Button1, Button2, Disable) → Continue
 ```
-
-## Common Mistakes
-
-1. **Wrong button references**: Ensure all button references are valid
-2. **Missing button state management**: Always manage button interaction states properly
-3. **Incomplete button setup**: Ensure all button interactions are configured
-4. **Wrong button timing**: Use appropriate timing for button interaction operations
-5. **Incorrect button grouping**: Ensure buttons are properly grouped for operations
-
-## Best Practices
-
-1. **Use for UI control** and button state management
-2. **Manage multiple button interactions** simultaneously
-3. **Use for button group management** and operations
-4. **Always verify button interaction states** before and after operations
-5. **Use for safety systems** and UI interaction control
-6. **Ensure proper button grouping** for efficient operations
-7. **Provide clear feedback** for button interaction state changes

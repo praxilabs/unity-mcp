@@ -48,17 +48,3 @@ CompleteStage → IntroEndMessageStep (Stage complete) → ShowMessage (Congratu
 ```
 CompleteExperiment → IntroEndMessageStep (Experiment finished) → ShowResults → Continue
 ```
-
-## Common Mistakes
-
-1. **Wrong node choice**: Don't use SideMessageStep instead of IntroEndMessageStep for prominent announcements
-2. **Unclear messages**: Use clear, concise language
-3. **Wrong positioning**: Use for middle screen, not side panel messages
-
-## Best Practices
-
-1. **Use for prominent announcements** that need center screen attention
-2. **Keep messages concise** and actionable
-3. **Provide clear next steps** in the message
-4. **Use for intro/end messages** that require user attention
-5. **Ensure messages are accessible** and readable

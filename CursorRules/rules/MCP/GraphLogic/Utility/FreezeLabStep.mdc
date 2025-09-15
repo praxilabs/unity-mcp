@@ -47,20 +47,3 @@ FreezeLabStep (freeze) → ShowMessage (Modal dialog) → UserAction → FreezeL
 ```
 ErrorOccurs → FreezeLabStep (freeze) → ShowErrorMessage → UserAcknowledges → FreezeLabStep (unfreeze) → Continue
 ```
-
-## Common Mistakes
-
-1. **Missing unfreeze**: Always unfreeze after freezing
-2. **Infinite freeze**: Never leave the system frozen permanently
-3. **Wrong freeze timing**: Use appropriate timing for freeze/unfreeze operations
-4. **Missing user feedback**: Provide clear feedback when freezing/unfreezing
-5. **Incomplete freeze cycle**: Always complete the freeze → action → unfreeze cycle
-
-## Best Practices
-
-1. **Use for system-wide pause functionality** and modal dialogs
-2. **Always complete the freeze → action → unfreeze cycle**
-3. **Provide clear indication** when system is frozen/unfrozen
-4. **Use for error handling** and system maintenance
-5. **Connect to modal or pause scenarios** appropriately
-6. **Never leave the system frozen** permanently

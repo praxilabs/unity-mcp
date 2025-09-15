@@ -65,20 +65,3 @@ SubGraphStep (Phase 2) → HintStep (stepNumber: 3) → SubGraphStep (Phase 3) �
 ```
 SubGraphStep (Complete phase) → ProgressMapAutoNextStep → SubGraphStep (Next phase) → Continue
 ```
-
-## Common Mistakes
-
-1. **Infinite subgraphs**: Avoid circular subgraph references
-2. **Missing subgraph references**: Ensure subgraph references are valid
-3. **Incomplete subgraph flow**: Ensure subgraphs have proper entry and exit points
-4. **Missing step numbers**: Use stepNumber parameter for clear progression
-5. **Wrong subgraph order**: Ensure subgraphs execute in correct sequence
-
-## Best Practices
-
-1. **Use for modular experiment design** and reusable procedures
-2. **Create reusable sub-procedures** for common operations
-3. **Use stepNumber parameter** for clear progression tracking
-4. **Break complex experiments** into manageable phases
-5. **Ensure subgraphs have proper entry and exit points**
-6. **Avoid circular subgraph references** to prevent infinite loops

@@ -30,13 +30,17 @@ Invokes a specifically registered event during graph execution to drive reactive
 
 ### Trigger Event Mid-Sequence
 ```
-AnyNode → EventCallerStep ("RegisteredEventName") → AnyNode
+`...` is a variable number of nodes that have a certain logic.
+
+... → EventCallerStep ("RegisteredEventName") → ...
 ```
 
 ### Conditional Event Trigger
 ```
-IfStatementStep (condition) → True: EventCallerStep ("OnConditionMet") → Continue
-                           → False: Continue
+`...` is a variable number of nodes that have a certain logic.
+
+IfStatementStep (condition) → True: EventCallerStep ("OnConditionMet") → ...
+                            → False: ...
 ```
 
 ### Chained Events
@@ -48,19 +52,4 @@ EventCallerStep ("PhaseStarted") → DelayStep → EventCallerStep ("PhaseReady"
 - **Event Registration**: Event must be registered in the Event Registry
 - **Exact Event Names**: Use exact event names to avoid typos
 - **Reactive Programming**: Use for event-driven behaviors and cross-graph communication
-
-## Common Mistakes
-
-1. **Usage of incorrect event name**: Verify event name matches exactly
-2. **Not registering the event in the Event Registry**: Ensure event is properly registered
-3. **Missing/invalid payload schema**: Verify payload matches expected schema
-4. **Using for non-event scenarios**: Use for event-driven interactions only
-
-## Best Practices
-
-1. **Centralize event name constants** to avoid typos
-2. **Keep payloads minimal and well-documented** for clarity
-3. **Prefer idempotent listeners**; guard against duplicate fires
-4. **Log event name and payload before firing** for debugging
-5. **Verify event exists in the registry** before execution
 

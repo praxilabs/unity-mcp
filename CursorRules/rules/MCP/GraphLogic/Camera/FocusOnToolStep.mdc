@@ -16,78 +16,29 @@ FocusOnToolStep controls camera positioning to focus on specific objects in virt
 
 ## Basic Prerequisites
 
-1. ToolsCameraTarget Script.
-2. Virtual Camera that focuses on the Object you want to use the step on.
+1. Virtual Camera that focuses on the Object you want to use the step on.
+2. ToolsCameraTarget Script - The Script handles the camera activation and deactivation and needs The Virtual Camera reference.
 
 ## Parameters
 
 - **Target Object**: The object to focus the camera on
-- **Focus Distance**: Distance from the target object
-- **Focus Angle**: Camera angle relative to the target
-- **Transition Duration**: Time for camera movement
-- **Focus Type**: Type of focus (close-up, overview, etc.)
 
 ## Common Patterns
 
-### Basic Object Focus
+### Press to Focus then Return.
 ```
-FocusOnToolStep (Object) → ShowMessage (Object details) → ReturnCameraStep
-```
-
-### Guided Attention Pattern
-```
-ShowMessage (Look at this) → FocusOnToolStep (Target object) → DelayStep → ReturnCameraStep
+    ClickStep(Device) → FocusOnToolStep(Device) → ... → ReturnCameraStep
 ```
 
-### Interactive Focus Pattern
+### Focus on more than one Device sequentially (Device1 then Device2).
 ```
-ClickStep (Object) → FocusOnToolStep (Object) → ShowMessage (Detailed info) → ReturnCameraStep
+    ... → FocusOnToolStep(Device1) → ... → ReturnCameraStep → FocusOnToolStep(Device2)
 ```
-
-### Multiple Object Focus (Correct Pattern)
-```
-FocusOnToolStep (Object A) → ShowMessage (Details A) → ReturnCameraStep → FocusOnToolStep (Object B) → ShowMessage (Details B) → ReturnCameraStep
-```
-
-### Camera Sequence Pattern (Correct Pattern)
-```
-FocusOnToolStep (Setup area) → ShowMessage (Setup instructions) → ReturnCameraStep → FocusOnToolStep (Tool) → ShowMessage (Tool usage) → ReturnCameraStep
-```
-
-### Examination Flow
-```
-FocusOnToolStep (Object) → DelayStep → ShowMessage (Examine this) → ReturnCameraStep → Continue
-```
-
-## Critical Camera Rules
-
-### **System Architecture**
-The camera system tracks only **ONE previous camera position** (main camera), not a stack. This requires strict management.
-
-### **Mandatory ReturnCameraStep Rules**
-1. **Focus → Focus (Different Tools)**: `FocusOnToolStep(Tool1)` → [any nodes] → `ReturnCameraStep` → `FocusOnToolStep(Tool2)` (**MANDATORY**)
-2. **Focus → Focus (Same Tool)**: `FocusOnToolStep(Tool1)` → [any nodes] → `ReturnCameraStep` → `FocusOnToolStep(Tool1)` (**MANDATORY**)
-3. **Single Focus Only**: `FocusOnToolStep(Tool)` → [non-focus operations] → Continue (**ReturnCameraStep OPTIONAL**)
-4. **Experiment End**: Final `ReturnCameraStep` (**RECOMMENDED** for polish, not mandatory)
-
-### **Core Rule**
-**ANY time you use FocusOnToolStep and later want to use FocusOnToolStep again (same or different tool), you MUST use ReturnCameraStep between them.**
 
 ## Common Mistakes
 
 1. **Missing ReturnCameraStep between focus operations**: If you use FocusOnToolStep twice (same or different tools), you MUST use ReturnCameraStep between them
-2. **Wrong focus targets**: Verify focus targets exist in scene  
-3. **Chaining focus steps**: Never use FocusOnToolStep → FocusOnToolStep directly without ReturnCameraStep
-4. **Invalid object references**: Verify target objects are valid
-5. **Missing camera transitions**: Use appropriate delays for camera movements
-6. **Misunderstanding "always required"**: ReturnCameraStep is only required between focus operations, not after every single focus
+2. **Missing camera transitions**: Use appropriate delays for camera movements
 
 ## Best Practices
-
-1. **Use ReturnCameraStep between focus operations** to maintain proper camera tracking
-2. **Provide clear user feedback** for camera movements
-3. **Use appropriate delays** for smooth camera transitions
-4. **Verify target objects exist** before focusing
-5. **Test camera sequences** thoroughly
-6. **Handle focus failures** gracefully
-7. **End experiments with ReturnCameraStep** for professional polish (recommended)
+1. **End experiments with ReturnCameraStep** for professional polish (recommended)

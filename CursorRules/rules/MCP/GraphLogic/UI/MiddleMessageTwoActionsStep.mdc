@@ -53,19 +53,3 @@ MiddleMessageTwoActionsStep (Choose scenario) → buttonOne: ExecuteScenarioA �
 MiddleMessageTwoActionsStep (Proceed with experiment?) → Yes: StartExperiment → Continue
                                                       → No: ShowAlternative → Continue
 ```
-
-## Common Mistakes
-
-1. **Unclear action descriptions**: Ensure action buttons have clear, understandable text
-2. **Wrong node choice**: Use MiddleMessageOneActionStep for single confirmations
-3. **Incomplete option handling**: Handle all button options appropriately
-4. **Missing user guidance**: Provide clear instructions
-
-## Best Practices
-
-1. **Use for binary choices** that require user decision
-2. **Keep button text clear** and action-oriented
-3. **Provide clear context** in the message
-4. **Handle all possible user choices** appropriately
-5. **Use for two-option decisions** only
-6. **Ensure accessibility** for button interactions

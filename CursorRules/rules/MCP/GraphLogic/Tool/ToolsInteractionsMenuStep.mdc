@@ -53,34 +53,3 @@ ToolsInteractionsMenuStep (EnableMenu) → UserInteraction → ToolsInteractions
 IfStatementStep (HasPermission) → True: ToolsInteractionsMenuStep (ShowMenu) → Continue
                               → False: ShowMessage (No permission) → Continue
 ```
-
-## Common Mistakes
-
-1. **Missing menu state management**: Ensure tool menus are properly enabled/disabled
-2. **Incomplete tool configuration**: Verify all required parameters are set
-3. **Missing menu reference**: Verify menu exists and is accessible
-4. **Wrong menu state**: Ensure menu state is set correctly
-5. **Missing user feedback**: Provide clear feedback for menu interactions
-
-## Debugging Tips
-
-1. **Test menu interactions** one step at a time
-2. **Check menu states** for tool interactions
-3. **Verify menu references** exist and are valid
-4. **Use DelayStep** to slow down for debugging
-5. **Monitor menu responses** with console logs
-6. **Test menu sequences** end-to-end
-7. **Validate menu configurations** and options
-
-## Best Practices
-
-1. **Manage menu state appropriately**
-2. **Provide clear navigation options**
-3. **Use for tool interaction control**
-4. **Test menu workflows** thoroughly
-5. **Handle menu failures** gracefully
-6. **Document menu requirements** clearly
-7. **Consider user experience** during menu interactions
-8. **Ensure menus are accessible** and properly configured
-9. **Use appropriate menu states** for different scenarios
-10. **Provide helpful menu options** and clear navigation

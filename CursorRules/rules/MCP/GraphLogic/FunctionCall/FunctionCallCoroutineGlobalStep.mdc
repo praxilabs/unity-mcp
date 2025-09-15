@@ -22,9 +22,11 @@ Executes global or singleton coroutines (IEnumerator) for system-wide asynchrono
 
 ## Parameters
 
-- **selectedComponent**: Type containing the coroutine
-- **selectedFunction**: Coroutine method name (returns IEnumerator)
-- **parameterValues**: SerializableParameter array
+- **prefabName**: parent.
+- **childName**: child.
+- **selectedComponent**: Component on Child.
+- **selectedFunction**: Function on Component.
+- **parameterValues**: Parameters (if exist).
 
 ## Common Patterns
 
@@ -38,18 +40,4 @@ FunctionCallCoroutineGlobalStep (ShowLoadingScreen, duration) → DelayStep → 
 - **IEnumerator Methods**: Methods must return IEnumerator
 - **System-Wide Effects**: Coroutines affect the entire system
 
-## Common Mistakes
-
-1. **Target method is not a coroutine**: Verify method returns IEnumerator
-2. **Assuming scene-object context**: Use for global/static methods only
-3. **Using for scene object coroutines**: Use FunctionCallCoroutineStep for scene object coroutines
-4. **Using for synchronous methods**: Use FunctionCallGlobalStep for synchronous global methods
-
-## Best Practices
-
-1. **Keep global async effects bounded and reversible** to avoid system-wide issues
-2. **Provide user feedback during long tasks** for better user experience
-3. **Use for system-wide asynchronous operations** like loading screens
-4. **Validate method signature (IEnumerator)** before execution
-5. **Ensure global access path exists** for the target method
 

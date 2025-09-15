@@ -49,18 +49,3 @@ CompleteStage → EvaluateOutcomes → StageEndMessageMultiScenarioStep (Scenari
 ```
 CompleteStageA → CompleteStageB → StageEndMessageMultiScenarioStep (Multiple paths complete) → Continue
 ```
-
-## Common Mistakes
-
-1. **Missing scenario handling**: Properly handle all possible scenarios
-2. **Unclear scenario requirements**: Make scenario conditions clear
-3. **Incomplete outcome processing**: Process all possible outcomes
-4. **Wrong node choice**: Use StageEndMessageIndependentStep for simple completions
-
-## Best Practices
-
-1. **Use for complex completions** with multiple possible outcomes
-2. **Clearly define all scenarios** and their conditions
-3. **Handle all possible outcomes** appropriately
-4. **Provide clear feedback** for each scenario
-5. **Ensure scenario logic** is robust and complete

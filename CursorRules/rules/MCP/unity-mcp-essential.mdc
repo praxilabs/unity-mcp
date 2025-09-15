@@ -89,28 +89,6 @@ Within each category file, you'll find references to individual node files with 
 **Need animations, subgraphs, or miscellaneous operations?**
 → **Misc** category → MiscNodes.mdc
 
-
-## **NAVIGATION WORKFLOW**
-
-**Standard Process**:
-1. **Identify Need** → Use decision tree to find category
-2. **Read Category File** → Understand patterns and requirements
-3. **Find Specific Node** → Locate exact node type needed
-4. **Read Node Details** → Follow implementation patterns
-5. **Apply Pattern** → Use established best practices
-
-**Example Workflow**:
-- Need: "Click on bottle to open"
-- Category: Click category
-- Node: ClickStep
-- Pattern: ClickStep (pause) → AnimationStep (open animation)
-- Implementation: Create ClickStep node, then AnimationStep node, connect them
-
-**Reference Chain**:
-```
-Category File → Specific Node File → Implementation Pattern → Validation Rules
-```
-
 ---
 
 ## **MULTI-STAGE HANDLING RULE**

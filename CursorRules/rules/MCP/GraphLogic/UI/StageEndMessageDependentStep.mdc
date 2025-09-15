@@ -49,18 +49,3 @@ CompleteStage → CheckPrerequisites → StageEndMessageDependentStep (Condition
 ```
 CompleteStageA → CompleteStageB → StageEndMessageDependentStep (Both stages complete) → Continue
 ```
-
-## Common Mistakes
-
-1. **Missing dependency handling**: Properly handle stage dependencies in dependent messages
-2. **Unclear dependency requirements**: Make dependency conditions clear
-3. **Missing prerequisite checking**: Verify all dependencies are met
-4. **Wrong node choice**: Use StageEndMessageIndependentStep for standalone completions
-
-## Best Practices
-
-1. **Use for conditional achievements** that depend on other stages
-2. **Clearly define dependencies** and requirements
-3. **Check all prerequisites** before showing completion
-4. **Provide clear feedback** about dependency status
-5. **Handle missing dependencies** gracefully

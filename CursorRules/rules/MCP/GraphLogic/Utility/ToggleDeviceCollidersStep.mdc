@@ -55,20 +55,3 @@ ToggleDeviceCollidersStep (Group A devices, Enable) → ToggleDeviceCollidersSte
 ```
 ToggleDeviceCollidersStep (All devices, Disable) → SetupPhase → ToggleDeviceCollidersStep (Active devices, Enable) → Continue
 ```
-
-## Common Mistakes
-
-1. **Wrong device references**: Ensure all device references are valid
-2. **Missing device state management**: Always manage device collider states properly
-3. **Incomplete device setup**: Ensure all device colliders are configured
-4. **Wrong node choice**: Use ToggleColliderStep for single device operations
-5. **Incorrect device grouping**: Ensure devices are properly grouped for operations
-
-## Best Practices
-
-1. **Use for device interaction control** and safety systems
-2. **Manage multiple device colliders** simultaneously
-3. **Use for device group management** and operations
-4. **Always verify device collider states** before and after operations
-5. **Ensure proper device grouping** for efficient operations
-6. **Provide clear feedback** for device collider state changes

@@ -16,7 +16,6 @@ Enables or disables colliders on GameObjects for interaction control and safety 
 
 ## Basic Prerequisites
 
-1. **GameObject Registration**: Target GameObject must be registered in the Item Registry
 2. **Collider Component**: GameObject must have a collider component
 3. **Valid Object Reference**: GameObject must exist and be accessible
 
@@ -29,40 +28,20 @@ Enables or disables colliders on GameObjects for interaction control and safety 
 ## Critical ToggleColliderStep Rules
 - **Single Object Only**: Use for enabling/disabling colliders on ONE single object at a time
 - **Sequential Operations**: For multiple objects, use multiple ToggleColliderStep nodes sequentially
-- **Collider Management**: Use for collider control, NOT GameObjectSetActiveStep
-- **NOT for Visibility**: Use GameObjectSetActiveStep for showing/hiding objects
 
 ## Common Patterns
 
-### Single Object Collider Control
-```
-ToggleColliderStep (disable single object) → UserAction → ToggleColliderStep (enable single object) → Continue
-```
-
 ### Sequential Multiple Objects
 ```
+`...` is a variable number of nodes that have a certain logic.
+
 ToggleColliderStep (Device1, disable) → ToggleColliderStep (Device2, disable) → 
-ToggleColliderStep (Device3, disable) → ToggleColliderStep (Device4, disable) → Continue
+ToggleColliderStep (Device3, disable) → ToggleColliderStep (Device4, disable) → ...
 ```
 
 ### Overlapping Object Management
 ```
-ToggleColliderStep(Object 1, Disable) → ToggleColliderStep(Object 2, Enable) → 
-...Later... ToggleColliderStep(Object 1, Enable) → ToggleColliderStep(Object 2, Disable)
+`...` is a variable number of nodes that have a certain logic.
+
+ToggleColliderStep(Object 1, Disable) → ToggleColliderStep(Object 2, Enable) → ... →  ToggleColliderStep(Object 1, Enable) → ToggleColliderStep(Object 2, Disable)
 ```
-
-## Common Mistakes
-
-1. **Collider management error**: Use ToggleColliderStep for colliders, NOT GameObjectSetActiveStep
-2. **Trying to control multiple objects**: Use multiple ToggleColliderStep nodes for multiple objects
-3. **Using for visibility control**: Use GameObjectSetActiveStep for showing/hiding objects
-4. **Missing sequential pattern**: Use sequential execution for multiple collider operations
-
-## Best Practices
-
-1. **Always verify objects exist** before toggling colliders
-2. **Use sequential execution** for multiple collider operations
-3. **Provide visual feedback** for collider state changes
-4. **Test collider sequences** thoroughly
-5. **Handle collider failures** gracefully
-6. **Use for single object collider control** only

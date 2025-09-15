@@ -48,17 +48,3 @@ MiddleMessageOneActionStep (Proceed with experiment?) → UserClicksYes → Star
 ```
 ShowWarning → MiddleMessageOneActionStep (I understand) → UserAcknowledges → Continue
 ```
-
-## Common Mistakes
-
-1. **Unclear action descriptions**: Ensure action button has clear, understandable text
-2. **Wrong node choice**: Use MiddleMessageTwoActionsStep for multiple options
-3. **Missing user guidance**: Provide clear instructions
-
-## Best Practices
-
-1. **Use for simple confirmations** that require user acknowledgment
-2. **Keep button text clear** and action-oriented
-3. **Provide clear context** in the message
-4. **Use for single-choice decisions** only
-5. **Ensure accessibility** for button interactions

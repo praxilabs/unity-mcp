@@ -6,7 +6,7 @@ description: Pause graph execution until user clicks UI button for interface int
 # UIClickStep Node
 
 ## Overview
-UIClickStep is a **WAIT-FOR-USER-INPUT** node that waits for user to click a UI button before allowing execution to continue. The complexity of what happens after the click depends on the action type - simple navigation can be self-contained, while complex operations need additional steps.
+UIClickStep is a **WAIT-FOR-USER-INPUT** node that waits for user to click a UI button before allowing execution to continue. The complexity of what happens after the click depends on the steps that are getting executed after the UIClickStep.
 
 ## Node Details
 
@@ -25,96 +25,32 @@ UIClickStep is a **WAIT-FOR-USER-INPUT** node that waits for user to click a UI 
 
 - **Target Button**: The UI button to click
 
+## Critical Notes
+Don't use a UI Click Step on its own, you have to make the logic yourself as the UI Click Step itself contains no logic.
+
 ## Common Patterns
 
-### Complex Operations (Need Additional Steps)
-
-#### Data Operations:
+### Data Operations:
 ```
 UIClickStep (Save Results Button) → FunctionCallStep(DataManager.SaveExperiment) → Continue
 UIClickStep (Export Data Button) → FunctionCallStep(DataExporter.ExportToCSV) → Continue
-UIClickStep (Calculate Button) → FunctionCallStep(Calculator.ProcessResults) → Continue
 ```
 
-#### Confirmation Actions:
+### Confirmation Actions:
 ```
 UIClickStep (Delete Confirmation) → FunctionCallStep(DataManager.DeleteExperiment) → Continue
 UIClickStep (Reset Equipment) → FunctionCallStep(LabController.ResetAllEquipment) → Continue
-UIClickStep (Submit Results) → FunctionCallStep(SubmissionController.Submit) → Continue
 ```
-
-#### Scenario Selection:
-```
-UIClickStep (Scenario A Button) → FunctionCallStep(ScenarioController.LoadScenarioA) → Continue
-UIClickStep (Protocol Selection) → FunctionCallStep(ProtocolManager.LoadProtocol) → Continue
-```
-
-### Simple Interactions (Self-Contained)
-
-#### Navigation:
-```
-UIClickStep (Next Button) → Continue  // Simple page navigation
-UIClickStep (Close Dialog) → Continue  // Close dialog box
-UIClickStep (Cancel Button) → Continue  // Cancel operation
-```
-
-#### Basic UI Controls:
-```
-UIClickStep (Help Button) → Continue  // Show help
-UIClickStep (Back Button) → Continue  // Go back
-UIClickStep (Continue Button) → Continue  // Proceed to next step
-```
-
-## When UIClickStep Needs Additional Steps
-
-### ALWAYS Need Next Step (Complex Operations):
-- **Data operations**: Save, load, export, calculate experimental data
-- **System functionality**: Reset equipment, change modes, process results
-- **Confirmation actions**: Delete data, submit results, reset experiments
-- **Scenario/protocol loading**: Load different experimental scenarios or protocols
-
-### SOMETIMES Self-Contained (Simple Interactions):
-- **Navigation**: Next, back, continue, close dialog buttons
-- **Basic UI controls**: Help, cancel, minimize, maximize buttons
-- **Simple toggles**: Show/hide panels without data processing
-- **Information display**: About, help, instructions buttons
-
-### Decision Guide:
-**Ask: "Does this UI action process data, change system state, or trigger laboratory functionality?"**
-- **YES** → Add FunctionCallStep after UIClickStep
-- **NO** → UIClickStep can be self-contained for simple navigation/UI control
 
 ## Common Mistakes
-
-1. **Over-engineering navigation buttons**: Adding unnecessary steps for simple Next/Back buttons
-2. **Under-engineering data operations**: Missing FunctionCallStep for save/load/calculate operations
-3. **Confusing UI vs 3D interactions**: Using UIClickStep for 3D laboratory equipment
-4. **Missing data processing steps**: Not adding appropriate function calls for complex UI operations
-5. **Incorrect controller references**: Wrong function calls for UI controllers
-6. **Ignoring complexity assessment**: Not determining if the UI action needs additional steps
+1. **Confusing UI vs 3D interactions**: Using UIClickStep for 3D laboratory equipment
+2. **Ignoring complexity assessment**: Not determining if the UI action needs additional steps
 
 ## Best Practices
-
-1. **Assess UI action complexity**: Determine if the button action needs additional steps
-2. **Focus on laboratory UI context**: Use examples relevant to experimental interfaces
 3. **Distinguish from 3D interactions**: UIClickStep for Canvas UI, ClickStep for 3D objects
 4. **Use appropriate function calls**: Most complex UI actions need FunctionCallStep connections
-5. **Verify UI controller existence**: Check that required UI controllers and methods exist
-6. **Test UI interaction sequences**: Ensure button clicks trigger expected laboratory interface functionality
-7. **Handle missing UI components**: Consider what happens if required UI scripts don't exist
-
-##  Implementation Checklist
-
-When implementing "Click UI Button X to do Y":
-1.  Create UIClickStep targeting UI button X
-2.  **Assess complexity**: Does Y process data, change system state, or trigger functionality?
-3.  **If YES** (complex): Connect UIClickStep → FunctionCallStep(UIController.DoY)
-4.  **If NO** (simple): UIClickStep can be self-contained for navigation/basic UI control
-5.  Add visual feedback steps if needed (messages, state changes)
-6.  Test that clicking button X produces the expected Y result in laboratory interface
 
 ##  UI vs 3D Click Decision
-
 **Use UIClickStep for:**
 - **Unity UI Canvas buttons**: Dialog boxes, panels, menus
 - **Interface popups**: Confirmation dialogs, settings panels

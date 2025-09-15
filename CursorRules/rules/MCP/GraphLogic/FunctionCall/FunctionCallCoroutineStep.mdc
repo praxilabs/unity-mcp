@@ -22,10 +22,11 @@ Executes coroutine methods (IEnumerator) on scene objects for asynchronous opera
 
 ## Parameters
 
-- **_calledObjectName**: {"prefabName": "ParentName", "childName": "ChildName"}
-- **selectedComponent**: Component type
-- **selectedFunction**: Coroutine method (returns IEnumerator)
-- **parameterValues**: SerializableParameter array
+- **prefabName**: parent.
+- **childName**: child.
+- **selectedComponent**: Component on Child.
+- **selectedFunction**: Function on Component.
+- **parameterValues**: Parameters (if exist).
 
 ## Common Patterns
 
@@ -43,19 +44,4 @@ FunctionCallCoroutineStep (Start coroutine) → Wait for GoToNextStep event → 
 - **IEnumerator Methods Only**: Use for methods that return IEnumerator
 - **Asynchronous Operations**: Methods run asynchronously without blocking execution
 - **Scene Objects**: Target specific scene objects, not global methods
-
-## Common Mistakes
-
-1. **Using regular FunctionCallStep for IEnumerator methods**: Use FunctionCallCoroutineStep for coroutines
-2. **Not handling completion signaling when needed**: Emit events for sequence control
-3. **Using for global coroutines**: Use FunctionCallCoroutineGlobalStep for global coroutines
-4. **Using for synchronous methods**: Use FunctionCallStep for synchronous methods
-
-## Best Practices
-
-1. **Emit completion events** when sequence must wait for coroutine completion
-2. **Keep coroutines cancellable** where possible for better control
-3. **Use for asynchronous operations** on scene objects
-4. **Verify method returns IEnumerator** before execution
-5. **Log coroutine start/stop** for debugging purposes
 
