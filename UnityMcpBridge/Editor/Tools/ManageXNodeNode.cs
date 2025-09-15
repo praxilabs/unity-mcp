@@ -92,7 +92,7 @@ namespace UnityMcpBridge.Editor.Tools {
                 // Set position first
                 newNode.position = new Vector2(posX, posY);
                 
-                newNode.metadata.tooltip = tooltip ?? "";
+                newNode.tooltip = tooltip ?? "";
                 newNode.metadata.description = description ?? "";
 
                 newNode.name = $"{nodeTypeName}_{newNode.GetInstanceID()}";

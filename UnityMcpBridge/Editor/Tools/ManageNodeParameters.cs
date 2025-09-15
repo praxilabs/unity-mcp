@@ -273,7 +273,7 @@ public static class ManageNodeParameters {
             
             return result;
         }
-        catch (Exception ex)
+        catch
         {
             // If serialization fails, return a simplified result
             return new

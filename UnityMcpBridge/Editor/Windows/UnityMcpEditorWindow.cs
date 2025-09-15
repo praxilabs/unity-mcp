@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using UnityEditor;
 using UnityEngine;
@@ -135,7 +136,7 @@ namespace UnityMcpBridge.Editor.Windows
             Handles.DrawWireDisc(center, Vector3.forward, radius);
         }
 
-        private void OnGUI()
+        private async Task OnGUI()
         {
 
             if (!InstallationManager.IsServerInstalled)
@@ -171,7 +172,7 @@ namespace UnityMcpBridge.Editor.Windows
             EditorGUILayout.Space(10);
             
             // Unified MCP Client Configuration
-            DrawUnifiedClientConfiguration();
+            await DrawUnifiedClientConfiguration();
 
             EditorGUILayout.EndScrollView();
         }
@@ -318,7 +319,7 @@ namespace UnityMcpBridge.Editor.Windows
             EditorGUILayout.EndVertical();
         }
 
-        private void DrawUnifiedClientConfiguration()
+        private async Task DrawUnifiedClientConfiguration()
         {
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             
@@ -343,14 +344,14 @@ namespace UnityMcpBridge.Editor.Windows
             if (mcpClients.clients.Count > 0 && selectedClientIndex < mcpClients.clients.Count)
             {
                 McpClient selectedClient = mcpClients.clients[selectedClientIndex];
-                DrawClientConfigurationCompact(selectedClient);
+                await DrawClientConfigurationCompact(selectedClient);
             }
             
             EditorGUILayout.Space(5);
             EditorGUILayout.EndVertical();
         }
 
-        private void DrawClientConfigurationCompact(McpClient mcpClient)
+        private async Task DrawClientConfigurationCompact(McpClient mcpClient)
         {
             // Status display
             EditorGUILayout.BeginHorizontal();
@@ -404,7 +405,7 @@ namespace UnityMcpBridge.Editor.Windows
                 
                 if (GUILayout.Button("Install Cursor MCP Rules", GUILayout.Height(32)))
                 {
-                    CursorRulesInstaller.InstallCursorMcpRules();
+                    await CursorRulesInstaller.InstallCursorMcpRules();
                 }
             }
             else
