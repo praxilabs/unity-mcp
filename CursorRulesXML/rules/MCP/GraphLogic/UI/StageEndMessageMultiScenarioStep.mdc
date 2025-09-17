@@ -1,0 +1,62 @@
+---
+description: Display stage completion message for multiple scenarios
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>StageEndMessageMultiScenarioStep</title>
+    <description>Display stage completion message for multiple scenarios</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new StageEndMessageMultiScenarioStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <requirement priority="critical">
+      <description>StageEndMessageMultiScenarioStep displays a stage completion message that handles multiple scenarios and outcomes, suitable for complex completion logic. Use for complex stage completion and multiple outcome scenarios.</description>
+      <examples>
+        <example title="Multi-Scenario Completion">
+          <correct-example title="Proper multi-scenario usage" conditions="Need complex completion logic" expected-result="Multi-scenario completion message displayed" correctness-criteria="Uses StageEndMessageMultiScenarioStep for complex completion">StageEndMessageMultiScenarioStep (Multiple outcomes) → HandleScenario → Continue</correct-example>
+          <incorrect-example title="Improper multi-scenario usage" conditions="Need complex completion logic" expected-result="Multi-scenario completion message displayed" correctness-criteria="Uses StageEndMessageIndependentStep for complex completion">StageEndMessageIndependentStep (Multiple outcomes) → HandleScenario (wrong approach)</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>StageEndMessageMultiScenarioStep requires Stage Name (name of the completed stage), Scenarios (list of possible scenarios/outcomes), Message Text (completion message content), and Scenario Details (details about each scenario outcome). Must have multiple scenarios defined, scenario logic system to handle different outcomes, completion message content prepared, and outcome processing logic for all possible outcomes.</description>
+      <examples>
+        <example title="Parameter Requirements">
+          <correct-example title="Proper parameter usage" conditions="Using StageEndMessageMultiScenarioStep" expected-result="Multi-scenario completion message successfully displayed" correctness-criteria="Provides valid stage name and scenarios">StageEndMessageMultiScenarioStep (Stage Name: "Analysis Complete", Scenarios: ["Success", "Partial", "Failed"], Message Text: "Analysis completed with multiple outcomes") → Message displayed</correct-example>
+          <incorrect-example title="Improper parameter usage" conditions="Using StageEndMessageMultiScenarioStep" expected-result="Multi-scenario completion message successfully displayed" correctness-criteria="Missing required scenarios">StageEndMessageMultiScenarioStep (Stage Name: "Analysis Complete", Message Text: "Analysis completed") → No scenarios provided</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use StageEndMessageMultiScenarioStep for multiple scenarios only. Use for stage completions with multiple possible outcomes. Complex logic - use for complex completion logic with multiple paths. NOT simple - use StageEndMessageIndependentStep for simple completions.</description>
+      <examples>
+        <example title="Multi-Scenario vs Simple Completion">
+          <correct-example title="Proper multi-scenario usage" conditions="Need complex completion logic" expected-result="Multi-scenario completion message displayed" correctness-criteria="Uses StageEndMessageMultiScenarioStep for complex logic">StageEndMessageMultiScenarioStep (Complex completion) → Multi-scenario display</correct-example>
+          <incorrect-example title="Improper simple completion usage" conditions="Need complex completion logic" expected-result="Multi-scenario completion message displayed" correctness-criteria="Uses simple completion for complex logic">StageEndMessageIndependentStep (Complex completion) → Simple display (wrong approach)</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use multi-scenario stage pattern for complex completions, complex completion logic pattern for outcome evaluation, and multiple path completion pattern for multi-stage scenarios and complex workflow completions.</description>
+      <examples>
+        <example title="Multi-Scenario Patterns">
+          <correct-example title="Proper multi-scenario stage pattern" conditions="Need complex completion logic" expected-result="Multi-scenario completion with outcome handling" correctness-criteria="Uses multi-scenario stage pattern">StageEndMessageMultiScenarioStep (Multiple outcomes) → HandleScenario → Continue</correct-example>
+          <incorrect-example title="Improper simple completion pattern" conditions="Need complex completion logic" expected-result="Multi-scenario completion with outcome handling" correctness-criteria="Uses simple completion for complex logic">StageEndMessageIndependentStep (Multiple outcomes) → HandleScenario (wrong approach)</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for StageEndMessageMultiScenarioStep">
+    This node is essential for complex stage completion and multiple outcome scenarios in virtual lab experiments. It provides the capability to display a stage completion message that handles multiple scenarios and outcomes, suitable for complex completion logic. The complex logic and scenario handling are critical for proper usage.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/UI/UINodes.mdc" reason="UI nodes overview">User interface and messaging patterns</reference>
+  </references>
+</rule>

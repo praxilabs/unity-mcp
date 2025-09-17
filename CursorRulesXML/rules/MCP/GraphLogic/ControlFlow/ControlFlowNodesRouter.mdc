@@ -1,0 +1,93 @@
+---
+description: Core logic for control flow nodes and critical graph validation rules. Contains mandatory connection requirements, graph structure validation, and parallel execution patterns using CompositeStep.
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>Control Flow Nodes</title>
+    <description>Core logic for control flow nodes and critical graph validation rules. Contains mandatory connection requirements, graph structure validation, and parallel execution patterns using CompositeStep.</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <non-negotiable priority="critical">
+      <description>This is a ROUTING RULE ONLY - it does not provide functional tools or capabilities. This rule only routes you to the appropriate node rules for detailed implementation. For actual node implementation, refer to the specific node rules: CompositeStep.mdc, IfStatementStep.mdc, SwitchStep.mdc, ORStep.mdc, and FirstThenStep.mdc.</description>
+    </non-negotiable>
+    <requirement priority="critical">
+      <description>All control flow nodes must have proper input/output connections. First step nodes can only have outgoing connections, end nodes can only have incoming connections, and middle nodes must have both incoming and outgoing connections.</description>
+      <examples>
+        <example title="Control Flow Connections">
+          <correct-example title="Proper control flow connections" conditions="Creating control flow nodes" expected-result="Valid node connections" correctness-criteria="Follows connection rules">FirstStep(exit) → MiddleStep(entry) → EndStep(entry)</correct-example>
+          <incorrect-example title="Improper control flow connections" conditions="Creating control flow nodes" expected-result="Valid node connections" incorrectness-criteria="Violates connection rules">MiddleStep without incoming connection</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Always validate graph structure after creation using mcp_unityMCP_list_graph_nodes to check for orphaned nodes, remove orphaned nodes that aren't part of execution flow, and verify all nodes have proper connections.</description>
+      <examples>
+        <example title="Graph Validation">
+          <correct-example title="Proper graph validation" conditions="After creating control flow graph" expected-result="Validated graph structure" correctness-criteria="Follows complete validation process">Create graph → list_graph_nodes → check for orphaned nodes → remove orphaned nodes → verify connections</correct-example>
+          <incorrect-example title="Improper graph validation" conditions="After creating control flow graph" expected-result="Validated graph structure" incorrectness-criteria="Skips validation steps">Create graph without validation</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use CompositeStep for parallel execution when multiple branches must execute in any order. ALL route completion nodes MUST connect BACK to CompositeStep.entry, and CompositeStep.exit ONLY triggers when ALL routes are completed.</description>
+      <examples>
+        <example title="CompositeStep Usage">
+          <correct-example title="Proper CompositeStep implementation" conditions="Need parallel execution" expected-result="Correct parallel execution pattern" correctness-criteria="Routes connect back to entry">CompositeStep.entry ← Setup, CompositeStep.routes → ClickStep A → Action A → CompositeStep.entry</correct-example>
+          <incorrect-example title="Improper CompositeStep implementation" conditions="Need parallel execution" expected-result="Correct parallel execution pattern" incorrectness-criteria="Routes don't connect back to entry">CompositeStep.routes → ClickStep A → Action A → NextStep</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use IfStatementStep for boolean conditional branching with True and False outputs. Always provide logic for both True and False paths to handle all possible conditions.</description>
+      <examples>
+        <example title="IfStatementStep Usage">
+          <correct-example title="Proper IfStatementStep implementation" conditions="Need conditional branching" expected-result="Complete conditional logic" correctness-criteria="Handles both True and False cases">IfStatementStep → True: Execute Action A, False: Execute Action B</correct-example>
+          <incorrect-example title="Improper IfStatementStep implementation" conditions="Need conditional branching" expected-result="Complete conditional logic" incorrectness-criteria="Missing False case">IfStatementStep → True: Execute Action A</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use SwitchStep for multi-way branching with custom values or SwitchEnumStep for enum-based branching. Ensure all possible cases are covered and always provide a default case for unexpected values.</description>
+      <examples>
+        <example title="SwitchStep Usage">
+          <correct-example title="Proper SwitchStep implementation" conditions="Need multi-way branching" expected-result="Complete switch logic" correctness-criteria="Covers all cases with default">SwitchStep → Case 1: Action A, Case 2: Action B, Default: Action C</correct-example>
+          <incorrect-example title="Improper SwitchStep implementation" conditions="Need multi-way branching" expected-result="Complete switch logic" incorrectness-criteria="Missing cases or default">SwitchStep → Case 1: Action A, Case 2: Action B</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use ORStep for multiple choice scenarios where only one option needs to be selected. Use FirstThenStep for sequential execution where Branch A must execute before Branch B.</description>
+      <examples>
+        <example title="ORStep and FirstThenStep Usage">
+          <correct-example title="Proper ORStep implementation" conditions="Need multiple choice" expected-result="Single selection logic" correctness-criteria="Only one option required">ORStep → Option A: ExecuteOptionA, Option B: ExecuteOptionB</correct-example>
+          <incorrect-example title="Improper ORStep implementation" conditions="Need multiple choice" expected-result="Single selection logic" incorrectness-criteria="Requires all options">ORStep → Option A: ExecuteOptionA, Option B: ExecuteOptionB, Both required</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <non-negotiable priority="critical">
+      <description>NEVER use CompositeStep for sequential operations. Use normal chain (Node1 → Node2 → Node3) for sequential operations. CompositeStep is ONLY for parallel execution where order doesn't matter.</description>
+      <examples>
+        <example title="CompositeStep Restrictions">
+          <correct-example title="Proper sequential execution" conditions="Need sequential operations" expected-result="Sequential flow" correctness-criteria="Uses normal chain">Node1 → Node2 → Node3</correct-example>
+          <incorrect-example title="Improper CompositeStep usage" conditions="Need sequential operations" expected-result="Sequential flow" incorrectness-criteria="Uses CompositeStep for sequential">CompositeStep for sequential operations</correct-example>
+        </example>
+      </examples>
+    </non-negotiable>
+  </requirements>
+  <context description="Additional considerations for control flow nodes">
+    Control flow nodes are essential for managing execution flow and branching logic in virtual lab experiments. Always validate graph structure after creation and ensure proper connections. Use the appropriate node type for your specific control flow needs: CompositeStep for parallel execution, IfStatementStep for conditional branching, SwitchStep for multi-way decisions, ORStep for multiple choice, and FirstThenStep for sequential execution.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/ControlFlow/CompositeStep.mdc" reason="Parallel execution patterns">CompositeStep implementation patterns</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/ControlFlow/IfStatementStep.mdc" reason="Conditional branching patterns">IfStatementStep implementation patterns</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/ControlFlow/SwitchStep.mdc" reason="Multi-way branching patterns">SwitchStep implementation patterns</reference>
+  </references>
+</rule>

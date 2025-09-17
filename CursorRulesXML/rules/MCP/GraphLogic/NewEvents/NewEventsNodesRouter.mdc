@@ -1,0 +1,82 @@
+---
+description: Event-driven interactions and reactive programming. Contains event caller nodes and event-based step patterns for reactive experiment flows.
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>NewEvents Nodes</title>
+    <description>Event-driven interactions and reactive programming. Contains event caller nodes and event-based step patterns for reactive experiment flows.</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <non-negotiable priority="critical">
+      <description>This is a ROUTING RULE ONLY - it does not provide functional tools or capabilities. This rule only routes you to the appropriate node rules for detailed implementation. For actual node implementation, refer to the specific node rules: EventCallerStep.mdc.</description>
+    </non-negotiable>
+    <requirement priority="critical">
+      <description>NewEvents nodes handle event-driven interactions and reactive programming in virtual lab experiments for cross-graph signaling and reactive behaviors. All events must be registered in the Event Registry, use exact event names to avoid typos, and implement reactive programming for event-driven behaviors and cross-graph communication.</description>
+      <examples>
+        <example title="NewEvents Setup">
+          <correct-example title="Proper NewEvents setup" conditions="Creating new events nodes" expected-result="Working event-driven interactions" correctness-criteria="Follows all prerequisites">Event registered in Event Registry with exact event name and appropriate listeners</correct-example>
+          <incorrect-example title="Improper NewEvents setup" conditions="Creating new events nodes" expected-result="Working event-driven interactions" correctness-criteria="Missing prerequisites">Unregistered event, typo in event name, or missing listeners</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use EventCallerStep for event-driven interactions and reactive programming, cross-graph signaling and communication, triggering registered events during experiment flow, and reactive behaviors based on experiment state.</description>
+      <examples>
+        <example title="EventCallerStep Usage">
+          <correct-example title="Proper EventCallerStep usage" conditions="Need event-driven interaction" expected-result="Event-driven behavior" correctness-criteria="Uses EventCallerStep for events">EventCallerStep("RegisteredEventName") for cross-graph signaling</correct-example>
+          <incorrect-example title="Improper EventCallerStep usage" conditions="Need direct execution" expected-result="Direct execution" correctness-criteria="Uses EventCallerStep for non-event operations">EventCallerStep for direct method calls (should use FunctionCallStep)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Event registration and naming are critical for NewEvents functionality. Event names must be exact and registered in the Event Registry. Use descriptive event names that clearly indicate the purpose and trigger condition of the event.</description>
+      <examples>
+        <example title="Event Registration and Naming">
+          <correct-example title="Proper event registration and naming" conditions="Registering and naming events" expected-result="Working event system" correctness-criteria="Uses exact registered names">EventCallerStep("OnExperimentComplete"), EventCallerStep("OnUserInputReceived")</correct-example>
+          <incorrect-example title="Improper event registration and naming" conditions="Registering and naming events" expected-result="Working event system" correctness-criteria="Uses unregistered or incorrect names">EventCallerStep("Event1"), EventCallerStep("OnComplete") (typo or unregistered)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use NewEvents for reactive programming patterns where experiment flow responds to events rather than following linear execution. Common patterns include conditional event triggers, chained events, and cross-graph communication.</description>
+      <examples>
+        <example title="Reactive Programming Patterns">
+          <correct-example title="Proper reactive programming pattern" conditions="Implementing reactive behavior" expected-result="Event-driven experiment flow" correctness-criteria="Follows reactive patterns">IfStatementStep(condition) → True: EventCallerStep("OnConditionMet") → Continue</correct-example>
+          <incorrect-example title="Improper reactive programming pattern" conditions="Implementing reactive behavior" expected-result="Event-driven experiment flow" correctness-criteria="Uses linear execution">Linear execution without event-driven responses</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use descriptive event names and meaningful payload parameters in NewEvents to make the logic clear and maintainable. Event names should clearly indicate the trigger condition and payload should contain relevant data for event handlers.</description>
+      <examples>
+        <example title="Descriptive Event Names and Payloads">
+          <correct-example title="Clear event names and payloads" conditions="Naming events and setting payloads" expected-result="Readable event-driven logic" correctness-criteria="Uses descriptive names and meaningful payloads">EventCallerStep("OnTemperatureReached", payload: {"temperature": 100}), EventCallerStep("OnUserSelectionMade", payload: {"choice": "OptionA"})</correct-example>
+          <incorrect-example title="Unclear event names and payloads" conditions="Naming events and setting payloads" expected-result="Readable event-driven logic" incorrectness-criteria="Uses unclear names and empty payloads">EventCallerStep("Event1", payload: {}), EventCallerStep("Trigger", payload: null)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <non-negotiable priority="critical">
+      <description>NEVER use EventCallerStep for direct method execution or non-event operations. NEVER use unregistered event names or event names with typos. NEVER use NewEvents for linear execution patterns. Always ensure events are properly registered and use exact event names.</description>
+      <examples>
+        <example title="NewEvents Restrictions">
+          <correct-example title="Proper NewEvents usage" conditions="Selecting NewEvents" expected-result="Correct event-driven execution" correctness-criteria="Uses NewEvents appropriately">Event-driven interactions with registered events and exact names</correct-example>
+          <incorrect-example title="Improper NewEvents usage" conditions="Selecting NewEvents" expected-result="Correct event-driven execution" correctness-criteria="Uses NewEvents inappropriately">Direct method execution, unregistered events, or linear execution patterns</correct-example>
+        </example>
+      </examples>
+    </non-negotiable>
+  </requirements>
+  <context description="Additional considerations for NewEvents nodes">
+    NewEvents nodes are essential for event-driven interactions and reactive programming in virtual lab experiments. Always ensure proper event registration, use exact event names, and implement appropriate event listeners. Use for cross-graph signaling and reactive behaviors rather than linear execution patterns.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/NewEvents/EventCallerStep.mdc" reason="Event-driven trigger">EventCallerStep implementation patterns</reference>
+  </references>
+</rule>

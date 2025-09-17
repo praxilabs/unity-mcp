@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using UnityEditor;
 using UnityEngine;
@@ -22,6 +21,7 @@ namespace UnityMcpBridge.Editor.Windows
         private Color pythonServerInstallationStatusColor = Color.red;
         private const int mcpPort = 6500; // MCP port (still hardcoded for MCP server)
         private readonly McpClients mcpClients = new();
+        private static bool hasLoggedOnGUI = false; // Add debug flag
         
         // Script validation settings
         private int validationLevelIndex = 1; // Default to Standard
@@ -39,22 +39,52 @@ namespace UnityMcpBridge.Editor.Windows
         [MenuItem("Window/Unity MCP/MCP Bridge Manager")]
         public static void ShowWindow()
         {
-            GetWindow<UnityMcpEditorWindow>("MCP Editor");
+            UnityEngine.Debug.Log("ShowWindow called");
+            try
+            {
+                var window = GetWindow<UnityMcpEditorWindow>("MCP Editor");
+                UnityEngine.Debug.Log($"Window created: {window != null}");
+                
+                if (window != null)
+                {
+                    window.Show();
+                    window.Focus();
+                    window.Repaint();
+                    UnityEngine.Debug.Log("Window show/focus/repaint called");
+                }
+            }
+            catch (System.Exception e)
+            {
+                UnityEngine.Debug.LogError($"Error creating window: {e.Message}\n{e.StackTrace}");
+            }
         }
 
         private void OnEnable()
         {
-            UpdatePythonServerInstallationStatus();
-
-            // Refresh bridge status
-            isUnityBridgeRunning = UnityMcpBridge.IsRunning;
-            foreach (McpClient mcpClient in mcpClients.clients)
+            UnityEngine.Debug.Log("UnityMcpEditorWindow OnEnable called");
+            try
             {
-                CheckMcpConfiguration(mcpClient);
+                UpdatePythonServerInstallationStatus();
+
+                // Refresh bridge status
+                isUnityBridgeRunning = UnityMcpBridge.IsRunning;
+                foreach (McpClient mcpClient in mcpClients.clients)
+                {
+                    CheckMcpConfiguration(mcpClient);
+                }
+                
+                // Load validation level setting
+                LoadValidationLevelSetting();
+                UnityEngine.Debug.Log("OnEnable completed successfully");
+                
+                // Force a repaint to trigger OnGUI
+                Repaint();
+                UnityEngine.Debug.Log("Repaint called from OnEnable");
             }
-            
-            // Load validation level setting
-            LoadValidationLevelSetting();
+            catch (System.Exception e)
+            {
+                UnityEngine.Debug.LogError($"Error in OnEnable: {e.Message}\n{e.StackTrace}");
+            }
         }
         
         private void OnFocus()
@@ -136,9 +166,8 @@ namespace UnityMcpBridge.Editor.Windows
             Handles.DrawWireDisc(center, Vector3.forward, radius);
         }
 
-        private async Task OnGUI()
+        void OnGUI()
         {
-
             if (!InstallationManager.IsServerInstalled)
             {
                 EditorGUILayout.Space(10);
@@ -172,7 +201,7 @@ namespace UnityMcpBridge.Editor.Windows
             EditorGUILayout.Space(10);
             
             // Unified MCP Client Configuration
-            await DrawUnifiedClientConfiguration();
+            DrawUnifiedClientConfiguration();
 
             EditorGUILayout.EndScrollView();
         }
@@ -319,7 +348,7 @@ namespace UnityMcpBridge.Editor.Windows
             EditorGUILayout.EndVertical();
         }
 
-        private async Task DrawUnifiedClientConfiguration()
+        private void DrawUnifiedClientConfiguration()
         {
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             
@@ -344,14 +373,14 @@ namespace UnityMcpBridge.Editor.Windows
             if (mcpClients.clients.Count > 0 && selectedClientIndex < mcpClients.clients.Count)
             {
                 McpClient selectedClient = mcpClients.clients[selectedClientIndex];
-                await DrawClientConfigurationCompact(selectedClient);
+                DrawClientConfigurationCompact(selectedClient);
             }
             
             EditorGUILayout.Space(5);
             EditorGUILayout.EndVertical();
         }
 
-        private async Task DrawClientConfigurationCompact(McpClient mcpClient)
+        private void DrawClientConfigurationCompact(McpClient mcpClient)
         {
             // Status display
             EditorGUILayout.BeginHorizontal();
@@ -405,7 +434,7 @@ namespace UnityMcpBridge.Editor.Windows
                 
                 if (GUILayout.Button("Install Cursor MCP Rules", GUILayout.Height(32)))
                 {
-                    await CursorRulesInstaller.InstallCursorMcpRules();
+                    _ = CursorRulesInstaller.InstallCursorMcpRules();
                 }
             }
             else

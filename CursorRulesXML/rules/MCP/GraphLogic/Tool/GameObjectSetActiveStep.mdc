@@ -1,0 +1,71 @@
+---
+description: Show/hide GameObjects at scene for visibility control and object state management
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>GameObjectSetActiveStep</title>
+    <description>Show/hide GameObjects at scene for visibility control and object state management</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new GameObjectSetActiveStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <requirement priority="critical">
+      <description>GameObjectSetActiveStep controls the visibility and active state of GameObjects in the scene for visibility control and object state management. Use for visibility control, object state management, and tool presentation.</description>
+      <examples>
+        <example title="Object Visibility Control">
+          <correct-example title="Proper visibility control" conditions="Need to show/hide object" expected-result="Object visibility controlled" correctness-criteria="Uses GameObjectSetActiveStep for single object visibility">GameObjectSetActiveStep (hide single object) → DelayStep → GameObjectSetActiveStep (show single object)</correct-example>
+          <incorrect-example title="Improper visibility control" conditions="Need to show/hide object" expected-result="Object visibility controlled" correctness-criteria="Uses ToggleColliderStep for visibility control">ToggleColliderStep (Object, disable) → Object hidden (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>GameObjectSetActiveStep requires Target Object (the GameObject to show/hide) and Active State (boolean to enable/disable the object). Target GameObject must be registered in Item Registry, exist and be accessible, and be properly configured.</description>
+      <examples>
+        <example title="Parameter Requirements">
+          <correct-example title="Proper parameter usage" conditions="Using GameObjectSetActiveStep" expected-result="Object visibility successfully controlled" correctness-criteria="Provides valid target object and active state">GameObjectSetActiveStep (Target Object: "Tool", Active State: true) → Object shown</correct-example>
+          <incorrect-example title="Improper parameter usage" conditions="Using GameObjectSetActiveStep" expected-result="Object visibility successfully controlled" correctness-criteria="Missing required target object or active state">GameObjectSetActiveStep (Active State: true) → No target object provided</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use GameObjectSetActiveStep for single object visibility control only. Works on ONE single object at a time for showing/hiding objects, not collider management. Use ToggleColliderStep for collider management and multiple GameObjectSetActiveStep nodes for multiple objects.</description>
+      <examples>
+        <example title="Single Object vs Multiple Objects">
+          <correct-example title="Proper single object usage" conditions="Need to control single object visibility" expected-result="Single object visibility controlled" correctness-criteria="Uses GameObjectSetActiveStep for single object">GameObjectSetActiveStep (Object1, true) → Object1 shown</correct-example>
+          <incorrect-example title="Improper multiple object usage" conditions="Need to control multiple object visibility" expected-result="Multiple objects visibility controlled" correctness-criteria="Tries to control multiple objects with single node">GameObjectSetActiveStep ([Object1, Object2], true) → Multiple objects controlled (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use GameObjectSetActiveStep for visibility control only, not collider management. Controls active state of GameObjects for visibility. Use ToggleColliderStep for collider enable/disable operations.</description>
+      <examples>
+        <example title="Visibility vs Collider Control">
+          <correct-example title="Proper visibility control usage" conditions="Need to hide object" expected-result="Object hidden" correctness-criteria="Uses GameObjectSetActiveStep for visibility">GameObjectSetActiveStep (Object, false) → Object hidden</correct-example>
+          <incorrect-example title="Improper collider control usage" conditions="Need to disable collider" expected-result="Collider disabled" correctness-criteria="Uses GameObjectSetActiveStep for collider control">GameObjectSetActiveStep (Object, false) → Collider disabled (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use single object show/hide pattern for basic visibility control. Use scenario-based single object management pattern for conditional object visibility based on scenarios.</description>
+      <examples>
+        <example title="Visibility Patterns">
+          <correct-example title="Proper single object pattern" conditions="Need basic visibility control" expected-result="Object visibility controlled" correctness-criteria="Uses single object show/hide pattern">GameObjectSetActiveStep (hide single object) → DelayStep → GameObjectSetActiveStep (show single object)</correct-example>
+          <incorrect-example title="Improper scenario pattern" conditions="Need basic visibility control" expected-result="Object visibility controlled" correctness-criteria="Uses complex scenario pattern when simple pattern is appropriate">IfStatementStep (IsScenarioA) → GameObjectSetActiveStep (ShowSingleScenarioATool, True)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for GameObjectSetActiveStep">
+    This node is essential for object visibility control and state management in virtual lab experiments. It provides the capability to show/hide GameObjects in the scene, enabling tool presentation and object state management. The single object limitation is critical for proper operation.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Tool/ToolNodes.mdc" reason="Tool nodes overview">Object manipulation and visibility control patterns</reference>
+  </references>
+</rule>

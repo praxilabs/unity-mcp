@@ -1,0 +1,62 @@
+---
+description: Wait for specified time for timing control and pacing experiments
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>DelayStep</title>
+    <description>Wait for specified time for timing control and pacing experiments</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new DelayStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <requirement priority="critical">
+      <description>DelayStep provides timing control in virtual lab experiments for waiting specified time periods, pacing experiments, and controlling timing between actions. Use for timing between actions, pacing experiments, and smooth transitions.</description>
+      <examples>
+        <example title="Timing Control">
+          <correct-example title="Proper delay usage" conditions="Need timing control" expected-result="System waits for specified time" correctness-criteria="Uses DelayStep for fixed system timing">Action A → DelayStep (wait) → Action B → Continue</correct-example>
+          <incorrect-example title="Improper delay usage" conditions="Need timing control" expected-result="System waits for specified time" correctness-criteria="Uses FreezeLabStep for timing control">Action A → FreezeLabStep (freeze) → Action B (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>DelayStep requires Duration (time to wait in seconds). No additional prerequisites needed for basic timing control operations.</description>
+      <examples>
+        <example title="Parameter Requirements">
+          <correct-example title="Proper parameter usage" conditions="Using DelayStep" expected-result="System waits for specified duration" correctness-criteria="Provides valid duration parameter">DelayStep (Duration: 5) → System waits 5 seconds</correct-example>
+          <incorrect-example title="Improper parameter usage" conditions="Using DelayStep" expected-result="System waits for specified duration" correctness-criteria="Missing required duration parameter">DelayStep (no parameters) → No duration provided</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use DelayStep for fixed system delay only, not user-controlled timing. Use for fixed system timing and system pacing. Use TimerStep for user-controlled timing with UI controls.</description>
+      <examples>
+        <example title="System vs User Timing">
+          <correct-example title="Proper system timing usage" conditions="Need fixed system timing" expected-result="System waits for fixed time" correctness-criteria="Uses DelayStep for system timing">DelayStep (Duration: 5) → System waits 5 seconds</correct-example>
+          <incorrect-example title="Improper user timing usage" conditions="Need user-controlled timing" expected-result="User controls timing with UI" correctness-criteria="Uses DelayStep for user timing">DelayStep (Duration: 5) → User controls timing (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use timing control pattern for basic action sequencing. Combines actions with delays for smooth transitions and system pacing in experiment workflows.</description>
+      <examples>
+        <example title="Timing Control Pattern">
+          <correct-example title="Proper timing control pattern" conditions="Need action sequencing with timing" expected-result="Actions sequenced with proper timing" correctness-criteria="Uses timing control pattern">Action A → DelayStep (wait) → Action B → Continue</correct-example>
+          <incorrect-example title="Improper timing control pattern" conditions="Need action sequencing with timing" expected-result="Actions sequenced with proper timing" correctness-criteria="Skips timing between actions">Action A → Action B → Continue</correct-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for DelayStep">
+    This node is essential for timing control and pacing in virtual lab experiments. It provides the capability to wait for specified time periods, enabling smooth transitions and system pacing. The distinction between system timing and user-controlled timing is critical for proper usage.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Utility/UtilityNodes.mdc" reason="Utility nodes overview">System utility operations and timing control patterns</reference>
+  </references>
+</rule>

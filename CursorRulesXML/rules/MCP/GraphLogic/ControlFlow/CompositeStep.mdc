@@ -1,0 +1,90 @@
+---
+description: Parallel execution management node for multiple branches that must execute in any order
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>CompositeStep</title>
+    <description>Parallel execution management node for multiple branches that must execute in any order</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new CompositeStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <requirement priority="critical">
+      <description>CompositeStep manages parallel execution where multiple branches must execute in any order. ALL route completion nodes MUST connect BACK to CompositeStep.entry, and CompositeStep.exit ONLY triggers when ALL routes are completed.</description>
+      <examples>
+        <example title="CompositeStep Implementation">
+          <correct-example title="Proper CompositeStep with return connections" conditions="Creating parallel execution" expected-result="Correct parallel execution pattern" correctness-criteria="Routes connect back to entry">CompositeStep.entry ← Setup, CompositeStep.routes → ClickStep A → Action A → CompositeStep.entry, CompositeStep.routes → ClickStep B → Action B → CompositeStep.entry, CompositeStep.exit → Completion</correct-example>
+          <incorrect-example title="Incorrect CompositeStep without return connections" conditions="Creating parallel execution" expected-result="Correct parallel execution pattern" incorrectness-criteria="Routes don't connect back to entry">CompositeStep.routes → ClickStep A → Action A → NextStep, CompositeStep.routes → ClickStep B → Action B → NextStep</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use CompositeStep for multiple user interactions in any order, independent setup procedures, and user choice freedom where tasks can be completed in preferred sequence. All branches must be completed for CompositeStep to exit.</description>
+      <examples>
+        <example title="Parallel User Interactions">
+          <correct-example title="Proper parallel user interactions" conditions="Need multiple interactions in any order" expected-result="Flexible user interaction" correctness-criteria="All interactions required, order flexible">Click 4 devices in any order, prepare multiple tools simultaneously, complete tasks in preferred sequence</correct-example>
+          <incorrect-example title="Incorrect parallel user interactions" conditions="Need multiple interactions in any order" expected-result="Flexible user interaction" incorrectness-criteria="Sequential interactions required">Click devices in specific order, prepare tools one by one</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>CompositeStep tracks completion of ALL routes. The exit port only triggers when every route has been completed and returned to the entry port. This ensures all required parallel actions are finished before proceeding.</description>
+      <examples>
+        <example title="Completion Tracking">
+          <correct-example title="Proper completion tracking" conditions="Tracking parallel completion" expected-result="All routes completed before exit" correctness-criteria="Exit waits for all routes">All 4 device clicks must complete before CompositeStep.exit triggers</correct-example>
+          <incorrect-example title="Incorrect completion tracking" conditions="Tracking parallel completion" expected-result="All routes completed before exit" incorrectness-criteria="Exit triggers before all routes complete">CompositeStep.exit triggers after first route completes</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use CompositeStep for scenarios where multiple branches must execute but order doesn't matter. Each route should represent an independent action that can be completed in any sequence.</description>
+      <examples>
+        <example title="Independent Parallel Actions">
+          <correct-example title="Proper independent actions" conditions="Need independent parallel actions" expected-result="Flexible execution order" correctness-criteria="Actions are independent">Check safety equipment, verify measurements, prepare workspace (any order)</correct-example>
+          <incorrect-example title="Incorrect independent actions" conditions="Need independent parallel actions" expected-result="Flexible execution order" incorrectness-criteria="Actions are dependent">Setup equipment, then calibrate, then measure (sequential order required)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Ensure all routes in CompositeStep eventually return to the entry port. Each route should complete its specific action and then connect back to CompositeStep.entry to signal completion.</description>
+      <examples>
+        <example title="Route Return Pattern">
+          <correct-example title="Proper route return pattern" conditions="Designing CompositeStep routes" expected-result="All routes return to entry" correctness-criteria="Each route connects back">Route A: Action A → CompositeStep.entry, Route B: Action B → CompositeStep.entry</correct-example>
+          <incorrect-example title="Incorrect route return pattern" conditions="Designing CompositeStep routes" expected-result="All routes return to entry" incorrectness-criteria="Routes don't return to entry">Route A: Action A → NextStep, Route B: Action B → NextStep</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <non-negotiable priority="critical">
+      <description>NEVER use CompositeStep for sequential operations. Use normal chain (Node1 → Node2 → Node3) for sequential operations. Use FirstThenStep for sequential execution where order matters. CompositeStep is ONLY for parallel execution where order doesn't matter.</description>
+      <examples>
+        <example title="CompositeStep vs Sequential">
+          <correct-example title="Proper CompositeStep usage" conditions="Parallel execution needed" expected-result="Flexible execution order" correctness-criteria="Uses CompositeStep for parallel">Multiple user interactions in any order, independent setup procedures</correct-example>
+          <incorrect-example title="Incorrect CompositeStep usage" conditions="Sequential execution needed" expected-result="Ordered execution" incorrectness-criteria="Uses CompositeStep for sequential">Setup equipment → Calibrate → Measure (should use normal chain or FirstThenStep)</correct-example>
+        </example>
+      </examples>
+    </non-negotiable>
+    <non-negotiable priority="critical">
+      <description>NEVER use CompositeStep for single user interaction or conditional branching. Use normal ClickStep for single interactions and IfStatementStep for conditional logic. CompositeStep is ONLY for multiple parallel branches.</description>
+      <examples>
+        <example title="CompositeStep Restrictions">
+          <correct-example title="Proper CompositeStep usage" conditions="Multiple parallel branches needed" expected-result="Multiple parallel execution" correctness-criteria="Uses CompositeStep for multiple branches">4 device interactions, multiple tool preparations</correct-example>
+          <incorrect-example title="Incorrect CompositeStep usage" conditions="Single interaction or conditional logic" expected-result="Single or conditional execution" incorrectness-criteria="Uses CompositeStep inappropriately">Single device click (use ClickStep), conditional check (use IfStatementStep)</correct-example>
+        </example>
+      </examples>
+    </non-negotiable>
+  </requirements>
+  <context description="Additional considerations for CompositeStep">
+    CompositeStep is essential for parallel execution scenarios where multiple actions must be completed but order doesn't matter. Always ensure all routes return to the entry port and that the exit only triggers when all routes are complete. Use other control flow nodes for sequential, conditional, or single-choice scenarios.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/ControlFlow/FirstThenStep.mdc" reason="Sequential execution">FirstThenStep for sequential execution</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/ControlFlow/IfStatementStep.mdc" reason="Conditional branching">IfStatementStep for conditional logic</reference>
+  </references>
+</rule>

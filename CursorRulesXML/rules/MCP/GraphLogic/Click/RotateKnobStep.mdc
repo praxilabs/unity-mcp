@@ -1,0 +1,62 @@
+---
+description: Handle knob rotation interactions for instrument controls and value adjustments
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>RotateKnobStep</title>
+    <description>Handle knob rotation interactions for instrument controls and value adjustments</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new RotateKnobStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <requirement priority="critical">
+      <description>RotateKnobStep is ActionExecuted so it waits for the knob to be rotated by the user with the desired angle in order for the step to complete execution. The knob must have EnhancedKnobController Script, CursorStateHandler Script, and Collider.</description>
+      <examples>
+        <example title="Knob Rotation Execution">
+          <correct-example title="Proper knob rotation execution" conditions="Need knob rotation interaction" expected-result="Knob rotation completed when desired angle reached" correctness-criteria="Waits for user to rotate knob to desired angle">RotateKnobStep(Knob, -90, 1.5f) → FunctionCallStep(EnhancedKnobManager.SetInteractability(false))</correct-example>
+          <incorrect-example title="Missing knob rotation logic" conditions="Need knob rotation interaction" expected-result="Knob rotation completed when desired angle reached" incorrectness-criteria="Missing rotation angle specification">RotateKnobStep(Knob) // Missing angle and delay parameters</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Knob object must have EnhancedKnobController Script (handles knob rotation mechanism), CursorStateHandler Script, and Collider. Hologram is optional for visual feedback when the node starts to execute.</description>
+      <examples>
+        <example title="Required Components">
+          <correct-example title="Proper component setup" conditions="Setting up knob for rotation" expected-result="Knob ready for rotation interaction" correctness-criteria="Has all required scripts and components">Knob has EnhancedKnobController Script, CursorStateHandler Script, Collider, and optional Hologram</correct-example>
+          <incorrect-example title="Missing required components" conditions="Setting up knob for rotation" expected-result="Knob ready for rotation interaction" incorrectness-criteria="Missing required scripts or components">Knob missing EnhancedKnobController Script or CursorStateHandler Script</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Specify Object Parent (knob parent), Knob (knob object to rotate), Knob Angle (desired angle to trigger completion), and Delay Time (tick rate for angle validation) as parameters.</description>
+      <examples>
+        <example title="Parameter Specification">
+          <correct-example title="Proper parameter specification" conditions="Configuring RotateKnobStep parameters" expected-result="Correctly configured knob rotation" correctness-criteria="Specifies all required parameters">Object Parent: Knob parent, Knob: Knob object, Knob Angle: Desired angle, Delay Time: Tick rate for validation</correct-example>
+          <incorrect-example title="Missing parameters" conditions="Configuring RotateKnobStep parameters" expected-result="Correctly configured knob rotation" incorrectness-criteria="Missing required parameters">RotateKnobStep with only knob object // Missing angle and delay parameters</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use RotateKnobStep for instrument controls, value adjustments, and parameter manipulation. When the knob hits the desired angle, the function will start executing.</description>
+      <examples>
+        <example title="Knob Usage Context">
+          <correct-example title="Proper knob usage" conditions="Need instrument control interaction" expected-result="Knob rotation controls instrument parameter" correctness-criteria="Uses RotateKnobStep for instrument controls">RotateKnobStep for instrument controls, value adjustments, parameter manipulation</correct-example>
+          <incorrect-example title="Wrong knob usage" conditions="Need simple button interaction" expected-result="Simple button interaction" incorrectness-criteria="Uses wrong interaction type">RotateKnobStep for simple button clicking // Should use ClickStep</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for RotateKnobStep operations">
+    RotateKnobStep handles knob rotation interactions in virtual lab experiments. The step is ActionExecuted so it waits for the knob to be rotated by the user with the desired angle in order for the step to complete execution. When the knob hits the desired angle, the function will start executing, making the knob not interactable anymore.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rule.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Click/ClickNodes.mdc" reason="Click operations">General click operation patterns</reference>
+  </references>
+</rule>

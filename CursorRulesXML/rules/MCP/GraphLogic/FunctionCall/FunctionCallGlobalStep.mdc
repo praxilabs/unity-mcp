@@ -1,0 +1,72 @@
+---
+description: Global method execution without targeting a specific scene object
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>FunctionCallGlobalStep</title>
+    <description>Global method execution without targeting a specific scene object</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new FunctionCallGlobalStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <requirement priority="critical">
+      <description>FunctionCallGlobalStep executes global/static methods or methods on singletons/services for system-wide functions without targeting specific scene objects. Requires a global method, static method, or singleton service method that must be public and accessible for reflection.</description>
+      <examples>
+        <example title="FunctionCallGlobalStep Prerequisites">
+          <correct-example title="Proper FunctionCallGlobalStep setup" conditions="Creating FunctionCallGlobalStep" expected-result="Working global method execution" correctness-criteria="Follows all prerequisites">Public static method or singleton service method accessible for reflection</correct-example>
+          <incorrect-example title="Improper FunctionCallGlobalStep setup" conditions="Creating FunctionCallGlobalStep" expected-result="Working global method execution" incorrectness-criteria="Missing prerequisites">Private method or scene object method</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use FunctionCallGlobalStep for global methods only. Methods don't target specific scene objects and affect the entire system. Use for static functions, singleton service methods, and system-wide operations.</description>
+      <examples>
+        <example title="Global Method Usage">
+          <correct-example title="Proper global method usage" conditions="Need global method execution" expected-result="System-wide method execution" correctness-criteria="Uses global/static methods">FunctionCallGlobalStep(ToggleFirstPersonUI) → FunctionCallGlobalStep(ToggleBirdEyeUI) → Continue</correct-example>
+          <incorrect-example title="Improper global method usage" conditions="Need scene object method" expected-result="Scene object method execution" incorrectness-criteria="Uses FunctionCallGlobalStep for scene object">FunctionCallGlobalStep for scene object method (should use FunctionCallStep)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>FunctionCallGlobalStep parameters include prefabName (parent GameObject in Unity hierarchy), childName (child GameObject in Unity hierarchy), selectedComponent (Component on Child), selectedFunction (Function on Component), and parameterValues (Parameters if exist). Configure parameters for global/static method access.</description>
+      <examples>
+        <example title="Global Parameter Configuration">
+          <correct-example title="Proper global parameter setup" conditions="Configuring FunctionCallGlobalStep parameters" expected-result="Correct global method execution" correctness-criteria="All parameters properly set for global access">prefabName: "GlobalServices", childName: "UIManager", selectedComponent: "UIManager", selectedFunction: "ToggleFirstPersonUI"</correct-example>
+          <incorrect-example title="Improper global parameter setup" conditions="Configuring FunctionCallGlobalStep parameters" expected-result="Correct global method execution" incorrectness-criteria="Missing or incorrect parameters">prefabName: "", childName: "", selectedComponent: "", selectedFunction: ""</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use FunctionCallGlobalStep for system-wide operations like toggling global UI, marking scenarios as completed, and managing global state. Common patterns include UI management and system state changes.</description>
+      <examples>
+        <example title="System-Wide Operations">
+          <correct-example title="Proper system-wide operation" conditions="Need system-wide effect" expected-result="Global system change" correctness-criteria="Affects entire system">FunctionCallGlobalStep(MarkScenarioAsCompleted) → DelayStep → ShowCompletionMessage</correct-example>
+          <incorrect-example title="Improper system-wide operation" conditions="Need scene object effect" expected-result="Scene object change" incorrectness-criteria="Uses FunctionCallGlobalStep for scene object">FunctionCallGlobalStep for individual object manipulation</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <non-negotiable priority="critical">
+      <description>NEVER use FunctionCallGlobalStep for scene object methods. NEVER use FunctionCallGlobalStep for methods that target specific GameObjects. NEVER use FunctionCallGlobalStep for local component methods. Always use FunctionCallStep for scene object methods.</description>
+      <examples>
+        <example title="FunctionCallGlobalStep Restrictions">
+          <correct-example title="Proper FunctionCallGlobalStep usage" conditions="Selecting FunctionCallGlobalStep" expected-result="Correct global method execution" correctness-criteria="Uses FunctionCallGlobalStep appropriately">Global/static method or singleton service method</correct-example>
+          <incorrect-example title="Improper FunctionCallGlobalStep usage" conditions="Selecting FunctionCallGlobalStep" expected-result="Correct global method execution" incorrectness-criteria="Uses FunctionCallGlobalStep inappropriately">Scene object method, local component method, or GameObject-specific method</correct-example>
+        </example>
+      </examples>
+    </non-negotiable>
+  </requirements>
+  <context description="Additional considerations for FunctionCallGlobalStep">
+    FunctionCallGlobalStep is designed for global/static method execution and system-wide operations. Always ensure the method is global/static and affects the entire system rather than specific scene objects. Use FunctionCallStep for scene object methods and other function call step types for different execution contexts.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/FunctionCall/FunctionCallStep.mdc" reason="Scene object method execution">FunctionCallStep for scene object methods</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/FunctionCall/FunctionCallCoroutineGlobalStep.mdc" reason="Global asynchronous execution">FunctionCallCoroutineGlobalStep for global async methods</reference>
+  </references>
+</rule>

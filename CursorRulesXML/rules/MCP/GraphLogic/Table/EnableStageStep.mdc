@@ -1,0 +1,62 @@
+---
+description: Activate or initialize a new stage in the experiment flow
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>EnableStageStep</title>
+    <description>Activate or initialize a new stage in the experiment flow</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new EnableStageStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <requirement priority="critical">
+      <description>EnableStageStep activates the specified stage, initializing any required state for starting new experiment phases. Use for starting new experiment stages, initializing stage-specific functionality, and beginning new phases.</description>
+      <examples>
+        <example title="Stage Initialization">
+          <correct-example title="Proper stage initialization" conditions="Need to start new stage" expected-result="Stage activated and initialized" correctness-criteria="Uses EnableStageStep for stage activation">EnableStageStep (Stage1) → LogicForStage1 → SetStagePassedStep (Stage1)</correct-example>
+          <incorrect-example title="Improper stage initialization" conditions="Need to start new stage" expected-result="Stage activated and initialized" correctness-criteria="Uses data operation for stage management">AddRecordStep (Table, Data) → Stage started (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>EnableStageStep requires stageName (name/identifier of the stage to enable) and optional initPayload (initialization data). Stage must exist in experiment configuration, be registered in stage registry, and be properly configured.</description>
+      <examples>
+        <example title="Parameter Requirements">
+          <correct-example title="Proper parameter usage" conditions="Using EnableStageStep" expected-result="Stage successfully activated" correctness-criteria="Provides valid stage name parameter">EnableStageStep (stageName: "Stage1") → Stage activated</correct-example>
+          <incorrect-example title="Improper parameter usage" conditions="Using EnableStageStep" expected-result="Stage successfully activated" correctness-criteria="Missing required stage name parameter">EnableStageStep (initPayload: data) → No stage name provided</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use EnableStageStep for stage initialization and activation, not for data operations or stage completion. Activates and initializes stage-specific functionality as part of stage progression workflow.</description>
+      <examples>
+        <example title="Stage Initialization vs Data Operations">
+          <correct-example title="Proper stage initialization usage" conditions="Need to start experiment stage" expected-result="Stage activated and initialized" correctness-criteria="Uses EnableStageStep for stage activation">EnableStageStep (Stage1) → Stage activated</correct-example>
+          <incorrect-example title="Improper data operation usage" conditions="Need to start experiment stage" expected-result="Stage activated and initialized" correctness-criteria="Uses data operation for stage management">AddRecordStep (Table, Data) → Stage started (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use linear stage progression pattern for sequential stage workflow. Combines stage activation, stage logic execution, stage completion, and next stage activation for complete progression.</description>
+      <examples>
+        <example title="Linear Stage Progression">
+          <correct-example title="Proper linear stage progression" conditions="Need sequential stage workflow" expected-result="Stages progress sequentially" correctness-criteria="Uses complete linear progression pattern">EnableStageStep (Stage1) → LogicForStage1 → SetStagePassedStep (Stage1) → EnableStageStep (Stage2)</correct-example>
+          <incorrect-example title="Improper linear stage progression" conditions="Need sequential stage workflow" expected-result="Stages progress sequentially" correctness-criteria="Skips stage progression steps">LogicForStage1 → SetStagePassedStep (Stage1) → EnableStageStep (Stage2)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for EnableStageStep">
+    This node is essential for stage initialization and activation in virtual lab experiments. It provides the capability to start new experiment stages, initialize stage-specific functionality, and begin new phases as part of the overall experiment progression workflow.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Table/TableNodes.mdc" reason="Table nodes overview">Data table operations and stage management patterns</reference>
+  </references>
+</rule>

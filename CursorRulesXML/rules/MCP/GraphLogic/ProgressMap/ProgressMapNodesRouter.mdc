@@ -1,0 +1,76 @@
+---
+description: Progress tracking, navigation control, and stage management. Contains progress map steps, stage navigation, and experiment progression control.
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>Progress Map Nodes</title>
+    <description>Progress tracking, navigation control, and stage management. Contains progress map steps, stage navigation, and experiment progression control.</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <non-negotiable priority="critical">
+      <description>This is a ROUTING RULE ONLY - it does not provide functional tools or capabilities. This rule only routes you to the appropriate node rules for detailed implementation. For actual node implementation, refer to the specific node rules: ProgressMapAutoNextStep.mdc, ProgressMapManualNextStep.mdc, ResetCurrentStageStep.mdc, and ResetStageByNumberStep.mdc.</description>
+    </non-negotiable>
+    <requirement priority="high">
+      <description>Use ProgressMapAutoNextStep for automatic step progression, end of step/phase completion, and moving forward without manual indices.</description>
+      <examples>
+        <example title="Auto Progress Usage">
+          <correct-example title="Proper auto progress usage" conditions="Need automatic step progression" expected-result="Automatic navigation to next step" correctness-criteria="Uses ProgressMapAutoNextStep for seamless progression">SubGraphStep (Complete phase) → ProgressMapAutoNextStep → SubGraphStep (Next phase)</correct-example>
+          <incorrect-example title="Improper auto progress usage" conditions="Need automatic step progression" expected-result="Automatic navigation to next step" incorrectness-criteria="Uses manual step when auto is appropriate">SubGraphStep (Complete phase) → ProgressMapManualNextStep (stepNumber: 2)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use ProgressMapManualNextStep for precise step control, skipping steps in progression, and specific step index navigation.</description>
+      <examples>
+        <example title="Manual Progress Usage">
+          <correct-example title="Proper manual progress usage" conditions="Need precise step control" expected-result="Specific step navigation" correctness-criteria="Uses ProgressMapManualNextStep with specific step index">ProgressMapManualNextStep (stepNumber: 3) → SubGraphStep (Step_03)</correct-example>
+          <incorrect-example title="Improper manual progress usage" conditions="Need precise step control" expected-result="Specific step navigation" incorrectness-criteria="Uses auto step when manual control needed">ProgressMapAutoNextStep → SubGraphStep (Step_03)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use ResetCurrentStageStep for resetting current stage progression, retrying experiment within same stage, and clearing current stage state.</description>
+      <examples>
+        <example title="Current Stage Reset Usage">
+          <correct-example title="Proper current stage reset" conditions="Need to reset current stage" expected-result="Current stage progression reset" correctness-criteria="Uses ResetCurrentStageStep for current stage only">ShowMessage (Retrying stage) → ResetCurrentStageStep → ProgressMapAutoNextStep</correct-example>
+          <incorrect-example title="Improper current stage reset" conditions="Need to reset current stage" expected-result="Current stage progression reset" incorrectness-criteria="Uses specific stage reset when current stage reset is needed">ShowMessage (Retrying stage) → ResetStageByNumberStep (stageNumber: 1)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use ResetStageByNumberStep for resetting specific stage by number, jumping back to particular stage, and targeted stage reset operations.</description>
+      <examples>
+        <example title="Specific Stage Reset Usage">
+          <correct-example title="Proper specific stage reset" conditions="Need to reset specific stage" expected-result="Targeted stage reset" correctness-criteria="Uses ResetStageByNumberStep with specific stage number">ShowMessage (Resetting Stage 2) → ResetStageByNumberStep (stageNumber: 2) → ProgressMapManualNextStep (stepNumber: 1)</correct-example>
+          <incorrect-example title="Improper specific stage reset" conditions="Need to reset specific stage" expected-result="Targeted stage reset" incorrectness-criteria="Uses current stage reset when specific stage reset is needed">ShowMessage (Resetting Stage 2) → ResetCurrentStageStep</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Distinguish between step progression and stage transitions. Use ProgressMap nodes for step progression, GoToStageStep for stage transitions.</description>
+      <examples>
+        <example title="Step vs Stage Distinction">
+          <correct-example title="Proper step progression usage" conditions="Need step progression within stage" expected-result="Step progression within current stage" correctness-criteria="Uses ProgressMap nodes for step progression">ProgressMapAutoNextStep → SubGraphStep (Next step in same stage)</correct-example>
+          <incorrect-example title="Improper step progression usage" conditions="Need step progression within stage" expected-result="Step progression within current stage" incorrectness-criteria="Uses stage transition for step progression">GoToStageStep (stageNumber: 2) → SubGraphStep (Next step)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for progress map nodes">
+    Progress Map nodes handle progress tracking and navigation in virtual lab experiments. Essential for experiment progression, step management, and stage control. These nodes work within the current stage context and should not be confused with stage transition operations.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/ProgressMap/ProgressMapAutoNextStep.mdc" reason="Auto progress details">Automatic progress tracking and navigation</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/ProgressMap/ProgressMapManualNextStep.mdc" reason="Manual progress details">Manual progress control and step skipping</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/ProgressMap/ResetCurrentStageStep.mdc" reason="Current stage reset">Current stage progression reset operations</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/ProgressMap/ResetStageByNumberStep.mdc" reason="Specific stage reset">Specific stage reset by number operations</reference>
+  </references>
+</rule>

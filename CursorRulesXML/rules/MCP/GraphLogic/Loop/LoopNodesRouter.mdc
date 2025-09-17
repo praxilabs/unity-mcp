@@ -1,0 +1,83 @@
+---
+description: Iterative operations and loop control. Contains ForLoopStep, WhileLoopStep, and loop patterns for repeated actions and data collection.
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>Loop Nodes</title>
+    <description>Iterative operations and loop control. Contains ForLoopStep, WhileLoopStep, and loop patterns for repeated actions and data collection.</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <non-negotiable priority="critical">
+      <description>This is a ROUTING RULE ONLY - it does not provide functional tools or capabilities. This rule only routes you to the appropriate node rules for detailed implementation. For actual node implementation, refer to the specific node rules: ForLoopStep.mdc and WhileLoopStep.mdc.</description>
+    </non-negotiable>
+    <requirement priority="critical">
+      <description>Loop nodes handle iterative operations in virtual lab experiments for repeated actions and data collection. Use `continueLoop` port for loop body and `exit` port for completion. Always provide clear exit pathways and ensure conditions can become false to prevent infinite loops.</description>
+      <examples>
+        <example title="Loop Port Connections">
+          <correct-example title="Proper loop port connections" conditions="Creating loop nodes" expected-result="Working loop execution" correctness-criteria="Uses correct port connections">continueLoop: ... → LoopNode.entry, exit: ... (completion)</correct-example>
+          <incorrect-example title="Improper loop port connections" conditions="Creating loop nodes" expected-result="Working loop execution" incorrectness-criteria="Uses incorrect port connections">continueLoop: ... → NextNode (should connect back to entry)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use ForLoopStep for fixed number of iterations, data collection with known count, repeated measurements, and sequential operations with known steps. Loop will always terminate after specified iterations.</description>
+      <examples>
+        <example title="ForLoopStep Usage">
+          <correct-example title="Proper ForLoopStep usage" conditions="Need fixed iteration count" expected-result="Finite loop execution" correctness-criteria="Uses ForLoopStep for known iterations">ForLoopStep(iterations: 5) → continueLoop: ... → ForLoopStep.entry → exit: ...</correct-example>
+          <incorrect-example title="Improper ForLoopStep usage" conditions="Need conditional iteration" expected-result="Conditional loop execution" incorrectness-criteria="Uses ForLoopStep for unknown iterations">ForLoopStep for unknown iteration count (should use WhileLoopStep)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use WhileLoopStep for conditional repetition based on state, user interaction loops, dynamic conditions that change during execution, and unknown iteration count scenarios. Ensure condition can become false to prevent infinite loops.</description>
+      <examples>
+        <example title="WhileLoopStep Usage">
+          <correct-example title="Proper WhileLoopStep usage" conditions="Need conditional iteration" expected-result="Conditional loop execution" correctness-criteria="Uses WhileLoopStep for dynamic conditions">WhileLoopStep(condition) → continueLoop: ... → WhileLoopStep.entry → exit: ...</correct-example>
+          <incorrect-example title="Improper WhileLoopStep usage" conditions="Need fixed iteration count" expected-result="Fixed loop execution" incorrectness-criteria="Uses WhileLoopStep for known iterations">WhileLoopStep for fixed iteration count (should use ForLoopStep)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Always provide infinite loop prevention by ensuring conditions can become false (WhileLoop) or iterations are finite (ForLoop). Include loop safety measures and clear exit pathways to prevent execution from getting stuck.</description>
+      <examples>
+        <example title="Loop Safety">
+          <correct-example title="Proper loop safety" conditions="Preventing infinite loops" expected-result="Safe loop execution" correctness-criteria="Includes safety measures">WhileLoopStep with condition that can become false, ForLoopStep with finite iterations</correct-example>
+          <incorrect-example title="Improper loop safety" conditions="Preventing infinite loops" expected-result="Safe loop execution" incorrectness-criteria="Missing safety measures">WhileLoopStep with condition that never becomes false, no exit pathways</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use descriptive iteration parameters and condition names in loop nodes to make the logic clear and maintainable. Parameter names should clearly indicate the iteration count or condition being evaluated.</description>
+      <examples>
+        <example title="Descriptive Loop Parameters">
+          <correct-example title="Clear loop parameters" conditions="Naming loop parameters" expected-result="Readable loop logic" correctness-criteria="Uses descriptive names">iterations: 5, condition: "IsTemperatureValid", pollingInterval: 0.5</correct-example>
+          <incorrect-example title="Unclear loop parameters" conditions="Naming loop parameters" expected-result="Readable loop logic" incorrectness-criteria="Uses unclear names">iterations: 5, condition: "Check", pollingInterval: 0.5</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <non-negotiable priority="critical">
+      <description>NEVER create loops without proper exit pathways. NEVER create WhileLoopStep with conditions that cannot become false. NEVER create ForLoopStep with infinite or undefined iteration counts. Always ensure loop termination is guaranteed.</description>
+      <examples>
+        <example title="Loop Termination Requirements">
+          <correct-example title="Proper loop termination" conditions="Ensuring loop termination" expected-result="Guaranteed loop termination" correctness-criteria="Includes termination guarantees">ForLoopStep with finite iterations, WhileLoopStep with falsifiable condition</correct-example>
+          <incorrect-example title="Improper loop termination" conditions="Ensuring loop termination" expected-result="Guaranteed loop termination" incorrectness-criteria="Missing termination guarantees">WhileLoopStep with always-true condition, ForLoopStep with infinite iterations</correct-example>
+        </example>
+      </examples>
+    </non-negotiable>
+  </requirements>
+  <context description="Additional considerations for loop nodes">
+    Loop nodes are essential for iterative operations and repeated actions in virtual lab experiments. Always ensure proper port connections, loop safety, and termination guarantees. Use ForLoopStep for fixed iterations and WhileLoopStep for conditional repetition. Include clear exit pathways and prevent infinite loops.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Loop/ForLoopStep.mdc" reason="Fixed iteration control">ForLoopStep implementation patterns</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Loop/WhileLoopStep.mdc" reason="Conditional iteration control">WhileLoopStep implementation patterns</reference>
+  </references>
+</rule>

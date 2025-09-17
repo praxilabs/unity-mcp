@@ -1,0 +1,89 @@
+---
+description: Animation control and playback for object animations and visual effects
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>AnimationStep</title>
+    <description>Animation control and playback for object animations and visual effects</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new AnimationStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <requirement priority="critical">
+      <description>AnimationStep plays an animation or triggers an animated effect on a target object for visual feedback and interactive responses. Requires an Animator component on the target object, object must be registered in the Item Registry, and animation clip or state must exist on the Animator.</description>
+      <examples>
+        <example title="AnimationStep Prerequisites">
+          <correct-example title="Proper AnimationStep setup" conditions="Creating AnimationStep" expected-result="Working animation playback" correctness-criteria="Follows all prerequisites">Object with Animator component, registered in Item Registry, with existing animation clip</correct-example>
+          <incorrect-example title="Improper AnimationStep setup" conditions="Creating AnimationStep" expected-result="Working animation playback" correctness-criteria="Missing prerequisites">Object without Animator component or unregistered object</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use AnimationStep for object animations and visual effects, click-triggered responses, and visual feedback for user actions. Target object must have Animator component and animation clip/state must exist on the Animator.</description>
+      <examples>
+        <example title="AnimationStep Usage">
+          <correct-example title="Proper AnimationStep usage" conditions="Need object animation" expected-result="Visual animation effect" correctness-criteria="Uses AnimationStep for animations">ClickStep(Object) → AnimationStep(Response animation) → Continue</correct-example>
+          <incorrect-example title="Improper AnimationStep usage" conditions="Need stage transition" expected-result="Stage transition" correctness-criteria="Uses AnimationStep for stage transitions">AnimationStep for stage transitions (should use GoToStageStep)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>AnimationStep parameters include _animationTriggerName (name of the Trigger used for animation), _numberOfRounds (number of times the animation will play), _dontCallEnd (boolean to identify whether to call the End Trigger), _freezeUI (boolean to identify whether the UI freezes), _freezeCameraMove (boolean to identify whether camera movement stops), and _freezeCameraRotate (boolean to identify whether camera rotation stops).</description>
+      <examples>
+        <example title="AnimationStep Parameters">
+          <correct-example title="Proper AnimationStep parameters" conditions="Configuring AnimationStep parameters" expected-result="Correct animation behavior" correctness-criteria="All parameters properly configured">_animationTriggerName: "PourLiquid", _numberOfRounds: 1, _dontCallEnd: false, _freezeUI: true</correct-example>
+          <incorrect-example title="Improper AnimationStep parameters" conditions="Configuring AnimationStep parameters" expected-result="Correct animation behavior" correctness-criteria="Missing or incorrect parameters">_animationTriggerName: "", _numberOfRounds: 0, _dontCallEnd: true</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use AnimationStep for interactive animation patterns where user actions trigger visual responses. Common patterns include click-triggered animations, visual feedback for user interactions, and object state changes through animation.</description>
+      <examples>
+        <example title="Interactive Animation Pattern">
+          <correct-example title="Proper interactive animation pattern" conditions="Implementing interactive animation logic" expected-result="Successful visual feedback" correctness-criteria="Follows established pattern">ClickStep(Object) → AnimationStep(Response animation) → Continue</correct-example>
+          <incorrect-example title="Improper interactive animation pattern" conditions="Implementing interactive animation logic" expected-result="Successful visual feedback" correctness-criteria="Skips required steps">AnimationStep without user interaction or proper setup</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use descriptive animation trigger names and meaningful parameter values in AnimationStep to make the logic clear and maintainable. Animation names should clearly indicate the visual effect and parameters should reflect the desired behavior.</description>
+      <examples>
+        <example title="Descriptive Animation Parameters">
+          <correct-example title="Clear animation parameters" conditions="Naming AnimationStep elements" expected-result="Readable animation logic" correctness-criteria="Uses descriptive names">_animationTriggerName: "PourLiquid", _animationTriggerName: "OpenContainer", _animationTriggerName: "StartHeating"</correct-example>
+          <incorrect-example title="Unclear animation parameters" conditions="Naming AnimationStep elements" expected-result="Readable animation logic" incorrectness-criteria="Uses unclear names">_animationTriggerName: "Animation1", _animationTriggerName: "Trigger", _animationTriggerName: "Effect"</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Configure timing control and freeze options appropriately for different animation scenarios. Use appropriate play modes, freeze settings, and end trigger configurations based on the animation requirements and user experience needs.</description>
+      <examples>
+        <example title="Timing Control Configuration">
+          <correct-example title="Proper timing control" conditions="Configuring animation timing" expected-result="Appropriate animation behavior" correctness-criteria="Uses appropriate settings">_freezeUI: true for important animations, _dontCallEnd: false for complete animations</correct-example>
+          <incorrect-example title="Improper timing control" conditions="Configuring animation timing" expected-result="Appropriate animation behavior" correctness-criteria="Uses inappropriate settings">_freezeUI: false for critical animations, _dontCallEnd: true for incomplete animations</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <non-negotiable priority="critical">
+      <description>NEVER use AnimationStep for stage transitions or step progression. NEVER use AnimationStep without proper Animator component setup. NEVER use AnimationStep for non-animation operations. Always ensure the target object has proper animation setup and the animation trigger exists.</description>
+      <examples>
+        <example title="AnimationStep Restrictions">
+          <correct-example title="Proper AnimationStep usage" conditions="Selecting AnimationStep" expected-result="Correct animation execution" correctness-criteria="Uses AnimationStep appropriately">Object animation with proper Animator setup and existing animation trigger</correct-example>
+          <incorrect-example title="Improper AnimationStep usage" conditions="Selecting AnimationStep" expected-result="Correct animation execution" correctness-criteria="Uses AnimationStep inappropriately">Stage transitions, step progression, or non-animation operations</correct-example>
+        </example>
+      </examples>
+    </non-negotiable>
+  </requirements>
+  <context description="Additional considerations for AnimationStep">
+    AnimationStep is designed for animation control and playback on objects with Animator components. Always ensure proper Animator setup, object registration, and animation trigger configuration. Use appropriate timing control and freeze options based on the animation requirements and user experience needs.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Misc/GoToStageStep.mdc" reason="Stage progression">GoToStageStep for stage transitions</reference>
+  </references>
+</rule>

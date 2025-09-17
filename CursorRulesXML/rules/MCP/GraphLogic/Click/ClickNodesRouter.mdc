@@ -1,0 +1,40 @@
+---
+description: User clicking interactions, object selection, and interactive manipulation. Contains ClickStep, RotateKnobStep, ExploreStep.
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>Click Nodes Overview</title>
+    <description>Overview of user clicking interactions, object selection, and interactive manipulation. Contains ClickStep, RotateKnobStep, and ExploreStep.</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <non-negotiable priority="critical">
+      <description>This is a ROUTING RULE ONLY - it does not provide functional tools or capabilities. This rule only routes you to the appropriate node rules for detailed implementation. For actual node implementation, refer to the specific node rules: ClickStep.mdc, ClickUIButtonStep.mdc, ExploreStep.mdc, and RotateKnobStep.mdc.</description>
+    </non-negotiable>
+    <requirement priority="critical">
+      <description>Click nodes are PAUSE gates: they block execution until user input occurs. Always connect a logic node after any click node to perform the intended action.</description>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use ClickStep for 3D world objects and ClickUIButtonStep for Unity UI Canvas buttons. Never mix them.</description>
+    </requirement>
+    <requirement priority="high">
+      <description>After a click, choose the appropriate follow-up: AnimationStep for visual changes; FunctionCallStep for device logic or state changes.</description>
+    </requirement>
+    <requirement priority="medium">
+      <description>For ExploreStep flows, manage colliders explicitly using ToggleColliderStep before and after exploration.</description>
+    </requirement>
+  </requirements>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Click/ClickStep.mdc" reason="3D object clicking">Detailed 3D object click patterns</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Click/ClickUIButtonStep.mdc" reason="UI button clicking">Detailed UI button click patterns</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Click/ExploreStep.mdc" reason="Object exploration">Detailed object exploration patterns</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Click/RotateKnobStep.mdc" reason="Knob rotation">Detailed knob rotation patterns</reference>
+  </references>
+</rule>

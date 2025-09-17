@@ -1,0 +1,62 @@
+---
+description: Display safety-related tools and warnings for safety protocols and hazard warnings
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>SafetyToolsStep</title>
+    <description>Display safety-related tools and warnings for safety protocols and hazard warnings</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new SafetyToolsStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <requirement priority="critical">
+      <description>SafetyToolsStep displays safety-related tools and warnings for safety protocols, hazard warnings, and safety equipment guidance. Use for safety protocols, hazard warnings, and safety equipment guidance.</description>
+      <examples>
+        <example title="Safety Protocols">
+          <correct-example title="Proper safety tools usage" conditions="Need safety protocol display" expected-result="Safety tools and warnings displayed" correctness-criteria="Uses SafetyToolsStep for safety protocols">SafetyToolsStep (Safety warning) → User acknowledges → Safety check → Continue</correct-example>
+          <incorrect-example title="Improper safety tools usage" conditions="Need safety protocol display" expected-result="Safety tools and warnings displayed" correctness-criteria="Uses general message for safety protocols">SideMessageStep (Safety warning) → User acknowledges (wrong approach)</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>SafetyToolsStep requires Safety Message (the safety warning or instruction), Safety Level (level of safety concern low, medium, high), Safety Tools (list of safety tools to display), and Acknowledgment Required (whether user must acknowledge safety warning). Must have safety warning or instruction text prepared, determine level of safety concern, set acknowledgment logic, and list safety tools to display.</description>
+      <examples>
+        <example title="Parameter Requirements">
+          <correct-example title="Proper parameter usage" conditions="Using SafetyToolsStep" expected-result="Safety tools and warnings successfully displayed" correctness-criteria="Provides valid safety message and level">SafetyToolsStep (Safety Message: "Wear safety goggles", Safety Level: "high", Acknowledgment Required: true) → Safety display</correct-example>
+          <incorrect-example title="Improper parameter usage" conditions="Using SafetyToolsStep" expected-result="Safety tools and warnings successfully displayed" correctness-criteria="Missing required safety message">SafetyToolsStep (Safety Level: "high") → No safety message provided</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use SafetyToolsStep for safety focus only. Use for safety-related information and warnings. Prominent display - safety messages must be prominent and attention-grabbing. Acknowledgment required - critical safety warnings should require user acknowledgment.</description>
+      <examples>
+        <example title="Safety Focus vs General Messages">
+          <correct-example title="Proper safety focus usage" conditions="Need safety warning" expected-result="Safety warning prominently displayed" correctness-criteria="Uses SafetyToolsStep for safety focus">SafetyToolsStep (Hazard warning) → Prominent safety display</correct-example>
+          <incorrect-example title="Improper general message usage" conditions="Need safety warning" expected-result="Safety warning prominently displayed" correctness-criteria="Uses general message for safety warning">SideMessageStep (Hazard warning) → General message display (wrong approach)</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use safety protocol pattern for safety procedures, hazard warning pattern for danger alerts, and pre-experiment safety pattern for safety briefings and equipment checks.</description>
+      <examples>
+        <example title="Safety Patterns">
+          <correct-example title="Proper safety protocol pattern" conditions="Need safety procedure" expected-result="Safety protocol with acknowledgment" correctness-criteria="Uses safety protocol pattern">SafetyToolsStep (Safety warning) → UserAcknowledges → SafetyCheck → Continue</correct-example>
+          <incorrect-example title="Improper general message pattern" conditions="Need safety procedure" expected-result="Safety protocol with acknowledgment" correctness-criteria="Uses general message for safety protocol">SideMessageStep (Safety warning) → UserAcknowledges (wrong approach)</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for SafetyToolsStep">
+    This node is essential for safety protocols and hazard warnings in virtual lab experiments. It provides the capability to display safety-related tools and warnings for safety protocols, hazard warnings, and safety equipment guidance. The focus on safety with prominent display and acknowledgment requirements is critical for user safety.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/UI/UINodes.mdc" reason="UI nodes overview">User interface and messaging patterns</reference>
+  </references>
+</rule>

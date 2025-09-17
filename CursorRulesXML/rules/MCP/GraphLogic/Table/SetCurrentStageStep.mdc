@@ -1,0 +1,62 @@
+---
+description: Explicitly set the current active stage of the experiment
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>SetCurrentStageStep</title>
+    <description>Explicitly set the current active stage of the experiment</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new SetCurrentStageStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <requirement priority="critical">
+      <description>SetCurrentStageStep sets the experiment's current stage to a specified stage for explicit stage navigation and resuming from specific points. Use for explicit stage navigation, resuming from specific stages, and conditional stage routing.</description>
+      <examples>
+        <example title="Stage Navigation">
+          <correct-example title="Proper stage navigation" conditions="Need to navigate to specific stage" expected-result="Current stage set to target stage" correctness-criteria="Uses SetCurrentStageStep for navigation">IfStatementStep (Condition) → SetCurrentStageStep (SuccessStage)</correct-example>
+          <incorrect-example title="Improper stage navigation" conditions="Need to navigate to specific stage" expected-result="Current stage set to target stage" correctness-criteria="Uses data operation for stage navigation">AddRecordStep (Table, Data) → Stage navigated (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>SetCurrentStageStep requires stageName (target stage identifier). Target stage must exist in the experiment with proper configuration and be registered in the stage registry.</description>
+      <examples>
+        <example title="Parameter Requirements">
+          <correct-example title="Proper parameter usage" conditions="Using SetCurrentStageStep" expected-result="Current stage successfully set" correctness-criteria="Provides valid stage name parameter">SetCurrentStageStep (stageName: "SuccessStage") → Current stage set</correct-example>
+          <incorrect-example title="Improper parameter usage" conditions="Using SetCurrentStageStep" expected-result="Current stage successfully set" correctness-criteria="Missing required stage name parameter">SetCurrentStageStep (no parameters) → No stage name provided</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use SetCurrentStageStep for explicit stage navigation and resuming, not for data operations or stage initialization. Sets the current active stage to specified stage and enables conditional stage routing based on conditions.</description>
+      <examples>
+        <example title="Stage Navigation vs Data Operations">
+          <correct-example title="Proper stage navigation usage" conditions="Need to set current stage" expected-result="Current stage set to target" correctness-criteria="Uses SetCurrentStageStep for navigation">SetCurrentStageStep (stageName: "TargetStage") → Current stage set</correct-example>
+          <incorrect-example title="Improper data operation usage" conditions="Need to set current stage" expected-result="Current stage set to target" correctness-criteria="Uses data operation for stage navigation">AddRecordStep (Table, Data) → Current stage set (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use conditional stage setting pattern for branching stage navigation based on conditions. Enables different stage routing based on experiment outcomes or user choices.</description>
+      <examples>
+        <example title="Conditional Stage Setting">
+          <correct-example title="Proper conditional stage setting" conditions="Need conditional stage routing" expected-result="Stage set based on condition" correctness-criteria="Uses conditional stage setting pattern">IfStatementStep (Condition) → SetCurrentStageStep (SuccessStage) → IfStatementStep (NOT Condition) → SetCurrentStageStep (FailureStage)</correct-example>
+          <incorrect-example title="Improper conditional stage setting" conditions="Need conditional stage routing" expected-result="Stage set based on condition" correctness-criteria="Skips conditional logic">SetCurrentStageStep (SuccessStage) → SetCurrentStageStep (FailureStage)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for SetCurrentStageStep">
+    This node is essential for explicit stage navigation and resuming in virtual lab experiments. It provides the capability to set the current active stage to a specified stage, enabling conditional stage routing and resuming from specific points in the experiment flow.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Table/TableNodes.mdc" reason="Table nodes overview">Data table operations and stage management patterns</reference>
+  </references>
+</rule>

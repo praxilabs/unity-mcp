@@ -1,0 +1,104 @@
+---
+description: Unity MCP Essential Rules for creating Unity MCP experiments
+alwaysApply: true
+---
+
+<rule>
+  <meta>
+    <title>Unity MCP Essential Rules</title>
+    <description>Core rules for creating Unity MCP experiments. Always read node-specific rule files before implementation.</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-scriptableobject">Triggered when creating a new XNode Graph Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <requirement priority="critical">
+      <description>Before creating ANY node in a graph, you MUST navigate to the specific node rule file using the category → node reference chain, read the complete node documentation including patterns and best practices, understand the node's specific behavior, follow the established patterns exactly as documented, and only THEN implement the node with proper connections and next steps.</description>
+      <examples>
+        <example title="Node Implementation Process">
+          <correct-example title="Proper node implementation" conditions="Creating a ClickStep node" expected-result="Correctly implemented node with proper connections" correctness-criteria="Follows complete implementation process including reading documentation">Navigate to ClickNodes → ClickStep → Read ClickStep.mdc → Understand it's a PAUSE node → Implement: ClickStep → AnimationStep</correct-example>
+          <incorrect-example title="Improper node implementation" conditions="Creating a ClickStep node" expected-result="Correctly implemented node with proper connections" incorrectness-criteria="Skips documentation reading and pattern following">Directly create ClickStep node without reading documentation or understanding behavior</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>For any experiment step that doesn't have a dedicated node, use FunctionCallStep directly. Break complex operations into logical steps: use existing nodes (AttachStep, ClickStep) for what they handle, then FunctionCallStep for custom logic.</description>
+      <examples>
+        <example title="FunctionCallStep Usage">
+          <correct-example title="Proper FunctionCallStep usage" conditions="Need custom logic not covered by existing nodes" expected-result="Correct use of FunctionCallStep for custom operations" correctness-criteria="Uses FunctionCallStep only when no dedicated node exists">Use AttachStep for attachment, ClickStep for clicking, then FunctionCallStep for custom pouring logic</correct-example>
+          <incorrect-example title="Improper FunctionCallStep usage" conditions="Need standard operations" expected-result="Use appropriate dedicated nodes" incorrectness-criteria="Uses FunctionCallStep when dedicated nodes exist">Use FunctionCallStep for simple clicking instead of ClickStep</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use the Quick Decision Tree to find the appropriate category: Tools for show/hide objects, Control Flow for user interaction in any order, Attach-Detach for object attachment/detachment, Click for clicking/selection, Camera for camera positioning, Function Call for method execution, Loops for iterations, UI for messages/hints, Utility for delays/subgraphs, New Events for event-driven interactions, Table for data management, Progress Map for progress tracking, or Misc for animations.</description>
+      <examples>
+        <example title="Category Selection">
+          <correct-example title="Proper category selection" conditions="Need to enable/disable colliders" expected-result="Correct category identified" correctness-criteria="Matches need to appropriate category">Tools category → ToolNodes.mdc</correct-example>
+          <incorrect-example title="Improper category selection" conditions="Need to enable/disable colliders" expected-result="Correct category identified" incorrectness-criteria="Selects wrong category">UI category for collider operations</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>When a user requests multiple stages, each stage is a separate StepsGraph with no direct connections between them. Each stage must be a separate StepsGraph asset in Assets/Testing/Graphs/, have no cross-stage node connections within the same graph, use stage transitions only via GoToStageStep node, and each graph must handle one stage completely.</description>
+      <examples>
+        <example title="Multi-Stage Implementation">
+          <correct-example title="Proper multi-stage setup" conditions="Creating multi-stage experiment" expected-result="Separate graphs for each stage" correctness-criteria="Follows multi-stage architecture pattern"><![CDATA[Assets/Testing/Graphs/
+├── ChemistryLab_VitaminCAnalysis_Stage1_StepGraph.asset
+├── ChemistryLab_VitaminCAnalysis_Stage2_StepGraph.asset
+└── ChemistryLab_VitaminCAnalysis_Stage3_StepGraph.asset]]></correct-example>
+          <incorrect-example title="Improper multi-stage setup" conditions="Creating multi-stage experiment" expected-result="Separate graphs for each stage" incorrectness-criteria="Mixes stages in single graph">Single graph containing both Stage1 and Stage2 content</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>All scenario-based experiments follow this pattern: GameObjectSetActiveStep(ChoicesCanvasUI) → ClickUIStep(ConfirmScenarioButton) → FunctionCallStep(ChoicesUIScript.isScenarioA) → IfStatementStep with True/False branches to SubGraphStep(Scenario_Graph).</description>
+      <examples>
+        <example title="Scenario Selection Pattern">
+          <correct-example title="Proper scenario selection" conditions="Implementing scenario-based experiment" expected-result="Correct scenario selection flow" correctness-criteria="Follows established scenario pattern"><![CDATA[GameObjectSetActiveStep(ChoicesCanvasUI) 
+    ↓
+ClickUIStep(ConfirmScenarioButton)
+    ↓
+FunctionCallStep(ChoicesUIScript.isScenarioA)
+    ↓
+IfStatementStep
+    ├── True → SubGraphStep(Scenario1_Graph)
+    └── False → SubGraphStep(Scenario2_Graph)]]></correct-example>
+          <incorrect-example title="Improper scenario selection" conditions="Implementing scenario-based experiment" expected-result="Correct scenario selection flow" incorrectness-criteria="Skips required steps">Direct IfStatementStep without UI activation or user interaction</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Create graphs with descriptive, meaningful names using the convention [ExperimentType]_[SpecificPurpose]_[GraphType]. Be specific with exact experiment type and purpose, include phase number/name if multi-phase, always include StepGraph suffix, use underscores to separate words, and avoid generic names like NewStepsGraph, Graph1, Experiment, or Test.</description>
+      <examples>
+        <example title="Graph Naming">
+          <correct-example title="Proper graph naming" conditions="Creating new graph" expected-result="Descriptive, meaningful name" correctness-criteria="Follows naming convention">ChemistryLab_VitaminCAnalysis_StepGraph</correct-example>
+          <incorrect-example title="Improper graph naming" conditions="Creating new graph" expected-result="Descriptive, meaningful name" incorrectness-criteria="Uses generic name">NewStepsGraph</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Follow the standard protocol for ScriptableObject creation: Create ExperimentData with naming pattern [ExperimentType]_[Purpose]_ExperimentData in Assets/Testing/, create ExperimentItemsRegistry with naming pattern [ExperimentType]_[Purpose]_ItemsRegistry in Assets/Testing/, and create StepsGraph with naming pattern [ExperimentType]_[Purpose]_StepGraph in Assets/Testing/Graphs/.</description>
+      <examples>
+        <example title="ScriptableObject Creation">
+          <correct-example title="Proper ScriptableObject creation" conditions="Creating experiment assets" expected-result="All required assets created with proper names" correctness-criteria="Follows standard protocol">Create ExperimentData, ItemsRegistry, and StepsGraph with consistent naming in appropriate folders</correct-example>
+          <incorrect-example title="Improper ScriptableObject creation" conditions="Creating experiment assets" expected-result="All required assets created with proper names" incorrectness-criteria="Skips required assets or uses wrong naming">Create only StepsGraph with generic name</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for Unity MCP experiment creation">
+    Always reference Graph Validation Rules for post-creation validation, Graph Connection Rules for critical connection requirements, Positioning Strategy for node positioning and staging rules, and MCP Tools Reference for complete tool reference. The primary purpose is to provide clear, unambiguous guidance for creating Unity MCP experiments that can be consistently applied.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/ControlFlow/ControlFlowNodes.mdc" reason="Critical graph validation">Graph structure validation and connection rules</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/AttachDetach/AttachDetachNodes.mdc" reason="Object attachment patterns">Attachment and detachment operation patterns</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Click/ClickNodes.mdc" reason="User interaction patterns">Clicking and interactive manipulation patterns</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Camera/CameraNodes.mdc" reason="Camera control patterns">Camera positioning and focus control patterns</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/FunctionCall/FunctionCallNodes.mdc" reason="Method execution patterns">Function call and system interaction patterns</reference>
+  </references>
+</rule>

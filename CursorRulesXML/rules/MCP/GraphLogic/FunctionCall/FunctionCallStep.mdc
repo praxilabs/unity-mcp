@@ -1,0 +1,72 @@
+---
+description: Standard method execution on GameObjects via FunctionCallBase
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>FunctionCallStep</title>
+    <description>Standard method execution on GameObjects via FunctionCallBase</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new FunctionCallStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <requirement priority="critical">
+      <description>FunctionCallStep executes a method on a specific GameObject's component for synchronous operations on scene objects. Requires any GameObject in the scene with a script containing a public method, target object must be registered in the registry data created before experiment creation, and method must be public to be accessible.</description>
+      <examples>
+        <example title="FunctionCallStep Prerequisites">
+          <correct-example title="Proper FunctionCallStep setup" conditions="Creating FunctionCallStep" expected-result="Working method execution" correctness-criteria="Follows all prerequisites">Public method on registered MonoBehaviour component</correct-example>
+          <incorrect-example title="Improper FunctionCallStep setup" conditions="Creating FunctionCallStep" expected-result="Working method execution" incorrectness-criteria="Missing prerequisites">Private method on unregistered object</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use FunctionCallStep for synchronous operations only. Target specific scene objects with registered components, not global/static methods. Methods must be synchronous and execute immediately without yielding.</description>
+      <examples>
+        <example title="Synchronous Operations">
+          <correct-example title="Proper synchronous usage" conditions="Need synchronous method execution" expected-result="Immediate method execution" correctness-criteria="Uses synchronous methods">FunctionCallStep(Object, Component, Method) → Continue (executes immediately)</correct-example>
+          <incorrect-example title="Improper synchronous usage" conditions="Need asynchronous method execution" expected-result="Asynchronous method execution" incorrectness-criteria="Uses FunctionCallStep for async method">FunctionCallStep for IEnumerator method (should use FunctionCallCoroutineStep)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>FunctionCallStep parameters include prefabName (parent GameObject in Unity hierarchy), childName (child GameObject in Unity hierarchy), selectedComponent (Component on Child), selectedFunction (Function on Component), and parameterValues (Parameters if exist). All parameters must be properly configured for successful execution.</description>
+      <examples>
+        <example title="Parameter Configuration">
+          <correct-example title="Proper parameter setup" conditions="Configuring FunctionCallStep parameters" expected-result="Correct method execution" correctness-criteria="All parameters properly set">prefabName: "Tools", childName: "Beaker", selectedComponent: "LiquidController", selectedFunction: "StartPouring"</correct-example>
+          <incorrect-example title="Improper parameter setup" conditions="Configuring FunctionCallStep parameters" expected-result="Correct method execution" incorrectness-criteria="Missing or incorrect parameters">prefabName: "", childName: "", selectedComponent: "", selectedFunction: ""</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use FunctionCallStep for logic that doesn't exist as an actual node in the system and click-to-function patterns. Common patterns include direct method execution and user interaction followed by method execution.</description>
+      <examples>
+        <example title="Common Patterns">
+          <correct-example title="Proper function call pattern" conditions="Implementing function call logic" expected-result="Successful method execution" correctness-criteria="Follows established patterns">ClickStep(Object) → FunctionCallStep(Object) → ShowMessage(Function executed)</correct-example>
+          <incorrect-example title="Improper function call pattern" conditions="Implementing function call logic" expected-result="Successful method execution" incorrectness-criteria="Skips required steps">FunctionCallStep(Object) without proper setup or user interaction</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <non-negotiable priority="critical">
+      <description>NEVER use FunctionCallStep for global/static methods. NEVER use FunctionCallStep for asynchronous methods that return IEnumerator. NEVER use FunctionCallStep for methods on unregistered objects. Always use the appropriate step type for the method scope and execution type.</description>
+      <examples>
+        <example title="FunctionCallStep Restrictions">
+          <correct-example title="Proper FunctionCallStep usage" conditions="Selecting FunctionCallStep" expected-result="Correct method execution" correctness-criteria="Uses FunctionCallStep appropriately">Synchronous method on registered scene object</correct-example>
+          <incorrect-example title="Improper FunctionCallStep usage" conditions="Selecting FunctionCallStep" expected-result="Correct method execution" incorrectness-criteria="Uses FunctionCallStep inappropriately">Global method, async method, or unregistered object method</correct-example>
+        </example>
+      </examples>
+    </non-negotiable>
+  </requirements>
+  <context description="Additional considerations for FunctionCallStep">
+    FunctionCallStep is designed for synchronous method execution on scene objects. Always ensure the target object is registered, the method is public, and the operation is synchronous. Use other function call step types for global methods, asynchronous operations, or different execution contexts.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/FunctionCall/FunctionCallGlobalStep.mdc" reason="Global method execution">FunctionCallGlobalStep for global methods</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/FunctionCall/FunctionCallCoroutineStep.mdc" reason="Asynchronous execution">FunctionCallCoroutineStep for async methods</reference>
+  </references>
+</rule>

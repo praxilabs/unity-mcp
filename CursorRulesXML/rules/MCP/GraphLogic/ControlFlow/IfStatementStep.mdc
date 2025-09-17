@@ -1,0 +1,80 @@
+---
+description: Boolean conditional branching node for decision points and error checking
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>IfStatementStep</title>
+    <description>Boolean conditional branching node for decision points and error checking</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new IfStatementStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <requirement priority="critical">
+      <description>IfStatementStep provides boolean conditional branching with True and False outputs. Always provide logic for both True and False paths to handle all possible conditions. Never leave either path unhandled.</description>
+      <examples>
+        <example title="IfStatementStep Implementation">
+          <correct-example title="Complete IfStatementStep with both paths" conditions="Creating conditional branching" expected-result="Complete conditional logic" correctness-criteria="Handles both True and False cases">IfStatementStep (Check condition) → True: Execute Action A → Continue, False: Execute Action B → Continue</correct-example>
+          <incorrect-example title="Incomplete IfStatementStep" conditions="Creating conditional branching" expected-result="Complete conditional logic" incorrectness-criteria="Missing False case">IfStatementStep (Check condition) → True: Execute Action A → Continue</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use IfStatementStep for decision points and error checking where a boolean condition determines the execution path. The True port executes when condition is met (condition = true), and the False port executes when condition is unmet (condition = false).</description>
+      <examples>
+        <example title="Decision Point Usage">
+          <correct-example title="Proper decision point implementation" conditions="Creating decision logic" expected-result="Clear conditional branching" correctness-criteria="Uses boolean condition">IfStatementStep (IsTemperatureValid) → True: Proceed with experiment, False: Display error and stop</correct-example>
+          <incorrect-example title="Incorrect decision point usage" conditions="Creating decision logic" expected-result="Clear conditional branching" incorrectness-criteria="Uses non-boolean condition">IfStatementStep (TemperatureValue) → True: Action A, False: Action B</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Always handle both True and False cases in IfStatementStep. The False case should provide appropriate error handling, alternative actions, or fallback behavior when the condition is not met.</description>
+      <examples>
+        <example title="False Case Handling">
+          <correct-example title="Proper False case handling" conditions="Handling unmet conditions" expected-result="Appropriate fallback behavior" correctness-criteria="Provides meaningful False path">False: Display error message → Return to previous step → Allow retry</correct-example>
+          <incorrect-example title="Missing False case handling" conditions="Handling unmet conditions" expected-result="Appropriate fallback behavior" incorrectness-criteria="No False path provided">False: (no action or connection)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use clear and descriptive condition names in IfStatementStep to make the logic understandable. Condition names should clearly indicate what is being checked or evaluated.</description>
+      <examples>
+        <example title="Condition Naming">
+          <correct-example title="Clear condition names" conditions="Naming IfStatementStep conditions" expected-result="Readable conditional logic" correctness-criteria="Uses descriptive names">IsTemperatureValid, HasRequiredEquipment, IsSafetyCheckPassed</correct-example>
+          <incorrect-example title="Unclear condition names" conditions="Naming IfStatementStep conditions" expected-result="Readable conditional logic" incorrectness-criteria="Uses unclear names">Check1, Condition, Test</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Ensure both True and False branches eventually converge to the same continuation point or provide equivalent outcomes when appropriate. This maintains logical flow consistency in the experiment.</description>
+      <examples>
+        <example title="Branch Convergence">
+          <correct-example title="Proper branch convergence" conditions="Designing IfStatementStep flow" expected-result="Consistent continuation" correctness-criteria="Branches lead to same point when appropriate">True: Execute action → Continue, False: Handle error → Continue</correct-example>
+          <incorrect-example title="Inconsistent branch flow" conditions="Designing IfStatementStep flow" expected-result="Consistent continuation" incorrectness-criteria="Branches lead to different points unnecessarily">True: Execute action → Path A, False: Handle error → Path B</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <non-negotiable priority="critical">
+      <description>NEVER create IfStatementStep without handling both True and False cases. Missing either case will result in incomplete logic and potential execution failures. Both paths must be properly connected and implemented.</description>
+      <examples>
+        <example title="Complete Case Handling">
+          <correct-example title="IfStatementStep with both cases" conditions="Creating IfStatementStep" expected-result="Complete conditional logic" correctness-criteria="Always includes both True and False">IfStatementStep with True path and False path both connected</correct-example>
+          <incorrect-example title="IfStatementStep missing cases" conditions="Creating IfStatementStep" expected-result="Complete conditional logic" incorrectness-criteria="Missing True or False case">IfStatementStep with only True path or only False path</correct-example>
+        </example>
+      </examples>
+    </non-negotiable>
+  </requirements>
+  <context description="Additional considerations for IfStatementStep">
+    IfStatementStep is essential for decision points and error checking in virtual lab experiments. Always ensure both True and False paths are properly implemented and connected. Use clear condition names and provide meaningful actions for both branches to maintain robust experiment flow.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/ControlFlow/SwitchStep.mdc" reason="Multi-way branching">SwitchStep for multiple conditions</reference>
+  </references>
+</rule>

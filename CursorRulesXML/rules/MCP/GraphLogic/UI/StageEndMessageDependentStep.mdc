@@ -1,0 +1,62 @@
+---
+description: Display stage completion message that depends on other stages
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>StageEndMessageDependentStep</title>
+    <description>Display stage completion message that depends on other stages</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new StageEndMessageDependentStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <requirement priority="critical">
+      <description>StageEndMessageDependentStep displays a stage completion message that depends on the completion of other stages, suitable for conditional achievements. Use for dependent stage completion and conditional achievements.</description>
+      <examples>
+        <example title="Dependent Stage Completion">
+          <correct-example title="Proper dependent stage usage" conditions="Need dependent stage completion" expected-result="Dependent stage completion message displayed" correctness-criteria="Uses StageEndMessageDependentStep for dependent completion">StageEndMessageDependentStep (Stage complete, depends on others) → CheckDependencies → Continue</correct-example>
+          <incorrect-example title="Improper dependent stage usage" conditions="Need dependent stage completion" expected-result="Dependent stage completion message displayed" correctness-criteria="Uses StageEndMessageIndependentStep for dependent completion">StageEndMessageIndependentStep (Stage complete, depends on others) → CheckDependencies (wrong approach)</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>StageEndMessageDependentStep requires Stage Name (name of the completed stage), Dependencies (list of stages that must be completed first), Message Text (completion message content), and Conditional Details (details about dependency conditions). Must have stage dependencies defined, dependency logic system to check if dependencies are met, completion message content prepared, and conditional handling logic for missing dependencies.</description>
+      <examples>
+        <example title="Parameter Requirements">
+          <correct-example title="Proper parameter usage" conditions="Using StageEndMessageDependentStep" expected-result="Dependent stage completion message successfully displayed" correctness-criteria="Provides valid stage name and dependencies">StageEndMessageDependentStep (Stage Name: "Final Analysis", Dependencies: ["Stage1", "Stage2"], Message Text: "All stages complete") → Message displayed</correct-example>
+          <incorrect-example title="Improper parameter usage" conditions="Using StageEndMessageDependentStep" expected-result="Dependent stage completion message successfully displayed" correctness-criteria="Missing required dependencies">StageEndMessageDependentStep (Stage Name: "Final Analysis", Message Text: "All stages complete") → No dependencies provided</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use StageEndMessageDependentStep for dependent only. Use for stage completions that depend on other stages. Dependency checking - must verify all dependencies are met before showing completion. NOT independent - use StageEndMessageIndependentStep for standalone completions.</description>
+      <examples>
+        <example title="Dependent vs Independent Completion">
+          <correct-example title="Proper dependent completion usage" conditions="Need conditional achievement" expected-result="Dependent completion message displayed" correctness-criteria="Uses StageEndMessageDependentStep for dependent completion">StageEndMessageDependentStep (Conditional achievement) → Dependent display</correct-example>
+          <incorrect-example title="Improper independent completion usage" conditions="Need conditional achievement" expected-result="Dependent completion message displayed" correctness-criteria="Uses independent completion for dependent achievement">StageEndMessageIndependentStep (Conditional achievement) → Independent display (wrong approach)</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use dependent stage pattern for conditional completions, conditional achievement pattern for prerequisite-based achievements, and sequential completion pattern for multi-stage dependencies and sequential accomplishments.</description>
+      <examples>
+        <example title="Dependency Patterns">
+          <correct-example title="Proper dependent stage pattern" conditions="Need conditional completion" expected-result="Dependent completion with dependency checking" correctness-criteria="Uses dependent stage pattern">StageEndMessageDependentStep (Stage complete, depends on others) → CheckDependencies → Continue</correct-example>
+          <incorrect-example title="Improper independent completion pattern" conditions="Need conditional completion" expected-result="Dependent completion with dependency checking" correctness-criteria="Uses independent completion for dependent stage">StageEndMessageIndependentStep (Stage complete, depends on others) → CheckDependencies (wrong approach)</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for StageEndMessageDependentStep">
+    This node is essential for dependent stage completion and conditional achievements in virtual lab experiments. It provides the capability to display a stage completion message that depends on the completion of other stages, suitable for conditional achievements. The dependency checking and conditional logic are critical for proper usage.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/UI/UINodes.mdc" reason="UI nodes overview">User interface and messaging patterns</reference>
+  </references>
+</rule>

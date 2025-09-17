@@ -1,0 +1,94 @@
+---
+description: Object manipulation, visibility control, and tool-specific interactions. Contains GameObjectSetActiveStep, ToggleColliderStep, and critical sequential collider operation rules.
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>Tool Nodes</title>
+    <description>Object manipulation, visibility control, and tool-specific interactions. Contains GameObjectSetActiveStep, ToggleColliderStep, and critical sequential collider operation rules.</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <non-negotiable priority="critical">
+      <description>This is a ROUTING RULE ONLY - it does not provide functional tools or capabilities. This rule only routes you to the appropriate node rules for detailed implementation. For actual node implementation, refer to the specific node rules: GameObjectSetActiveStep.mdc, ToggleColliderStep.mdc, ToolsInputfieldStep.mdc, and ToolsInteractionsMenuStep.mdc.</description>
+    </non-negotiable>
+    <requirement priority="critical">
+      <description>Use GameObjectSetActiveStep for showing/hiding single objects for visibility control. Works on ONE object at a time for object visibility management, tool presentation, and state control.</description>
+      <examples>
+        <example title="Object Visibility Control">
+          <correct-example title="Proper visibility control" conditions="Need to show/hide object" expected-result="Object visibility controlled" correctness-criteria="Uses GameObjectSetActiveStep for single object visibility">GameObjectSetActiveStep (hide single object) → DelayStep → GameObjectSetActiveStep (show single object)</correct-example>
+          <incorrect-example title="Improper visibility control" conditions="Need to show/hide object" expected-result="Object visibility controlled" correctness-criteria="Uses ToggleColliderStep for visibility control">ToggleColliderStep (Object, disable) → Object hidden (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use ToggleColliderStep for enabling/disabling colliders on a SINGLE object only. Works on ONE object at a time for interaction control, safety systems, and collider management.</description>
+      <examples>
+        <example title="Collider Management">
+          <correct-example title="Proper collider control" conditions="Need to enable/disable collider" expected-result="Collider state controlled" correctness-criteria="Uses ToggleColliderStep for single object collider">ToggleColliderStep (Device1, disable) → ToggleColliderStep (Device2, disable)</correct-example>
+          <incorrect-example title="Improper collider control" conditions="Need to enable/disable collider" expected-result="Collider state controlled" correctness-criteria="Uses GameObjectSetActiveStep for collider control">GameObjectSetActiveStep (Object, false) → Collider disabled (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use ToolsInputfieldStep for handling input field interactions for tools, data entry for tools, parameter input, and tool configuration.</description>
+      <examples>
+        <example title="Input Field Interactions">
+          <correct-example title="Proper input field usage" conditions="Need tool input field interaction" expected-result="Input field interaction handled" correctness-criteria="Uses ToolsInputfieldStep for input field operations">ToolsInputfieldStep (InputField) → UserInputStep (Data) → ValidateInput</correct-example>
+          <incorrect-example title="Improper input field usage" conditions="Need tool input field interaction" expected-result="Input field interaction handled" correctness-criteria="Uses GameObjectSetActiveStep for input field operations">GameObjectSetActiveStep (InputField, true) → Input handled (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use ToolsInteractionsMenuStep for controlling interactions menu for tools, tool menu management, interaction options, and tool selection.</description>
+      <examples>
+        <example title="Tool Menu Control">
+          <correct-example title="Proper menu control" conditions="Need to control tool menu" expected-result="Tool menu controlled" correctness-criteria="Uses ToolsInteractionsMenuStep for menu operations">ToolsInteractionsMenuStep (EnableMenu) → UserSelectsOption → ExecuteToolAction</correct-example>
+          <incorrect-example title="Improper menu control" conditions="Need to control tool menu" expected-result="Tool menu controlled" correctness-criteria="Uses GameObjectSetActiveStep for menu operations">GameObjectSetActiveStep (Menu, true) → Menu controlled (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>CRITICAL: Both GameObjectSetActiveStep and ToggleColliderStep work on ONE single object at a time only. For multiple objects, use multiple nodes sequentially.</description>
+      <examples>
+        <example title="Single Object Limitation">
+          <correct-example title="Proper multiple object handling" conditions="Need to control multiple objects" expected-result="Multiple objects controlled sequentially" correctness-criteria="Uses multiple nodes for multiple objects">ToggleColliderStep (Device1, disable) → ToggleColliderStep (Device2, disable) → ToggleColliderStep (Device3, disable)</correct-example>
+          <incorrect-example title="Improper multiple object handling" conditions="Need to control multiple objects" expected-result="Multiple objects controlled sequentially" correctness-criteria="Tries to control multiple objects with single node">ToggleColliderStep ([Device1, Device2, Device3], disable) → Multiple objects controlled (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Distinguish between visibility control and collider management. Use GameObjectSetActiveStep for show/hide operations, ToggleColliderStep for collider enable/disable operations.</description>
+      <examples>
+        <example title="Visibility vs Collider Control">
+          <correct-example title="Proper operation distinction" conditions="Need to hide object" expected-result="Object hidden" correctness-criteria="Uses GameObjectSetActiveStep for visibility">GameObjectSetActiveStep (Object, false) → Object hidden</correct-example>
+          <incorrect-example title="Improper operation distinction" conditions="Need to hide object" expected-result="Object hidden" correctness-criteria="Uses ToggleColliderStep for visibility">ToggleColliderStep (Object, false) → Object hidden (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use GameObjectSetActiveStep instead of FunctionCallStep for visibility operations. GameObjectSetActiveStep is specifically designed for object visibility control and is more appropriate than generic function calls.</description>
+      <examples>
+        <example title="Visibility vs Function Calls">
+          <correct-example title="Proper visibility operation" conditions="Need to show/hide object" expected-result="Object visibility controlled" correctness-criteria="Uses GameObjectSetActiveStep for visibility">GameObjectSetActiveStep (Object, true) → Object shown</correct-example>
+          <incorrect-example title="Improper function call usage" conditions="Need to show/hide object" expected-result="Object visibility controlled" correctness-criteria="Uses FunctionCallStep for visibility">FunctionCallStep (SetActive, Object, true) → Object shown (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for tool nodes">
+    Tool nodes handle object manipulation, visibility control, and tool-specific interactions in virtual lab experiments. These nodes are essential for object state management, interaction control, and tool presentation. The single object limitation is critical for proper operation.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Tool/GameObjectSetActiveStep.mdc" reason="Visibility control">Show/hide GameObjects for visibility control</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Tool/ToggleColliderStep.mdc" reason="Collider management">Enable/disable colliders on single objects</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Tool/ToolsInputfieldStep.mdc" reason="Input field interactions">Handle input field interactions for tools</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Tool/ToolsInteractionsMenuStep.mdc" reason="Menu control">Control interactions menu for tools</reference>
+  </references>
+</rule>

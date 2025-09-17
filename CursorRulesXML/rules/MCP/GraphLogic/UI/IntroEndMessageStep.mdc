@@ -1,0 +1,62 @@
+---
+description: Display a panel in the middle of the screen at the start or end of the experiment or Stage
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>IntroEndMessageStep</title>
+    <description>Display a panel in the middle of the screen at the start or end of the experiment or Stage</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new IntroEndMessageStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <requirement priority="critical">
+      <description>IntroEndMessageStep displays a prominent panel in the middle of the screen for experiment/stage introduction or completion messages. Use for prominent announcements, experiment/stage introductions, and completion messages.</description>
+      <examples>
+        <example title="Prominent Announcements">
+          <correct-example title="Proper prominent message usage" conditions="Need prominent announcement" expected-result="Prominent message displayed in middle screen" correctness-criteria="Uses IntroEndMessageStep for prominent announcements">IntroEndMessageStep (Experiment Introduction) → User acknowledges → Continue</correct-example>
+          <incorrect-example title="Improper prominent message usage" conditions="Need prominent announcement" expected-result="Prominent message displayed in middle screen" correctness-criteria="Uses SideMessageStep for prominent announcements">SideMessageStep (Experiment Introduction) → User acknowledges (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>IntroEndMessageStep requires Message Text (the content to display), Message Type (introduction or end message), Duration (how long to display, optional), and Auto Close (whether to auto-close after duration). Must have introduction or completion message text prepared, determine message type, and ensure appropriate timing in experiment flow.</description>
+      <examples>
+        <example title="Parameter Requirements">
+          <correct-example title="Proper parameter usage" conditions="Using IntroEndMessageStep" expected-result="Prominent message successfully displayed" correctness-criteria="Provides valid message text and type">IntroEndMessageStep (Message Text: "Welcome to the experiment", Message Type: "introduction") → Message displayed</correct-example>
+          <incorrect-example title="Improper parameter usage" conditions="Using IntroEndMessageStep" expected-result="Prominent message successfully displayed" correctness-criteria="Missing required message text">IntroEndMessageStep (Message Type: "introduction") → No message text provided</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use IntroEndMessageStep for middle screen display only. Displays prominent panel in center of screen. Use for important intro/end messages and prominent announcements. NOT for side messages - use SideMessageStep for non-blocking guidance.</description>
+      <examples>
+        <example title="Middle Screen vs Side Panel">
+          <correct-example title="Proper middle screen usage" conditions="Need prominent announcement" expected-result="Message displayed in middle screen" correctness-criteria="Uses IntroEndMessageStep for middle screen display">IntroEndMessageStep (Important announcement) → Middle screen display</correct-example>
+          <incorrect-example title="Improper side panel usage" conditions="Need prominent announcement" expected-result="Message displayed in middle screen" correctness-criteria="Uses side panel for prominent announcements">SideMessageStep (Important announcement) → Side panel display (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use experiment introduction pattern for welcome messages, stage completion pattern for achievement announcements, and experiment end pattern for final results and conclusions.</description>
+      <examples>
+        <example title="Message Patterns">
+          <correct-example title="Proper experiment introduction pattern" conditions="Need experiment welcome" expected-result="Introduction message with experiment start" correctness-criteria="Uses experiment introduction pattern">IntroEndMessageStep (Welcome to experiment) → StartExperiment → Continue</correct-example>
+          <incorrect-example title="Improper side message pattern" conditions="Need experiment welcome" expected-result="Introduction message with experiment start" correctness-criteria="Uses side message for experiment introduction">SideMessageStep (Welcome to experiment) → StartExperiment (wrong approach)</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for IntroEndMessageStep">
+    This node is essential for prominent announcements and experiment flow control in virtual lab experiments. It provides the capability to display a prominent panel in the middle of the screen for experiment/stage introduction or completion messages. The distinction between middle screen and side panel display is critical for proper usage.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/UI/UINodes.mdc" reason="UI nodes overview">User interface and messaging patterns</reference>
+  </references>
+</rule>

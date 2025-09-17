@@ -1,0 +1,38 @@
+---
+description: Object attachment and detachment operations overview. Contains AttachStep, DetachStep, and patterns for equipment assembly and component connections.
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>Attach-Detach Nodes Overview</title>
+    <description>Routing rule for object attachment and detachment operations. Contains AttachStep, DetachStep, and patterns for equipment assembly and component connections. This rule directs you to the specific node rules for detailed implementation.</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <non-negotiable priority="critical">
+      <description>This is a ROUTING RULE ONLY - it does not provide functional tools or capabilities. This rule only routes you to the appropriate node rules for detailed implementation. For actual node implementation, refer to the specific node rules: AttachStep.mdc and DetachStep.mdc.</description>
+    </non-negotiable>
+    <requirement priority="high">
+      <description>AttachStep only handles basic attachment - objects are NOT locked by default. Locking is a separate system that requires FunctionCallStep.</description>
+    </requirement>
+    <requirement priority="high">
+      <description>Always execute attachment/detachment operations sequentially. Objects must have proper colliders and scripts for attachment to work.</description>
+    </requirement>
+    <requirement priority="high">
+      <description>Use conditional attachment patterns with IfStatementStep for decision points. Ensure attachment leads to appropriate actions.</description>
+    </requirement>
+    <requirement priority="medium">
+      <description>DetachStep requires objects to be previously attached. Use detachment after attachment patterns for proper disassembly flow.</description>
+    </requirement>
+  </requirements>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/AttachDetach/AttachStep.mdc" reason="Attachment operations">Detailed attachment operation patterns and examples</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/AttachDetach/DetachStep.mdc" reason="Detachment operations">Detailed detachment operation patterns and examples</reference>
+  </references>
+</rule>

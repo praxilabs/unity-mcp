@@ -1,0 +1,53 @@
+---
+description: Handle object exploration interactions for object inspection and detailed examination
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>ExploreStep</title>
+    <description>Handle object exploration interactions for object inspection and detailed examination</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new ExploreStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <requirement priority="critical">
+      <description>Always disable the colliders of all devices before an exploration step, then ask the user to add the nodes in a group. After the exploration step, you must enable the colliders again.</description>
+      <examples>
+        <example title="Collider Management Pattern">
+          <correct-example title="Proper exploration with collider management" conditions="Need object exploration" expected-result="Proper exploration with collider state management" correctness-criteria="Disables colliders before, enables after">ToggleColliderStep(Device1, false) → ToggleColliderStep(Device2, false) → ToggleColliderStep(Device3, false) → ExploreStep(1) → ToggleColliderStep(Device1, true) → ToggleColliderStep(Device2, true) → ToggleColliderStep(Device3, true)</correct-example>
+          <incorrect-example title="Missing collider management" conditions="Need object exploration" expected-result="Proper exploration with collider state management" incorrectness-criteria="Missing collider disable/enable">ExploreStep(1) // Missing collider management</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Specify Group Index as the primary parameter. The Group Index is the index of the node group that is contained in the exploration step.</description>
+      <examples>
+        <example title="Group Index Specification">
+          <correct-example title="Proper group index specification" conditions="Configuring ExploreStep parameters" expected-result="Correctly configured exploration" correctness-criteria="Specifies group index clearly">Group Index: Index of the node group contained in the exploration step</correct-example>
+          <incorrect-example title="Missing group index" conditions="Configuring ExploreStep parameters" expected-result="Correctly configured exploration" incorrectness-criteria="Missing group index specification">ExploreStep without group index // Missing group index</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use ExploreStep for object inspection, detailed examination, and interactive object discovery. Essential for allowing users to explore multiple objects in a controlled manner.</description>
+      <examples>
+        <example title="Exploration Usage">
+          <correct-example title="Proper exploration usage" conditions="Need object inspection and examination" expected-result="User can explore objects interactively" correctness-criteria="Uses ExploreStep for object discovery">ExploreStep for object inspection, detailed examination, interactive discovery</correct-example>
+          <incorrect-example title="Wrong exploration approach" conditions="Need object inspection and examination" expected-result="User can explore objects interactively" incorrectness-criteria="Uses wrong approach for exploration">Individual ClickStep for each object // Should use ExploreStep for multiple objects</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for ExploreStep operations">
+    ExploreStep handles object exploration interactions in virtual lab experiments. This node is essential for object inspection, detailed examination, and interactive object discovery. The exploration step requires proper collider management to function correctly.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rule.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Click/ClickNodes.mdc" reason="Click operations">General click operation patterns</reference>
+  </references>
+</rule>

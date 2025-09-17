@@ -1,0 +1,72 @@
+---
+description: Manually controls progress by specifying the next step index; supports skipping steps
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>ProgressMapManualNextStep</title>
+    <description>Manually controls progress by specifying the next step index; supports skipping steps</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new ProgressMapManualNextStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <requirement priority="critical">
+      <description>ProgressMapManualNextStep advances progress to a specific next step index for precise control and step skipping in experiment progression. Use for experiment progress, navigation control, and skipping steps.</description>
+      <examples>
+        <example title="Manual Step Navigation">
+          <correct-example title="Proper manual step navigation" conditions="Need precise step control" expected-result="Specific step navigation with control" correctness-criteria="Uses ProgressMapManualNextStep with specific step index">ProgressMapManualNextStep (stepNumber: 3) → SubGraphStep (Step_03)</correct-example>
+          <incorrect-example title="Improper manual step navigation" conditions="Need precise step control" expected-result="Specific step navigation with control" incorrectness-criteria="Uses auto step when manual control is needed">ProgressMapAutoNextStep → SubGraphStep (Step_03)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>ProgressMapManualNextStep requires _nextStepIndex or stepNumber parameter specifying target step index to navigate to. Progress map must be properly configured with valid step index existing in progression.</description>
+      <examples>
+        <example title="Parameter Requirements">
+          <correct-example title="Proper parameter usage" conditions="Using ProgressMapManualNextStep" expected-result="Successful navigation to specified step" correctness-criteria="Provides valid step index parameter">ProgressMapManualNextStep (stepNumber: 2) → SubGraphStep (Step_02)</correct-example>
+          <incorrect-example title="Improper parameter usage" conditions="Using ProgressMapManualNextStep" expected-result="Successful navigation to specified step" incorrectness-criteria="Missing required step index parameter">ProgressMapManualNextStep (no parameters)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use ProgressMapManualNextStep for step progression only, not stage transitions. Provides precise control over step navigation and supports skipping steps in progression.</description>
+      <examples>
+        <example title="Step Progression vs Stage Transitions">
+          <correct-example title="Proper step progression usage" conditions="Need step progression with control" expected-result="Controlled step progression within stage" correctness-criteria="Uses for step progression, not stage transitions">ProgressMapManualNextStep (stepNumber: 1) → SubGraphStep (Step_01)</correct-example>
+          <incorrect-example title="Improper stage transition usage" conditions="Need stage transition" expected-result="Stage transition to different stage" incorrectness-criteria="Uses for stage transition instead of step progression">ProgressMapManualNextStep (stepNumber: 1) → SubGraphStep (Stage_02)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use sequential step progression pattern for multiple steps requiring manual control. Each step specifies the next target step index for precise navigation control.</description>
+      <examples>
+        <example title="Sequential Step Progression">
+          <correct-example title="Proper sequential step progression" conditions="Need multiple manual progressions" expected-result="Controlled progression through multiple steps" correctness-criteria="Uses sequential pattern with specific step indices">ProgressMapManualNextStep (stepNumber: 1) → SubGraphStep (Step_01) → ProgressMapManualNextStep (stepNumber: 2) → SubGraphStep (Step_02)</correct-example>
+          <incorrect-example title="Improper sequential step progression" conditions="Need multiple manual progressions" expected-result="Controlled progression through multiple steps" incorrectness-criteria="Mixes manual and auto progression unnecessarily">ProgressMapManualNextStep (stepNumber: 1) → SubGraphStep (Step_01) → ProgressMapAutoNextStep</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use step completion navigation pattern when completing a step and manually specifying the next step index. Provides flexibility in step ordering and skipping.</description>
+      <examples>
+        <example title="Step Completion Navigation">
+          <correct-example title="Proper step completion navigation" conditions="Need to complete step and navigate manually" expected-result="Step completion with manual navigation" correctness-criteria="Uses manual navigation after step completion">SubGraphStep (Complete step) → ProgressMapManualNextStep (_nextStepIndex: next) → Continue</correct-example>
+          <incorrect-example title="Improper step completion navigation" conditions="Need to complete step and navigate manually" expected-result="Step completion with manual navigation" incorrectness-criteria="Uses auto navigation when manual control is needed">SubGraphStep (Complete step) → ProgressMapAutoNextStep</correct-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for ProgressMapManualNextStep">
+    This node provides precise control over step navigation in virtual lab experiments. It allows skipping steps and provides flexibility in step ordering, making it ideal for complex experiment flows requiring manual control over progression.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/ProgressMap/ProgressMapNodes.mdc" reason="Progress map overview">Progress tracking and navigation control patterns</reference>
+  </references>
+</rule>
+

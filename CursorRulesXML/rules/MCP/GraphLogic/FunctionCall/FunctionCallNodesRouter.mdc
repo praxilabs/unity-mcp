@@ -1,0 +1,93 @@
+---
+description: Method execution on GameObjects and system interactions. Contains FunctionCallStep variants and patterns for component method execution.
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>Function Call Nodes</title>
+    <description>Method execution on GameObjects and system interactions. Contains FunctionCallStep variants and patterns for component method execution.</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <non-negotiable priority="critical">
+      <description>This is a ROUTING RULE ONLY - it does not provide functional tools or capabilities. This rule only routes you to the appropriate node rules for detailed implementation. For actual node implementation, refer to the specific node rules: FunctionCallStep.mdc, FunctionCallGlobalStep.mdc, FunctionCallCoroutineStep.mdc, and FunctionCallCoroutineGlobalStep.mdc.</description>
+    </non-negotiable>
+    <requirement priority="critical">
+      <description>All function call nodes inherit from FunctionCallBase for reflection-based method invocation. Scene object methods require target objects to be registered in the registry data created before experiment creation, global methods use reflection access, methods must be public to be accessible, and use SerializableParameter for method parameters.</description>
+      <examples>
+        <example title="Function Call Prerequisites">
+          <correct-example title="Proper function call setup" conditions="Creating function call nodes" expected-result="Working function call" correctness-criteria="Follows all prerequisites">Public method on registered object with SerializableParameter</correct-example>
+          <incorrect-example title="Improper function call setup" conditions="Creating function call nodes" expected-result="Working function call" incorrectness-criteria="Missing prerequisites">Private method on unregistered object</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use FunctionCallStep for logic that doesn't exist as an actual node in the system and click-to-function patterns. Target specific scene objects with synchronous operations, not global/static methods.</description>
+      <examples>
+        <example title="FunctionCallStep Usage">
+          <correct-example title="Proper FunctionCallStep usage" conditions="Need synchronous scene object method" expected-result="Synchronous method execution" correctness-criteria="Uses scene object with synchronous method">FunctionCallStep(Object, Component, Method) → Continue</correct-example>
+          <incorrect-example title="Improper FunctionCallStep usage" conditions="Need global method" expected-result="Global method execution" incorrectness-criteria="Uses FunctionCallStep for global method">FunctionCallStep for static/global method (should use FunctionCallGlobalStep)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use FunctionCallGlobalStep for global/static method calls and system-wide functions. Methods don't target specific scene objects and affect the entire system. Use for singleton service methods and static functions.</description>
+      <examples>
+        <example title="FunctionCallGlobalStep Usage">
+          <correct-example title="Proper FunctionCallGlobalStep usage" conditions="Need global method execution" expected-result="System-wide method execution" correctness-criteria="Uses global/static methods">FunctionCallGlobalStep(ToggleFirstPersonUI) → FunctionCallGlobalStep(ToggleBirdEyeUI) → Continue</correct-example>
+          <incorrect-example title="Improper FunctionCallGlobalStep usage" conditions="Need scene object method" expected-result="Scene object method execution" incorrectness-criteria="Uses FunctionCallGlobalStep for scene object">FunctionCallGlobalStep for scene object method (should use FunctionCallStep)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use FunctionCallCoroutineStep for methods that return IEnumerator on scene objects. Methods run asynchronously without blocking execution and target specific scene objects for long-running operations.</description>
+      <examples>
+        <example title="FunctionCallCoroutineStep Usage">
+          <correct-example title="Proper FunctionCallCoroutineStep usage" conditions="Need asynchronous scene object method" expected-result="Asynchronous method execution" correctness-criteria="Uses IEnumerator method on scene object">FunctionCallCoroutineStep(Object) → nextNode (continues without waiting)</correct-example>
+          <incorrect-example title="Improper FunctionCallCoroutineStep usage" conditions="Need synchronous method" expected-result="Synchronous method execution" incorrectness-criteria="Uses FunctionCallCoroutineStep for synchronous method">FunctionCallCoroutineStep for synchronous method (should use FunctionCallStep)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use FunctionCallCoroutineGlobalStep for global coroutine calls and system-wide asynchronous operations. Methods must return IEnumerator and affect the entire system without targeting specific scene objects.</description>
+      <examples>
+        <example title="FunctionCallCoroutineGlobalStep Usage">
+          <correct-example title="Proper FunctionCallCoroutineGlobalStep usage" conditions="Need global asynchronous method" expected-result="System-wide asynchronous execution" correctness-criteria="Uses global IEnumerator method">FunctionCallCoroutineGlobalStep(ShowLoadingScreen, duration) → DelayStep → Continue</correct-example>
+          <incorrect-example title="Improper FunctionCallCoroutineGlobalStep usage" conditions="Need scene object coroutine" expected-result="Scene object asynchronous execution" incorrectness-criteria="Uses FunctionCallCoroutineGlobalStep for scene object">FunctionCallCoroutineGlobalStep for scene object coroutine (should use FunctionCallCoroutineStep)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>For liquid pouring operations, use the critical pattern: FunctionCallStep(StartPouring()) → FunctionCallStep(FillLiquid()) → FunctionCallStep(StopPouring()). For color change during pouring, add FunctionCallStep(ChangeColor()) between FillLiquid() and StopPouring().</description>
+      <examples>
+        <example title="Liquid Pouring Pattern">
+          <correct-example title="Proper liquid pouring sequence" conditions="Need liquid pouring operation" expected-result="Complete pouring sequence" correctness-criteria="Follows critical pouring pattern">FunctionCallStep(StartPouring()) → FunctionCallStep(FillLiquid()) → FunctionCallStep(StopPouring())</correct-example>
+          <incorrect-example title="Improper liquid pouring sequence" conditions="Need liquid pouring operation" expected-result="Complete pouring sequence" incorrectness-criteria="Skips required steps">FunctionCallStep(FillLiquid()) → FunctionCallStep(StopPouring()) (missing StartPouring)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <non-negotiable priority="critical">
+      <description>NEVER use FunctionCallStep for global/static methods. NEVER use FunctionCallGlobalStep for scene object methods. NEVER use coroutine steps for synchronous methods. Always match the step type to the method type and scope.</description>
+      <examples>
+        <example title="Step Type Matching">
+          <correct-example title="Proper step type matching" conditions="Selecting function call step type" expected-result="Correct method execution" correctness-criteria="Matches step type to method type">Scene object method → FunctionCallStep, Global method → FunctionCallGlobalStep, Coroutine method → FunctionCallCoroutineStep</correct-example>
+          <incorrect-example title="Improper step type matching" conditions="Selecting function call step type" expected-result="Correct method execution" incorrectness-criteria="Mismatches step type to method type">Scene object method → FunctionCallGlobalStep, Global method → FunctionCallStep</correct-example>
+        </example>
+      </examples>
+    </non-negotiable>
+  </requirements>
+  <context description="Additional considerations for function call nodes">
+    Function call nodes are essential for executing methods on GameObjects and system interactions in virtual lab experiments. Always ensure proper object registration, method visibility, and parameter types. Use the appropriate step type based on method scope (scene object vs global) and execution type (synchronous vs asynchronous). Follow the critical liquid pouring pattern for liquid operations.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/FunctionCall/FunctionCallStep.mdc" reason="Scene object method execution">FunctionCallStep implementation patterns</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/FunctionCall/FunctionCallGlobalStep.mdc" reason="Global method execution">FunctionCallGlobalStep implementation patterns</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/FunctionCall/FunctionCallCoroutineStep.mdc" reason="Asynchronous scene object execution">FunctionCallCoroutineStep implementation patterns</reference>
+  </references>
+</rule>

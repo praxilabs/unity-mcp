@@ -1,0 +1,88 @@
+---
+description: Unified node positioning strategy for Unity MCP graph layouts
+alwaysApply: true
+---
+
+<rule>
+  <meta>
+    <title>Unity MCP Node Positioning Strategy</title>
+    <description>Unified node positioning strategy for Unity MCP graph layouts</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-scriptableobject">Triggered when creating a new XNode Graph Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <requirement priority="critical">
+      <description>Create visually appealing, logically organized node layouts that prioritize user experience and readability. Balance aesthetics with functionality, use natural left-to-right and top-to-bottom reading patterns, adapt layout to content rather than rigid grids, and prevent visual clutter and node overlap.</description>
+      <examples>
+        <example title="Layout Design Principles">
+          <correct-example title="Proper layout design" conditions="Creating node layout" expected-result="Visually appealing and organized layout" correctness-criteria="Follows design principles with logical flow">Start(0,0) → Setup(450,0) → Execute(900,0) → Complete(1350,0)</correct-example>
+          <incorrect-example title="Improper layout design" conditions="Creating node layout" expected-result="Visually appealing and organized layout" incorrectness-criteria="Ignores design principles">Start(0,0) → Setup(200,0) → Execute(350,0) → Complete(500,0) // Overlapping nodes</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use standard spacing measurements: 450px horizontal sequential between nodes in same logical group, 300px vertical separation between parallel routes or logical levels, 600px stage separation between major workflow phases, and (0,0) start position for first node.</description>
+      <examples>
+        <example title="Spacing Standards">
+          <correct-example title="Proper spacing usage" conditions="Positioning nodes" expected-result="Correct spacing between nodes" correctness-criteria="Follows standard measurements">Node1(0,0) → Node2(450,0) → Node3(900,0)</correct-example>
+          <incorrect-example title="Improper spacing usage" conditions="Positioning nodes" expected-result="Correct spacing between nodes" incorrectness-criteria="Uses incorrect spacing">Node1(0,0) → Node2(100,0) → Node3(200,0)</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Apply strategy selection algorithm: Single row layout for ≤5 nodes, 2-3 row hybrid layout for 6-8 nodes, 3-4 row hybrid layout for 9-15 nodes, and multi-row logical grouping for >15 nodes.</description>
+      <examples>
+        <example title="Strategy Selection">
+          <correct-example title="Proper strategy selection" conditions="Choosing layout strategy" expected-result="Appropriate layout for node count" correctness-criteria="Matches node count to strategy">8 nodes → 2-3 row hybrid layout</correct-example>
+          <incorrect-example title="Improper strategy selection" conditions="Choosing layout strategy" expected-result="Appropriate layout for node count" incorrectness-criteria="Mismatches node count to strategy">20 nodes → Single row layout</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use logical grouping with phase-based organization grouping nodes by workflow phases, function-based clustering keeping related operations together, and visual hierarchy using spacing to indicate relationships.</description>
+      <examples>
+        <example title="Logical Grouping">
+          <correct-example title="Proper logical grouping" conditions="Organizing nodes" expected-result="Logically grouped layout" correctness-criteria="Groups related operations">Initialization phase: Start(0,0) → Setup(450,0) → Initialize(900,0)</correct-example>
+          <incorrect-example title="Improper logical grouping" conditions="Organizing nodes" expected-result="Logically grouped layout" incorrectness-criteria="Mixes unrelated operations">Start(0,0) → RandomOp(450,0) → Setup(900,0)</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use flexible positioning with brick wall approach instead of rigid grids. Center nodes for visual balance and adapt spacing per logical group rather than forcing uniform spacing.</description>
+      <examples>
+        <example title="Flexible Positioning">
+          <correct-example title="Proper flexible positioning" conditions="Positioning nodes flexibly" expected-result="Visually balanced layout" correctness-criteria="Uses adaptive centering">Row1: (0,0) → (450,0) → (900,0) Row2: (225,300) → (675,300)</correct-example>
+          <incorrect-example title="Improper rigid positioning" conditions="Positioning nodes flexibly" expected-result="Visually balanced layout" incorrectness-criteria="Forces rigid grid">Row1: (0,0) → (450,0) → (900,0) Row2: (0,300) → (450,300) → (900,300)</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>NEVER create infinite horizontal lines (>5 nodes in single row), infinite vertical stacks (>4 nodes in single column), overlapping nodes with insufficient spacing, rigid grid forcing ignoring logical grouping, or poor visual hierarchy with all nodes at same level.</description>
+      <examples>
+        <example title="Forbidden Patterns">
+          <correct-example title="Proper layout patterns" conditions="Avoiding forbidden patterns" expected-result="Valid layout without forbidden patterns" correctness-criteria="Follows layout guidelines">Sequential flow with proper spacing and logical grouping</correct-example>
+          <incorrect-example title="Forbidden layout patterns" conditions="Avoiding forbidden patterns" expected-result="Valid layout without forbidden patterns" incorrectness-criteria="Uses forbidden patterns">(0,0) → (450,0) → (900,0) → (1350,0) → (1800,0) → (2250,0) → (2700,0) → (3150,0) // Infinite horizontal line</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Always implement logical flow organization grouping related operations, visual breathing room with adequate spacing, clear connection paths showing visible node relationships, consistent spacing standards following defined measurements, and user-friendly navigation with intuitive flow direction.</description>
+      <examples>
+        <example title="Required Patterns">
+          <correct-example title="Proper required patterns" conditions="Implementing required patterns" expected-result="Well-organized layout" correctness-criteria="Includes all required elements">Logical grouping + adequate spacing + clear connections + consistent standards + intuitive flow</correct-example>
+          <incorrect-example title="Missing required patterns" conditions="Implementing required patterns" expected-result="Well-organized layout" incorrectness-criteria="Missing required elements">Logical grouping only without spacing or clear connections</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for node positioning">
+    Before finalizing layout, validate visual appeal, logical flow, adequate spacing, consistent standards, flexible positioning, and clear connections. Consider performance with reasonable canvas size, minimal scrolling, and connection clarity. The goal is to create visually appealing, functionally organized node layouts that enhance user understanding and workflow navigation.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+  </references>
+</rule>

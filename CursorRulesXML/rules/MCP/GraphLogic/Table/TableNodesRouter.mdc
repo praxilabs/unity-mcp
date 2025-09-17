@@ -1,0 +1,105 @@
+---
+description: Data table operations, record management, and stage data handling. Contains table interaction steps, record operations, and data management patterns.
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>Table Nodes</title>
+    <description>Data table operations, record management, and stage data handling. Contains table interaction steps, record operations, and data management patterns.</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <non-negotiable priority="critical">
+      <description>This is a ROUTING RULE ONLY - it does not provide functional tools or capabilities. This rule only routes you to the appropriate node rules for detailed implementation. For actual node implementation, refer to the specific node rules: AddRecordStep.mdc, EnableRecordButtonStep.mdc, EnableStageStep.mdc, SetCurrentStageStep.mdc, SetStagePassedStep.mdc, and UnsetStagePassedStep.mdc.</description>
+    </non-negotiable>
+    <requirement priority="high">
+      <description>Use AddRecordStep for adding new data records to tables, logging experiment results, and data collection operations.</description>
+      <examples>
+        <example title="Data Record Operations">
+          <correct-example title="Proper data record usage" conditions="Need to add data to table" expected-result="New record added to active table" correctness-criteria="Uses AddRecordStep for data operations">AddRecordStep (Table, Data) → Continue</correct-example>
+          <incorrect-example title="Improper data record usage" conditions="Need to add data to table" expected-result="New record added to active table" incorrectness-criteria="Uses stage management for data operations">SetStagePassedStep (Stage1) → Data added (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use EnableRecordButtonStep for controlling UI button states for data recording, user-controlled data capture flows, and interactive data collection.</description>
+      <examples>
+        <example title="UI Button Control">
+          <correct-example title="Proper button control usage" conditions="Need to control record button" expected-result="Button state controlled for data recording" correctness-criteria="Uses EnableRecordButtonStep for UI control">EnableRecordButtonStep (RecordButton, true) → UserInputStep (Data)</correct-example>
+          <incorrect-example title="Improper button control usage" conditions="Need to control record button" expected-result="Button state controlled for data recording" incorrectness-criteria="Uses data operation for UI control">AddRecordStep (Table, Data) → Button controlled (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use EnableStageStep for starting new experiment stages, initializing stage-specific functionality, and beginning new phases.</description>
+      <examples>
+        <example title="Stage Initialization">
+          <correct-example title="Proper stage initialization" conditions="Need to start new stage" expected-result="Stage activated and initialized" correctness-criteria="Uses EnableStageStep for stage activation">EnableStageStep (Stage1) → LogicForStage1 → SetStagePassedStep (Stage1)</correct-example>
+          <incorrect-example title="Improper stage initialization" conditions="Need to start new stage" expected-result="Stage activated and initialized" incorrectness-criteria="Uses data operation for stage management">AddRecordStep (Table, Data) → Stage started (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use SetCurrentStageStep for explicit stage navigation, resuming from specific stages, and conditional stage routing.</description>
+      <examples>
+        <example title="Stage Navigation">
+          <correct-example title="Proper stage navigation" conditions="Need to navigate to specific stage" expected-result="Current stage set to target stage" correctness-criteria="Uses SetCurrentStageStep for navigation">IfStatementStep (Condition) → SetCurrentStageStep (SuccessStage)</correct-example>
+          <incorrect-example title="Improper stage navigation" conditions="Need to navigate to specific stage" expected-result="Current stage set to target stage" incorrectness-criteria="Uses data operation for stage navigation">AddRecordStep (Table, Data) → Stage navigated (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use SetStagePassedStep for marking stages as completed, unlocking subsequent stages, and progress tracking.</description>
+      <examples>
+        <example title="Stage Completion">
+          <correct-example title="Proper stage completion" conditions="Need to mark stage as completed" expected-result="Stage marked as passed/completed" correctness-criteria="Uses SetStagePassedStep for completion">LogicForStage1 → SetStagePassedStep (Stage1) → EnableStageStep (Stage2)</correct-example>
+          <incorrect-example title="Improper stage completion" conditions="Need to mark stage as completed" expected-result="Stage marked as passed/completed" incorrectness-criteria="Uses data operation for stage completion">AddRecordStep (Table, Data) → Stage completed (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use UnsetStagePassedStep for resetting stage completion status, error handling and retry flows, and reverting stage progress.</description>
+      <examples>
+        <example title="Stage Reset">
+          <correct-example title="Proper stage reset" conditions="Need to reset stage completion" expected-result="Stage completion status reverted" correctness-criteria="Uses UnsetStagePassedStep for reset">IfStatementStep (Success) → SetStagePassedStep (CurrentStage) → False: UnsetStagePassedStep (CurrentStage)</correct-example>
+          <incorrect-example title="Improper stage reset" conditions="Need to reset stage completion" expected-result="Stage completion status reverted" incorrectness-criteria="Uses data operation for stage reset">AddRecordStep (Table, Data) → Stage reset (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Distinguish between data operations and stage management. Use AddRecordStep/EnableRecordButtonStep for data operations, stage nodes for stage management.</description>
+      <examples>
+        <example title="Data vs Stage Operations">
+          <correct-example title="Proper operation distinction" conditions="Need data collection" expected-result="Data collected and recorded" correctness-criteria="Uses data operation nodes for data tasks">AddRecordStep (Table, Data) → Data recorded</correct-example>
+          <incorrect-example title="Improper operation distinction" conditions="Need data collection" expected-result="Data collected and recorded" incorrectness-criteria="Uses stage management for data tasks">SetStagePassedStep (Stage1) → Data recorded (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Follow stage progression workflow: Use EnableStageStep to start, SetStagePassedStep to complete, UnsetStagePassedStep to reset. Use SetCurrentStageStep for explicit stage navigation.</description>
+      <examples>
+        <example title="Stage Progression Workflow">
+          <correct-example title="Proper stage progression" conditions="Need complete stage workflow" expected-result="Stage properly initialized, executed, and completed" correctness-criteria="Follows complete stage progression workflow">EnableStageStep (Stage1) → LogicForStage1 → SetStagePassedStep (Stage1) → EnableStageStep (Stage2)</correct-example>
+          <incorrect-example title="Improper stage progression" conditions="Need complete stage workflow" expected-result="Stage properly initialized, executed, and completed" incorrectness-criteria="Skips stage progression steps">LogicForStage1 → SetStagePassedStep (Stage1) → EnableStageStep (Stage2)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for table nodes">
+    Table nodes handle data table operations and stage management in virtual lab experiments. Essential for data collection, record management, and experiment stage tracking. These nodes provide both data manipulation capabilities and stage progression control.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Table/AddRecordStep.mdc" reason="Data record operations">Adding records to data tables</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Table/EnableRecordButtonStep.mdc" reason="UI button control">Controlling record button states</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Table/EnableStageStep.mdc" reason="Stage initialization">Activating and initializing stages</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Table/SetCurrentStageStep.mdc" reason="Stage navigation">Setting current active stage</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Table/SetStagePassedStep.mdc" reason="Stage completion">Marking stages as completed</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Table/UnsetStagePassedStep.mdc" reason="Stage reset">Reverting stage completion status</reference>
+  </references>
+</rule>

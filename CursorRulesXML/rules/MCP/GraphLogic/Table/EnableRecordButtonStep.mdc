@@ -1,0 +1,62 @@
+---
+description: Enable or disable a UI button responsible for triggering a record operation
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>EnableRecordButtonStep</title>
+    <description>Enable or disable a UI button responsible for triggering a record operation</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new EnableRecordButtonStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <requirement priority="critical">
+      <description>EnableRecordButtonStep controls the interactable state of a record button in the UI for user-controlled data capture flows. Use for user-controlled data recording and interactive data capture.</description>
+      <examples>
+        <example title="UI Button Control">
+          <correct-example title="Proper button control usage" conditions="Need to control record button" expected-result="Button state controlled for data recording" correctness-criteria="Uses EnableRecordButtonStep for UI control">EnableRecordButtonStep (RecordButton, true) → UserInputStep (Data)</correct-example>
+          <incorrect-example title="Improper button control usage" conditions="Need to control record button" expected-result="Button state controlled for data recording" incorrectness-criteria="Uses data operation for UI control">AddRecordStep (Table, Data) → Button controlled (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>EnableRecordButtonStep requires buttonId (UI element identifier) and enabled (boolean to enable/disable). Record button must exist in the UI with proper configuration and accessibility via buttonId.</description>
+      <examples>
+        <example title="Parameter Requirements">
+          <correct-example title="Proper parameter usage" conditions="Using EnableRecordButtonStep" expected-result="Button state successfully controlled" correctness-criteria="Provides valid button ID and enabled state">EnableRecordButtonStep (buttonId: "RecordButton", enabled: true) → Button enabled</correct-example>
+          <incorrect-example title="Improper parameter usage" conditions="Using EnableRecordButtonStep" expected-result="Button state successfully controlled" incorrectness-criteria="Missing required button ID or enabled state">EnableRecordButtonStep (enabled: true) → No button ID provided</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use EnableRecordButtonStep for controlling UI button states for data recording, not for data operations or stage management. Provides enable/disable functionality for record buttons and enables user-controlled data capture flows.</description>
+      <examples>
+        <example title="UI Control vs Data Operations">
+          <correct-example title="Proper UI control usage" conditions="Need to control UI button" expected-result="Button state controlled" correctness-criteria="Uses EnableRecordButtonStep for UI control">EnableRecordButtonStep (RecordButton, true) → Button enabled</correct-example>
+          <incorrect-example title="Improper data operation usage" conditions="Need to control UI button" expected-result="Button state controlled" incorrectness-criteria="Uses data operation for UI control">AddRecordStep (Table, Data) → Button controlled (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use user adds data via UI pattern when implementing interactive data collection. Combines button control, user input, and record addition for complete user-driven data capture workflow.</description>
+      <examples>
+        <example title="User Data Collection Pattern">
+          <correct-example title="Proper user data collection pattern" conditions="Need interactive data collection" expected-result="User data collected through UI" correctness-criteria="Uses complete user data collection pattern">EnableRecordButtonStep (RecordButton, true) → UserInputStep (Data) → AddRecordStep (ActiveTable, UserInputData)</correct-example>
+          <incorrect-example title="Improper user data collection pattern" conditions="Need interactive data collection" expected-result="User data collected through UI" incorrectness-criteria="Skips user input or record addition steps">EnableRecordButtonStep (RecordButton, true) → UserInputStep (Data)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for EnableRecordButtonStep">
+    This node is essential for user-controlled data capture flows in virtual lab experiments. It provides the capability to control UI button states for data recording, enabling interactive data collection workflows where users can trigger data recording through UI interactions.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Table/TableNodes.mdc" reason="Table nodes overview">Data table operations and stage management patterns</reference>
+  </references>
+</rule>

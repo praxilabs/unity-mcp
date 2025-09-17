@@ -1,0 +1,47 @@
+---
+description: Handle object detachment for equipment disassembly and component removal
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>DetachStep</title>
+    <description>Handle object detachment for equipment disassembly and component removal</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new DetachStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <requirement priority="critical">
+      <description>Required Components: Same as AttachStep since detachment only occurs after attachment. Source object must have been previously attached.</description>
+    </requirement>
+    <requirement priority="critical">
+      <description>Detachment is automatic. Object becomes draggable again and snaps back to its starting position before attachment.</description>
+      <examples>
+        <example title="Detachment Process">
+          <correct-example title="Proper detachment sequence" conditions="Need to detach previously attached objects" expected-result="Object detached and draggable again" correctness-criteria="Follows attachment then detachment pattern">AttachStep(ObjA, ObjB) → [operations] → DetachStep(ObjA) → Object becomes draggable</correct-example>
+          <incorrect-example title="Detachment without attachment" conditions="Need to detach objects" expected-result="Object detached and draggable again" incorrectness-criteria="Attempts detachment without prior attachment">DetachStep(ObjA) // No prior attachment - nothing happens</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Parameter: Object 1 (source object only). Object already contains attachment data from previous AttachStep.</description>
+    </requirement>
+    <requirement priority="high">
+      <description>For multiple detachments, connect DetachStep nodes sequentially in graph. Each detachment must complete before next begins.</description>
+      <examples>
+        <example title="Sequential Detachment">
+          <correct-example title="Proper sequential detachment" conditions="Multiple detachment operations" expected-result="All detachments completed in order" correctness-criteria="Connects DetachStep nodes sequentially">DetachStep(Battery) → DetachStep(Cover) → DetachStep(Screws)</correct-example>
+          <incorrect-example title="Missing sequential connection" conditions="Multiple detachment operations" expected-result="All detachments completed in order" incorrectness-criteria="DetachStep nodes not connected">DetachStep(Battery) // Not connected to next DetachStep</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/AttachDetach/AttachDetachNodes.mdc" reason="Attach-detach operations">General attach-detach operation patterns</reference>
+  </references>
+</rule>

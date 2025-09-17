@@ -1,0 +1,110 @@
+---
+description: User interface, messaging, timing controls, and educational content. Contains SideMessageStep, HintStep, TimerStep, and UI interaction patterns.
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>UI Nodes</title>
+    <description>User interface, messaging, timing controls, and educational content. Contains SideMessageStep, HintStep, TimerStep, and UI interaction patterns.</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <non-negotiable priority="critical">
+      <description>This is a ROUTING RULE ONLY - it does not provide functional tools or capabilities. This rule only routes you to the appropriate node rules for detailed implementation. For actual node implementation, refer to the specific node rules: HintStep.mdc, TimerStep.mdc, SideMessageStep.mdc, IntroEndMessageStep.mdc, MiddleMessageOneActionStep.mdc, MiddleMessageTwoActionsStep.mdc, MCQStep.mdc, SafetyToolsStep.mdc, StageEndMessageIndependentStep.mdc, StageEndMessageDependentStep.mdc, and StageEndMessageMultiScenarioStep.mdc.</description>
+    </non-negotiable>
+    <requirement priority="high">
+      <description>Use IntroEndMessageStep for display prominent panel in middle of screen for intro/end messages, prominent announcements, experiment/stage introductions, and completion messages.</description>
+      <examples>
+        <example title="Prominent Announcements">
+          <correct-example title="Proper prominent message usage" conditions="Need prominent announcement" expected-result="Prominent message displayed in middle screen" correctness-criteria="Uses IntroEndMessageStep for prominent announcements">IntroEndMessageStep (Experiment Introduction) → User acknowledges → Continue</correct-example>
+          <incorrect-example title="Improper prominent message usage" conditions="Need prominent announcement" expected-result="Prominent message displayed in middle screen" correctness-criteria="Uses SideMessageStep for prominent announcements">SideMessageStep (Experiment Introduction) → User acknowledges (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use SideMessageStep for display side panel messages for non-blocking guidance, non-blocking instructions, feedback, and guidance messages.</description>
+      <examples>
+        <example title="Non-blocking Guidance">
+          <correct-example title="Proper side message usage" conditions="Need non-blocking guidance" expected-result="Non-blocking message displayed in side panel" correctness-criteria="Uses SideMessageStep for non-blocking guidance">SideMessageStep (Guidance message) → User continues workflow</correct-example>
+          <incorrect-example title="Improper side message usage" conditions="Need non-blocking guidance" expected-result="Non-blocking message displayed in side panel" correctness-criteria="Uses IntroEndMessageStep for non-blocking guidance">IntroEndMessageStep (Guidance message) → User continues workflow (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use MiddleMessageOneActionStep for display middle screen message with one action button, confirmation dialogs, single-choice prompts, and simple decisions.</description>
+      <examples>
+        <example title="Single Confirmation">
+          <correct-example title="Proper single action usage" conditions="Need single confirmation" expected-result="Single action message with one button" correctness-criteria="Uses MiddleMessageOneActionStep for single confirmations">MiddleMessageOneActionStep (Confirm action) → User clicks button → Continue</correct-example>
+          <incorrect-example title="Improper single action usage" conditions="Need single confirmation" expected-result="Single action message with one button" correctness-criteria="Uses MiddleMessageTwoActionsStep for single confirmations">MiddleMessageTwoActionsStep (Confirm action) → User clicks button (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use MiddleMessageTwoActionsStep for display middle screen message with two action buttons, multiple choice dialogs, decision points, and option selection.</description>
+      <examples>
+        <example title="Binary Choices">
+          <correct-example title="Proper two action usage" conditions="Need binary choice" expected-result="Two action message with two buttons" correctness-criteria="Uses MiddleMessageTwoActionsStep for binary choices">MiddleMessageTwoActionsStep (Choose option A or B) → User selects option → Continue</correct-example>
+          <incorrect-example title="Improper two action usage" conditions="Need binary choice" expected-result="Two action message with two buttons" correctness-criteria="Uses MiddleMessageOneActionStep for binary choices">MiddleMessageOneActionStep (Choose option A or B) → User selects option (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use TimerStep for display countdown timer with UI controls for experiment timing, procedure pacing, and user-controlled countdowns.</description>
+      <examples>
+        <example title="User-Controlled Timing">
+          <correct-example title="Proper timer usage" conditions="Need user-controlled timing" expected-result="Timer with UI controls displayed" correctness-criteria="Uses TimerStep for user-controlled timing">TimerStep (Duration: 60) → User controls timer → Continue</correct-example>
+          <incorrect-example title="Improper timer usage" conditions="Need user-controlled timing" expected-result="Timer with UI controls displayed" correctness-criteria="Uses DelayStep for user-controlled timing">DelayStep (Duration: 60) → User controls timer (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use MCQStep for display multiple choice questions to users, knowledge assessment, decision making, and educational testing.</description>
+      <examples>
+        <example title="Knowledge Assessment">
+          <correct-example title="Proper MCQ usage" conditions="Need knowledge assessment" expected-result="Multiple choice question displayed" correctness-criteria="Uses MCQStep for knowledge assessment">MCQStep (Question with multiple options) → User selects answer → Continue</correct-example>
+          <incorrect-example title="Improper MCQ usage" conditions="Need knowledge assessment" expected-result="Multiple choice question displayed" correctness-criteria="Uses MiddleMessageTwoActionsStep for knowledge assessment">MiddleMessageTwoActionsStep (Question with multiple options) → User selects answer (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Distinguish between message positioning. Use middle screen for prominent messages (IntroEndMessageStep, MiddleMessageOneActionStep, MiddleMessageTwoActionsStep). Use side panel for non-blocking guidance (SideMessageStep).</description>
+      <examples>
+        <example title="Message Positioning">
+          <correct-example title="Proper message positioning" conditions="Need prominent announcement" expected-result="Message displayed in appropriate position" correctness-criteria="Uses middle screen for prominent messages">IntroEndMessageStep (Important announcement) → Middle screen display</correct-example>
+          <incorrect-example title="Improper message positioning" conditions="Need prominent announcement" expected-result="Message displayed in appropriate position" correctness-criteria="Uses side panel for prominent messages">SideMessageStep (Important announcement) → Side panel display (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Distinguish between user-controlled and fixed timing. Use TimerStep for user-controlled timing with UI controls. Use DelayStep (Utility category) for fixed system delays.</description>
+      <examples>
+        <example title="Timing Control">
+          <correct-example title="Proper timing control" conditions="Need user-controlled timing" expected-result="User controls timing with UI" correctness-criteria="Uses TimerStep for user-controlled timing">TimerStep (Duration: 60) → User controls timer</correct-example>
+          <incorrect-example title="Improper timing control" conditions="Need user-controlled timing" expected-result="User controls timing with UI" correctness-criteria="Uses DelayStep for user-controlled timing">DelayStep (Duration: 60) → User controls timer (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for UI nodes">
+    UI nodes handle user interface and messaging in virtual lab experiments. These nodes are essential for user guidance, feedback, timing controls, and interactive elements. Proper message positioning and timing control distinctions are critical for effective user experience.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/UI/HintStep.mdc" reason="Educational guidance">Display educational hints for user guidance</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/UI/TimerStep.mdc" reason="User-controlled timing">Display countdown timer with UI controls</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/UI/SideMessageStep.mdc" reason="Non-blocking guidance">Display side panel messages for instructions</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/UI/IntroEndMessageStep.mdc" reason="Prominent announcements">Display prominent panel for intro/end messages</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/UI/MiddleMessageOneActionStep.mdc" reason="Single confirmation">Display middle screen message with one action button</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/UI/MiddleMessageTwoActionsStep.mdc" reason="Binary choices">Display middle screen message with two action buttons</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/UI/MCQStep.mdc" reason="Knowledge assessment">Display multiple choice questions to users</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/UI/SafetyToolsStep.mdc" reason="Safety protocols">Display safety-related tools and warnings</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/UI/StageEndMessageIndependentStep.mdc" reason="Standalone completion">Display stage completion message that doesn't depend on other stages</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/UI/StageEndMessageDependentStep.mdc" reason="Dependent completion">Display stage completion message that depends on other stages</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/UI/StageEndMessageMultiScenarioStep.mdc" reason="Complex completion">Display stage completion message for multiple scenarios</reference>
+  </references>
+</rule>

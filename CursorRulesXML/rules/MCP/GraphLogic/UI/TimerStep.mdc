@@ -1,0 +1,63 @@
+---
+description: Display countdown timer with UI controls for experiment timing and procedure pacing
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>TimerStep</title>
+    <description>Display countdown timer with UI controls for experiment timing and procedure pacing</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new TimerStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <requirement priority="critical">
+      <description>TimerStep displays a countdown timer with UI controls for experiment timing, procedure pacing, and user-controlled countdowns. Use for experiment timing, procedure pacing, and user-controlled countdowns.</description>
+      <examples>
+        <example title="User-Controlled Timing">
+          <correct-example title="Proper timer usage" conditions="Need user-controlled timing" expected-result="Timer with UI controls displayed" correctness-criteria="Uses TimerStep for user-controlled timing">TimerStep (Duration: 60) → User controls timer → Continue</correct-example>
+          <incorrect-example title="Improper timer usage" conditions="Need user-controlled timing" expected-result="Timer with UI controls displayed" correctness-criteria="Uses DelayStep for user-controlled timing">DelayStep (Duration: 60) → User controls timer (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>TimerStep requires Duration (timer duration in seconds), Timer Type (countdown or count-up timer), Controls (available timer controls), and Auto Start (whether to start automatically). Must set appropriate duration, configure timer controls, ensure UI accessibility, and handle timer logic.</description>
+      <examples>
+        <example title="Parameter Requirements">
+          <correct-example title="Proper parameter usage" conditions="Using TimerStep" expected-result="Timer with UI controls successfully displayed" correctness-criteria="Provides valid duration and timer configuration">TimerStep (Duration: 60, Timer Type: "countdown", Controls: ["start", "pause", "reset"]) → Timer displayed</correct-example>
+          <incorrect-example title="Improper parameter usage" conditions="Using TimerStep" expected-result="Timer with UI controls successfully displayed" correctness-criteria="Missing required duration parameter">TimerStep (Timer Type: "countdown") → No duration provided</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use TimerStep for user-controlled timing only. Creates a panel with timer for user to control freely. Use for time-sensitive experiments that require pacing and timing. Use DelayStep for fixed delays, TimerStep for user-controlled timing.</description>
+      <examples>
+        <example title="User-Controlled vs Fixed Timing">
+          <correct-example title="Proper user-controlled timing" conditions="Need user-controlled timing" expected-result="User controls timer freely" correctness-criteria="Uses TimerStep for user-controlled timing">TimerStep (Duration: 60) → User controls timer freely</correct-example>
+          <incorrect-example title="Improper fixed timing usage" conditions="Need fixed system delay" expected-result="System waits for fixed time" correctness-criteria="Uses TimerStep for fixed timing">TimerStep (Duration: 60) → System waits 60 seconds (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use user controlled timer pattern for flexible timing control. Creates a panel with timer for user to control freely between any nodes.</description>
+      <examples>
+        <example title="User Controlled Timer Pattern">
+          <correct-example title="Proper user controlled timer pattern" conditions="Need flexible timing control" expected-result="User controls timer between actions" correctness-criteria="Uses user controlled timer pattern">AnyNode → TimerStep(Time) → AnyNode</correct-example>
+          <incorrect-example title="Improper fixed timing pattern" conditions="Need flexible timing control" expected-result="User controls timer between actions" correctness-criteria="Uses fixed timing instead of user control">AnyNode → DelayStep(Time) → AnyNode</correct-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for TimerStep">
+    This node is essential for user-controlled timing in virtual lab experiments. It provides the capability to display countdown timer with UI controls for experiment timing, procedure pacing, and user-controlled countdowns. The distinction between user-controlled and fixed timing is critical for proper usage.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/UI/UINodes.mdc" reason="UI nodes overview">User interface and messaging patterns</reference>
+  </references>
+</rule>
+
