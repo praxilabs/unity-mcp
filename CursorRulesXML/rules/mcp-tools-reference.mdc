@@ -1,12 +1,12 @@
 ---
 description: Unity MCP tools reference and capabilities guide
-alwaysApply: true
+alwaysApply: false
 ---
 
 <rule>
   <meta>
-    <title>MCP Tools Reference</title>
-    <description>Unity MCP tools reference and capabilities guide</description>
+    <title>Unity MCP Tools Reference</title>
+    <description>Essential Unity MCP tool usage patterns and requirements</description>
     <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
     <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
     <applies-to>
@@ -16,77 +16,49 @@ alwaysApply: true
   </meta>
   <requirements>
     <non-negotiable priority="critical">
-      <description>Always pass metadata when creating nodes with mcp_unityMCP_create_xnode_node. Description must contain required Components from the rule file of the nodes, and tooltip must contain a brief explanation of what the node does. Before creating any node, you MUST fetch the specific node rule file to get the exact required components list. Neglecting this rule will lead to unwanted behavior.</description>
+      <description>Before creating any node with mcp_unityMCP_create_xnode_node, you MUST fetch the specific node rule file from MCP/GraphLogic/Category/NodeType path to get exact required components. Always go to the router rules first. Description metadata must contain required components list and tooltip must explain node functionality. Description MUST be formatted in markdown for Unity Editor readability.</description>
       <examples>
-        <example title="Node Creation with Metadata">
-          <correct-example title="Proper node creation with metadata" conditions="Creating a node in graph" expected-result="Node with proper metadata" correctness-criteria="Includes description with components and tooltip with brief explanation"><![CDATA[
-            // First: fetch_rules(["MCP/GraphLogic/Click/ClickStep"]) to get required components
+        <example title="Node Creation Protocol">
+          <correct-example title="Complete node creation workflow" conditions="Creating a node in graph" expected-result="Properly configured node with metadata" correctness-criteria="Follows complete workflow including rule fetch and proper formatting"><![CDATA[
+            // First: fetch_rules(["MCP/GraphLogic/Click/ClickNodesRouter"]) to get router, then specific node rule
             description: 
               "This Node is responsible for 1, 2, and 3.
                Brief on how to use the node.
-               Required Components: 
-                1. Component1 - Reason.
-                2. Component2 - Reason.
+               Node Setup Instructions:
+              (Add requirement from the rule file of the node)
+               (or "None" if no requirements)
               "
-            tooltip:
-               "Brief explanation of what the node does"
+            tooltip: "Brief explanation of what the node does"
           ]]></correct-example>
-          <incorrect-example title="Improper node creation without metadata" conditions="Creating a node in graph" expected-result="Node with proper metadata" incorrectness-criteria="Missing required metadata or skipping rule file fetch">// Skipping fetch_rules() and using generic components
+          <incorrect-example title="Incomplete node creation" conditions="Creating a node in graph" expected-result="Properly configured node with metadata" incorrectness-criteria="Missing required metadata or skipping rule file fetch">// Skipping fetch_rules() and using generic components
             description: "" tooltip: ""</incorrect-example>
         </example>
       </examples>
     </non-negotiable>
-    <non-negotiable priority="critical">
-      <description>When creating nodes with mcp_unityMCP_create_xnode_node, description metadata MUST be formatted in markdown text format for better readability and appearance in Unity Editor. This is MANDATORY for all node creation operations.</description>
-    </non-negotiable>
     <requirement priority="critical">
-      <description>Always connect from exit to entry ports using forward-only connections. NEVER create backwards connections. No reverse connections are allowed.</description>
+      <description>Always connect nodes using proper port connections: output ports connect to input ports and vice versa. Use exact auto-generated node names (NodeType_InstanceID format) for all operations. You may create shortened names for readability but never change the node type identifier.</description>
       <examples>
-        <example title="Connection Direction">
-          <correct-example title="Proper forward connection" conditions="Connecting nodes" expected-result="Valid forward connection" correctness-criteria="Connects from exit to entry port">NodeA(exit) → NodeB(entry)</correct-example>
-          <incorrect-example title="Improper backwards connection" conditions="Connecting nodes" expected-result="Valid forward connection" incorrectness-criteria="Creates reverse connection">NodeA(entry) ← NodeB(exit)</incorrect-example>
+        <example title="Connection Standards">
+          <correct-example title="Proper connection pattern" conditions="Connecting nodes" expected-result="Valid port connection" correctness-criteria="Uses proper port types and exact names">NodeA_12345(output) → NodeB_67890(input)</correct-example>
+          <incorrect-example title="Invalid connection pattern" conditions="Connecting nodes" expected-result="Valid port connection" incorrectness-criteria="Uses wrong port types or custom names">NodeA(input) ← NodeB(output)</incorrect-example>
         </example>
       </examples>
     </requirement>
     <requirement priority="high">
-      <description>Use exact node names for connections and operations. Nodes get auto-generated names in format "NodeType_InstanceID". Always use these exact names when referencing nodes.</description>
-      <examples>
-        <example title="Node Naming">
-          <correct-example title="Proper node name usage" conditions="Referencing nodes" expected-result="Correct node reference" correctness-criteria="Uses exact auto-generated name">ClickStep_12345</correct-example>
-          <incorrect-example title="Improper node name usage" conditions="Referencing nodes" expected-result="Correct node reference" incorrectness-criteria="Uses custom name instead of exact name">ClickStep</incorrect-example>
-        </example>
-      </examples>
-    </requirement>
-    <requirement priority="high">
-      <description>Always use list_graph_nodes after graph creation for validation, check_node_exists before operations, and read_console for error diagnosis. Follow this validation pattern consistently.</description>
-      <examples>
-        <example title="Validation Pattern">
-          <correct-example title="Proper validation pattern" conditions="Working with graphs" expected-result="Properly validated operations" correctness-criteria="Follows complete validation workflow">Create graph → list_graph_nodes → check_node_exists → perform operation → read_console if errors</correct-example>
-          <incorrect-example title="Improper validation pattern" conditions="Working with graphs" expected-result="Properly validated operations" incorrectness-criteria="Skips validation steps">Create graph → perform operation directly</incorrect-example>
-        </example>
-      </examples>
+      <description>Follow the Graph Validation Rules for all graph operations. Reference the graph-validation-rules.mdc for complete validation requirements and procedures.</description>
     </requirement>
     <requirement priority="medium">
-      <description>Use mcp_unityMCP_create_scriptable_object for ExperimentData, ExperimentItemsRegistry, and StepsGraph types in Assets/Testing/ folder structure.</description>
+      <description>Use MCP tools based on their specific functionality: mcp_unityMCP_create_scriptable_object for ExperimentData/ExperimentItemsRegistry/StepsGraph, mcp_unityMCP_manage_gameobject for GameObject operations with component_properties, mcp_unityMCP_read_console for Unity console messages, mcp_unityMCP_manage_editor for editor state control. Tool names indicate their specific functionality.</description>
       <examples>
-        <example title="ScriptableObject Creation">
-          <correct-example title="Proper ScriptableObject creation" conditions="Creating experiment assets" expected-result="Correct asset type created" correctness-criteria="Uses correct type and location">mcp_unityMCP_create_scriptable_object with type "ExperimentData" in "Assets/Testing/"</correct-example>
-          <incorrect-example title="Improper ScriptableObject creation" conditions="Creating experiment assets" expected-result="Correct asset type created" incorrectness-criteria="Uses wrong type or location">mcp_unityMCP_create_scriptable_object with type "Material" in "Assets/"</incorrect-example>
-        </example>
-      </examples>
-    </requirement>
-    <requirement priority="medium">
-      <description>Use mcp_unityMCP_manage_gameobject for GameObject operations including create, modify, find, add_component, remove_component actions with component properties set via component_properties parameter.</description>
-      <examples>
-        <example title="GameObject Management">
-          <correct-example title="Proper GameObject management" conditions="Managing GameObjects" expected-result="Correct GameObject operations" correctness-criteria="Uses appropriate action and parameters">mcp_unityMCP_manage_gameobject with action "create" and component_properties</correct-example>
-          <incorrect-example title="Improper GameObject management" conditions="Managing GameObjects" expected-result="Correct GameObject operations" incorrectness-criteria="Uses wrong action or missing parameters">mcp_unityMCP_manage_gameobject with action "create" without component_properties</incorrect-example>
+        <example title="Tool Selection">
+          <correct-example title="Correct tool usage" conditions="Creating experiment assets" expected-result="Proper tool selection for task" correctness-criteria="Uses appropriate tool based on functionality">ExperimentData creation → mcp_unityMCP_create_scriptable_object (name indicates ScriptableObject creation)</correct-example>
+          <incorrect-example title="Incorrect tool usage" conditions="Creating experiment assets" expected-result="Proper tool selection for task" incorrectness-criteria="Uses wrong tool for operation">ExperimentData creation → mcp_unityMCP_manage_gameobject (name indicates GameObject management)</incorrect-example>
         </example>
       </examples>
     </requirement>
   </requirements>
-  <context description="Additional considerations for Unity MCP tools">
-    Use mcp_unityMCP_read_console for getting Unity console messages with types error, warning, log, or all. Use mcp_unityMCP_manage_editor for controlling Unity editor state with actions play, pause, get_state, or set_active_tool. Use mcp_unityMCP_execute_menu_item for executing Unity menu items via menu_path.
+  <context description="Additional Unity MCP tool capabilities">
+    mcp_unityMCP_read_console supports message types: error, warning, log, all. mcp_unityMCP_manage_editor supports actions: play, pause, get_state, set_active_tool. mcp_unityMCP_execute_menu_item executes Unity menu items via menu_path. Always use these tools according to their specific capabilities and parameter requirements.
   </context>
   <references>
     <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>

@@ -1,6 +1,6 @@
 ---
 description: Critical connection requirements for Unity MCP graph nodes
-alwaysApply: true
+alwaysApply: false
 ---
 
 <rule>

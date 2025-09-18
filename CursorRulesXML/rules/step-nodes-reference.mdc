@@ -1,12 +1,12 @@
 ---
-description: XNode Step Nodes core reference guide for Unity MCP
-alwaysApply: true
+description: Quick reference guide for XNode Step Nodes - directs to specific router rule files
+alwaysApply: false
 ---
 
 <rule>
   <meta>
     <title>XNode Step Nodes - Core Reference Guide</title>
-    <description>XNode Step Nodes core reference guide for Unity MCP</description>
+    <description>Quick reference guide for XNode Step Nodes - directs to specific router rule files for detailed implementation</description>
     <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
     <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
     <applies-to>
@@ -15,61 +15,43 @@ alwaysApply: true
     </applies-to>
   </meta>
   <requirements>
+    <non-negotiable priority="critical">
+      <description>This is a REFERENCE FILE ONLY. Use this file to identify the appropriate node category, then ALWAYS fetch the specific router rule file for detailed implementation. This file provides quick node selection guidance but contains no implementation details.</description>
+      <examples>
+        <example title="Reference File Usage">
+          <correct-example title="Proper reference file usage" conditions="Need to implement a node" expected-result="Correct router file accessed" correctness-criteria="Uses this file to identify category then fetches router file">Identify node category here → Fetch specific router rule file → Implement with detailed guidance</correct-example>
+          <incorrect-example title="Improper reference file usage" conditions="Need to implement a node" expected-result="Correct router file accessed" incorrectness-criteria="Tries to implement using only this reference file">Use only this file for implementation without fetching router files</incorrect-example>
+        </example>
+      </examples>
+    </non-negotiable>
     <requirement priority="high">
-      <description>Use the Node Selection Decision Tree to choose appropriate step nodes. For user interaction required, use ClickStep for object clicking, RotateKnobStep for knob rotation, AttachStep for object attachment, DetachStep for object detachment, or ExploreStep for object exploration.</description>
+      <description>Quick Node Selection Guide: Attach-Detach for object attachment/detachment, Click for user clicking interactions, Control Flow for execution flow and branching logic, Camera for camera positioning and focus, Function Call for method execution on GameObjects, Loops for iterative operations, Tools for object manipulation and visibility control, UI for user interface and messaging, Utility for system utility operations, NewEvents for event-driven interactions, Table for data table operations, Progress Map for progress tracking and navigation, Animation Step for animation control and playback.</description>
       <examples>
-        <example title="User Interaction Node Selection">
-          <correct-example title="Proper interaction node selection" conditions="Need user clicking interaction" expected-result="Correct node type selected" correctness-criteria="Matches interaction type to node">Need object clicking → Select ClickStep</correct-example>
-          <incorrect-example title="Improper interaction node selection" conditions="Need user clicking interaction" expected-result="Correct node type selected" incorrectness-criteria="Mismatches interaction type to node">Need object clicking → Select FunctionCallStep</incorrect-example>
+        <example title="Quick Category Identification">
+          <correct-example title="Proper category identification" conditions="Need to identify node category" expected-result="Correct category identified" correctness-criteria="Matches need to category then fetches router file">Need equipment assembly → Identify Attach-Detach category → Fetch AttachDetachNodesRouter.mdc</correct-example>
+          <incorrect-example title="Improper category identification" conditions="Need to identify node category" expected-result="Correct category identified" incorrectness-criteria="Selects wrong category or skips router file fetch">Need equipment assembly → Wrong category or no router file fetch</incorrect-example>
         </example>
       </examples>
     </requirement>
-    <requirement priority="high">
-      <description>For automatic execution, use GameObjectSetActiveStep for show/hide objects, FunctionCallStep for method calls, DelayStep for time delays, SubGraphStep for execute sub-graphs, or HintStep for display hints.</description>
+    <requirement priority="critical">
+      <description>MANDATORY: Always fetch the specific router rule file after identifying the category. Router files: AttachDetachNodesRouter.mdc, ClickNodesRouter.mdc, ControlFlowNodesRouter.mdc, CameraNodesRouter.mdc, FunctionCallNodesRouter.mdc, LoopNodesRouter.mdc, ToolNodesRouter.mdc, UINodesRouter.mdc, UtilityNodesRouter.mdc, NewEventsNodesRouter.mdc, TableNodesRouter.mdc, ProgressMapNodesRouter.mdc, MiscNodesRouter.mdc. These contain detailed implementation guidance.</description>
       <examples>
-        <example title="Automatic Execution Node Selection">
-          <correct-example title="Proper automatic node selection" conditions="Need to show/hide objects" expected-result="Correct node type selected" correctness-criteria="Matches operation type to node">Need to show object → Select GameObjectSetActiveStep</correct-example>
-          <incorrect-example title="Improper automatic node selection" conditions="Need to show/hide objects" expected-result="Correct node type selected" incorrectness-criteria="Mismatches operation type to node">Need to show object → Select ClickStep</incorrect-example>
-        </example>
-      </examples>
-    </requirement>
-    <requirement priority="high">
-      <description>For control flow logic, use CompositeStep for parallel execution, IfStatementStep for boolean branching, SwitchStep for multi-way branching, ForLoopStep for fixed iterations, or WhileLoopStep for conditional loops.</description>
-      <examples>
-        <example title="Control Flow Node Selection">
-          <correct-example title="Proper control flow node selection" conditions="Need parallel execution" expected-result="Correct node type selected" correctness-criteria="Matches logic type to node">Need parallel execution → Select CompositeStep</correct-example>
-          <incorrect-example title="Improper control flow node selection" conditions="Need parallel execution" expected-result="Correct node type selected" incorrectness-criteria="Mismatches logic type to node">Need parallel execution → Select IfStatementStep</incorrect-example>
-        </example>
-      </examples>
-    </requirement>
-    <requirement priority="medium">
-      <description>Understand step node categories and their purposes: Attach-Detach for object attachment/detachment, Click for user clicking interactions, Control Flow for execution flow and branching logic, Camera for camera positioning and focus, Function Call for method execution on GameObjects, Loops for iterative operations, Tools for object manipulation and visibility control, UI for user interface and messaging, Utility for system utility operations, NewEvents for event-driven interactions, Table for data table operations, Progress Map for progress tracking and navigation, and Animation Step for animation control and playback.</description>
-      <examples>
-        <example title="Category Understanding">
-          <correct-example title="Proper category selection" conditions="Need equipment assembly" expected-result="Correct category identified" correctness-criteria="Matches need to category">Need equipment assembly → Attach-Detach category</correct-example>
-          <incorrect-example title="Improper category selection" conditions="Need equipment assembly" expected-result="Correct category identified" incorrectness-criteria="Selects wrong category">Need equipment assembly → UI category</incorrect-example>
-        </example>
-      </examples>
-    </requirement>
-    <requirement priority="medium">
-      <description>Reference specific rule files for detailed information about each category: Attach-DetachNodes.mdc for attachment operations, ClickNodes.mdc for clicking interactions, ControlFlowNodes.mdc for flow control, CameraNodes.mdc for camera operations, FunctionCallNodes.mdc for method execution, LoopNodes.mdc for iterations, ToolNodes.mdc for object manipulation, UINodes.mdc for interface elements, UtilityNodes.mdc for system operations, NewEventsNodes.mdc for events, TableNodes.mdc for data operations, ProgressMapNodes.mdc for progress tracking, and MiscNodes.mdc for animations.</description>
-      <examples>
-        <example title="Rule File Reference">
-          <correct-example title="Proper rule file reference" conditions="Need detailed attachment information" expected-result="Correct rule file accessed" correctness-criteria="References appropriate category file">Need attachment details → Reference Attach-DetachNodes.mdc</correct-example>
-          <incorrect-example title="Improper rule file reference" conditions="Need detailed attachment information" expected-result="Correct rule file accessed" incorrectness-criteria="References wrong category file">Need attachment details → Reference ClickNodes.mdc</incorrect-example>
+        <example title="Router File Access">
+          <correct-example title="Proper router file access" conditions="Need to implement node" expected-result="Detailed implementation guidance obtained" correctness-criteria="Fetches correct router file with detailed guidance">Identify category → fetch_rules(["MCP/GraphLogic/Click/ClickNodesRouter"]) → Get detailed ClickStep implementation</correct-example>
+          <incorrect-example title="Improper router file access" conditions="Need to implement node" expected-result="Detailed implementation guidance obtained" incorrectness-criteria="Skips router file or uses wrong file">Identify category → Skip router file → Try to implement without detailed guidance</incorrect-example>
         </example>
       </examples>
     </requirement>
   </requirements>
-  <context description="Additional considerations for step node selection">
-    Use this reference guide to quickly identify the appropriate step node type for your Unity MCP experiment needs. The decision tree helps categorize requirements into user interaction, automatic execution, or control flow logic, while the category descriptions provide specific use cases and purposes for each node type.
+  <context description="Reference file purpose and usage">
+    This file serves ONLY as a quick reference to identify node categories and direct users to the appropriate router rule files. It contains NO implementation details. Always use this file to identify the category, then immediately fetch the specific router rule file for detailed implementation guidance, component requirements, and usage patterns.
   </context>
   <references>
     <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
-    <reference as="context" href=".cursor/rules/MCP/GraphLogic/AttachDetach/AttachDetachNodes.mdc" reason="Attachment operations">Object attachment and detachment patterns</reference>
-    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Click/ClickNodes.mdc" reason="User interactions">Clicking and interactive manipulation patterns</reference>
-    <reference as="context" href=".cursor/rules/MCP/GraphLogic/ControlFlow/ControlFlowNodes.mdc" reason="Flow control">Execution flow and branching logic patterns</reference>
-    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Camera/CameraNodes.mdc" reason="Camera operations">Camera positioning and focus control patterns</reference>
-    <reference as="context" href=".cursor/rules/MCP/GraphLogic/FunctionCall/FunctionCallNodes.mdc" reason="Method execution">Function call and system interaction patterns</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/AttachDetach/AttachDetachNodesRouter.mdc" reason="Attachment operations">Object attachment and detachment patterns</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Click/ClickNodesRouter.mdc" reason="User interactions">Clicking and interactive manipulation patterns</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/ControlFlow/ControlFlowNodesRouter.mdc" reason="Flow control">Execution flow and branching logic patterns</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Camera/CameraNodesRouter.mdc" reason="Camera operations">Camera positioning and focus control patterns</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/FunctionCall/FunctionCallNodesRouter.mdc" reason="Method execution">Function call and system interaction patterns</reference>
   </references>
 </rule>

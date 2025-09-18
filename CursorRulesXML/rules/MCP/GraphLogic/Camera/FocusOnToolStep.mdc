@@ -16,7 +16,11 @@ alwaysApply: false
   </meta>
   <requirements>
     <requirement priority="critical">
-      <description>Required Components: 1. Virtual Camera (Cinemachine) - Focused on the target object. 2. ToolsCameraTarget Script - On the target object with reference to its Virtual Camera.</description>
+      <description>Node Setup Instructions:
+      Add virtual camera to the scene.
+      Add "ToolsCameraTarget" component to target object.
+      Configure virtual camera to reference the target object.
+      </description>
     </requirement>
     <requirement priority="critical">
       <description>Camera system tracks only one previous camera. To focus on multiple objects, use ReturnCameraStep between FocusOnToolStep operations to maintain previous camera reference.</description>

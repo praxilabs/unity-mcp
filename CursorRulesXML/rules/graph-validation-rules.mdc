@@ -1,12 +1,12 @@
 ---
 description: Mandatory post-creation validation rules for Unity MCP graphs
-alwaysApply: true
+alwaysApply: false
 ---
 
 <rule>
   <meta>
     <title>Graph Validation Rules</title>
-    <description>Mandatory post-creation validation rules for Unity MCP graphs</description>
+    <description>Mandatory validation workflow for Unity MCP graph operations</description>
     <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
     <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
     <applies-to>
@@ -15,54 +15,45 @@ alwaysApply: true
     </applies-to>
   </meta>
   <requirements>
-    <requirement priority="critical">
-      <description>After creating ANY graph, you MUST perform these validation steps: run mcp_unityMCP_list_graph_nodes to get complete node list, check for orphaned nodes, remove orphaned nodes that aren't part of execution flow, verify all nodes have both input AND output connections (except first/last), and confirm execution flow is complete from entry to exit.</description>
-      <examples>
-        <example title="Graph Validation Process">
-          <correct-example title="Proper validation workflow" conditions="After creating a graph" expected-result="Validated graph with no errors" correctness-criteria="Follows complete validation process">Run list_graph_nodes → Check for orphaned nodes → Remove orphaned nodes → Verify connections → Confirm flow</correct-example>
-          <incorrect-example title="Improper validation workflow" conditions="After creating a graph" expected-result="Validated graph with no errors" incorrectness-criteria="Skips validation steps">Create graph and assume it works without validation</incorrect-example>
-        </example>
-      </examples>
-    </requirement>
-    <requirement priority="critical">
-      <description>After ANY correction, you MUST re-validate and continue the fix→validate cycle until 100% error-free. NEVER stop at first fix - always complete the full validation cycle.</description>
-      <examples>
-        <example title="Validation Loop">
-          <correct-example title="Proper validation loop" conditions="After fixing graph errors" expected-result="Fully validated graph" correctness-criteria="Continues validation until 100% clean">Fix error → Re-validate → Find another error → Fix → Re-validate → Continue until 0 errors</correct-example>
-          <incorrect-example title="Improper validation loop" conditions="After fixing graph errors" expected-result="Fully validated graph" incorrectness-criteria="Stops after first fix">Fix error → Assume graph is complete</incorrect-example>
-        </example>
-      </examples>
-    </requirement>
-    <requirement priority="high">
-      <description>Remove orphaned nodes immediately using mcp_unityMCP_delete_xnode_node. Orphaned nodes are those created but never connected to execution flow and can cause graph execution to fail.</description>
-      <examples>
-        <example title="Orphaned Node Removal">
-          <correct-example title="Proper orphaned node removal" conditions="Finding orphaned nodes" expected-result="Clean graph without orphaned nodes" correctness-criteria="Removes all disconnected nodes">Detect orphaned node → Use delete_xnode_node → Remove from graph</correct-example>
-          <incorrect-example title="Improper orphaned node handling" conditions="Finding orphaned nodes" expected-result="Clean graph without orphaned nodes" incorrectness-criteria="Leaves orphaned nodes in graph">Detect orphaned node → Leave in graph</incorrect-example>
-        </example>
-      </examples>
-    </requirement>
-    <requirement priority="high">
-      <description>Complete all required connections using mcp_unityMCP_connect_nodes_by_name. Nodes with missing input or output connections will cause execution to stop at incomplete nodes.</description>
-      <examples>
-        <example title="Connection Completion">
-          <correct-example title="Proper connection completion" conditions="Finding incomplete connections" expected-result="All nodes properly connected" correctness-criteria="Completes all required connections">Detect incomplete connection → Use connect_nodes_by_name → Complete connection</correct-example>
-          <incorrect-example title="Improper connection handling" conditions="Finding incomplete connections" expected-result="All nodes properly connected" incorrectness-criteria="Leaves connections incomplete">Detect incomplete connection → Leave incomplete</incorrect-example>
-        </example>
-      </examples>
-    </requirement>
     <non-negotiable priority="critical">
-      <description>NEVER consider a graph complete without running post-creation validation. Failure to validate will result in broken experiments.</description>
+      <description>After ANY graph creation or modification, you MUST run complete validation: list_graph_nodes → remove orphaned nodes → verify connections → confirm single entry/multiple exit flow → iterate fix→validate cycle until 100% error-free.</description>
       <examples>
-        <example title="Validation Requirement">
-          <correct-example title="Mandatory validation" conditions="Before considering graph complete" expected-result="Validated graph" correctness-criteria="Always runs validation before completion">Create graph → Run validation → Fix issues → Re-validate → Complete</correct-example>
-          <incorrect-example title="Skipped validation" conditions="Before considering graph complete" expected-result="Validated graph" incorrectness-criteria="Skips validation process">Create graph → Consider complete without validation</incorrect-example>
+        <example title="Complete Validation Workflow">
+          <correct-example title="Proper validation cycle" conditions="After graph creation/modification" expected-result="Fully validated graph" correctness-criteria="Follows complete validation process">list_graph_nodes → remove orphaned nodes → verify connections → confirm flow → fix errors → re-validate → repeat until 0 errors</correct-example>
+          <incorrect-example title="Incomplete validation" conditions="After graph creation/modification" expected-result="Fully validated graph" incorrectness-criteria="Skips validation or stops after first fix">Create graph → assume complete without validation</incorrect-example>
         </example>
       </examples>
     </non-negotiable>
+    <requirement priority="critical">
+      <description>Remove ALL orphaned nodes using mcp_unityMCP_delete_xnode_node. Orphaned nodes are any disconnected nodes (no input OR no output) except: first node (no input required) and last nodes (no output required). These cause graph execution failures.</description>
+      <examples>
+        <example title="Orphaned Node Definition">
+          <correct-example title="Proper orphaned node removal" conditions="Finding disconnected nodes" expected-result="Clean graph structure" correctness-criteria="Removes all disconnected nodes except first/last">Node with no connections → delete_xnode_node → removed from graph</correct-example>
+          <incorrect-example title="Incomplete orphaned node removal" conditions="Finding disconnected nodes" expected-result="Clean graph structure" incorrectness-criteria="Leaves orphaned nodes in graph">Node with no connections → left in graph</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Verify execution flow structure: exactly ONE entry point (first node with no input), at least ONE exit point (last nodes with no output), all middle nodes must have both input AND output connections.</description>
+      <examples>
+        <example title="Flow Structure Validation">
+          <correct-example title="Proper flow structure" conditions="Validating graph flow" expected-result="Valid execution flow" correctness-criteria="Single entry, multiple exits, complete middle connections">Entry → Middle1 → Middle2 → Exit1, Exit2 (all middle nodes have input+output)</correct-example>
+          <incorrect-example title="Invalid flow structure" conditions="Validating graph flow" expected-result="Valid execution flow" incorrectness-criteria="Multiple entries or incomplete middle connections">Entry1, Entry2 → Middle (missing output) → Exit</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Complete missing connections using mcp_unityMCP_connect_nodes_by_name. Middle nodes missing input or output connections will cause execution to stop at incomplete nodes.</description>
+      <examples>
+        <example title="Connection Completion">
+          <correct-example title="Proper connection completion" conditions="Finding incomplete connections" expected-result="All required connections complete" correctness-criteria="Completes all missing connections">Detect missing connection → connect_nodes_by_name → connection established</correct-example>
+          <incorrect-example title="Incomplete connection handling" conditions="Finding incomplete connections" expected-result="All required connections complete" incorrectness-criteria="Leaves connections incomplete">Detect missing connection → leave incomplete</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
   </requirements>
-  <context description="Additional considerations for graph validation">
-    Use mcp_unityMCP_list_graph_nodes to check graph structure, mcp_unityMCP_set_node_as_first_step to establish entry point, mcp_unityMCP_delete_xnode_node to remove orphaned nodes, and mcp_unityMCP_connect_nodes_by_name to fix missing connections. These validation steps are essential for creating functional experiments.
+  <context description="Validation error types and tools">
+    Critical errors: orphaned nodes, missing connections, invalid flow structure. Use mcp_unityMCP_list_graph_nodes for structure analysis, mcp_unityMCP_delete_xnode_node for orphaned node removal, mcp_unityMCP_connect_nodes_by_name for missing connections, mcp_unityMCP_set_node_as_first_step for entry point establishment.
   </context>
   <references>
     <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
