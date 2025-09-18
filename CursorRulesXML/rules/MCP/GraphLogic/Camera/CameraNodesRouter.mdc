@@ -17,48 +17,30 @@ alwaysApply: false
     <non-negotiable priority="critical">
       <description>This is a ROUTING RULE ONLY - it does not provide functional tools or capabilities. This rule only routes you to the appropriate node rules for detailed implementation. For actual node implementation, refer to the specific node rules: FocusOnToolStep.mdc and ReturnCameraStep.mdc.</description>
     </non-negotiable>
-    <requirement priority="critical">
-      <description>ANY time you use FocusOnToolStep and later want to use FocusOnToolStep again (same or different tool), you MUST use ReturnCameraStep between them.</description>
+    <non-negotiable priority="critical">
+      <description>ANY time you use FocusOnToolStep and later want to use FocusOnToolStep again (same or different tool), you MUST use ReturnCameraStep between them. This is MANDATORY due to camera system limitations - failure to follow this rule will cause camera system failures.</description>
       <examples>
-        <example title="Focus to Focus Operations">
-          <correct-example title="Proper focus sequence with return" conditions="Need to focus on multiple tools" expected-result="Camera properly transitions between focuses" correctness-criteria="Uses ReturnCameraStep between focus operations">FocusOnToolStep(Tool1) → [any nodes] → ReturnCameraStep → FocusOnToolStep(Tool2)</correct-example>
-          <incorrect-example title="Missing return between focuses" conditions="Need to focus on multiple tools" expected-result="Camera properly transitions between focuses" incorrectness-criteria="Skips ReturnCameraStep between focus operations">FocusOnToolStep(Tool1) → [any nodes] → FocusOnToolStep(Tool2) // Missing ReturnCameraStep</incorrect-example>
+        <example title="Multiple Focus Operations">
+          <correct-example title="Proper multiple focus sequence" conditions="Need to focus on multiple objects" expected-result="Camera system functions correctly" correctness-criteria="Uses ReturnCameraStep between all FocusOnToolStep operations">FocusOnToolStep(Object1) → [operations] → ReturnCameraStep → FocusOnToolStep(Object2) → [operations] → ReturnCameraStep</correct-example>
+          <incorrect-example title="Missing return between focuses" conditions="Need to focus on multiple objects" expected-result="Camera system functions correctly" incorrectness-criteria="Skips ReturnCameraStep between FocusOnToolStep operations">FocusOnToolStep(Object1) → [operations] → FocusOnToolStep(Object2) // WILL CAUSE CAMERA SYSTEM FAILURE</incorrect-example>
         </example>
       </examples>
-    </requirement>
+    </non-negotiable>
     <requirement priority="critical">
       <description>The camera system tracks only ONE previous camera position (main camera), not a stack. This requires strict management and proper sequencing.</description>
-      <examples>
-        <example title="Single Position Tracking">
-          <correct-example title="Proper single position management" conditions="Managing camera position tracking" expected-result="Camera position properly tracked" correctness-criteria="Follows single position tracking system">FocusOnToolStep(Tool) → [operations] → ReturnCameraStep → FocusOnToolStep(AnotherTool)</correct-example>
-          <incorrect-example title="Improper position management" conditions="Managing camera position tracking" expected-result="Camera position properly tracked" incorrectness-criteria="Assumes stack-based tracking">FocusOnToolStep(Tool1) → FocusOnToolStep(Tool2) → FocusOnToolStep(Tool3) // No returns</incorrect-example>
-        </example>
-      </examples>
     </requirement>
     <requirement priority="high">
       <description>FocusOnToolStep must be paired with ReturnCameraStep for proper camera management. Use appropriate delays for camera movements.</description>
-      <examples>
-        <example title="Focus and Return Pairing">
-          <correct-example title="Proper focus and return pairing" conditions="Need to focus on tool then return" expected-result="Camera properly focused and returned" correctness-criteria="Pairs FocusOnToolStep with ReturnCameraStep">ClickStep(Device) → FocusOnToolStep(Device) → [operations] → ReturnCameraStep</correct-example>
-          <incorrect-example title="Missing return after focus" conditions="Need to focus on tool then return" expected-result="Camera properly focused and returned" incorrectness-criteria="Missing ReturnCameraStep after focus">ClickStep(Device) → FocusOnToolStep(Device) → [operations] // Missing ReturnCameraStep</incorrect-example>
-        </example>
-      </examples>
     </requirement>
     <requirement priority="medium">
       <description>End experiments with ReturnCameraStep for professional polish. Single focus operations can optionally use ReturnCameraStep.</description>
-      <examples>
-        <example title="Experiment End and Single Focus">
-          <correct-example title="Proper experiment ending" conditions="Ending experiment with camera focus" expected-result="Professional camera management" correctness-criteria="Ends with ReturnCameraStep for polish">FocusOnToolStep(Tool) → [operations] → ReturnCameraStep // End of experiment</correct-example>
-          <incorrect-example title="Missing final return" conditions="Ending experiment with camera focus" expected-result="Professional camera management" incorrectness-criteria="Ends without ReturnCameraStep">FocusOnToolStep(Tool) → [operations] // Missing final ReturnCameraStep</incorrect-example>
-        </example>
-      </examples>
     </requirement>
   </requirements>
   <context description="Additional considerations for camera operations">
     Camera nodes control camera positioning and focus in virtual lab experiments. Essential for guided attention, close-up views, and view management. The system architecture tracks only one previous camera position, requiring strict management of focus and return operations.
   </context>
   <references>
-    <reference as="dependency" href=".cursor/rules/rule.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
     <reference as="context" href=".cursor/rules/MCP/GraphLogic/Camera/FocusOnToolStep.mdc" reason="Focus operations">Detailed focus operation patterns</reference>
     <reference as="context" href=".cursor/rules/MCP/GraphLogic/Camera/ReturnCameraStep.mdc" reason="Return operations">Detailed return operation patterns</reference>
   </references>

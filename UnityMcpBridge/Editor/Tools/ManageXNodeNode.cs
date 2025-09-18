@@ -82,6 +82,16 @@ namespace UnityMcpBridge.Editor.Tools {
                 return (false, null, null, 0f, 0f, "Missing required argument: nodeTypeName", null, null);
             }
 
+            if (string.IsNullOrEmpty(tooltip))
+            {
+                return (false, null, null, 0f, 0f, "Missing required argument: tooltip", null, null);
+            }
+
+            if (string.IsNullOrEmpty(description))
+            {
+                return (false, null, null, 0f, 0f, "Missing required argument: description", null, null);
+            }
+
             return (true, graphPath, nodeTypeName, posX, posY, null, tooltip, description);
         }
 

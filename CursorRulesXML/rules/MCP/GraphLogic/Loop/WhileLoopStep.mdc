@@ -34,11 +34,11 @@ alwaysApply: false
       </examples>
     </requirement>
     <requirement priority="critical">
-      <description>WhileLoopStep ports include Entry (node entry point and loop port), continueLoop (Output - connect to loop body logic then back to entry), isTrue (Boolean expression or FunctionCall that returns boolean), and exit (Output - called after final iteration completes). Use correct port connections for proper loop execution.</description>
+      <description>WhileLoopStep ports include Entry (node entry point), continueLoop (Output - contains the loop body logic with any number of nodes, last node connects back to entry), isTrue (Input - connect to boolean expression or FunctionCall that returns boolean), and exit (Output - exits the loop when condition becomes false). The continueLoop port contains the logic that executes during each iteration, and the last node in the loop body must connect back to the entry port to continue the loop.</description>
       <examples>
         <example title="Port Connections">
-          <correct-example title="Proper port connections" conditions="Connecting WhileLoopStep ports" expected-result="Correct conditional loop execution" correctness-criteria="Uses correct port connections">continueLoop: ... → WhileLoopStep.entry, isTrue: boolean expression, exit: ... (completion)</correct-example>
-          <incorrect-example title="Improper port connections" conditions="Connecting WhileLoopStep ports" expected-result="Correct conditional loop execution" incorrectness-criteria="Uses incorrect port connections">continueLoop: ... → NextNode (should connect back to entry), isTrue: not connected</correct-example>
+          <correct-example title="Proper port connections" conditions="Connecting WhileLoopStep ports" expected-result="Correct conditional loop execution" correctness-criteria="Uses correct port connections">continueLoop: Node1 → Node2 → Node3 → WhileLoopStep.entry, isTrue: BooleanNode → WhileLoopStep.isTrue, exit: NextNode (when condition false)</correct-example>
+          <incorrect-example title="Improper port connections" conditions="Connecting WhileLoopStep ports" expected-result="Correct conditional loop execution" incorrectness-criteria="Uses incorrect port connections">continueLoop: Node1 → Node2 → NextNode (should connect back to entry), isTrue: not connected</correct-example>
         </example>
       </examples>
     </requirement>
@@ -46,7 +46,7 @@ alwaysApply: false
       <description>Use WhileLoopStep for conditional iteration patterns where the number of repetitions is unknown and depends on changing conditions. Common patterns include user interaction loops, dynamic state checking, and conditional repetition based on external factors.</description>
       <examples>
         <example title="Conditional Iteration Pattern">
-          <correct-example title="Proper conditional iteration pattern" conditions="Implementing conditional iteration logic" expected-result="Successful conditional execution" correctness-criteria="Follows established pattern">WhileLoopStep(condition) → continueLoop: ... → WhileLoopStep.entry → exit: ...</correct-example>
+          <correct-example title="Proper conditional iteration pattern" conditions="Implementing conditional iteration logic" expected-result="Successful conditional execution" correctness-criteria="Follows established pattern">WhileLoopStep(condition) → continueLoop: Node1 → Node2 → WhileLoopStep.entry → exit: NextNode</correct-example>
           <incorrect-example title="Improper conditional iteration pattern" conditions="Implementing conditional iteration logic" expected-result="Successful conditional execution" correctness-criteria="Skips required steps">WhileLoopStep without proper port connections or condition setup</correct-example>
         </example>
       </examples>

@@ -16,11 +16,14 @@ alwaysApply: false
   </meta>
   <requirements>
     <requirement priority="critical">
-      <description>AnimationStep plays an animation or triggers an animated effect on a target object for visual feedback and interactive responses. Requires an Animator component on the target object, object must be registered in the Item Registry, and animation clip or state must exist on the Animator.</description>
+      <description>Required Components: 1. Animator - On the target object for animation control. 2. Animation Clip - The actual animation clip that will be played. 3. Trigger - Animation trigger that transitions from current state to the desired animation state.</description>
+    </requirement>
+    <requirement priority="critical">
+      <description>AnimationStep plays an animation or triggers an animated effect on a target object for visual feedback and interactive responses. Object must be registered in the Item Registry and have proper Animator setup with animation clips and triggers.</description>
       <examples>
         <example title="AnimationStep Prerequisites">
-          <correct-example title="Proper AnimationStep setup" conditions="Creating AnimationStep" expected-result="Working animation playback" correctness-criteria="Follows all prerequisites">Object with Animator component, registered in Item Registry, with existing animation clip</correct-example>
-          <incorrect-example title="Improper AnimationStep setup" conditions="Creating AnimationStep" expected-result="Working animation playback" correctness-criteria="Missing prerequisites">Object without Animator component or unregistered object</correct-example>
+          <correct-example title="Proper AnimationStep setup" conditions="Creating AnimationStep" expected-result="Working animation playback" correctness-criteria="Follows all prerequisites">Object with Animator component, Animation Clip, and Trigger, registered in Item Registry</correct-example>
+          <incorrect-example title="Improper AnimationStep setup" conditions="Creating AnimationStep" expected-result="Working animation playback" correctness-criteria="Missing prerequisites">Object without Animator component, missing Animation Clip, or missing Trigger</correct-example>
         </example>
       </examples>
     </requirement>
@@ -34,11 +37,11 @@ alwaysApply: false
       </examples>
     </requirement>
     <requirement priority="high">
-      <description>AnimationStep parameters include _animationTriggerName (name of the Trigger used for animation), _numberOfRounds (number of times the animation will play), _dontCallEnd (boolean to identify whether to call the End Trigger), _freezeUI (boolean to identify whether the UI freezes), _freezeCameraMove (boolean to identify whether camera movement stops), and _freezeCameraRotate (boolean to identify whether camera rotation stops).</description>
+      <description>AnimationStep parameters include _animationTriggerName (MANDATORY - name of the Trigger used for animation), _numberOfRounds (optional - number of times the animation will play), _dontCallEnd (optional - boolean to identify whether to call the End Trigger), _freezeUI (optional - boolean to identify whether the UI freezes), _freezeCameraMove (optional - boolean to identify whether camera movement stops), and _freezeCameraRotate (optional - boolean to identify whether camera rotation stops). Only _animationTriggerName is required; all other parameters are optional and change execution behavior.</description>
       <examples>
         <example title="AnimationStep Parameters">
           <correct-example title="Proper AnimationStep parameters" conditions="Configuring AnimationStep parameters" expected-result="Correct animation behavior" correctness-criteria="All parameters properly configured">_animationTriggerName: "PourLiquid", _numberOfRounds: 1, _dontCallEnd: false, _freezeUI: true</correct-example>
-          <incorrect-example title="Improper AnimationStep parameters" conditions="Configuring AnimationStep parameters" expected-result="Correct animation behavior" correctness-criteria="Missing or incorrect parameters">_animationTriggerName: "", _numberOfRounds: 0, _dontCallEnd: true</correct-example>
+          <incorrect-example title="Improper AnimationStep parameters" conditions="Configuring AnimationStep parameters" expected-result="Correct animation behavior" correctness-criteria="Missing or incorrect parameters">_animationTriggerName: "" (missing mandatory parameter), _numberOfRounds: 0, _dontCallEnd: true</incorrect-example>
         </example>
       </examples>
     </requirement>

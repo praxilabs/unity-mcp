@@ -34,11 +34,11 @@ alwaysApply: false
       </examples>
     </requirement>
     <requirement priority="critical">
-      <description>ForLoopStep ports include Entry (node entry point and loop port), continueLoop (Output - connect to loop body logic then back to entry), and exit (Output - called after final iteration completes). Use correct port connections for proper loop execution.</description>
+      <description>ForLoopStep ports include Entry (node entry point), continueLoop (Output - contains the loop body logic with any number of nodes, last node connects back to entry), and exit (Output - exits the loop after final iteration). The continueLoop port contains the logic that executes during each iteration, and the last node in the loop body must connect back to the entry port to continue the loop.</description>
       <examples>
         <example title="Port Connections">
-          <correct-example title="Proper port connections" conditions="Connecting ForLoopStep ports" expected-result="Correct loop execution" correctness-criteria="Uses correct port connections">continueLoop: ... → ForLoopStep.entry, exit: ... (completion)</correct-example>
-          <incorrect-example title="Improper port connections" conditions="Connecting ForLoopStep ports" expected-result="Correct loop execution" incorrectness-criteria="Uses incorrect port connections">continueLoop: ... → NextNode (should connect back to entry)</correct-example>
+          <correct-example title="Proper port connections" conditions="Connecting ForLoopStep ports" expected-result="Correct loop execution" correctness-criteria="Uses correct port connections">continueLoop: Node1 → Node2 → Node3 → ForLoopStep.entry, exit: NextNode (after completion)</correct-example>
+          <incorrect-example title="Improper port connections" conditions="Connecting ForLoopStep ports" expected-result="Correct loop execution" incorrectness-criteria="Uses incorrect port connections">continueLoop: Node1 → Node2 → NextNode (should connect back to entry)</correct-example>
         </example>
       </examples>
     </requirement>
@@ -46,7 +46,7 @@ alwaysApply: false
       <description>Use ForLoopStep for fixed iteration patterns where the number of repetitions is known in advance. Common patterns include repeated measurements, data collection with known count, and sequential operations with predetermined steps.</description>
       <examples>
         <example title="Fixed Iteration Pattern">
-          <correct-example title="Proper fixed iteration pattern" conditions="Implementing fixed iteration logic" expected-result="Successful repeated execution" correctness-criteria="Follows established pattern">ForLoopStep(iterations: 5) → continueLoop: ... → ForLoopStep.entry → exit: ...</correct-example>
+          <correct-example title="Proper fixed iteration pattern" conditions="Implementing fixed iteration logic" expected-result="Successful repeated execution" correctness-criteria="Follows established pattern">ForLoopStep(iterations: 5) → continueLoop: Node1 → Node2 → ForLoopStep.entry → exit: NextNode</correct-example>
           <incorrect-example title="Improper fixed iteration pattern" conditions="Implementing fixed iteration logic" expected-result="Successful repeated execution" correctness-criteria="Skips required steps">ForLoopStep without proper port connections or loop body</correct-example>
         </example>
       </examples>

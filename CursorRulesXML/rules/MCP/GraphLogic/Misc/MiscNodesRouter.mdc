@@ -19,57 +19,21 @@ alwaysApply: false
     </non-negotiable>
     <requirement priority="critical">
       <description>Misc nodes handle various operations that don't fit into other categories, including animation control, stage progression, and subgraph execution in virtual lab experiments. Use AnimationStep for object animations and visual effects, GoToStageStep for stage transitions, and SubGraphStep for reusable experiment components.</description>
-      <examples>
-        <example title="Misc Node Usage">
-          <correct-example title="Proper misc node usage" conditions="Creating misc operations" expected-result="Correct misc functionality" correctness-criteria="Uses appropriate misc node type">AnimationStep for object animations, GoToStageStep for stage transitions</correct-example>
-          <incorrect-example title="Improper misc node usage" conditions="Creating misc operations" expected-result="Correct misc functionality" incorrectness-criteria="Uses wrong misc node type">GoToStageStep for step progression (should use ProgressMapAutoNextStep)</correct-example>
-        </example>
-      </examples>
     </requirement>
     <requirement priority="critical">
       <description>Use AnimationStep for object animations and visual effects, click-triggered responses, and visual feedback for user actions. Target object must have Animator component and animation clip/state must exist on the Animator.</description>
-      <examples>
-        <example title="AnimationStep Usage">
-          <correct-example title="Proper AnimationStep usage" conditions="Need object animation" expected-result="Visual animation effect" correctness-criteria="Uses AnimationStep for animations">ClickStep(Object) → AnimationStep(Response animation) → Continue</correct-example>
-          <incorrect-example title="Improper AnimationStep usage" conditions="Need stage transition" expected-result="Stage transition" correctness-criteria="Uses AnimationStep for stage transitions">AnimationStep for stage transitions (should use GoToStageStep)</correct-example>
-        </example>
-      </examples>
     </requirement>
     <requirement priority="critical">
       <description>Use GoToStageStep for stage transitions within experiments, skipping stages based on conditions, and ending current stage and starting another. Target stage must exist and be properly configured in Experiment Data.</description>
-      <examples>
-        <example title="GoToStageStep Usage">
-          <correct-example title="Proper GoToStageStep usage" conditions="Need stage transition" expected-result="Stage transition" correctness-criteria="Uses GoToStageStep for stage transitions">IfStatementStep(SkipIntro) → True: GoToStageStep(MainStage)</correct-example>
-          <incorrect-example title="Improper GoToStageStep usage" conditions="Need step progression" expected-result="Step progression" correctness-criteria="Uses GoToStageStep for step progression">GoToStageStep for step progression (should use ProgressMapAutoNextStep)</correct-example>
-        </example>
-      </examples>
     </requirement>
     <requirement priority="high">
       <description>Use SubGraphStep for modular design and reusable experiment components. SubGraphStep allows executing other graphs as subroutines for modular experiment design and reusable procedures.</description>
-      <examples>
-        <example title="SubGraphStep Usage">
-          <correct-example title="Proper SubGraphStep usage" conditions="Need modular execution" expected-result="Reusable component execution" correctness-criteria="Uses SubGraphStep for modular design">SubGraphStep(CommonSetupGraph) → Continue</correct-example>
-          <incorrect-example title="Improper SubGraphStep usage" conditions="Need direct execution" expected-result="Direct execution" correctness-criteria="Uses SubGraphStep for simple operations">SubGraphStep for simple single-step operations</correct-example>
-        </example>
-      </examples>
     </requirement>
     <requirement priority="medium">
       <description>Use descriptive animation names, stage identifiers, and subgraph names in misc nodes to make the logic clear and maintainable. Names should clearly indicate the purpose and target of the operation.</description>
-      <examples>
-        <example title="Descriptive Misc Node Names">
-          <correct-example title="Clear misc node names" conditions="Naming misc node elements" expected-result="Readable misc node logic" correctness-criteria="Uses descriptive names">AnimationStep("PourLiquidAnimation"), GoToStageStep("MainExperimentStage")</correct-example>
-          <incorrect-example title="Unclear misc node names" conditions="Naming misc node elements" expected-result="Readable misc node logic" incorrectness-criteria="Uses unclear names">AnimationStep("Animation1"), GoToStageStep("Stage2")</correct-example>
-        </example>
-      </examples>
     </requirement>
     <non-negotiable priority="critical">
       <description>NEVER use GoToStageStep for step progression within the same stage. NEVER use AnimationStep for stage transitions. NEVER use misc nodes for operations that have dedicated node types in other categories. Always use the appropriate node type for the specific operation.</description>
-      <examples>
-        <example title="Misc Node Restrictions">
-          <correct-example title="Proper misc node usage" conditions="Selecting misc node type" expected-result="Correct misc functionality" correctness-criteria="Uses misc nodes appropriately">AnimationStep for animations, GoToStageStep for stage transitions</correct-example>
-          <incorrect-example title="Improper misc node usage" conditions="Selecting misc node type" expected-result="Correct misc functionality" correctness-criteria="Uses misc nodes inappropriately">GoToStageStep for step progression, AnimationStep for stage transitions</correct-example>
-        </example>
-      </examples>
     </non-negotiable>
   </requirements>
   <context description="Additional considerations for misc nodes">

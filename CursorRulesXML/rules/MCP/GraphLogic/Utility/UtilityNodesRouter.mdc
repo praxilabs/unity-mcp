@@ -5,7 +5,7 @@ alwaysApply: false
 
 <rule>
   <meta>
-    <title>Utility Nodes</title>
+    <title>Utility Nodes Router</title>
     <description>System utility operations, timing control, and modular execution. Contains FreezeLabStep, DelayStep, SubGraphStep, and utility operation patterns.</description>
     <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
     <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
@@ -19,66 +19,24 @@ alwaysApply: false
     </non-negotiable>
     <requirement priority="high">
       <description>Use FreezeLabStep for freeze/unfreeze lab interactions, pause functionality, and modal dialogs. Provides system-wide interaction control for pause and modal dialog scenarios.</description>
-      <examples>
-        <example title="Lab Interaction Control">
-          <correct-example title="Proper lab freeze usage" conditions="Need to pause lab interactions" expected-result="Lab interactions frozen/unfrozen" correctness-criteria="Uses FreezeLabStep for system-wide control">FreezeLabStep (freeze) → ShowMessage (System paused) → UserAction → FreezeLabStep (unfreeze)</correct-example>
-          <incorrect-example title="Improper lab freeze usage" conditions="Need to pause lab interactions" expected-result="Lab interactions frozen/unfrozen" correctness-criteria="Uses DelayStep for interaction control">DelayStep (5) → System paused (wrong approach)</correct-example>
-        </example>
-      </examples>
     </requirement>
     <requirement priority="high">
       <description>Use DelayStep for wait for specified time, timing between actions, and pacing experiments. Provides fixed system timing control for smooth transitions and system pacing.</description>
-      <examples>
-        <example title="Timing Control">
-          <correct-example title="Proper delay usage" conditions="Need timing control" expected-result="System waits for specified time" correctness-criteria="Uses DelayStep for fixed system timing">Action A → DelayStep (wait) → Action B → Continue</correct-example>
-          <incorrect-example title="Improper delay usage" conditions="Need timing control" expected-result="System waits for specified time" correctness-criteria="Uses FreezeLabStep for timing control">Action A → FreezeLabStep (freeze) → Action B (wrong approach)</correct-example>
-        </example>
-      </examples>
     </requirement>
     <requirement priority="high">
       <description>Use SubGraphStep for execute other graphs as subroutines, modular experiment design, and reusable procedures. Enables breaking complex experiments into manageable components.</description>
-      <examples>
-        <example title="Modular Execution">
-          <correct-example title="Proper subgraph usage" conditions="Need modular execution" expected-result="Other graph executed as subroutine" correctness-criteria="Uses SubGraphStep for modular design">SubGraphStep (Setup procedure) → Main experiment → SubGraphStep (Cleanup procedure)</correct-example>
-          <incorrect-example title="Improper subgraph usage" conditions="Need modular execution" expected-result="Other graph executed as subroutine" correctness-criteria="Uses DelayStep for modular execution">DelayStep (5) → Setup procedure (wrong approach)</correct-example>
-        </example>
-      </examples>
     </requirement>
     <requirement priority="high">
       <description>Use ToggleDeviceCollidersStep for enable/disable colliders on multiple devices, device interaction control, and safety systems. Manages multiple device colliders simultaneously.</description>
-      <examples>
-        <example title="Multiple Device Control">
-          <correct-example title="Proper multiple device usage" conditions="Need to control multiple device colliders" expected-result="Multiple device colliders controlled" correctness-criteria="Uses ToggleDeviceCollidersStep for multiple devices">ToggleDeviceCollidersStep (Device1, Device2, Device3, Enable) → UserAction</correct-example>
-          <incorrect-example title="Improper single device usage" conditions="Need to control single device collider" expected-result="Single device collider controlled" correctness-criteria="Uses ToggleDeviceCollidersStep for single device">ToggleDeviceCollidersStep (Device1, Enable) → Single device controlled (wrong approach)</correct-example>
-        </example>
-      </examples>
     </requirement>
     <requirement priority="high">
       <description>Use ToggleUIButtonInteractionStep for enable/disable UI button interactions, UI control, and button state management. Controls user interface interactions and button states.</description>
-      <examples>
-        <example title="UI Button Control">
-          <correct-example title="Proper UI button usage" conditions="Need to control UI button interactions" expected-result="UI button interactions controlled" correctness-criteria="Uses ToggleUIButtonInteractionStep for UI control">ToggleUIButtonInteractionStep (Button1, Enable) → UserInteraction → ToggleUIButtonInteractionStep (Button1, Disable)</correct-example>
-          <incorrect-example title="Improper UI button usage" conditions="Need to control UI button interactions" expected-result="UI button interactions controlled" correctness-criteria="Uses FreezeLabStep for UI control">FreezeLabStep (freeze) → UI controlled (wrong approach)</correct-example>
-        </example>
-      </examples>
     </requirement>
     <requirement priority="critical">
       <description>Distinguish between system timing and user-controlled timing. Use DelayStep for fixed system timing, TimerStep for user-controlled timing with UI controls.</description>
-      <examples>
-        <example title="System vs User Timing">
-          <correct-example title="Proper system timing usage" conditions="Need fixed system timing" expected-result="System waits for fixed time" correctness-criteria="Uses DelayStep for system timing">DelayStep (Duration: 5) → System waits 5 seconds</correct-example>
-          <incorrect-example title="Improper user timing usage" conditions="Need user-controlled timing" expected-result="User controls timing with UI" correctness-criteria="Uses DelayStep for user timing">DelayStep (Duration: 5) → User controls timing (wrong approach)</correct-example>
-        </example>
-      </examples>
     </requirement>
     <requirement priority="critical">
       <description>Distinguish between single device and multiple device operations. Use ToggleColliderStep for single device operations, ToggleDeviceCollidersStep for multiple device operations.</description>
-      <examples>
-        <example title="Single vs Multiple Device Control">
-          <correct-example title="Proper single device usage" conditions="Need to control single device collider" expected-result="Single device collider controlled" correctness-criteria="Uses ToggleColliderStep for single device">ToggleColliderStep (Device1, disable) → Single device controlled</correct-example>
-          <incorrect-example title="Improper multiple device usage" conditions="Need to control multiple device colliders" expected-result="Multiple device colliders controlled" correctness-criteria="Uses ToggleColliderStep for multiple devices">ToggleColliderStep (Device1, disable) → Multiple devices controlled (wrong approach)</correct-example>
-        </example>
-      </examples>
     </requirement>
   </requirements>
   <context description="Additional considerations for utility nodes">

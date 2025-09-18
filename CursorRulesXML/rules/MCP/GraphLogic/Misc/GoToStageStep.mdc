@@ -16,7 +16,10 @@ alwaysApply: false
   </meta>
   <requirements>
     <requirement priority="critical">
-      <description>GoToStageStep ends the current stage and transitions to a specified next stage for stage management and experiment flow control. Requires a valid stage number that exists in the experiment, proper Experiment Data setup with correct references, and target stage must be properly configured.</description>
+      <description>Required Components: 1. Registered Stage - A stage that is registered in the Experiment Data.</description>
+    </requirement>
+    <requirement priority="critical">
+      <description>GoToStageStep ends the current stage and transitions to a specified next stage for stage management and experiment flow control. Requires a valid stage number that exists in the experiment and proper Experiment Data setup with registered stages.</description>
       <examples>
         <example title="GoToStageStep Prerequisites">
           <correct-example title="Proper GoToStageStep setup" conditions="Creating GoToStageStep" expected-result="Working stage transition" correctness-criteria="Follows all prerequisites">Valid stage number, properly configured in Experiment Data, with correct references</correct-example>
@@ -34,11 +37,11 @@ alwaysApply: false
       </examples>
     </requirement>
     <requirement priority="high">
-      <description>GoToStageStep parameters include Target Stage (Identifier of the stage to transition to). The target stage must be a valid stage number that exists in the experiment and is properly configured in the Experiment Data.</description>
+      <description>GoToStageStep parameters include Target Stage (Number of the stage to transition to). The target stage must be a valid stage number that exists in the experiment and is registered in the Experiment Data.</description>
       <examples>
         <example title="Target Stage Parameter">
-          <correct-example title="Proper target stage parameter" conditions="Setting GoToStageStep target stage" expected-result="Correct stage transition" correctness-criteria="Uses valid stage identifier">Target Stage: "MainExperimentStage", Target Stage: "ResultsStage", Target Stage: "IntroductionStage"</correct-example>
-          <incorrect-example title="Improper target stage parameter" conditions="Setting GoToStageStep target stage" expected-result="Correct stage transition" correctness-criteria="Uses invalid stage identifier">Target Stage: "", Target Stage: "NonExistentStage", Target Stage: "InvalidStage"</correct-example>
+          <correct-example title="Proper target stage parameter" conditions="Setting GoToStageStep target stage" expected-result="Correct stage transition" correctness-criteria="Uses valid stage number">Target Stage: 0, Target Stage: 1, Target Stage: 2</correct-example>
+          <incorrect-example title="Improper target stage parameter" conditions="Setting GoToStageStep target stage" expected-result="Correct stage transition" correctness-criteria="Uses invalid stage number">Target Stage: -3, Target Stage: -1, Target Stage: 999 (unregistered stage)</correct-example>
         </example>
       </examples>
     </requirement>

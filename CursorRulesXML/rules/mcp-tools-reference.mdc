@@ -15,7 +15,7 @@ alwaysApply: true
     </applies-to>
   </meta>
   <requirements>
-    <requirement priority="critical">
+    <non-negotiable priority="critical">
       <description>Always pass metadata when creating nodes with mcp_unityMCP_create_xnode_node. Description must contain required Components from the rule file of the nodes, and tooltip must contain a brief explanation of what the node does. Before creating any node, you MUST fetch the specific node rule file to get the exact required components list. Neglecting this rule will lead to unwanted behavior.</description>
       <examples>
         <example title="Node Creation with Metadata">
@@ -27,7 +27,7 @@ alwaysApply: true
                Required Components: 
                 1. Component1 - Reason.
                 2. Component2 - Reason.
-              "                
+              "
             tooltip:
                "Brief explanation of what the node does"
           ]]></correct-example>
@@ -35,7 +35,7 @@ alwaysApply: true
             description: "" tooltip: ""</incorrect-example>
         </example>
       </examples>
-    </requirement>
+    </non-negotiable>
     <non-negotiable priority="critical">
       <description>When creating nodes with mcp_unityMCP_create_xnode_node, description metadata MUST be formatted in markdown text format for better readability and appearance in Unity Editor. This is MANDATORY for all node creation operations.</description>
     </non-negotiable>
