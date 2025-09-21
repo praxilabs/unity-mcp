@@ -1,64 +1,81 @@
 ---
-alwaysApply: false
 description: Pause graph execution until user clicks UI button for interface interactions
+alwaysApply: false
 ---
 
-# UIClickStep Node
-
-## Overview
-UIClickStep is a **WAIT-FOR-USER-INPUT** node that waits for user to click a UI button before allowing execution to continue. The complexity of what happens after the click depends on the steps that are getting executed after the UIClickStep.
-
-## Node Details
-
-**Node Type**: UIClickStep
-**Purpose**: Wait for user to click UI Canvas buttons, then allow execution to continue
-**Usage**: UI interaction gate for dialog boxes, interface panels, and menu buttons
-**Context**: Use for Unity UI buttons on Canvas elements, not 3D world objects
-
-## Basic Prerequisites
-
-1. **UI Button**: Required UI button element in the scene
-2. **Button Script**: Required button script to handle click events
-3. **UI Canvas**: Required UI canvas containing the button
-
-## Parameters
-
-- **Target Button**: The UI button to click
-
-## Critical Notes
-Don't use a UI Click Step on its own, you have to make the logic yourself as the UI Click Step itself contains no logic.
-
-## Common Patterns
-
-### Data Operations:
-```
-UIClickStep (Save Results Button) → FunctionCallStep(DataManager.SaveExperiment) → Continue
-UIClickStep (Export Data Button) → FunctionCallStep(DataExporter.ExportToCSV) → Continue
-```
-
-### Confirmation Actions:
-```
-UIClickStep (Delete Confirmation) → FunctionCallStep(DataManager.DeleteExperiment) → Continue
-UIClickStep (Reset Equipment) → FunctionCallStep(LabController.ResetAllEquipment) → Continue
-```
-
-## Common Mistakes
-1. **Confusing UI vs 3D interactions**: Using UIClickStep for 3D laboratory equipment
-2. **Ignoring complexity assessment**: Not determining if the UI action needs additional steps
-
-## Best Practices
-3. **Distinguish from 3D interactions**: UIClickStep for Canvas UI, ClickStep for 3D objects
-4. **Use appropriate function calls**: Most complex UI actions need FunctionCallStep connections
-
-##  UI vs 3D Click Decision
-**Use UIClickStep for:**
-- **Unity UI Canvas buttons**: Dialog boxes, panels, menus
-- **Interface popups**: Confirmation dialogs, settings panels
-- **Navigation elements**: Next, back, continue buttons in UI
-- **Data interface buttons**: Save, load, export in laboratory software
-
-**Use ClickStep for:**
-- **3D laboratory equipment**: Physical buttons on instrument models
-- **Laboratory objects**: Beakers, test tubes, apparatus in 3D scene
-- **Equipment controls**: Power buttons, knobs, switches on 3D instruments
-- **Physical interactions**: Objects with colliders in the laboratory environment
+<rule>
+  <meta>
+    <title>ClickUIButtonStep</title>
+    <description>Pause graph execution until user clicks UI button for interface interactions</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new ClickUIButtonStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <setup-instructions priority="critical">
+      <description>ClickUIButtonStep pauses graph execution until user clicks UI button for interface interactions in virtual lab experiments. It acts as a gate that requires follow-up logic to define what happens after the UI click.</description>
+      <step-list>
+        <step>Create UI Canvas in the scene</step>
+        <step>Add UI Button element to the Canvas</step>
+        <step>Add Button Script to handle click events on [TargetButton]</step>
+        <step>Configure [TargetButton] parameter in ClickUIButtonStep node</step>
+        <step>Connect ClickUIButtonStep to appropriate follow-up logic (AnimationStep, FunctionCallStep, etc.)</step>
+      </step-list>
+    </setup-instructions>
+    <requirement priority="critical">
+      <description>ClickUIButtonStep acts as a gate that pauses execution until user clicks a UI button. It requires follow-up logic to define what happens after the click. The ClickUIButtonStep itself only handles the UI interaction control - all actual functionality must be implemented through subsequent nodes.</description>
+      <examples>
+        <example title="UI Click Step Logic Requirements">
+          <correct-example title="Proper UI click step with logic" conditions="Need UI interaction with follow-up action" expected-result="UI interaction followed by appropriate action" correctness-criteria="Includes logic after UI click step">ClickUIButtonStep (Save Results Button) → FunctionCallStep(DataManager.SaveExperiment) → Continue</correct-example>
+          <incorrect-example title="UI click step without logic" conditions="Need UI interaction with follow-up action" expected-result="UI interaction followed by appropriate action" incorrectness-criteria="Missing logic after UI click step">ClickUIButtonStep (Save Results Button) → Continue // Missing logic</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use ClickUIButtonStep for Unity UI Canvas buttons, not 3D world objects. Distinguish from 3D interactions: ClickUIButtonStep for Canvas UI, ClickStep for 3D objects.</description>
+      <examples>
+        <example title="UI vs 3D Click Selection">
+          <correct-example title="Proper UI button usage" conditions="Need to click UI button" expected-result="Correct click step type selected" correctness-criteria="Uses ClickUIButtonStep for UI elements">ClickUIButtonStep for Unity UI Canvas buttons, dialog boxes, panels, menus</correct-example>
+          <incorrect-example title="Wrong click step type" conditions="Need to click 3D object" expected-result="Correct click step type selected" incorrectness-criteria="Uses wrong click step type">ClickUIButtonStep for 3D laboratory equipment // Should use ClickStep</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>UI button must have UI Button element, Button Script to handle click events, and UI Canvas containing the button. Most complex UI actions need FunctionCallStep connections.</description>
+      <examples>
+        <example title="Required Components">
+          <correct-example title="Proper UI component setup" conditions="Setting up UI buttons for clicking" expected-result="UI buttons ready for clicking" correctness-criteria="Has UI Button, Button Script, and UI Canvas">UI Button element with Button Script in UI Canvas</correct-example>
+          <incorrect-example title="Missing required components" conditions="Setting up UI buttons for clicking" expected-result="UI buttons ready for clicking" incorrectness-criteria="Missing required components">UI Button missing Button Script or UI Canvas</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Choose appropriate follow-up actions after UI click: Use AnimationStep for visual changes, FunctionCallStep for UI functionality, or both if the UI action has both visual transformation and functional logic. For example, clicking a Save button may require both FunctionCallStep to save data and AnimationStep to show success feedback.</description>
+      <examples>
+        <example title="UI Action Complexity Assessment">
+          <correct-example title="Proper UI action with function call" conditions="Need complex UI action" expected-result="UI action with appropriate follow-up" correctness-criteria="Uses FunctionCallStep for complex actions">ClickUIButtonStep (Export Data Button) → FunctionCallStep(DataExporter.ExportToCSV) → Continue</correct-example>
+          <incorrect-example title="Missing complexity assessment" conditions="Need complex UI action" expected-result="UI action with appropriate follow-up" incorrectness-criteria="Missing function call for complex action">ClickUIButtonStep (Export Data Button) → Continue // Missing FunctionCallStep</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Specify Target Button as the primary parameter. Assess scope by choosing between existing nodes (AnimationStep, etc.) or FunctionCallStep for custom logic. If using FunctionCallStep, indicate in Info step that user needs to create the required script. Use for interface popups, navigation elements, and data interface buttons in laboratory software.</description>
+      <examples>
+        <example title="Parameter Specification and Usage Context">
+          <correct-example title="Proper parameter specification" conditions="Configuring ClickUIButtonStep parameters" expected-result="Correctly configured UI click interaction" correctness-criteria="Specifies target button clearly">Target Button: Specific UI button to click</correct-example>
+          <incorrect-example title="Missing target specification" conditions="Configuring ClickUIButtonStep parameters" expected-result="Correctly configured UI click interaction" incorrectness-criteria="Missing target button specification">ClickUIButtonStep without target button // Missing target specification</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for ClickUIButtonStep operations">
+    ClickUIButtonStep is a WAIT-FOR-USER-INPUT node that waits for user to click a UI button before allowing execution to continue. Use for Unity UI Canvas buttons, dialog boxes, interface panels, and menu buttons. Use for interface popups (confirmation dialogs, settings panels), navigation elements (Next, back, continue buttons in UI), and data interface buttons (Save, load, export in laboratory software).
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rule.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Click/ClickNodes.mdc" reason="Click operations">General click operation patterns</reference>
+  </references>
+</rule>

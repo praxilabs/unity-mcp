@@ -1,44 +1,50 @@
 ---
-alwaysApply: false
 description: Focus camera on specific objects for guided attention and close-up views
+alwaysApply: false
 ---
 
-# FocusOnToolStep Node
-
-## Overview
-FocusOnToolStep controls camera positioning to focus on specific objects in virtual lab experiments. This node is essential for guided attention, close-up views, and providing detailed views of objects.
-
-## Node Details
-
-**Node Type**: FocusOnToolStep
-**Purpose**: Focus camera on specific objects
-**Usage**: Guided attention, close-up views, object examination
-
-## Basic Prerequisites
-
-1. Virtual Camera that focuses on the Object you want to use the step on.
-2. ToolsCameraTarget Script - The Script handles the camera activation and deactivation and needs The Virtual Camera reference.
-
-## Parameters
-
-- **Target Object**: The object to focus the camera on
-
-## Common Patterns
-
-### Press to Focus then Return.
-```
-    ClickStep(Device) → FocusOnToolStep(Device) → ... → ReturnCameraStep
-```
-
-### Focus on more than one Device sequentially (Device1 then Device2).
-```
-    ... → FocusOnToolStep(Device1) → ... → ReturnCameraStep → FocusOnToolStep(Device2)
-```
-
-## Common Mistakes
-
-1. **Missing ReturnCameraStep between focus operations**: If you use FocusOnToolStep twice (same or different tools), you MUST use ReturnCameraStep between them
-2. **Missing camera transitions**: Use appropriate delays for camera movements
-
-## Best Practices
-1. **End experiments with ReturnCameraStep** for professional polish (recommended)
+<rule>
+  <meta>
+    <title>FocusOnToolStep</title>
+    <description>Focus camera on specific objects for guided attention and close-up views</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new FocusOnToolStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <setup-instructions priority="critical">
+      <description>FocusOnToolStep focuses camera on specific objects for guided attention and close-up views in virtual lab experiments.</description>
+      <step-list>
+        <step>Add virtual camera to the scene</step>
+        <step>Add "ToolsCameraTarget" component to [TargetObject] object</step>
+        <step>Configure virtual camera to reference the [TargetObject] object</step>
+        <step>Set appropriate focus distance and angle in camera settings</step>
+      </step-list>
+    </setup-instructions>
+    <requirement priority="critical">
+      <description>Camera system tracks only one previous camera. To focus on multiple objects, use ReturnCameraStep between FocusOnToolStep operations to maintain previous camera reference.</description>
+      <examples>
+        <example title="Multi-Focus Camera Sequence">
+          <correct-example title="Proper multi-focus sequence" conditions="Need to focus on multiple objects" expected-result="Previous camera reference maintained" correctness-criteria="Uses ReturnCameraStep between focuses">FocusOnToolStep(Object1) → [operations] → ReturnCameraStep → FocusOnToolStep(Object2)</correct-example>
+          <incorrect-example title="Missing return between focuses" conditions="Need to focus on multiple objects" expected-result="Previous camera reference maintained" incorrectness-criteria="Skips ReturnCameraStep and loses previous camera">FocusOnToolStep(Object1) → [operations] → FocusOnToolStep(Object2) // Loses previous camera reference</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Specify Target Object (any GameObject with ToolsCameraTarget script) as primary parameter. Always end with ReturnCameraStep to return to previous camera.</description>
+      <examples>
+        <example title="Complete Focus Sequence">
+          <correct-example title="Proper focus sequence with return" conditions="Need to focus then return to previous view" expected-result="Returns to previous camera after operations" correctness-criteria="Ends with ReturnCameraStep">FocusOnToolStep(TargetObject) → [operations] → ReturnCameraStep</correct-example>
+          <incorrect-example title="Missing return to previous camera" conditions="Need to focus then return to previous view" expected-result="Returns to previous camera after operations" incorrectness-criteria="Missing ReturnCameraStep at end">FocusOnToolStep(TargetObject) → [operations] // Stuck on target object</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Camera/CameraNodes.mdc" reason="Camera operations">General camera operation patterns</reference>
+  </references>
+</rule>

@@ -1,0 +1,50 @@
+---
+alwaysApply: false
+description: Display side panel messages for instructions and feedback
+---
+
+# SideMessageStep Node
+
+## Overview
+Displays messages in a side panel for instructions, feedback, and guidance without blocking the main view.
+
+## Node Details
+
+**Node Type**: SideMessageStep
+**Purpose**: Display side panel messages
+**Usage**: Non-blocking instructions, feedback, guidance messages
+
+## Basic Prerequisites
+
+1. **Message Content**: Instruction or feedback message text must be prepared
+2. **Position Selection**: Choose side panel position (left, right)
+3. **Non-blocking Design**: Message should not interrupt main workflow
+
+## Parameters
+
+- **Message Text**: The content to display
+- **Message Position**: Side panel position (left, right)
+- **Duration**: How long to display (optional)
+- **Auto Close**: Whether to auto-close after duration
+
+## Critical SideMessageStep Rules
+- **Side Panel Only**: Displays in side panel, not center screen
+- **Non-blocking**: Does not interrupt main workflow
+- **NOT Prominent**: Use IntroEndMessageStep for prominent announcements
+
+## Common Patterns
+
+### Message Sequence Pattern
+```
+SideMessageStep (Instructions) → UserAction → SideMessageStep (Feedback) → Continue
+```
+
+### Interactive Tutorial Pattern
+```
+SideMessageStep (Welcome) → HintStep (First step) → UserAction → SideMessageStep (Good job) → HintStep (Next step)
+```
+
+### Progressive Guidance
+```
+SideMessageStep (Step 1 instructions) → UserAction → SideMessageStep (Step 2 instructions) → UserAction → Continue
+```

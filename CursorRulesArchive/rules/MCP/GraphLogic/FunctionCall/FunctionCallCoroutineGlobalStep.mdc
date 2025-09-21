@@ -1,0 +1,43 @@
+---
+alwaysApply: false
+description: Global coroutine execution for system-wide asynchronous operations
+---
+
+# FunctionCallCoroutineGlobalStep Node
+
+## Overview
+Executes global or singleton coroutines (IEnumerator) for system-wide asynchronous operations without targeting specific scene objects.
+
+## Node Details
+
+**Node Type**: FunctionCallCoroutineGlobalStep
+**Menu Path**: "Function Call/Function Call Coroutine Global"
+**Inherits**: FunctionCallCoroutineStep
+
+## Basic Prerequisites
+
+1. **Global Coroutine Method**: Static coroutine method or singleton service coroutine
+2. **Method Visibility**: Method must be public to be accessible
+3. **Type Registration**: Type must be accessible for reflection
+
+## Parameters
+
+- **prefabName**: parent.
+- **childName**: child.
+- **selectedComponent**: Component on Child.
+- **selectedFunction**: Function on Component.
+- **parameterValues**: Parameters (if exist).
+
+## Common Patterns
+
+### Loading Screen
+```
+FunctionCallCoroutineGlobalStep (ShowLoadingScreen, duration) → DelayStep → Continue
+```
+
+## Critical FunctionCallCoroutineGlobalStep Rules
+- **Global Coroutines Only**: Use for static/global coroutines, not scene object coroutines
+- **IEnumerator Methods**: Methods must return IEnumerator
+- **System-Wide Effects**: Coroutines affect the entire system
+
+

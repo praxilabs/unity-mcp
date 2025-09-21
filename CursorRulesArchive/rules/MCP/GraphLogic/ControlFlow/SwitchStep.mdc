@@ -1,0 +1,29 @@
+---
+alwaysApply: false
+description: Multi-way branching node for state machines and menu systems
+---
+
+# SwitchStep
+
+## Overview
+SwitchStep provides multi-way branching for state machines, menu systems, and complex decision trees using string, number, or custom values in virtual lab experiments.
+
+## Node Details
+
+**File**: [SwitchStep.cs](mdc:Assets/Scripts/System/xNode/Steps/SelfExecuted/ControlFlow/SwitchStep.cs)
+**Purpose**: Multi-way branching with custom values
+**Usage**: State machines, menu systems with string/number values
+
+## Common Patterns
+
+### Multi-way Decision
+```
+SwitchStep (User choice) → Case 1: Action A → Continue
+                         → Case 2: Action B → Continue
+                         → Case 3: Action C → Continue
+```
+
+## Critical SwitchStep Rules
+- **Custom Values**: Use string, number, or custom values as cases
+- **Handle All Cases**: Ensure all possible cases are covered
+- **Default Case**: Always provide a default case for unexpected values

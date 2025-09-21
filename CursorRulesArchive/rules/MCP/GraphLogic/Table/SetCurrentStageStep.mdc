@@ -1,0 +1,38 @@
+---
+alwaysApply: false
+description: Explicitly set the current active stage of the experiment
+---
+
+# SetCurrentStageStep Node
+
+## Overview
+Sets the experiment's current stage to a specified stage for explicit stage navigation and resuming from specific points.
+
+## Node Details
+
+**Node Type**: SetCurrentStageStep
+**Purpose**: Set active stage
+**Usage**: Navigate/resume from a specific stage
+
+## Basic Prerequisites
+
+1. **Valid Stage Name**: Target stage must exist in the experiment
+2. **Stage Configuration**: Stage must be properly configured
+3. **Stage Registry**: Stage must be registered in the stage registry
+
+## Parameters
+
+- **stageName**: Target stage identifier
+
+## Common Patterns
+
+### Conditional Stage Setting
+```
+IfStatementStep (Condition) → SetCurrentStageStep (SuccessStage)
+IfStatementStep (NOT Condition) → SetCurrentStageStep (FailureStage)
+```
+
+## Critical SetCurrentStageStep Rules
+- **Explicit Stage Navigation**: Use for explicit stage navigation and resuming
+- **Stage Setting**: Sets the current active stage to specified stage
+- **Conditional Routing**: Enables conditional stage routing based on conditions

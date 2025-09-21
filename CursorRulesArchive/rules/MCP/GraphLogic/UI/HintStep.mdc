@@ -1,0 +1,50 @@
+---
+alwaysApply: false
+description: Display educational hints for user guidance and help systems
+---
+
+# HintStep Node
+
+## Overview
+Displays educational hints for user guidance, help systems, and progressive learning support.
+
+## Node Details
+
+**Node Type**: HintStep
+**Purpose**: Display educational hints for progressive guidance
+**Usage**: Educational guidance, help systems, step-by-step learning
+
+## Basic Prerequisites
+
+1. **Hint Content**: Educational hint text must be prepared
+2. **Step Numbering**: Sequential step numbers for progressive guidance
+3. **User Context**: Clear understanding of what user needs guidance on
+
+## Parameters
+
+- **Hint Text**: The hint content to display
+- **Step Number**: Sequential step number for progressive guidance
+- **Hint Type**: Type of hint (instructional, warning, tip)
+- **Duration**: How long to display hint (optional)
+
+## Critical HintStep Rules
+- **Progressive Guidance**: Use sequential step numbers for step-by-step learning
+- **Educational Focus**: Use for learning support, not general messaging
+- **Integration**: Works with ProgressMap steps for seamless flow
+
+## Common Patterns
+
+### Progressive Guidance Pattern
+```
+HintStep (Step 1) → UserAction → HintStep (Step 2) → UserAction → HintStep (Step 3)
+```
+
+### Hint with Progress Navigation
+```
+HintStep (stepNumber: current) → ProgressMapManualNextStep (_nextStepIndex: next) → Continue
+```
+
+### Sequential Hint Integration
+```
+HintStep (stepNumber: 1) → SubGraphStep (Step_01) → HintStep (stepNumber: 2) → SubGraphStep (Step_02) → Continue
+```

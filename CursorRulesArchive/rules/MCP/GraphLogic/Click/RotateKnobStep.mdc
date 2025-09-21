@@ -1,0 +1,39 @@
+---
+alwaysApply: false
+description: Handle knob rotation interactions for instrument controls and value adjustments
+---
+
+# RotateKnobStep Node
+
+## Overview
+RotateKnobStep handles knob rotation, the step is ActionExecuted so it waits for the Knob to be Rotated by the user with the Angle Desired in-order for the step to complete Execution.
+
+## Node Details
+
+**Node Type**: RotateKnobStep
+**Purpose**: Handle knob rotation interactions
+**Usage**: Instrument controls, value adjustments, parameter manipulation
+
+## Basic Prerequisites
+
+1. EnahncedKnobController Script - this script handles the Knob Rotation mechanism
+2. CursorStateHandler Script.
+3. Collider.
+4. Hologram (Optional) - for Visual Feedback when the Node Starts to execute. 
+
+
+## Parameters
+
+- **Object Parent**: The knob Parent.
+- **Knob**: The knob object to rotate
+- **Knob Angle**: The angle desired to trigger the Knob Step Completion.
+- **Delay Time**: Tick Rate for the Knob Angle Validation
+
+## Common Patterns
+
+### Basic Knob Rotation
+```
+RotateKnobStep(Knob, -90, 1.5f) → FunctionCallStep(EnhancedKnobManager.SetInteractability(false))
+
+this means that the time that the knob will hit the -90 degree. the function will start executing making the know not interactable anymore.
+```

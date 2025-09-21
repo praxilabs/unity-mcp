@@ -1,0 +1,44 @@
+---
+alwaysApply: false
+description: Focus camera on specific objects for guided attention and close-up views
+---
+
+# FocusOnToolStep Node
+
+## Overview
+FocusOnToolStep controls camera positioning to focus on specific objects in virtual lab experiments. This node is essential for guided attention, close-up views, and providing detailed views of objects.
+
+## Node Details
+
+**Node Type**: FocusOnToolStep
+**Purpose**: Focus camera on specific objects
+**Usage**: Guided attention, close-up views, object examination
+
+## Basic Prerequisites
+
+1. Virtual Camera that focuses on the Object you want to use the step on.
+2. ToolsCameraTarget Script - The Script handles the camera activation and deactivation and needs The Virtual Camera reference.
+
+## Parameters
+
+- **Target Object**: The object to focus the camera on
+
+## Common Patterns
+
+### Press to Focus then Return.
+```
+    ClickStep(Device) → FocusOnToolStep(Device) → ... → ReturnCameraStep
+```
+
+### Focus on more than one Device sequentially (Device1 then Device2).
+```
+    ... → FocusOnToolStep(Device1) → ... → ReturnCameraStep → FocusOnToolStep(Device2)
+```
+
+## Common Mistakes
+
+1. **Missing ReturnCameraStep between focus operations**: If you use FocusOnToolStep twice (same or different tools), you MUST use ReturnCameraStep between them
+2. **Missing camera transitions**: Use appropriate delays for camera movements
+
+## Best Practices
+1. **End experiments with ReturnCameraStep** for professional polish (recommended)

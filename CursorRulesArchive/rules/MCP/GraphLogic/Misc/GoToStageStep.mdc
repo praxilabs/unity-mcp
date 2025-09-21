@@ -1,0 +1,49 @@
+---
+alwaysApply: false
+description: Ending the current stage and starting another stage within the experiment flow
+---
+
+# GoToStageStep Node
+
+## Overview
+Ends the current stage and transitions to a specified next stage for stage management and experiment flow control.
+
+## Node Details
+
+**Node Type**: GoToStageStep
+**Purpose**: Stage transition control
+**Usage**: End of a stage, skipping stages
+
+## Basic Prerequisites
+
+1. **Valid Stage Number**: Target stage must exist in the experiment
+2. **Experiment Data Setup**: Stage must be added to Experiment Data with correct references
+3. **Stage Configuration**: Target stage must be properly configured
+
+## Parameters
+
+- **Target Stage**: Identifier of the stage to transition to
+
+## Common Patterns
+
+### Stage Transition
+```
+`...` is a variable number of nodes that performs a certain logic.
+
+... → GoToStageStep (NextStage)
+```
+
+### Conditional Stage Skip
+```
+`...` is a variable number of nodes that performs a certain logic.
+
+IfStatementStep (SkipIntro) → True: GoToStageStep (MainStage)
+                            → False: ...
+```
+
+## Critical GoToStageStep Rules
+- **Stage Transitions Only**: Use for stage transitions, not step progression
+- **Valid Target Stage**: Target stage must exist and be properly configured
+- **Not for Step Completion**: Use ProgressMapAutoNextStep for step progression
+
+

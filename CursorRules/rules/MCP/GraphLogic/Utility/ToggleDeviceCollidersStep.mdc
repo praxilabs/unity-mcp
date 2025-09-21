@@ -1,57 +1,43 @@
 ---
+description: Toggle all colliders of devices with DeviceSideController Script.
 alwaysApply: false
-description: Enable/disable colliders on multiple devices for device interaction control and safety systems
 ---
 
-# ToggleDeviceCollidersStep
-
-## Overview
-ToggleDeviceCollidersStep enables or disables colliders on multiple devices in virtual lab experiments. Used for device interaction control, safety systems, and managing multiple device colliders simultaneously.
-
-## Node Details
-
-**Node Type**: ToggleDeviceCollidersStep
-**Purpose**: Enable/disable colliders on multiple devices simultaneously
-**Usage**: Device interaction control, safety systems, multiple device management
-
-## Basic Prerequisites
-
-1. **Device References**: Valid references to multiple devices
-2. **Collider Components**: Devices must have collider components
-3. **Device Grouping**: Proper grouping of devices for operations
-4. **State Management**: System to track device collider states
-
-## Parameters
-
-- **Device List**: List of devices to toggle colliders on
-- **Collider State**: Boolean to enable (true) or disable (false) colliders
-- **Device Group**: Optional grouping for device operations
-
-## Critical ToggleDeviceCollidersStep Rules
-- **Multiple Devices**: Use for controlling multiple device colliders simultaneously
-- **Device Grouping**: Properly group devices for efficient operations
-- **State Management**: Always manage device collider states properly
-- **NOT Single Device**: Use ToggleColliderStep for single device operations
-
-## Common Patterns
-
-### Multiple Device Collider Control Pattern
-```
-ToggleDeviceCollidersStep (Device1, Device2, Device3, Enable) → UserAction → ToggleDeviceCollidersStep (Device1, Device2, Device3, Disable) → Continue
-```
-
-### Device Safety Pattern
-```
-IfStatementStep (Check safety) → True: ToggleDeviceCollidersStep (All devices, Enable) → Continue
-                             → False: ToggleDeviceCollidersStep (All devices, Disable) → ShowMessage (Safety warning)
-```
-
-### Device Group Management Pattern
-```
-ToggleDeviceCollidersStep (Group A devices, Enable) → ToggleDeviceCollidersStep (Group B devices, Disable) → Continue
-```
-
-### Device Setup Pattern
-```
-ToggleDeviceCollidersStep (All devices, Disable) → SetupPhase → ToggleDeviceCollidersStep (Active devices, Enable) → Continue
-```
+<rule>
+  <meta>
+    <title>ToggleDeviceCollidersStep</title>
+    <description>Toggle all colliders of devices with DeviceSideController Script using registry data</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new ToggleDeviceCollidersStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <setup-instructions priority="critical">
+      <description>ToggleDeviceCollidersStep toggles all colliders of any object that has a DeviceSideController Script. It uses the registered tool in the registry data and a toggle boolean to control all colliders of the device automatically.</description>
+      <step-list>
+        <step>Add DeviceSideController Script on the Device and set it up</step>
+        <step>Set Device in the Registry Item</step>
+        <step>Set Device parameter in the Step with the desired object</step>
+        <step>Set Toggle Boolean (enable/disable all colliders)</step>
+      </step-list>
+    </setup-instructions>
+    <requirement priority="critical">
+      <description>ToggleDeviceCollidersStep works with objects that have DeviceSideController Script. It automatically toggles ALL colliders of ONE device only without user specifying individual colliders. Uses registry data to identify the device and a simple boolean to control collider state.</description>
+      <examples>
+        <example title="Single Device Collider Control">
+          <correct-example title="Proper single device usage" conditions="Need to toggle one device's colliders" expected-result="All colliders of one device toggled" correctness-criteria="Uses ToggleDeviceCollidersStep for single device">ToggleDeviceCollidersStep (Device: "Microscope", Toggle: true) → All microscope colliders enabled</correct-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for ToggleDeviceCollidersStep">
+    This node works specifically with objects that have DeviceSideController Script. It automatically handles all colliders of the device, making it simple to control device interaction without manual collider management.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Utility/UtilityNodes.mdc" reason="Utility nodes overview">System utility operations and timing control patterns</reference>
+  </references>
+</rule>

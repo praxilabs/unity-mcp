@@ -1,0 +1,50 @@
+---
+alwaysApply: false
+description: Handle input field interactions for tools and data entry
+---
+
+# ToolsInputfieldStep Node
+
+## Overview
+Handles input field interactions for tools, enabling data entry, parameter input, and tool configuration.
+
+## Node Details
+
+**Node Type**: ToolsInputfieldStep
+**Purpose**: Handle input field interactions for tools
+**Usage**: Data entry for tools, parameter input, tool configuration
+
+## Basic Prerequisites
+
+<!-- Required data and setup needed for this node step to work -->
+
+## Parameters
+
+- **Input Field**: The input field component to interact with
+- **Input Type**: Type of input expected (text, number, etc.)
+- **Validation Rules**: Rules for input validation
+- **Default Value**: Default value for the input field
+
+## Common Patterns
+
+### User Data Entry
+```
+ToolsInputfieldStep (InputField) → UserInputStep (Data) → ValidateInput → Continue
+```
+
+### Tool Configuration
+```
+ToolsInputfieldStep (ConfigField) → SetToolParameter → ShowMessage (Tool configured) → Continue
+```
+
+### Complete Tool Workflow
+```
+GameObjectSetActiveStep (ShowTool) → ToolsInteractionsMenuStep (EnableMenu) → 
+UserSelectsOption → ToolsInputfieldStep (GetParameters) → ExecuteToolFunction → Continue
+```
+
+### Input Validation Pattern
+```
+ToolsInputfieldStep (InputField) → ValidateInput → IfStatementStep (Valid) → ProcessInput → Continue
+                                 → False: ShowMessage (Invalid input) → RetryInput
+```

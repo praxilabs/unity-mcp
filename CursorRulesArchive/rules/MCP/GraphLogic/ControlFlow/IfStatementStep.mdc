@@ -1,0 +1,34 @@
+---
+alwaysApply: false
+description: Boolean conditional branching node for decision points and error checking
+---
+
+# IfStatementStep
+
+## Overview
+IfStatementStep provides boolean conditional branching for decision points and conditional execution paths in virtual lab experiments.
+
+## Node Details
+
+**File**: [IfStatementStep.cs](mdc:Assets/Scripts/System/xNode/Steps/SelfExecuted/ControlFlow/IfStatementStep.cs)
+**Purpose**: Boolean conditional branching
+**Outputs**: `True`, `False`
+**Usage**: Decision points, error checking
+
+## Common Patterns
+
+### Conditional Execution
+```
+IfStatementStep (Check condition) → True: Execute Action A → ...
+                                  → False: Execute Action B → ...
+```
+
+
+## Critical IfStatementStep Rules
+- **True Port**: Executes when condition is met (condition = true)
+- **False Port**: Executes when condition is unmet (condition = false)
+- **Handle Both Cases**: Always provide logic for both True and False paths
+
+## Common Mistakes
+
+1. **Missing False case**: Always handle both True and False in IfStatementStep

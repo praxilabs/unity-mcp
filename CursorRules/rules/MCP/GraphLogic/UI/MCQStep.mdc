@@ -1,51 +1,68 @@
 ---
-alwaysApply: false
 description: Display multiple choice questions to users for knowledge assessment and decision making
+alwaysApply: false
 ---
 
-# MCQStep Node
-
-## Overview
-Displays multiple choice questions to users for knowledge assessment, decision making, and educational testing.
-
-## Node Details
-
-**Node Type**: MCQStep
-**Purpose**: Display multiple choice questions to users
-**Usage**: Knowledge assessment, decision making, educational testing
-
-## Basic Prerequisites
-
-1. **Question Content**: Multiple choice question text must be prepared
-2. **Answer Options**: Complete list of possible answers
-3. **Validation Logic**: Answer validation and feedback system
-4. **User Interaction**: User must be able to select answers
-
-## Parameters
-
-- **Question Text**: The question to display
-- **Answer Options**: List of possible answers
-- **Correct Answer**: The correct answer (for assessment)
-- **Feedback**: Feedback to provide after answer selection
-
-## Critical MCQStep Rules
-- **Multiple Choice Only**: Use for questions with multiple answer options
-- **User Selection Required**: User must select an answer to proceed
-- **Assessment Focus**: Use for knowledge testing and decision making
-
-## Common Patterns
-
-### MCQ Assessment Pattern
-```
-MCQStep (Question) → UserSelectsAnswer → ValidateAnswer → ProvideFeedback → Continue
-```
-
-### Sequential Assessment
-```
-MCQStep (Question 1) → UserAnswer → MCQStep (Question 2) → UserAnswer → MCQStep (Question 3) → Continue
-```
-
-### Decision Making
-```
-MCQStep (Choose your approach) → UserSelectsOption → ExecuteSelectedOption → Continue
-```
+<rule>
+  <meta>
+    <title>MCQStep</title>
+    <description>Display multiple choice questions to users for knowledge assessment and decision making</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new MCQStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <setup-instructions priority="critical">
+      <description>MCQStep displays multiple choice questions to users for knowledge assessment and decision making in virtual lab experiments. It requires a message ID to be configured for proper question content management and display control.</description>
+      <step-list>
+        <step>Configure Question Number parameter (Unique identifier for the multiple choice question)</step>
+      </step-list>
+    </setup-instructions>
+    <requirement priority="critical">
+      <description>MCQStep displays multiple choice questions to users for knowledge assessment, decision making, and educational testing. Use for knowledge assessment, decision making, and educational testing.</description>
+      <examples>
+        <example title="Knowledge Assessment">
+          <correct-example title="Proper MCQ usage" conditions="Need knowledge assessment" expected-result="Multiple choice question displayed" correctness-criteria="Uses MCQStep for knowledge assessment">MCQStep (Question with multiple options) → User selects answer → Continue</correct-example>
+          <incorrect-example title="Improper MCQ usage" conditions="Need knowledge assessment" expected-result="Multiple choice question displayed" correctness-criteria="Uses MiddleMessageTwoActionsStep for knowledge assessment">MiddleMessageTwoActionsStep (Question with multiple options) → User selects answer (wrong approach)</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>MCQStep requires Question Text (the question to display), Answer Options (list of possible answers), Correct Answer (the correct answer for assessment), and Feedback (feedback to provide after answer selection). Must have multiple choice question text prepared, complete list of possible answers, answer validation and feedback system, and user interaction capability.</description>
+      <examples>
+        <example title="Parameter Requirements">
+          <correct-example title="Proper parameter usage" conditions="Using MCQStep" expected-result="Multiple choice question successfully displayed" correctness-criteria="Provides valid question text and answer options">MCQStep (Question Text: "What is the correct procedure?", Answer Options: ["Option A", "Option B", "Option C"]) → Question displayed</correct-example>
+          <incorrect-example title="Improper parameter usage" conditions="Using MCQStep" expected-result="Multiple choice question successfully displayed" correctness-criteria="Missing required question text">MCQStep (Answer Options: ["Option A", "Option B", "Option C"]) → No question text provided</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use MCQStep for multiple choice only. Use for questions with multiple answer options. User selection required - user must select an answer to proceed. Assessment focus - use for knowledge testing and decision making.</description>
+      <examples>
+        <example title="Multiple Choice vs Binary Choice">
+          <correct-example title="Proper multiple choice usage" conditions="Need knowledge assessment" expected-result="Multiple choice question displayed" correctness-criteria="Uses MCQStep for multiple choice questions">MCQStep (Question with 4 options) → Multiple choice display</correct-example>
+          <incorrect-example title="Improper binary choice usage" conditions="Need knowledge assessment" expected-result="Multiple choice question displayed" correctness-criteria="Uses binary choice for multiple choice question">MiddleMessageTwoActionsStep (Question with 4 options) → Binary choice display (wrong approach)</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use MCQ assessment pattern for knowledge testing, sequential assessment pattern for multiple questions, and decision making pattern for approach selection and choice-based decisions.</description>
+      <examples>
+        <example title="Assessment Patterns">
+          <correct-example title="Proper MCQ assessment pattern" conditions="Need knowledge testing" expected-result="Assessment with validation and feedback" correctness-criteria="Uses MCQ assessment pattern">MCQStep (Question) → UserSelectsAnswer → ValidateAnswer → ProvideFeedback → Continue</correct-example>
+          <incorrect-example title="Improper simple choice pattern" conditions="Need knowledge testing" expected-result="Assessment with validation and feedback" correctness-criteria="Uses simple choice for assessment">MiddleMessageTwoActionsStep (Question) → UserSelectsAnswer (wrong approach)</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for MCQStep">
+    This node is essential for knowledge assessment and educational testing in virtual lab experiments. It provides the capability to display multiple choice questions to users for knowledge assessment, decision making, and educational testing. The focus on multiple choice questions with validation and feedback is critical for effective learning assessment.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/UI/UINodes.mdc" reason="UI nodes overview">User interface and messaging patterns</reference>
+  </references>
+</rule>

@@ -1,29 +1,83 @@
 ---
-alwaysApply: false
 description: Multi-way branching node with enum values for state machines and menu systems
+alwaysApply: false
 ---
 
-# SwitchEnumStep
-
-## Overview
-SwitchEnumStep provides multi-way branching with predefined enum values for state machines, menu systems, and complex decision trees in virtual lab experiments.
-
-## Node Details
-
-**File**: [SwitchEnumStep.cs](mdc:Assets/Scripts/System/xNode/Steps/SelfExecuted/ControlFlow/SwitchEnumStep.cs)
-**Purpose**: Multi-way branching with enum values
-**Usage**: State machines, menu systems with predefined enum values
-
-## Common Patterns
-
-### Enum-based State Machine Pattern
-```
-SwitchEnumStep (Current state enum) → StateA: Actions → SwitchEnumStep (Next state)
-                                   → StateB: Actions → SwitchEnumStep (Next state)
-                                   → StateC: Actions → SwitchEnumStep (Next state)
-```
-
-## Critical SwitchEnumStep Rules
-- **Enum Values Only**: Use only predefined enum values as cases
-- **Handle All Enum Cases**: Ensure all possible enum values are covered
-- **Default Case**: Always provide a default case for unexpected enum values
+<rule>
+  <meta>
+    <title>SwitchEnumStep</title>
+    <description>Multi-way branching node with enum values for state machines and menu systems</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new SwitchEnumStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <setup-instructions priority="critical">
+      <description>SwitchEnumStep provides multi-way branching with predefined enum values for state machines, menu systems, and complex decision trees in virtual lab experiments. Use only predefined enum values as cases and ensure all possible enum values are covered with a default case.</description>
+    </setup-instructions>
+    <requirement priority="critical">
+      <description>SwitchEnumStep provides multi-way branching with predefined enum values for state machines, menu systems, and complex decision trees. Use only predefined enum values as cases and ensure all possible enum values are covered with a default case for unexpected enum values.</description>
+      <examples>
+        <example title="SwitchEnumStep Implementation">
+          <correct-example title="Complete enum-based switching" conditions="Creating enum-based branching" expected-result="Complete enum switch logic" correctness-criteria="Covers all enum values with default">SwitchEnumStep (Current state enum) → StateA: Actions → Next state, StateB: Actions → Next state, StateC: Actions → Next state, Default: Error handling</correct-example>
+          <incorrect-example title="Incomplete enum-based switching" conditions="Creating enum-based branching" expected-result="Complete enum switch logic" incorrectness-criteria="Missing enum values or default">SwitchEnumStep (Current state enum) → StateA: Actions → Next state, StateB: Actions → Next state</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use SwitchEnumStep for state machines and menu systems with predefined enum values. Handle all possible enum values by providing appropriate case branches for each expected enum value.</description>
+      <examples>
+        <example title="Enum-based State Machine">
+          <correct-example title="Proper enum state machine" conditions="Creating state machine with enums" expected-result="Complete state transitions" correctness-criteria="Handles all enum states">SwitchEnumStep (ExperimentState) → Initializing: Setup actions → Next state, Running: Execute actions → Next state, Completed: Finish actions → Next state</correct-example>
+          <incorrect-example title="Incomplete enum state machine" conditions="Creating state machine with enums" expected-result="Complete state transitions" incorrectness-criteria="Missing enum states">SwitchEnumStep (ExperimentState) → Initializing: Setup actions → Next state, Running: Execute actions → Next state</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Always provide a default case in SwitchEnumStep to handle unexpected or invalid enum values. The default case should either handle the error gracefully or provide appropriate fallback behavior for unknown enum states.</description>
+      <examples>
+        <example title="Default Case for Enums">
+          <correct-example title="Proper default case for enums" conditions="Handling unexpected enum values" expected-result="Graceful enum error handling" correctness-criteria="Provides fallback for unknown enums">Default: Log unknown state → Reset to initial state → Display error message</correct-example>
+          <incorrect-example title="Missing default case for enums" conditions="Handling unexpected enum values" expected-result="Graceful enum error handling" incorrectness-criteria="No fallback for unknown enums">No default case provided for enum values</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use meaningful enum value names and action names in SwitchEnumStep to make the logic clear and maintainable. Enum values should be descriptive and action names should clearly indicate what happens in each branch.</description>
+      <examples>
+        <example title="Meaningful Enum and Action Names">
+          <correct-example title="Clear enum and action names" conditions="Naming enum cases and actions" expected-result="Readable enum switch logic" correctness-criteria="Uses descriptive names">ExperimentState.Initializing: ExecuteInitializationSequence, ExperimentState.Running: ExecuteMainProcess</correct-example>
+          <incorrect-example title="Unclear enum and action names" conditions="Naming enum cases and actions" expected-result="Readable enum switch logic" incorrectness-criteria="Uses unclear names">State1: DoSomething, State2: DoSomethingElse</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Ensure all enum case branches eventually converge to the same continuation point or provide equivalent outcomes when appropriate. This maintains logical flow consistency in the experiment while handling different enum states.</description>
+      <examples>
+        <example title="Enum Branch Convergence">
+          <correct-example title="Proper enum branch convergence" conditions="Designing SwitchEnumStep flow" expected-result="Consistent continuation" correctness-criteria="Branches lead to same point when appropriate">StateA: Actions → Continue, StateB: Actions → Continue, StateC: Actions → Continue</correct-example>
+          <incorrect-example title="Inconsistent enum branch flow" conditions="Designing SwitchEnumStep flow" expected-result="Consistent continuation" incorrectness-criteria="Branches lead to different points unnecessarily">StateA: Actions → Path A, StateB: Actions → Path B, StateC: Actions → Path C</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <non-negotiable priority="critical">
+      <description>NEVER create SwitchEnumStep without a default case. All SwitchEnumStep implementations must handle unexpected enum values to prevent execution failures or undefined behavior when enum values change or are corrupted.</description>
+      <examples>
+        <example title="Default Case Requirement for Enums">
+          <correct-example title="SwitchEnumStep with default case" conditions="Creating SwitchEnumStep" expected-result="Robust enum switch logic" correctness-criteria="Always includes default case">SwitchEnumStep with all expected enum cases plus default case</correct-example>
+          <incorrect-example title="SwitchEnumStep without default case" conditions="Creating SwitchEnumStep" expected-result="Robust enum switch logic" incorrectness-criteria="Missing default case">SwitchEnumStep with only expected enum cases, no default</correct-example>
+        </example>
+      </examples>
+    </non-negotiable>
+  </requirements>
+  <context description="Additional considerations for SwitchEnumStep">
+    SwitchEnumStep is ideal for state machines and menu systems using predefined enum values. Always ensure complete enum coverage and provide meaningful default behavior. Use SwitchStep when working with custom string/number values instead of predefined enums.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/ControlFlow/SwitchStep.mdc" reason="Custom value switching">SwitchStep for custom string/number values</reference>
+  </references>
+</rule>

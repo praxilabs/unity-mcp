@@ -1,45 +1,68 @@
 ---
-alwaysApply: false
 description: Add a new record (row) to the active data table
+alwaysApply: false
 ---
 
-# AddRecordStep Node
-
-## Overview
-Adds a new row to the active data table using provided data for data collection and experiment result logging.
-
-## Node Details
-
-**Node Type**: AddRecordStep
-**Purpose**: Insert a new record
-**Usage**: Data collection, logging experiment results
-
-## Basic Prerequisites
-
-1. **Active Data Table**: Target table must be active and accessible
-2. **Valid Record Data**: Record data must match table schema
-3. **Table Configuration**: Table must be properly configured
-
-## Parameters
-
-- **tableName**: Target table identifier (optional if active table is implied)
-- **recordData**: Key/value data for the new row
-- **appendTimestamp**: Whether to add time fields
-
-## Common Patterns
-
-### Basic Insert
-```
-AddRecordStep (Table, Data) → Continue
-```
-
-### From User Input
-```
-EnableRecordButtonStep (RecordButton) → UserInputStep (Data)
-→ AddRecordStep (ActiveTable, UserInputData) → Continue
-```
-
-## Critical AddRecordStep Rules
-- **Data Operations Only**: Use for adding data records, not stage management
-- **Valid Schema**: Record data must match table schema
-- **Active Table**: Target table must be active and accessible
+<rule>
+  <meta>
+    <title>AddRecordStep</title>
+    <description>Add a new record (row) to the active data table</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new AddRecordStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <setup-instructions priority="critical">
+      <description>AddRecordStep adds a new record (row) to the active data table for data collection and experiment result logging in virtual lab experiments. It requires a target table to be active and accessible, valid record data matching the table schema, and appropriate table configuration for data storage.</description>
+    </setup-instructions>
+    <requirement priority="critical">
+      <description>AddRecordStep adds a new row to the active data table using provided data for data collection and experiment result logging. Use for data collection and logging experiment results.</description>
+      <examples>
+        <example title="Data Record Addition">
+          <correct-example title="Proper record addition" conditions="Need to add data to table" expected-result="New record added to active table" correctness-criteria="Uses AddRecordStep for data operations">AddRecordStep (Table, Data) → Continue</correct-example>
+          <incorrect-example title="Improper record addition" conditions="Need to add data to table" expected-result="New record added to active table" incorrectness-criteria="Uses stage management for data operations">SetStagePassedStep (Stage1) → Data added (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>AddRecordStep requires tableName (optional if active table is implied), recordData (key/value data for the new row), and appendTimestamp (whether to add time fields). Target table must be active and accessible with valid record data matching table schema.</description>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use AddRecordStep for data operations only, not stage management. Record data must match table schema and target table must be active and accessible.</description>
+      <examples>
+        <example title="Data Operations vs Stage Management">
+          <correct-example title="Proper data operation usage" conditions="Need to record experiment data" expected-result="Data recorded in table" correctness-criteria="Uses AddRecordStep for data operations">AddRecordStep (Table, Data) → Data recorded</correct-example>
+          <incorrect-example title="Improper stage management usage" conditions="Need to record experiment data" expected-result="Data recorded in table" incorrectness-criteria="Uses stage management for data recording">SetStagePassedStep (Stage1) → Data recorded (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use basic insert pattern for direct data addition. Use from user input pattern when data comes from user interaction through UI buttons.</description>
+      <examples>
+        <example title="Data Insertion Patterns">
+          <correct-example title="Proper basic insert pattern" conditions="Need to add data directly" expected-result="Data added to table" correctness-criteria="Uses basic insert pattern">AddRecordStep (Table, Data) → Continue</correct-example>
+          <incorrect-example title="Improper user input pattern" conditions="Need to add data directly" expected-result="Data added to table" incorrectness-criteria="Uses user input pattern when direct insert is appropriate">EnableRecordButtonStep (RecordButton) → UserInputStep (Data) → AddRecordStep (ActiveTable, UserInputData)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use from user input pattern when data comes from user interaction. Combines button control, user input, and record addition for interactive data collection.</description>
+      <examples>
+        <example title="User Input Pattern">
+          <correct-example title="Proper user input pattern" conditions="Need interactive data collection" expected-result="User data collected and recorded" correctness-criteria="Uses complete user input pattern">EnableRecordButtonStep (RecordButton) → UserInputStep (Data) → AddRecordStep (ActiveTable, UserInputData) → Continue</correct-example>
+          <incorrect-example title="Improper user input pattern" conditions="Need interactive data collection" expected-result="User data collected and recorded" incorrectness-criteria="Skips user input steps">EnableRecordButtonStep (RecordButton) → AddRecordStep (ActiveTable, Data)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for AddRecordStep">
+    This node is essential for data collection and experiment result logging in virtual lab experiments. It provides the capability to add structured data records to active data tables, supporting both direct data insertion and user-driven data collection workflows.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Table/TableNodes.mdc" reason="Table nodes overview">Data table operations and stage management patterns</reference>
+  </references>
+</rule>

@@ -1,38 +1,56 @@
 ---
-alwaysApply: false
 description: Mark a specific stage as successfully completed
+alwaysApply: false
 ---
 
-# SetStagePassedStep Node
-
-## Overview
-Marks the specified stage as passed/completed for progress tracking and unlocking subsequent stages.
-
-## Node Details
-
-**Node Type**: SetStagePassedStep
-**Purpose**: Mark stage passed
-**Usage**: Tracking progress, unlocking next stages
-
-## Basic Prerequisites
-
-1. **Valid Stage Name**: Stage must exist in the experiment
-2. **Stage Configuration**: Stage must be properly configured
-3. **Stage Registry**: Stage must be registered in the stage registry
-
-## Parameters
-
-- **stageName**: Stage identifier
-
-## Common Patterns
-
-### Linear Stage Progression
-```
-EnableStageStep (Stage1) → LogicForStage1 → SetStagePassedStep (Stage1) → EnableStageStep (Stage2)
-```
-
-## Critical SetStagePassedStep Rules
-- **Stage Completion**: Use for marking stages as successfully completed
-- **Progress Tracking**: Enables progress tracking and stage completion status
-- **Stage Unlocking**: Unlocks subsequent stages based on completion
-
+<rule>
+  <meta>
+    <title>SetStagePassedStep</title>
+    <description>Mark a specific stage as successfully completed</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new SetStagePassedStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <setup-instructions priority="critical">
+      <description>SetStagePassedStep marks a specific stage as successfully completed for progress tracking in virtual lab experiments. It requires a valid stage name to be specified, the target stage to exist in the experiment configuration, and proper stage management setup for completion tracking and progress control.</description>
+    </setup-instructions>
+    <requirement priority="critical">
+      <description>SetStagePassedStep marks the specified stage as passed/completed for progress tracking and unlocking subsequent stages. Use for marking stages as completed, unlocking subsequent stages, and progress tracking.</description>
+      <examples>
+        <example title="Stage Completion">
+          <correct-example title="Proper stage completion" conditions="Need to mark stage as completed" expected-result="Stage marked as passed/completed" correctness-criteria="Uses SetStagePassedStep for completion">LogicForStage1 → SetStagePassedStep (Stage1) → EnableStageStep (Stage2)</correct-example>
+          <incorrect-example title="Improper stage completion" conditions="Need to mark stage as completed" expected-result="Stage marked as passed/completed" correctness-criteria="Uses data operation for stage completion">AddRecordStep (Table, Data) → Stage completed (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use SetStagePassedStep for stage completion and progress tracking, not for data operations or stage initialization. Enables progress tracking and stage completion status and unlocks subsequent stages based on completion.</description>
+      <examples>
+        <example title="Stage Completion vs Data Operations">
+          <correct-example title="Proper stage completion usage" conditions="Need to mark stage as completed" expected-result="Stage marked as passed" correctness-criteria="Uses SetStagePassedStep for completion">SetStagePassedStep (stageName: "Stage1") → Stage marked as passed</correct-example>
+          <incorrect-example title="Improper data operation usage" conditions="Need to mark stage as completed" expected-result="Stage marked as passed" correctness-criteria="Uses data operation for stage completion">AddRecordStep (Table, Data) → Stage marked as passed (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use linear stage progression pattern for sequential stage workflow. Combines stage activation, stage logic execution, stage completion, and next stage activation for complete progression.</description>
+      <examples>
+        <example title="Linear Stage Progression">
+          <correct-example title="Proper linear stage progression" conditions="Need sequential stage workflow" expected-result="Stages progress sequentially with completion tracking" correctness-criteria="Uses complete linear progression pattern">EnableStageStep (Stage1) → LogicForStage1 → SetStagePassedStep (Stage1) → EnableStageStep (Stage2)</correct-example>
+          <incorrect-example title="Improper linear stage progression" conditions="Need sequential stage workflow" expected-result="Stages progress sequentially with completion tracking" correctness-criteria="Skips stage completion step">EnableStageStep (Stage1) → LogicForStage1 → EnableStageStep (Stage2)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for SetStagePassedStep">
+    This node is essential for stage completion and progress tracking in virtual lab experiments. It provides the capability to mark stages as successfully completed, enabling progress tracking and unlocking subsequent stages based on completion status.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Table/TableNodes.mdc" reason="Table nodes overview">Data table operations and stage management patterns</reference>
+  </references>
+</rule>

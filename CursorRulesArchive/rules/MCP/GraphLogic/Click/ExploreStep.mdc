@@ -1,0 +1,35 @@
+---
+alwaysApply: false
+description: Handle object exploration interactions for object inspection and detailed examination
+---
+
+# ExploreStep Node
+
+## Overview
+ExploreStep handles object exploration interactions in virtual lab experiments. This node is essential for object inspection, detailed examination, and interactive object discovery.
+
+## Node Details
+
+**Node Type**: ExploreStep
+**Purpose**: Handle object exploration interactions
+**Usage**: Object inspection, detailed examination, interactive discovery
+
+## Basic Prerequisites
+
+1. Group Index
+
+
+## Parameters
+
+- **Group Index**: The Index of the node group that is contained in the exploration step.
+
+## Common Patterns
+
+### Basic Devices Exploration
+```
+ToggleColldierStep(Device1, false) → ToggleColldierStep(Device2, false) → ToggleColldierStep(Device3, false) → ExplorationStep(1) → ToggleColldierStep(Device1, true) → ToggleColldierStep(Device1, true) → ToggleColldierStep(Device3, true)  
+```
+
+## Common Mistakes
+
+1. **Not Disabling the Colliders before exploration**: always Disable the Colliders of all of the Devices before an exploration step, then ask the user to add the nodes in a group. after the exploration step you have to Enable the colliders again.

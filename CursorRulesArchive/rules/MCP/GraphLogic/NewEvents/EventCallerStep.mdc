@@ -1,0 +1,55 @@
+---
+alwaysApply: false
+description: Event-driven trigger step for invoking registered events within the experiment flow
+---
+
+# EventCallerStep Node
+
+## Overview
+Invokes a specifically registered event during graph execution to drive reactive behaviors and cross-graph signaling.
+
+## Node Details
+
+**Node Type**: EventCallerStep
+**Purpose**: Event-driven trigger step for invoking registered events
+**Usage**: Reactive programming, event handling, cross-graph signaling
+
+## Basic Prerequisites
+
+1. **Event Registration**: Event name must be registered in the Event Registry
+2. **Event Name**: Exact event name must be known and valid
+3. **Event Listeners**: Appropriate listeners must be set up to handle the event
+
+## Parameters
+
+- **eventName**: Exact name of the registered event to invoke
+- **payload**: Optional parameters to pass to listeners (key/value or typed list)
+- **delaySeconds**: Optional delay before firing the event
+
+## Common Patterns
+
+### Trigger Event Mid-Sequence
+```
+`...` is a variable number of nodes that have a certain logic.
+
+... → EventCallerStep ("RegisteredEventName") → ...
+```
+
+### Conditional Event Trigger
+```
+`...` is a variable number of nodes that have a certain logic.
+
+IfStatementStep (condition) → True: EventCallerStep ("OnConditionMet") → ...
+                            → False: ...
+```
+
+### Chained Events
+```
+EventCallerStep ("PhaseStarted") → DelayStep → EventCallerStep ("PhaseReady")
+```
+
+## Critical EventCallerStep Rules
+- **Event Registration**: Event must be registered in the Event Registry
+- **Exact Event Names**: Use exact event names to avoid typos
+- **Reactive Programming**: Use for event-driven behaviors and cross-graph communication
+

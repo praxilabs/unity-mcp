@@ -1,42 +1,83 @@
 ---
-alwaysApply: false
 description: Fixed iteration control for repeated actions and data collection
+alwaysApply: false
 ---
 
-# ForLoopStep Node
-
-## Overview
-Executes its body a fixed number of times for repeated measurements and data collection with known iteration count.
-
-## Node Details
-
-**Node Type**: ForLoopStep
-**Purpose**: Fixed iteration control
-**Usage**: Repeated measurements, data collection
-
-## Parameters
-
-- **iterations**: Integer number of times to execute the loop body
-
-## Ports
-
-- **Entry**: the node entry point, and also the port that should be responsible for looping.
-- **continueLoop (Output)**: The continue loop should be connectd to whatever logic is about to execute in the loop then the last node should connect to the entry again.
-- **exit (Output)**: Called after the final iteration completes
-
-## Common Patterns
-
-### Fixed Iteration Pattern
-```
-`...` indicates a variable number of nodes that does a certain logic.
-
-ForLoopStep (iterations: 5) → continueLoop: ... → ForLoopStep.entry
-                            → exit: ...
-```
-
-
-## Critical ForLoopStep Rules
-- **Fixed Iterations**: Use for known, finite iteration counts
-- **Port Connections**: Use `continueLoop` for loop body, `exit` for completion
-- **Finite Execution**: Loop will always terminate after specified iterations
-
+<rule>
+  <meta>
+    <title>ForLoopStep</title>
+    <description>Fixed iteration control for repeated actions and data collection</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new ForLoopStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+      <setup-instructions priority="critical">
+      <description>ForLoopStep executes its body a fixed number of times for repeated measurements and data collection with known iteration count in virtual lab experiments. Use for fixed number of iterations, data collection with known count, repeated measurements, and sequential operations with known steps.</description>
+    </setup-instructions>
+    <requirement priority="critical">
+      <description>ForLoopStep executes its body a fixed number of times for repeated measurements and data collection with known iteration count. Use for fixed number of iterations, data collection with known count, repeated measurements, and sequential operations with known steps.</description>
+      <examples>
+        <example title="ForLoopStep Usage">
+          <correct-example title="Proper ForLoopStep usage" conditions="Need fixed iteration count" expected-result="Finite loop execution" correctness-criteria="Uses ForLoopStep for known iterations">ForLoopStep(iterations: 5) for repeated measurements with known count</correct-example>
+          <incorrect-example title="Improper ForLoopStep usage" conditions="Need conditional iteration" expected-result="Conditional loop execution" incorrectness-criteria="Uses ForLoopStep for unknown iterations">ForLoopStep for unknown iteration count (should use WhileLoopStep)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>ForLoopStep parameters include iterations (Integer number of times to execute the loop body). The loop will always terminate after the specified number of iterations, providing guaranteed finite execution.</description>
+      <examples>
+        <example title="Iteration Parameter">
+          <correct-example title="Proper iteration parameter" conditions="Setting ForLoopStep iterations" expected-result="Correct iteration count" correctness-criteria="Uses finite positive integer">iterations: 5, iterations: 10, iterations: 3</correct-example>
+          <incorrect-example title="Improper iteration parameter" conditions="Setting ForLoopStep iterations" expected-result="Correct iteration count" incorrectness-criteria="Uses invalid values">iterations: 0, iterations: -1, iterations: infinite</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>ForLoopStep ports include Entry (node entry point), continueLoop (Output - contains the loop body logic with any number of nodes, last node connects back to entry), and exit (Output - exits the loop after final iteration). The continueLoop port contains the logic that executes during each iteration, and the last node in the loop body must connect back to the entry port to continue the loop.</description>
+      <examples>
+        <example title="Port Connections">
+          <correct-example title="Proper port connections" conditions="Connecting ForLoopStep ports" expected-result="Correct loop execution" correctness-criteria="Uses correct port connections">continueLoop: Node1 → Node2 → Node3 → ForLoopStep.entry, exit: NextNode (after completion)</correct-example>
+          <incorrect-example title="Improper port connections" conditions="Connecting ForLoopStep ports" expected-result="Correct loop execution" incorrectness-criteria="Uses incorrect port connections">continueLoop: Node1 → Node2 → NextNode (should connect back to entry)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use ForLoopStep for fixed iteration patterns where the number of repetitions is known in advance. Common patterns include repeated measurements, data collection with known count, and sequential operations with predetermined steps.</description>
+      <examples>
+        <example title="Fixed Iteration Pattern">
+          <correct-example title="Proper fixed iteration pattern" conditions="Implementing fixed iteration logic" expected-result="Successful repeated execution" correctness-criteria="Follows established pattern">ForLoopStep(iterations: 5) → continueLoop: Node1 → Node2 → ForLoopStep.entry → exit: NextNode</correct-example>
+          <incorrect-example title="Improper fixed iteration pattern" conditions="Implementing fixed iteration logic" expected-result="Successful repeated execution" correctness-criteria="Skips required steps">ForLoopStep without proper port connections or loop body</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use descriptive iteration counts and meaningful loop body logic in ForLoopStep to make the purpose clear and maintainable. Iteration counts should reflect the actual number of repetitions needed for the task.</description>
+      <examples>
+        <example title="Descriptive Iteration Counts">
+          <correct-example title="Clear iteration counts" conditions="Setting meaningful iteration counts" expected-result="Readable loop logic" correctness-criteria="Uses meaningful counts">iterations: 5 (for 5 measurements), iterations: 3 (for 3 trials)</correct-example>
+          <incorrect-example title="Unclear iteration counts" conditions="Setting meaningful iteration counts" expected-result="Readable loop logic" correctness-criteria="Uses unclear counts">iterations: 5 (unclear purpose), iterations: 3 (no context)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <non-negotiable priority="critical">
+      <description>NEVER use ForLoopStep for unknown or infinite iteration counts. NEVER use ForLoopStep for conditional repetition. NEVER use ForLoopStep without proper port connections. Always use WhileLoopStep for conditional loops and ensure ForLoopStep has finite, known iteration counts.</description>
+      <examples>
+        <example title="ForLoopStep Restrictions">
+          <correct-example title="Proper ForLoopStep usage" conditions="Selecting ForLoopStep" expected-result="Correct fixed iteration execution" correctness-criteria="Uses ForLoopStep appropriately">Fixed number of iterations with known count</correct-example>
+          <incorrect-example title="Improper ForLoopStep usage" conditions="Selecting ForLoopStep" expected-result="Correct fixed iteration execution" correctness-criteria="Uses ForLoopStep inappropriately">Unknown iteration count, conditional repetition, or infinite loops</correct-example>
+        </example>
+      </examples>
+    </non-negotiable>
+  </requirements>
+  <context description="Additional considerations for ForLoopStep">
+    ForLoopStep is designed for fixed iteration control with known, finite iteration counts. Always ensure the iteration count is positive and finite, use proper port connections, and include meaningful loop body logic. Use WhileLoopStep for conditional repetition scenarios.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Loop/WhileLoopStep.mdc" reason="Conditional iteration control">WhileLoopStep for conditional repetition</reference>
+  </references>
+</rule>

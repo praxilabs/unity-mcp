@@ -1,50 +1,68 @@
 ---
-alwaysApply: false
 description: Display educational hints for user guidance and help systems
+alwaysApply: false
 ---
 
-# HintStep Node
-
-## Overview
-Displays educational hints for user guidance, help systems, and progressive learning support.
-
-## Node Details
-
-**Node Type**: HintStep
-**Purpose**: Display educational hints for progressive guidance
-**Usage**: Educational guidance, help systems, step-by-step learning
-
-## Basic Prerequisites
-
-1. **Hint Content**: Educational hint text must be prepared
-2. **Step Numbering**: Sequential step numbers for progressive guidance
-3. **User Context**: Clear understanding of what user needs guidance on
-
-## Parameters
-
-- **Hint Text**: The hint content to display
-- **Step Number**: Sequential step number for progressive guidance
-- **Hint Type**: Type of hint (instructional, warning, tip)
-- **Duration**: How long to display hint (optional)
-
-## Critical HintStep Rules
-- **Progressive Guidance**: Use sequential step numbers for step-by-step learning
-- **Educational Focus**: Use for learning support, not general messaging
-- **Integration**: Works with ProgressMap steps for seamless flow
-
-## Common Patterns
-
-### Progressive Guidance Pattern
-```
-HintStep (Step 1) → UserAction → HintStep (Step 2) → UserAction → HintStep (Step 3)
-```
-
-### Hint with Progress Navigation
-```
-HintStep (stepNumber: current) → ProgressMapManualNextStep (_nextStepIndex: next) → Continue
-```
-
-### Sequential Hint Integration
-```
-HintStep (stepNumber: 1) → SubGraphStep (Step_01) → HintStep (stepNumber: 2) → SubGraphStep (Step_02) → Continue
-```
+<rule>
+  <meta>
+    <title>HintStep</title>
+    <description>Display educational hints for user guidance and help systems</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new HintStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <setup-instructions priority="critical">
+      <description>HintStep displays educational hints for user guidance and help systems in virtual lab experiments. It requires a message ID to be configured for proper hint content management and display control.</description>
+      <step-list>
+        <step>Configure Message ID parameter (Unique identifier for the hint message)</step>
+      </step-list>
+    </setup-instructions>
+    <requirement priority="critical">
+      <description>HintStep displays educational hints for user guidance, help systems, and progressive learning support. Use for educational guidance, help systems, and step-by-step learning.</description>
+      <examples>
+        <example title="Educational Guidance">
+          <correct-example title="Proper hint usage" conditions="Need educational guidance" expected-result="Educational hint displayed for user guidance" correctness-criteria="Uses HintStep for educational guidance">HintStep (Hint Text: "Click the button to start", Step Number: 1) → User follows guidance</correct-example>
+          <incorrect-example title="Improper hint usage" conditions="Need educational guidance" expected-result="Educational hint displayed for user guidance" correctness-criteria="Uses general messaging for educational guidance">SideMessageStep (Click the button to start) → User follows guidance (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>HintStep requires Hint Text (the hint content to display), Step Number (sequential step number for progressive guidance), Hint Type (type of hint), and optional Duration (how long to display hint). Must have educational hint text prepared, sequential step numbers, and clear user context.</description>
+      <examples>
+        <example title="Parameter Requirements">
+          <correct-example title="Proper parameter usage" conditions="Using HintStep" expected-result="Educational hint successfully displayed" correctness-criteria="Provides valid hint text and step number">HintStep (Hint Text: "Use the pipette carefully", Step Number: 2, Hint Type: "instructional") → Hint displayed</correct-example>
+          <incorrect-example title="Improper parameter usage" conditions="Using HintStep" expected-result="Educational hint successfully displayed" correctness-criteria="Missing required hint text or step number">HintStep (Step Number: 2) → No hint text provided</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use HintStep for progressive guidance with sequential step numbers for step-by-step learning. Use for educational focus and learning support, not general messaging. Works with ProgressMap steps for seamless flow.</description>
+      <examples>
+        <example title="Progressive Guidance">
+          <correct-example title="Proper progressive guidance" conditions="Need step-by-step learning" expected-result="Progressive hints displayed sequentially" correctness-criteria="Uses sequential step numbers for progressive guidance">HintStep (Step 1) → UserAction → HintStep (Step 2) → UserAction → HintStep (Step 3)</correct-example>
+          <incorrect-example title="Improper progressive guidance" conditions="Need step-by-step learning" expected-result="Progressive hints displayed sequentially" correctness-criteria="Uses random step numbers">HintStep (Step 3) → UserAction → HintStep (Step 1) → UserAction → HintStep (Step 2)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use progressive guidance pattern for step-by-step learning. Use hint with progress navigation pattern for seamless flow integration. Use sequential hint integration pattern for complex workflows.</description>
+      <examples>
+        <example title="Hint Patterns">
+          <correct-example title="Proper progressive guidance pattern" conditions="Need step-by-step learning" expected-result="Progressive hints with user actions" correctness-criteria="Uses progressive guidance pattern">HintStep (Step 1) → UserAction → HintStep (Step 2) → UserAction → HintStep (Step 3)</correct-example>
+          <incorrect-example title="Improper sequential hint integration" conditions="Need step-by-step learning" expected-result="Progressive hints with user actions" correctness-criteria="Uses complex integration when simple pattern is appropriate">HintStep (stepNumber: 1) → SubGraphStep (Step_01) → HintStep (stepNumber: 2) → SubGraphStep (Step_02)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for HintStep">
+    This node is essential for educational guidance and help systems in virtual lab experiments. It provides the capability to display educational hints for user guidance, help systems, and progressive learning support. The progressive guidance with sequential step numbers is critical for effective learning workflows.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/UI/UINodes.mdc" reason="UI nodes overview">User interface and messaging patterns</reference>
+  </references>
+</rule>

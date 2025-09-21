@@ -1,0 +1,47 @@
+---
+alwaysApply: false
+description: Global method execution without targeting a specific scene object
+---
+
+# FunctionCallGlobalStep Node
+
+## Overview
+Executes global/static methods or methods on singletons/services for system-wide functions without targeting specific scene objects.
+
+## Node Details
+
+**Node Type**: FunctionCallGlobalStep
+**Menu Path**: "Function Call/Function Call Global"
+**Inherits**: FunctionCallBase
+
+## Basic Prerequisites
+
+1. **Global Method**: Static method or singleton service method
+2. **Method Visibility**: Method must be public to be accessible
+3. **Type Registration**: Type must be accessible for reflection
+
+## Parameters
+
+- **prefabName**: parent.
+- **childName**: child.
+- **selectedComponent**: Component on Child.
+- **selectedFunction**: Function on Component.
+- **parameterValues**: Parameters (if exist).
+
+## Common Patterns
+
+### Toggle Global UI
+```
+FunctionCallGlobalStep (ToggleFirstPersonUI) → FunctionCallGlobalStep (ToggleBirdEyeUI) → Continue
+```
+
+### Mark Scenario Completed
+```
+FunctionCallGlobalStep (MarkScenarioAsCompleted) → DelayStep → ShowCompletionMessage
+```
+
+## Critical FunctionCallGlobalStep Rules
+- **Global Methods Only**: Use for static/global methods, not scene object methods
+- **No Scene Context**: Methods don't target specific scene objects
+- **System-Wide Effects**: Methods affect the entire system
+

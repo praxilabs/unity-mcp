@@ -1,0 +1,41 @@
+---
+description: Toggle colliders of any object for interaction control and safety systems
+alwaysApply: false
+---
+
+<rule>
+  <meta>
+    <title>ToggleCollidersStep</title>
+    <description>Toggle colliders of any object for interaction control and safety systems</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new ToggleCollidersStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <setup-instructions priority="critical">
+      <description>ToggleCollidersStep toggles colliders of any object for interaction control and safety systems. It works with any object that has colliders and uses a simple object reference and toggle boolean to control collider state.</description>
+      <step-list>
+        <step>Set Target Object (any object with colliders and registered in the Registry data)</step>
+        <step>Set Toggle Boolean (enable/disable colliders)</step>
+      </step-list>
+    </setup-instructions>
+    <requirement priority="critical">
+      <description>ToggleCollidersStep works with any object that has colliders. It automatically toggles colliders of ONE object only. Uses object reference and a simple boolean to control collider state. No special scripts required.</description>
+      <examples>
+        <example title="Object Collider Control">
+          <correct-example title="Proper object collider usage" conditions="Need to toggle any object's colliders" expected-result="Colliders of one object toggled" correctness-criteria="Uses ToggleCollidersStep for any object">ToggleCollidersStep (Target Object: "Door", Toggle: false) → Door colliders disabled</correct-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for ToggleCollidersStep">
+    This node works with any object that has colliders, making it versatile for interaction control and safety systems. It automatically handles colliders of the specified object without requiring special scripts.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Utility/UtilityNodes.mdc" reason="Utility nodes overview">System utility operations and timing control patterns</reference>
+  </references>
+</rule>

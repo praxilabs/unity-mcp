@@ -1,0 +1,72 @@
+---
+description: Unity MCP Bootstrap Entry Point - Dual-mode workflow guide for XNode graph operations (Consultant/Agent modes)
+alwaysApply: true
+---
+
+<rule>
+  <meta>
+    <title>Unity MCP Bootstrap Entry Point</title>
+    <description>Dual-mode bootstrap entry point for XNode graph operations - provides consultant mode for planning and agent mode for execution</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <non-negotiable priority="critical">
+      <description>DUAL-MODE OPERATION: This bootstrap supports two distinct modes - CONSULTANT MODE for planning/analysis and AGENT MODE for execution. NEVER mix modes or skip mode-specific requirements.</description>
+      <examples>
+        <example title="Mode Selection">
+          <correct-example title="Proper mode selection" conditions="Starting XNode operation" expected-result="Correct mode applied" correctness-criteria="Uses appropriate mode based on user intent">Consultant Mode: Analysis and planning only → Agent Mode: Full execution workflow</correct-example>
+          <incorrect-example title="Improper mode mixing" conditions="Starting XNode operation" expected-result="Correct mode applied" incorrectness-criteria="Mixes consultant analysis with agent execution">Provide analysis then proceed to create nodes without explicit agent mode</incorrect-example>
+        </example>
+      </examples>
+    </non-negotiable>
+    <requirement priority="critical">
+      <description>CONSULTANT MODE: When user asks "how to" or requests planning/analysis, operate in consultant mode. Analyze router rules, identify required node types, and provide ordered list of nodes to use. DO NOT create any artifacts - only provide analysis and recommendations.</description>
+      <examples>
+        <example title="Consultant Mode Operation">
+          <correct-example title="Proper consultant analysis" conditions="User asks how to implement something" expected-result="Analysis and node recommendations" correctness-criteria="Provides analysis without creating artifacts">Analyze requirements → Identify node categories → List required nodes in order → Provide implementation guidance</correct-example>
+          <incorrect-example title="Improper consultant mode" conditions="User asks how to implement something" expected-result="Analysis and node recommendations" incorrectness-criteria="Creates artifacts instead of providing analysis">Start creating nodes or graphs without providing analysis first</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>AGENT MODE: When user requests actual implementation or creation, operate in agent mode. Follow the complete bootstrap sequence: 1) MCP Tools Reference → 2) Step Nodes Reference → 3) Node Router Rules → 4) Graph Creation Rules → 5) Graph Validation Rules.</description>
+      <examples>
+        <example title="Agent Mode Operation">
+          <correct-example title="Proper agent execution" conditions="User requests implementation" expected-result="Complete, validated graph" correctness-criteria="Follows complete bootstrap sequence">MCP Tools Reference → Step Nodes Reference → Node Router → Graph Rules → Validation Rules → Complete Graph</correct-example>
+          <incorrect-example title="Improper agent mode" conditions="User requests implementation" expected-result="Complete, validated graph" incorrectness-criteria="Skips bootstrap steps">Direct node creation without following bootstrap sequence</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <bootstrap>
+    <step-list title="Agent Mode Bootstrap Sequence">
+      <step number="1" title="MCP Tools Reference">Consult mcp-tools-reference.mdc to understand available tools, parameters, and usage patterns</step>
+      <step number="2" title="Step Nodes Reference">Use step-nodes-reference.mdc to identify appropriate node categories for requirements</step>
+      <step number="3" title="Node Router Rules">Fetch specific router rule files (e.g., ClickNodesRouter.mdc) for detailed implementation guidance</step>
+      <step number="4" title="Graph Creation Rules">Consult graph-connection-rules.mdc and node-positioning-strategy.mdc for connection and positioning requirements</step>
+      <step number="5" title="Graph Validation Rules">Run graph-validation-rules.mdc to validate complete graph structure and remove orphaned nodes</step>
+    </step-list>
+    <step-list title="Consultant Mode Analysis Sequence">
+      <step number="1" title="Requirement Analysis">Analyze user requirements and identify core functionality needed</step>
+      <step number="2" title="Node Category Identification">Use step-nodes-reference.mdc to identify relevant node categories</step>
+      <step number="3" title="Router Rule Analysis">Fetch and analyze relevant router rules for implementation details</step>
+      <step number="4" title="Node Sequence Planning">Create ordered list of required nodes based on analysis</step>
+      <step number="5" title="Implementation Guidance">Provide detailed recommendations without creating any artifacts</step>
+    </step-list>
+  </bootstrap>
+  <context description="Dual-mode bootstrap workflow for Unity MCP operations">
+    This bootstrap entry point provides two distinct operational modes: CONSULTANT MODE for analysis and planning (no artifact creation) and AGENT MODE for full implementation execution. The bootstrap sequences ensure consistent, reliable graph operations and prevent common implementation errors by providing structured workflows for both planning and execution phases.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/mcp-tools-reference.mdc" reason="Step 1 - Tool reference">MCP tools reference and capabilities guide</reference>
+    <reference as="context" href=".cursor/rules/step-nodes-reference.mdc" reason="Step 2 - Node reference">Quick reference guide for XNode Step Nodes</reference>
+    <reference as="context" href=".cursor/rules/graph-connection-rules.mdc" reason="Step 4 - Graph creation">Critical connection requirements for Unity MCP graph nodes</reference>
+    <reference as="context" href=".cursor/rules/node-positioning-strategy.mdc" reason="Step 4 - Graph creation">Unified node positioning strategy for Unity MCP graph layouts</reference>
+    <reference as="context" href=".cursor/rules/graph-validation-rules.mdc" reason="Step 5 - Graph validation">Mandatory post-creation validation rules for Unity MCP graphs</reference>
+  </references>
+</rule>

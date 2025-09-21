@@ -1,0 +1,65 @@
+---
+alwaysApply: false
+description: Pause graph execution until user clicks target object for interaction control
+---
+
+# ClickStep Node
+
+## Overview
+ClickStep is a **WAIT-FOR-USER-INPUT** node that waits for user click before allowing execution to continue. The complexity of what happens after the click depends on the nodes that gets executed after the click step is done.
+
+## Node Details
+
+**Node Type**: ClickStep
+**Purpose**: Wait for user to click 3D world objects, then allow execution to continue
+**Usage**: User interaction gate for laboratory equipment, instruments, and 3D objects
+**Context**: Use for physical buttons on 3D instrument models and interactive GameObjects
+
+## Basic Prerequisites
+These Scripts must be found on "Object Name":
+1. **Collider**: Required on target object for click detection
+2. **ClickableTool Script**: Required on target object to handle click events
+3. **Hologram**: Optional visual indicator for clickable objects
+
+## Parameters
+
+- **Target Object**: The object to be clicked (required for pause to work)
+
+## Critical Notes
+Don't use a Click Step on its own, you have to make the logic yourself as the click step itself contains no logic.
+
+##  Common Patterns
+
+
+#### Device Functionality:
+```
+ClickStep (Microscope Power Button) → FunctionCallStep(MicroscopeController.PowerOn) → Continue
+ClickStep (Centrifuge Start Button) → FunctionCallStep(CentrifugeController.Start) → Continue
+```
+
+#### Physical Actions with Motion:
+```
+ClickStep (Reagent Bottle) → AnimationStep(Bottle Opening Animation) → Continue
+ClickStep (Laboratory Door) → AnimationStep(Door Opening Animation) → Continue
+```
+
+#### State Changes:
+```
+ClickStep (Panel Close Button) → GameObjectSetActive(Panel, false) → Continue
+ClickStep (Equipment Cover) → GameObjectSetActive(Cover, false) → Continue
+```
+
+## Common Mistakes
+1. **Ignoring complexity assessment**: Always know your scope.
+
+## Best Practices
+1. **Choose correct action type**:
+   - **Motion/Physical changes** → AnimationStep (opening, closing, moving, grinding, etc.)
+   - **Device functionality** → FunctionCallStep (power controls, measurements, calculations)
+
+
+## Action Type Decision Guide
+**AnimationStep** - For visual changes the user sees:
+   - Moving objects (bottles, drawers, equipment)
+   - Physical transformations (grinding, mixing, crushing)
+   - Visual effects (animations, particles)

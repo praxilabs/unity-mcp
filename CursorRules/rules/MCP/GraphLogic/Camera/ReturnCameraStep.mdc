@@ -1,43 +1,56 @@
 ---
-alwaysApply: false
 description: Return camera to default position for reset view and overview mode
+alwaysApply: false
 ---
 
-# ReturnCameraStep Node
-
-## Overview
-ReturnCameraStep controls camera positioning to return to default position in virtual lab experiments. This node is essential for resetting view, overview mode, and completing camera sequences.
-
-the ReturnCameraStep system only keeps track of one single Camera behind so you must manage and utilize that position for the system to function as intended. more details are found in the `Common Patterns` and `Common Mistakes`.
-
-## Node Details
-
-**Node Type**: ReturnCameraStep
-**Purpose**: Return camera to default position
-**Usage**: Reset view, overview mode, complete camera sequences
-
-## Basic Prerequisites
-1. The Camera must be focused on an object before(used FocusOnToolStep on an Object before).
-
-## Parameters
-    -None
-
-## Common Patterns
-
-### Press to Focus then Return.
-```
-    ClickStep(Device) → FocusOnToolStep(Device) → ... → ReturnCameraStep
-```
-
-### Focus on more than one Device sequentially (Device1 then Device2).
-```
-    ... → FocusOnToolStep(Device1) → ... → ReturnCameraStep → FocusOnToolStep(Device2)
-```
-
-## Common Mistakes
-
-1. **Missing ReturnCameraStep between focus operations**: If you use FocusOnToolStep twice (same or different tools), you MUST use ReturnCameraStep between them
-2. **Missing camera transitions**: Use appropriate delays for camera movements
-
-## Best Practices
-1. **End experiments with ReturnCameraStep** for professional polish (recommended)
+<rule>
+  <meta>
+    <title>ReturnCameraStep</title>
+    <description>Return camera to default position for reset view and overview mode</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new ReturnCameraStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <setup-instructions priority="critical">
+      <description>ReturnCameraStep returns camera to default position for reset view and overview mode in virtual lab experiments. The camera must be focused on an object before using ReturnCameraStep, and the system only keeps track of one single camera position.</description>
+    </setup-instructions>
+    <requirement priority="critical">
+      <description>If you use FocusOnToolStep twice (same or different tools), you MUST use ReturnCameraStep between them. Missing ReturnCameraStep between focus operations will cause camera system failures.</description>
+      <examples>
+        <example title="Focus Operations Sequence">
+          <correct-example title="Proper focus sequence with return" conditions="Need to focus on multiple devices" expected-result="Camera properly transitions between focuses" correctness-criteria="Uses ReturnCameraStep between focus operations">FocusOnToolStep(Device1) → [operations] → ReturnCameraStep → FocusOnToolStep(Device2)</correct-example>
+          <incorrect-example title="Missing return between focuses" conditions="Need to focus on multiple devices" expected-result="Camera properly transitions between focuses" incorrectness-criteria="Skips ReturnCameraStep between focus operations">FocusOnToolStep(Device1) → [operations] → FocusOnToolStep(Device2) // Missing ReturnCameraStep</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use appropriate delays for camera movements and transitions. ReturnCameraStep has no parameters - it automatically returns to the previously tracked camera position.</description>
+      <examples>
+        <example title="Camera Transitions and Parameters">
+          <correct-example title="Proper camera transitions" conditions="Need smooth camera movements" expected-result="Smooth camera transitions" correctness-criteria="Uses appropriate delays and no parameters">FocusOnToolStep(Device) → [operations] → ReturnCameraStep // No parameters needed</correct-example>
+          <incorrect-example title="Missing camera transitions" conditions="Need smooth camera movements" expected-result="Smooth camera transitions" incorrectness-criteria="Missing delays or incorrect parameters">FocusOnToolStep(Device) → [operations] → ReturnCameraStep(parameters) // No parameters needed</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>End experiments with ReturnCameraStep for professional polish. This provides clean camera management and proper view reset.</description>
+      <examples>
+        <example title="Experiment End Best Practices">
+          <correct-example title="Proper experiment ending" conditions="Ending experiment with camera focus" expected-result="Professional camera management" correctness-criteria="Ends with ReturnCameraStep for polish">FocusOnToolStep(Tool) → [operations] → ReturnCameraStep // End of experiment</correct-example>
+          <incorrect-example title="Missing final return" conditions="Ending experiment with camera focus" expected-result="Professional camera management" incorrectness-criteria="Ends without ReturnCameraStep">FocusOnToolStep(Tool) → [operations] // Missing final ReturnCameraStep</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for ReturnCameraStep operations">
+    ReturnCameraStep controls camera positioning to return to default position in virtual lab experiments. This node is essential for resetting view, overview mode, and completing camera sequences. The ReturnCameraStep system only keeps track of one single camera position, so you must manage and utilize that position for the system to function as intended.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rule.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Camera/CameraNodes.mdc" reason="Camera operations">General camera operation patterns</reference>
+  </references>
+</rule>

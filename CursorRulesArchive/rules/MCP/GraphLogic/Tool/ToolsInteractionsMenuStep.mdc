@@ -1,0 +1,55 @@
+---
+alwaysApply: false
+description: Control interactions menu for tools and tool selection
+---
+
+# ToolsInteractionsMenuStep Node
+
+## Overview
+Controls the interactions menu for tools, enabling tool menu management, interaction options, and tool selection.
+
+## Node Details
+
+**Node Type**: ToolsInteractionsMenuStep
+**Purpose**: Control interactions menu for tools
+**Usage**: Tool menu management, interaction options, tool selection
+
+## Basic Prerequisites
+
+<!-- Required data and setup needed for this node step to work -->
+
+## Parameters
+
+- **Menu State**: State of the menu (enable, disable, show, hide)
+- **Menu Type**: Type of menu to control
+- **Menu Options**: Available options in the menu
+- **Menu Position**: Position of the menu (optional)
+
+## Common Patterns
+
+### Enable Tool Interactions Menu
+```
+ToolsInteractionsMenuStep (EnableMenu) → UserSelectsOption → ExecuteToolAction → Continue
+```
+
+### Tool Selection from Menu
+```
+ToolsInteractionsMenuStep (ShowToolMenu) → UserSelectsTool → GameObjectSetActiveStep (ShowSelectedTool) → Continue
+```
+
+### Complete Tool Workflow
+```
+GameObjectSetActiveStep (ShowTool) → ToolsInteractionsMenuStep (EnableMenu) → 
+UserSelectsOption → ToolsInputfieldStep (GetParameters) → ExecuteToolFunction → Continue
+```
+
+### Menu State Management
+```
+ToolsInteractionsMenuStep (EnableMenu) → UserInteraction → ToolsInteractionsMenuStep (DisableMenu) → Continue
+```
+
+### Conditional Menu Display
+```
+IfStatementStep (HasPermission) → True: ToolsInteractionsMenuStep (ShowMenu) → Continue
+                              → False: ShowMessage (No permission) → Continue
+```

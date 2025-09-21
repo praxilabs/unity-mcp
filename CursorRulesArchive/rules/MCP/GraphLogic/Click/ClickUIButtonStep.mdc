@@ -1,0 +1,64 @@
+---
+alwaysApply: false
+description: Pause graph execution until user clicks UI button for interface interactions
+---
+
+# UIClickStep Node
+
+## Overview
+UIClickStep is a **WAIT-FOR-USER-INPUT** node that waits for user to click a UI button before allowing execution to continue. The complexity of what happens after the click depends on the steps that are getting executed after the UIClickStep.
+
+## Node Details
+
+**Node Type**: UIClickStep
+**Purpose**: Wait for user to click UI Canvas buttons, then allow execution to continue
+**Usage**: UI interaction gate for dialog boxes, interface panels, and menu buttons
+**Context**: Use for Unity UI buttons on Canvas elements, not 3D world objects
+
+## Basic Prerequisites
+
+1. **UI Button**: Required UI button element in the scene
+2. **Button Script**: Required button script to handle click events
+3. **UI Canvas**: Required UI canvas containing the button
+
+## Parameters
+
+- **Target Button**: The UI button to click
+
+## Critical Notes
+Don't use a UI Click Step on its own, you have to make the logic yourself as the UI Click Step itself contains no logic.
+
+## Common Patterns
+
+### Data Operations:
+```
+UIClickStep (Save Results Button) → FunctionCallStep(DataManager.SaveExperiment) → Continue
+UIClickStep (Export Data Button) → FunctionCallStep(DataExporter.ExportToCSV) → Continue
+```
+
+### Confirmation Actions:
+```
+UIClickStep (Delete Confirmation) → FunctionCallStep(DataManager.DeleteExperiment) → Continue
+UIClickStep (Reset Equipment) → FunctionCallStep(LabController.ResetAllEquipment) → Continue
+```
+
+## Common Mistakes
+1. **Confusing UI vs 3D interactions**: Using UIClickStep for 3D laboratory equipment
+2. **Ignoring complexity assessment**: Not determining if the UI action needs additional steps
+
+## Best Practices
+3. **Distinguish from 3D interactions**: UIClickStep for Canvas UI, ClickStep for 3D objects
+4. **Use appropriate function calls**: Most complex UI actions need FunctionCallStep connections
+
+##  UI vs 3D Click Decision
+**Use UIClickStep for:**
+- **Unity UI Canvas buttons**: Dialog boxes, panels, menus
+- **Interface popups**: Confirmation dialogs, settings panels
+- **Navigation elements**: Next, back, continue buttons in UI
+- **Data interface buttons**: Save, load, export in laboratory software
+
+**Use ClickStep for:**
+- **3D laboratory equipment**: Physical buttons on instrument models
+- **Laboratory objects**: Beakers, test tubes, apparatus in 3D scene
+- **Equipment controls**: Power buttons, knobs, switches on 3D instruments
+- **Physical interactions**: Objects with colliders in the laboratory environment

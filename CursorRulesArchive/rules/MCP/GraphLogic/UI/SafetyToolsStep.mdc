@@ -1,0 +1,51 @@
+---
+alwaysApply: false
+description: Display safety-related tools and warnings for safety protocols and hazard warnings
+---
+
+# SafetyToolsStep Node
+
+## Overview
+Displays safety-related tools and warnings for safety protocols, hazard warnings, and safety equipment guidance.
+
+## Node Details
+
+**Node Type**: SafetyToolsStep
+**Purpose**: Display safety-related tools and warnings
+**Usage**: Safety protocols, hazard warnings, safety equipment guidance
+
+## Basic Prerequisites
+
+1. **Safety Content**: Safety warning or instruction text must be prepared
+2. **Safety Level**: Determine level of safety concern (low, medium, high)
+3. **Acknowledgment Logic**: Whether user must acknowledge safety warning
+4. **Safety Tools**: List of safety tools to display (if applicable)
+
+## Parameters
+
+- **Safety Message**: The safety warning or instruction
+- **Safety Level**: Level of safety concern (low, medium, high)
+- **Safety Tools**: List of safety tools to display
+- **Acknowledgment Required**: Whether user must acknowledge safety warning
+
+## Critical SafetyToolsStep Rules
+- **Safety Focus Only**: Use for safety-related information and warnings
+- **Prominent Display**: Safety messages must be prominent and attention-grabbing
+- **Acknowledgment Required**: Critical safety warnings should require user acknowledgment
+
+## Common Patterns
+
+### Safety Protocol Pattern
+```
+SafetyToolsStep (Safety warning) → UserAcknowledges → SafetyCheck → Continue
+```
+
+### Hazard Warning
+```
+SafetyToolsStep (Hazard warning) → UserReadsWarning → AcknowledgeSafety → Continue
+```
+
+### Pre-Experiment Safety
+```
+StartExperiment → SafetyToolsStep (Safety briefing) → UserAcknowledges → BeginExperiment → Continue
+```

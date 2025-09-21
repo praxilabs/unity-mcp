@@ -1,37 +1,65 @@
 ---
-alwaysApply: false
 description: Resets the stage progression by a specified stage number
+alwaysApply: false
 ---
 
-# ResetStageByNumberStep Node
-
-## Overview
-Resets progression for a specific stage identified by its number for targeted stage reset operations.
-
-## Node Details
-
-**Node Type**: ResetStageByNumberStep
-**Purpose**: Reset stage by number
-**Usage**: Retrying experiment from a particular stage, jumping back
-
-## Basic Prerequisites
-
-1. **Valid Stage Number**: Target stage number must exist in the experiment
-2. **Stage Configuration**: Stage must be properly configured in progress map
-3. **Reset Permission**: User/system must have permission to reset stage
-
-## Parameters
-
-- **stageNumber**: Target stage number to reset
-
-## Common Patterns
-
-### Targeted Stage Reset
-```
-ShowMessage (Resetting Stage 2) → ResetStageByNumberStep (stageNumber: 2) → ProgressMapManualNextStep (stepNumber: 1)
-```
-
-## Critical ResetStageByNumberStep Rules
-- **Specific Stage Reset**: Resets progression for a specific stage by number
-- **Stage Number Required**: Must provide valid stage number parameter
-- **Not for Current Stage**: Use ResetCurrentStageStep for current stage resets
+<rule>
+  <meta>
+    <title>ResetStageByNumberStep</title>
+    <description>Resets the stage progression by a specified stage number</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new ResetStageByNumberStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+      <setup-instructions priority="critical">
+      <description>EventCallerStep invokes a specifically registered event during graph execution to drive reactive behaviors and cross-graph signaling in virtual lab experiments. It requires event names to be registered in the Event Registry, exact event names to be known and valid, and appropriate listeners to be set up to handle the events.</description>
+    </setup-instructions>
+    <requirement priority="critical">
+      <description>ResetStageByNumberStep resets progression for a specific stage identified by its number for targeted stage reset operations. Use for retrying experiment from a particular stage or jumping back.</description>
+      <examples>
+        <example title="Specific Stage Reset">
+          <correct-example title="Proper specific stage reset" conditions="Need to reset specific stage by number" expected-result="Targeted stage reset by number" correctness-criteria="Uses ResetStageByNumberStep with specific stage number">ShowMessage (Resetting Stage 2) → ResetStageByNumberStep (stageNumber: 2) → ProgressMapManualNextStep (stepNumber: 1)</correct-example>
+          <incorrect-example title="Improper specific stage reset" conditions="Need to reset specific stage by number" expected-result="Targeted stage reset by number" incorrectness-criteria="Uses current stage reset when specific stage reset is needed">ShowMessage (Resetting Stage 2) → ResetCurrentStageStep</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>ResetStageByNumberStep requires stageNumber parameter specifying target stage number to reset. Target stage number must exist in the experiment with proper configuration and reset permissions.</description>
+      <examples>
+        <example title="Parameter Requirements">
+          <correct-example title="Proper parameter usage" conditions="Using ResetStageByNumberStep" expected-result="Successful specific stage reset" correctness-criteria="Provides valid stage number parameter">ResetStageByNumberStep (stageNumber: 2) → Stage 2 progression reset</correct-example>
+          <incorrect-example title="Improper parameter usage" conditions="Using ResetStageByNumberStep" expected-result="Successful specific stage reset" incorrectness-criteria="Missing required stage number parameter">ResetStageByNumberStep (no parameters)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>ResetStageByNumberStep resets progression for a specific stage by number, not the current stage. Must provide valid stage number parameter. Use ResetCurrentStageStep for current stage resets.</description>
+      <examples>
+        <example title="Specific Stage vs Current Stage Reset">
+          <correct-example title="Proper specific stage reset usage" conditions="Need to reset specific stage" expected-result="Specific stage progression reset" correctness-criteria="Uses ResetStageByNumberStep with stage number">ResetStageByNumberStep (stageNumber: 3) → Stage 3 progression reset</correct-example>
+          <incorrect-example title="Improper current stage reset usage" conditions="Need to reset current stage" expected-result="Current stage progression reset" incorrectness-criteria="Uses ResetStageByNumberStep when current stage reset is needed">ResetStageByNumberStep (stageNumber: 1) → Current stage reset (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use targeted stage reset pattern when resetting a specific stage and navigating to its first step. Combines stage reset with manual progress navigation for precise control.</description>
+      <examples>
+        <example title="Targeted Stage Reset">
+          <correct-example title="Proper targeted stage reset" conditions="Need to reset specific stage and navigate" expected-result="Stage reset with navigation to first step" correctness-criteria="Uses targeted reset pattern with stage reset and progress navigation">ShowMessage (Resetting Stage 2) → ResetStageByNumberStep (stageNumber: 2) → ProgressMapManualNextStep (stepNumber: 1)</correct-example>
+          <incorrect-example title="Improper targeted stage reset" conditions="Need to reset specific stage and navigate" expected-result="Stage reset with navigation to first step" incorrectness-criteria="Skips stage reset or progress navigation">ShowMessage (Resetting Stage 2) → ProgressMapManualNextStep (stepNumber: 1)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for ResetStageByNumberStep">
+    This node provides targeted stage reset functionality for virtual lab experiments. It allows resetting progression for specific stages by number, making it ideal for jumping back to particular stages or retrying experiments from specific points.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/ProgressMap/ProgressMapNodes.mdc" reason="Progress map overview">Progress tracking and navigation control patterns</reference>
+  </references>
+</rule>

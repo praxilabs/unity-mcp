@@ -1,0 +1,42 @@
+---
+alwaysApply: false
+description: Automatically handles progress tracking and navigation to the next step
+---
+
+# ProgressMapAutoNextStep Node
+
+## Overview
+Marks the current step as finished and advances to the next step automatically for seamless step progression.
+
+## Node Details
+
+**Node Type**: ProgressMapAutoNextStep
+**Purpose**: Auto progress and navigation
+**Usage**: End of step/phase to move forward without manual indices
+
+## Basic Prerequisites
+
+1. **Progress Map Setup**: Progress map must be properly configured
+2. **Current Step Context**: Must be used within a valid step context
+3. **Next Step Available**: Next step must exist in the progression
+
+## Parameters
+
+- (None) Operates on current progress context
+
+## Common Patterns
+
+### Auto Progress Navigation
+```
+SubGraphStep (Complete phase) → ProgressMapAutoNextStep → SubGraphStep (Next phase) → Continue
+```
+
+### Sequential Auto Progress
+```
+SubGraphStep (Step_01) → ProgressMapAutoNextStep → SubGraphStep (Step_02) → ProgressMapAutoNextStep → SubGraphStep (Step_03)
+```
+
+## Critical ProgressMapAutoNextStep Rules
+- **Step Progression Only**: Use for step progression, not stage transitions
+- **Automatic Navigation**: Advances to next step automatically without manual indices
+- **Step Completion**: Marks current step as finished before advancing

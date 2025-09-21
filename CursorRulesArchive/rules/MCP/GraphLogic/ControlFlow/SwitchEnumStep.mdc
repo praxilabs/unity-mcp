@@ -1,0 +1,29 @@
+---
+alwaysApply: false
+description: Multi-way branching node with enum values for state machines and menu systems
+---
+
+# SwitchEnumStep
+
+## Overview
+SwitchEnumStep provides multi-way branching with predefined enum values for state machines, menu systems, and complex decision trees in virtual lab experiments.
+
+## Node Details
+
+**File**: [SwitchEnumStep.cs](mdc:Assets/Scripts/System/xNode/Steps/SelfExecuted/ControlFlow/SwitchEnumStep.cs)
+**Purpose**: Multi-way branching with enum values
+**Usage**: State machines, menu systems with predefined enum values
+
+## Common Patterns
+
+### Enum-based State Machine Pattern
+```
+SwitchEnumStep (Current state enum) → StateA: Actions → SwitchEnumStep (Next state)
+                                   → StateB: Actions → SwitchEnumStep (Next state)
+                                   → StateC: Actions → SwitchEnumStep (Next state)
+```
+
+## Critical SwitchEnumStep Rules
+- **Enum Values Only**: Use only predefined enum values as cases
+- **Handle All Enum Cases**: Ensure all possible enum values are covered
+- **Default Case**: Always provide a default case for unexpected enum values

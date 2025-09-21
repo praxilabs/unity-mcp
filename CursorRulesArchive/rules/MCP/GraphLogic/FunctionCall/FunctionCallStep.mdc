@@ -1,0 +1,47 @@
+---
+alwaysApply: false
+description: Standard method execution on GameObjects via FunctionCallBase
+---
+
+# FunctionCallStep Node
+
+## Overview
+Executes a method on a specific GameObject's component for synchronous operations on scene objects.
+
+## Node Details
+
+**Node Type**: FunctionCallStep
+**Menu Path**: "Function Call/Function Call"
+**Inherits**: FunctionCallBase
+
+## Basic Prerequisites
+
+1. **Script Component**: Public method on a MonoBehaviour component
+2. **Object Registration**: Target object must be registered in the registry
+3. **Method Visibility**: Method must be public to be accessible
+
+## Parameters
+
+- **prefabName**: parent.
+- **childName**: child.
+- **selectedComponent**: Component on Child.
+- **selectedFunction**: Function on Component.
+- **parameterValues**: Parameters (if exist).
+
+## Common Patterns
+
+### Basic Function Call
+```
+FunctionCallStep (Object, Component, Method) → Continue
+```
+
+### Click → Function
+```
+ClickStep (Object) → FunctionCallStep (Object) → ShowMessage (Function executed)
+```
+
+## Critical FunctionCallStep Rules
+- **Synchronous Only**: Use for synchronous operations only
+- **Scene Objects**: Target specific scene objects, not global/static methods
+- **Public Methods**: Methods must be public to be accessible
+

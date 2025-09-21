@@ -1,0 +1,47 @@
+---
+alwaysApply: false
+description: Animation control and playback for object animations and visual effects
+---
+
+# AnimationStep Node
+
+## Overview
+Plays an animation or triggers an animated effect on a target object for visual feedback and interactive responses.
+
+## Node Details
+
+**Node Type**: AnimationStep
+**Purpose**: Animation control and playback
+**Usage**: Object animations, visual effects, click-triggered responses
+
+## Basic Prerequisites
+
+1. **Animator Component**: Object must have an Animator component
+2. **Object Registration**: Target object must be registered in the Item Registry
+3. **Animation Clip**: Animation clip or state must exist on the Animator
+
+## Parameters
+
+- **_animationTriggerName**: the name of the Trigger used for animation.
+- **_numberOfRounds**: the number of times the animation will play.
+- **_dontCallEnd**: boolean to identify whether to call the End Trigger to exit the state of the animation or not.
+- **_freezeUI**: boolean to identify whether the UI freezes when the animaition plays or not.
+- **_freezeCameraMove**: boolean to identify whether the camera movement stops when the animation plays or not.
+- **_freezeCameraRotate**: boolean to identify whether the camera rotation stops when the animation plays or not.
+
+## Common Patterns
+
+### Interactive Animation
+```
+`...` is a variable number of nodes that have a certain logic.
+
+ClickStep (Object) → AnimationStep (Response animation) → ...
+```
+
+
+## Critical AnimationStep Rules
+- **Animator Required**: Target object must have Animator component
+- **Animation State**: Animation clip/state must exist on the Animator
+- **Timing Control**: Use appropriate play modes for different scenarios
+
+

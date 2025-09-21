@@ -1,54 +1,67 @@
 ---
-alwaysApply: false
 description: Handle object attachment for equipment assembly and component connections
+alwaysApply: false
 ---
 
-# AttachStep Node
-
-## Overview
-AttachStep handles object attachment in virtual lab experiments. This node is essential for equipment assembly, component connections, and interactive object manipulation.
-
-**IMPORTANT**: AttachStep only handles basic attachment - objects are NOT locked by default. Locking is a separate system that requires FunctionCallStep.
-
-## Node Details
-
-**Node Type**: AttachStep
-**Purpose**: Attach one object to another object (attachment only, not locking)
-**Usage**: Equipment assembly, component connections, interactive object manipulation
-**Locking**: Use FunctionCallStep for locking after attachment
-
-## Basic Prerequisites
-
-2. DraggableObject Script - The DraggableObject script handles the object Dragging as the attachment proces involves dragging the object to the attachement position.
-3. AttachableTool Script - The Attachable Tool Step is responsible for detecting and finalizing the Attachment of an Object.
-4. Trigger Collider - The Collider that the DraggableObject Script is using is a Trigger.
-5. Draggable tag - The DraggableObject Script requires a Draggable Tag to function.
-
-## Parameters
-
-- **Object 1**: The object to be attached (source object)
-- **Object 2**: The target object to attach to (destination object)
-- **Attachment Point**: Specific attachment location/transform
-- **Visual Feedback**: Optional visual confirmation of attachment
-
-## Common Patterns
-
-### Sequential Assembly
-```
-AttachStep (Battery, Remote) → DelayStep → AttachStep (Cover, Remote) → ShowMessage (Assembly Complete)
-```
-
-### Conditional Attachment
-```
-IfStatementStep (Check condition) → True: AttachStep → Continue
-                                → False: ShowMessage (Cannot attach)
-```
-
-### Sequential Attachment and Locking
-```
-AttachStep (Capsule, WeighingPaper) → FunctionCallStep (Lock Capsule) → Continue
-```
-
-## Common Mistakes
-1. **Incomplete attachment flow**: Ensure attachment leads to appropriate actions
-2. **Confusing attachment with locking**: AttachStep only attaches, use FunctionCallStep for locking
+<rule>
+  <meta>
+    <title>AttachStep</title>
+    <description>Handle object attachment for equipment assembly and component connections</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new AttachStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <setup-instructions priority="critical">
+      <description>AttachStep handles object attachment for equipment assembly and component connections in virtual lab experiments. Objects are attached through manual mouse dragging and get constrained to world position after attachment.</description>
+      <step-list>
+        <step>Add DraggableObject Script to [SourceObjectName] object</step>
+        <step>Add AttachableTool Script to [SourceObjectName] object</step>
+        <step>Add Trigger Collider to [SourceObjectName] object</step>
+        <step>Set Draggable tag on [SourceObjectName] object</step>
+        <step>Add Rigidbody to [SourceObjectName] object (Kinematic, Use Gravity off)</step>
+        <step>Add Collider to [DestinationObjectName] object</step>
+        <step>Create GameObject at desired attachment position</step>
+        <step>Copy coordinates to AttachStep node parameters</step>
+        <step>Configure [SourceObjectName] (source) and [DestinationObjectName] (destination) parameters</step>
+      </step-list>
+    </setup-instructions>
+    <requirement priority="critical">
+      <description>Attachment is manual mouse dragging. Object gets constrained to world position after attachment and cannot be moved until detached.</description>
+      <examples>
+        <example title="Attachment Process">
+          <correct-example title="Proper attachment sequence" conditions="Need to attach objects" expected-result="Object attached and constrained" correctness-criteria="Manual drag to destination triggers attachment">User drags source object to destination → Colliders collide → Object constrained to attachment point</correct-example>
+          <incorrect-example title="Missing manual interaction" conditions="Need to attach objects" expected-result="Object attached and constrained" incorrectness-criteria="Expects automatic attachment">AttachStep without user dragging // Attachment won't occur</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Parameters: Object 1 (source), Object 2 (destination), Attachment Point (world position). Create GameObject at desired position, copy coordinates to node.</description>
+    </requirement>
+    <requirement priority="high">
+      <description>For multiple attachments, connect AttachStep nodes sequentially in graph. Each attachment must complete before next begins.</description>
+      <examples>
+        <example title="Sequential Assembly">
+          <correct-example title="Proper sequential assembly" conditions="Multiple attachment operations" expected-result="All attachments completed in order" correctness-criteria="Connects AttachStep nodes sequentially">AttachStep(Battery, Remote) → AttachStep(Cover, Remote) → AttachStep(Screws, Remote)</correct-example>
+          <incorrect-example title="Missing sequential connection" conditions="Multiple attachment operations" expected-result="All attachments completed in order" incorrectness-criteria="AttachStep nodes not connected">AttachStep(Battery, Remote) // Not connected to next AttachStep</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use conditional attachment patterns with IfStatementStep for decision points. Handle both success and failure cases.</description>
+      <examples>
+        <example title="Conditional Attachment">
+          <correct-example title="Proper conditional attachment" conditions="Need conditional attachment logic" expected-result="Attachment based on conditions" correctness-criteria="Uses IfStatementStep with both true and false branches">IfStatementStep(Check condition) → True: AttachStep → Continue → False: ShowMessage(Cannot attach)</correct-example>
+          <incorrect-example title="Missing failure handling" conditions="Need conditional attachment logic" expected-result="Attachment based on conditions" incorrectness-criteria="Only handles success case">IfStatementStep(Check condition) → True: AttachStep → Continue // Missing false branch</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/AttachDetach/AttachDetachNodes.mdc" reason="Attach-detach operations">General attach-detach operation patterns</reference>
+  </references>
+</rule>

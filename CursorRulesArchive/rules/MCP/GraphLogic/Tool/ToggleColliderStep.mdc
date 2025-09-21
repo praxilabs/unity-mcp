@@ -1,0 +1,47 @@
+---
+alwaysApply: false
+description: Enable/disable collider on a single object for interaction control and safety systems
+---
+
+# ToggleColliderStep Node
+
+## Overview
+Enables or disables colliders on GameObjects for interaction control and safety systems. **CRITICAL**: Only works on ONE single object at a time.
+
+## Node Details
+
+**Node Type**: ToggleColliderStep
+**Purpose**: Enable/disable collider on a SINGLE object only
+**Usage**: Interaction control, safety systems, collider management
+
+## Basic Prerequisites
+
+2. **Collider Component**: GameObject must have a collider component
+3. **Valid Object Reference**: GameObject must exist and be accessible
+
+## Parameters
+
+- **Target Object**: The GameObject with the collider to toggle
+- **Collider State**: Boolean to enable (true) or disable (false) the collider
+- **Collider Type**: Specific collider component to target (optional)
+
+## Critical ToggleColliderStep Rules
+- **Single Object Only**: Use for enabling/disabling colliders on ONE single object at a time
+- **Sequential Operations**: For multiple objects, use multiple ToggleColliderStep nodes sequentially
+
+## Common Patterns
+
+### Sequential Multiple Objects
+```
+`...` is a variable number of nodes that have a certain logic.
+
+ToggleColliderStep (Device1, disable) → ToggleColliderStep (Device2, disable) → 
+ToggleColliderStep (Device3, disable) → ToggleColliderStep (Device4, disable) → ...
+```
+
+### Overlapping Object Management
+```
+`...` is a variable number of nodes that have a certain logic.
+
+ToggleColliderStep(Object 1, Disable) → ToggleColliderStep(Object 2, Enable) → ... →  ToggleColliderStep(Object 1, Enable) → ToggleColliderStep(Object 2, Disable)
+```

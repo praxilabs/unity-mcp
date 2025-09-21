@@ -1,0 +1,51 @@
+---
+alwaysApply: false
+description: Display stage completion message that doesn't depend on other stages
+---
+
+# StageEndMessageIndependentStep Node
+
+## Overview
+Displays a stage completion message that operates independently of other stages, suitable for standalone achievements.
+
+## Node Details
+
+**Node Type**: StageEndMessageIndependentStep
+**Purpose**: Display independent stage completion message
+**Usage**: Independent stage completion, standalone achievements
+
+## Basic Prerequisites
+
+1. **Stage Identification**: Name of the completed stage must be specified
+2. **Completion Message**: Message content for independent completion
+3. **Achievement Details**: Details about what was accomplished
+4. **Standalone Logic**: Stage completion that doesn't depend on other stages
+
+## 📝 Parameters
+
+- **Stage Name**: Name of the completed stage
+- **Message Text**: Completion message content
+- **Achievement Details**: Details about what was accomplished
+- **Next Steps**: Optional guidance for next actions
+
+## Critical StageEndMessageIndependentStep Rules
+- **Independent Only**: Use for stage completions that don't depend on other stages
+- **Standalone Achievements**: Use for achievements that are self-contained
+- **NOT Dependent**: Use StageEndMessageDependentStep for dependent completions
+
+## Common Patterns
+
+### Stage Completion Pattern
+```
+StageEndMessageIndependentStep (Stage complete) → ShowMessage (Congratulations) → Continue
+```
+
+### Independent Achievement
+```
+CompleteStage → StageEndMessageIndependentStep (Achievement unlocked) → ShowReward → Continue
+```
+
+### Standalone Success
+```
+FinishTask → StageEndMessageIndependentStep (Task completed successfully) → Continue
+```

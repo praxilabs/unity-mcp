@@ -1,0 +1,43 @@
+---
+alwaysApply: false
+description: Return camera to default position for reset view and overview mode
+---
+
+# ReturnCameraStep Node
+
+## Overview
+ReturnCameraStep controls camera positioning to return to default position in virtual lab experiments. This node is essential for resetting view, overview mode, and completing camera sequences.
+
+the ReturnCameraStep system only keeps track of one single Camera behind so you must manage and utilize that position for the system to function as intended. more details are found in the `Common Patterns` and `Common Mistakes`.
+
+## Node Details
+
+**Node Type**: ReturnCameraStep
+**Purpose**: Return camera to default position
+**Usage**: Reset view, overview mode, complete camera sequences
+
+## Basic Prerequisites
+1. The Camera must be focused on an object before(used FocusOnToolStep on an Object before).
+
+## Parameters
+    -None
+
+## Common Patterns
+
+### Press to Focus then Return.
+```
+    ClickStep(Device) → FocusOnToolStep(Device) → ... → ReturnCameraStep
+```
+
+### Focus on more than one Device sequentially (Device1 then Device2).
+```
+    ... → FocusOnToolStep(Device1) → ... → ReturnCameraStep → FocusOnToolStep(Device2)
+```
+
+## Common Mistakes
+
+1. **Missing ReturnCameraStep between focus operations**: If you use FocusOnToolStep twice (same or different tools), you MUST use ReturnCameraStep between them
+2. **Missing camera transitions**: Use appropriate delays for camera movements
+
+## Best Practices
+1. **End experiments with ReturnCameraStep** for professional polish (recommended)

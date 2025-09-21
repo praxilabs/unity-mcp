@@ -1,26 +1,83 @@
 ---
-alwaysApply: false
 description: Sequential Execution node of Branches.
+alwaysApply: false
 ---
 
-# FirstThenStep
-
-## Overview
-FirstThenStep provides Sequential Execution of Branches in the form of "First Execute Branch A then Execute Branch B".
-so Branch A gets executed first then Branch B.
-
-## Node Details
-
-**File**: [FirstThenStep.cs](mdc:Assets/Scripts/System/xNode/Steps/SelfExecuted/ControlFlow/FirstThenStep.cs)
-**Purpose**: Sequential Execution for complex scenarios
-**Usage**: State machines, menu systems, complex decision trees
-
-## Common Patterns
-
-### Sequential Execution Decision Pattern
-```
-FirstThenStep (User choice) → First: Action A → Continue
-                            → Then: Action B → Continue
-
-```
-
+<rule>
+  <meta>
+    <title>FirstThenStep</title>
+    <description>Sequential Execution node of Branches.</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new FirstThenStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <setup-instructions priority="critical">
+      <description>FirstThenStep provides sequential execution of branches in the form of "First Execute Branch A then Execute Branch B" in virtual lab experiments. Branch A gets executed first, then Branch B, with both branches completed in the specified order.</description>
+    </setup-instructions>
+    <requirement priority="critical">
+      <description>FirstThenStep provides Sequential Execution of Branches in the form of "First Execute Branch A then Execute Branch B". Branch A gets executed first, then Branch B. Both branches must be completed in the specified order.</description>
+      <examples>
+        <example title="FirstThenStep Implementation">
+          <correct-example title="Proper sequential execution" conditions="Creating sequential branch execution" expected-result="Ordered branch execution" correctness-criteria="First branch executes before Then branch">FirstThenStep (User choice) → First: Action A → Continue, Then: Action B → Continue</correct-example>
+          <incorrect-example title="Incorrect sequential execution" conditions="Creating sequential branch execution" expected-result="Ordered branch execution" incorrectness-criteria="Branches execute in wrong order">FirstThenStep (User choice) → Then: Action B → Continue, First: Action A → Continue</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use FirstThenStep for complex scenarios where specific sequential execution order is required. The First branch must complete before the Then branch can begin execution.</description>
+      <examples>
+        <example title="Sequential Execution Pattern">
+          <correct-example title="Proper sequential pattern" conditions="Need ordered execution" expected-result="Guaranteed execution order" correctness-criteria="First completes before Then starts">First: Setup equipment → Then: Begin experiment → Continue</correct-example>
+          <incorrect-example title="Incorrect sequential pattern" conditions="Need ordered execution" expected-result="Guaranteed execution order" incorrectness-criteria="No guaranteed order">First: Setup equipment, Then: Begin experiment (parallel execution)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Ensure both First and Then branches are properly connected and implemented. Both branches must have complete execution paths that lead to the continuation point.</description>
+      <examples>
+        <example title="Complete Branch Implementation">
+          <correct-example title="Proper branch completion" conditions="Implementing both branches" expected-result="Complete sequential flow" correctness-criteria="Both branches are fully implemented">First: Complete setup sequence → Then: Complete execution sequence → Continue</correct-example>
+          <incorrect-example title="Incomplete branch implementation" conditions="Implementing both branches" expected-result="Complete sequential flow" incorrectness-criteria="Missing branch implementation">First: Complete setup sequence → Then: (incomplete or missing)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use descriptive names for First and Then branches to clearly indicate the sequence of operations. Branch names should reflect the order and purpose of each phase.</description>
+      <examples>
+        <example title="Descriptive Branch Names">
+          <correct-example title="Clear branch names" conditions="Naming FirstThenStep branches" expected-result="Readable sequential logic" correctness-criteria="Uses descriptive names">First: "Initialize Equipment", Then: "Execute Measurement"</correct-example>
+          <incorrect-example title="Unclear branch names" conditions="Naming FirstThenStep branches" expected-result="Readable sequential logic" incorrectness-criteria="Uses unclear names">First: "Step 1", Then: "Step 2"</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Ensure the Then branch can only execute after the First branch has completed successfully. The sequential nature must be enforced to maintain proper execution order.</description>
+      <examples>
+        <example title="Sequential Enforcement">
+          <correct-example title="Proper sequential enforcement" conditions="Enforcing execution order" expected-result="Guaranteed sequence" correctness-criteria="Then waits for First completion">First: Complete initialization → Then: Begin main process (waits for First)</correct-example>
+          <incorrect-example title="Incorrect sequential enforcement" conditions="Enforcing execution order" expected-result="Guaranteed sequence" incorrectness-criteria="No sequence enforcement">First: Initialize, Then: Begin (can start before First completes)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <non-negotiable priority="critical">
+      <description>NEVER use FirstThenStep for parallel execution scenarios. Use CompositeStep when multiple branches can execute in any order. FirstThenStep is ONLY for scenarios where strict sequential order is required.</description>
+      <examples>
+        <example title="FirstThenStep vs CompositeStep">
+          <correct-example title="Proper FirstThenStep usage" conditions="Sequential execution required" expected-result="Ordered execution" correctness-criteria="Uses FirstThenStep for sequence">First: Setup equipment → Then: Begin experiment (order matters)</correct-example>
+          <incorrect-example title="Incorrect FirstThenStep usage" conditions="Parallel execution acceptable" expected-result="Flexible execution" incorrectness-criteria="Uses FirstThenStep for parallel">First: Check safety → Then: Check equipment (order doesn't matter, should use CompositeStep)</correct-example>
+        </example>
+      </examples>
+    </non-negotiable>
+  </requirements>
+  <context description="Additional considerations for FirstThenStep">
+    FirstThenStep is designed for scenarios where strict sequential execution order is critical. The First branch must complete before the Then branch can begin. Use CompositeStep for parallel execution scenarios where order doesn't matter.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/ControlFlow/CompositeStep.mdc" reason="Parallel execution">CompositeStep for parallel execution</reference>
+  </references>
+</rule>

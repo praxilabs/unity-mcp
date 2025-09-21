@@ -1,47 +1,76 @@
 ---
-alwaysApply: false
 description: Execute IEnumerator methods with step control; inherits FunctionCallBase
+alwaysApply: false
 ---
 
-# FunctionCallCoroutineStep Node
-
-## Overview
-Executes coroutine methods (IEnumerator) on scene objects for asynchronous operations that can proceed without waiting depending on graph design.
-
-## Node Details
-
-**Node Type**: FunctionCallCoroutineStep
-**Menu Path**: "Function Call/Function Call Coroutine"
-**Inherits**: FunctionCallBase
-
-## Basic Prerequisites
-
-1. **Coroutine Method**: Public method that returns IEnumerator
-2. **Object Registration**: Target object must be registered in the registry
-3. **Method Visibility**: Method must be public to be accessible
-
-## Parameters
-
-- **prefabName**: parent.
-- **childName**: child.
-- **selectedComponent**: Component on Child.
-- **selectedFunction**: Function on Component.
-- **parameterValues**: Parameters (if exist).
-
-## Common Patterns
-
-### Background Coroutine
-```
-FunctionCallCoroutineStep(Object) → nextNode   // continues without waiting
-```
-
-### Coroutine with Event Gate
-```
-FunctionCallCoroutineStep (Start coroutine) → Wait for GoToNextStep event → Continue
-```
-
-## Critical FunctionCallCoroutineStep Rules
-- **IEnumerator Methods Only**: Use for methods that return IEnumerator
-- **Asynchronous Operations**: Methods run asynchronously without blocking execution
-- **Scene Objects**: Target specific scene objects, not global methods
-
+<rule>
+  <meta>
+    <title>FunctionCallCoroutineStep</title>
+    <description>Execute IEnumerator methods with step control; inherits FunctionCallBase</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new FunctionCallCoroutineStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <setup-instructions priority="critical">
+      <description>FunctionCallCoroutineStep executes coroutine methods (IEnumerator) on scene objects for asynchronous operations that can proceed without waiting depending on graph design in virtual lab experiments. It requires public methods that return IEnumerator, with target objects registered in the registry data created before experiment creation.</description>
+      <step-list>
+        <step>Ensure target object is registered in the registry data before experiment creation</step>
+        <step>Create public IEnumerator method on MonoBehaviour component attached to the GameObject</step>
+        <step>Ensure method returns IEnumerator for asynchronous execution</step>
+        <step>Configure prefabName parameter (parent GameObject in Unity hierarchy)</step>
+        <step>Configure childName parameter (child GameObject in Unity hierarchy)</step>
+        <step>Configure selectedComponent parameter (Component on Child)</step>
+        <step>Configure selectedFunction parameter (Function on Component)</step>
+        <step>Configure parameterValues if the function has parameters</step>
+      </step-list>
+    </setup-instructions>
+    <requirement priority="critical">
+      <description>Use FunctionCallCoroutineStep for IEnumerator methods only. Methods run asynchronously without blocking execution and target specific scene objects for long-running operations that shouldn't block the main execution flow.</description>
+      <examples>
+        <example title="IEnumerator Method Usage">
+          <correct-example title="Proper IEnumerator method usage" conditions="Need asynchronous scene object method" expected-result="Asynchronous method execution" correctness-criteria="Uses IEnumerator method on scene object">FunctionCallCoroutineStep(Object) → nextNode (continues without waiting)</correct-example>
+          <incorrect-example title="Improper IEnumerator method usage" conditions="Need synchronous method" expected-result="Synchronous method execution" incorrectness-criteria="Uses FunctionCallCoroutineStep for synchronous method">FunctionCallCoroutineStep for synchronous method (should use FunctionCallStep)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>FunctionCallCoroutineStep parameters include prefabName (parent GameObject in Unity hierarchy), childName (child GameObject in Unity hierarchy), selectedComponent (Component on Child), selectedFunction (Function on Component), and parameterValues (Parameters if exist). Configure parameters for coroutine method access on scene objects.</description>
+      <examples>
+        <example title="Coroutine Parameter Configuration">
+          <correct-example title="Proper coroutine parameter setup" conditions="Configuring FunctionCallCoroutineStep parameters" expected-result="Correct coroutine execution" correctness-criteria="All parameters properly set for coroutine access">prefabName: "Tools", childName: "Beaker", selectedComponent: "LiquidController", selectedFunction: "PourLiquidCoroutine"</correct-example>
+          <incorrect-example title="Improper coroutine parameter setup" conditions="Configuring FunctionCallCoroutineStep parameters" expected-result="Correct coroutine execution" incorrectness-criteria="Missing or incorrect parameters">prefabName: "", childName: "", selectedComponent: "", selectedFunction: ""</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use FunctionCallCoroutineStep for background coroutines and coroutines with event gates. Common patterns include starting coroutines that run in background and coroutines that wait for specific events to continue.</description>
+      <examples>
+        <example title="Coroutine Patterns">
+          <correct-example title="Proper coroutine pattern" conditions="Implementing coroutine logic" expected-result="Successful asynchronous execution" correctness-criteria="Follows established patterns">FunctionCallCoroutineStep(Start coroutine) → Wait for GoToNextStep event → Continue</correct-example>
+          <incorrect-example title="Improper coroutine pattern" conditions="Implementing coroutine logic" expected-result="Successful asynchronous execution" incorrectness-criteria="Skips required setup">FunctionCallCoroutineStep without proper event handling or background execution</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <non-negotiable priority="critical">
+      <description>NEVER use FunctionCallCoroutineStep for synchronous methods. NEVER use FunctionCallCoroutineStep for global/static methods. NEVER use FunctionCallCoroutineStep for methods that don't return IEnumerator. Always use the appropriate step type for the method scope and execution type.</description>
+      <examples>
+        <example title="FunctionCallCoroutineStep Restrictions">
+          <correct-example title="Proper FunctionCallCoroutineStep usage" conditions="Selecting FunctionCallCoroutineStep" expected-result="Correct coroutine execution" correctness-criteria="Uses FunctionCallCoroutineStep appropriately">IEnumerator method on registered scene object</correct-example>
+          <incorrect-example title="Improper FunctionCallCoroutineStep usage" conditions="Selecting FunctionCallCoroutineStep" expected-result="Correct coroutine execution" incorrectness-criteria="Uses FunctionCallCoroutineStep inappropriately">Synchronous method, global method, or non-IEnumerator method</correct-example>
+        </example>
+      </examples>
+    </non-negotiable>
+  </requirements>
+  <context description="Additional considerations for FunctionCallCoroutineStep">
+    FunctionCallCoroutineStep is designed for asynchronous method execution on scene objects using IEnumerator methods. Always ensure the method returns IEnumerator, the target object is registered, and the operation is asynchronous. Use other function call step types for synchronous methods, global methods, or different execution contexts.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/FunctionCall/FunctionCallStep.mdc" reason="Synchronous execution">FunctionCallStep for synchronous methods</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/FunctionCall/FunctionCallCoroutineGlobalStep.mdc" reason="Global asynchronous execution">FunctionCallCoroutineGlobalStep for global async methods</reference>
+  </references>
+</rule>

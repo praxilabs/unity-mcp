@@ -1,0 +1,38 @@
+---
+alwaysApply: false
+description: Activate or initialize a new stage in the experiment flow
+---
+
+# EnableStageStep Node
+
+## Overview
+Activates the specified stage, initializing any required state for starting new experiment phases.
+
+## Node Details
+
+**Node Type**: EnableStageStep
+**Purpose**: Enable/init stage
+**Usage**: Start of a phase or stage
+
+## Basic Prerequisites
+
+1. **Valid Stage Name**: Stage must exist in the experiment configuration
+2. **Stage Registry**: Stage must be registered in the stage registry
+3. **Stage Configuration**: Stage must be properly configured
+
+## Parameters
+
+- **stageName**: Name/identifier of the stage to enable
+- **initPayload**: Optional initialization data
+
+## Common Patterns
+
+### Linear Stage Progression
+```
+EnableStageStep (Stage1) → LogicForStage1 → SetStagePassedStep (Stage1) → EnableStageStep (Stage2)
+```
+
+## Critical EnableStageStep Rules
+- **Stage Initialization**: Use for starting new experiment stages
+- **Stage Activation**: Activates and initializes stage-specific functionality
+- **Stage Progression**: Part of stage progression workflow

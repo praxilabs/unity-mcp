@@ -1,0 +1,54 @@
+---
+alwaysApply: false
+description: Handle object attachment for equipment assembly and component connections
+---
+
+# AttachStep Node
+
+## Overview
+AttachStep handles object attachment in virtual lab experiments. This node is essential for equipment assembly, component connections, and interactive object manipulation.
+
+**IMPORTANT**: AttachStep only handles basic attachment - objects are NOT locked by default. Locking is a separate system that requires FunctionCallStep.
+
+## Node Details
+
+**Node Type**: AttachStep
+**Purpose**: Attach one object to another object (attachment only, not locking)
+**Usage**: Equipment assembly, component connections, interactive object manipulation
+**Locking**: Use FunctionCallStep for locking after attachment
+
+## Basic Prerequisites
+
+2. DraggableObject Script - The DraggableObject script handles the object Dragging as the attachment proces involves dragging the object to the attachement position.
+3. AttachableTool Script - The Attachable Tool Step is responsible for detecting and finalizing the Attachment of an Object.
+4. Trigger Collider - The Collider that the DraggableObject Script is using is a Trigger.
+5. Draggable tag - The DraggableObject Script requires a Draggable Tag to function.
+
+## Parameters
+
+- **Object 1**: The object to be attached (source object)
+- **Object 2**: The target object to attach to (destination object)
+- **Attachment Point**: Specific attachment location/transform
+- **Visual Feedback**: Optional visual confirmation of attachment
+
+## Common Patterns
+
+### Sequential Assembly
+```
+AttachStep (Battery, Remote) → DelayStep → AttachStep (Cover, Remote) → ShowMessage (Assembly Complete)
+```
+
+### Conditional Attachment
+```
+IfStatementStep (Check condition) → True: AttachStep → Continue
+                                → False: ShowMessage (Cannot attach)
+```
+
+### Sequential Attachment and Locking
+```
+AttachStep (Capsule, WeighingPaper) → FunctionCallStep (Lock Capsule) → Continue
+```
+
+## Common Mistakes
+1. **Incomplete attachment flow**: Ensure attachment leads to appropriate actions
+2. **Confusing attachment with locking**: AttachStep only attaches, use FunctionCallStep for locking

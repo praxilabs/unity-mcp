@@ -1,0 +1,37 @@
+---
+alwaysApply: false
+description: Resets the stage progression by a specified stage number
+---
+
+# ResetStageByNumberStep Node
+
+## Overview
+Resets progression for a specific stage identified by its number for targeted stage reset operations.
+
+## Node Details
+
+**Node Type**: ResetStageByNumberStep
+**Purpose**: Reset stage by number
+**Usage**: Retrying experiment from a particular stage, jumping back
+
+## Basic Prerequisites
+
+1. **Valid Stage Number**: Target stage number must exist in the experiment
+2. **Stage Configuration**: Stage must be properly configured in progress map
+3. **Reset Permission**: User/system must have permission to reset stage
+
+## Parameters
+
+- **stageNumber**: Target stage number to reset
+
+## Common Patterns
+
+### Targeted Stage Reset
+```
+ShowMessage (Resetting Stage 2) → ResetStageByNumberStep (stageNumber: 2) → ProgressMapManualNextStep (stepNumber: 1)
+```
+
+## Critical ResetStageByNumberStep Rules
+- **Specific Stage Reset**: Resets progression for a specific stage by number
+- **Stage Number Required**: Must provide valid stage number parameter
+- **Not for Current Stage**: Use ResetCurrentStageStep for current stage resets

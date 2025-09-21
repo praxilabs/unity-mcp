@@ -1,49 +1,42 @@
 ---
+description: Toggle lab freezing for UI, Camera Movement and Camera Rotation control
 alwaysApply: false
-description: Freeze/unfreeze lab interactions for pause functionality and modal dialogs
 ---
 
-# FreezeLabStep
-
-## Overview
-FreezeLabStep controls lab interaction freezing and unfreezing in virtual lab experiments. Used for pause functionality, modal dialogs, and system-wide interaction control.
-
-## Node Details
-
-**Node Type**: FreezeLabStep
-**Purpose**: Freeze/unfreeze lab interactions for system-wide control
-**Usage**: Pause functionality, modal dialogs, system-wide interaction control
-
-## Basic Prerequisites
-
-1. **Freeze State**: Determine whether to freeze or unfreeze interactions
-2. **User Feedback**: Provide clear indication when system is frozen/unfrozen
-3. **Complete Cycle**: Always complete the freeze → action → unfreeze cycle
-4. **System State**: Understand current system interaction state
-
-## Parameters
-
-- **Freeze State**: Boolean to freeze (true) or unfreeze (false) interactions
-- **User Feedback**: Optional message to show when freezing/unfreezing
-
-## Critical FreezeLabStep Rules
-- **System-Wide Control**: Freezes/unfreezes ALL lab interactions
-- **Complete Cycle**: Always complete freeze → action → unfreeze cycle
-- **Never Leave Frozen**: Never leave the system frozen permanently
-
-## Common Patterns
-
-### System Pause Pattern
-```
-FreezeLabStep (freeze) → ShowMessage (System paused) → UserAction → FreezeLabStep (unfreeze) → Continue
-```
-
-### Modal Dialog Pattern
-```
-FreezeLabStep (freeze) → ShowMessage (Modal dialog) → UserAction → FreezeLabStep (unfreeze) → Continue
-```
-
-### Error Handling Pause Pattern
-```
-ErrorOccurs → FreezeLabStep (freeze) → ShowErrorMessage → UserAcknowledges → FreezeLabStep (unfreeze) → Continue
-```
+<rule>
+  <meta>
+    <title>FreezeLabStep</title>
+    <description>Toggle lab freezing for UI, Camera Movement and Camera Rotation control</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new FreezeLabStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <setup-instructions priority="critical">
+      <description>FreezeLabStep toggles lab freezing for UI, Camera Movement and Camera Rotation control. You can Freeze UI, Camera Movement and Camera Rotation or unfreeze them.</description>
+      <step-list>
+        <step>Toggle Freeze UI boolean</step>
+        <step>Toggle Camera Movement boolean</step>
+        <step>Toggle Camera Rotation boolean</step>
+      </step-list>
+    </setup-instructions>
+    <requirement priority="critical">
+      <description>FreezeLabStep works by toggling the three boolean parameters independently. Each boolean can be set to true (freeze) or false (unfreeze) to control UI, Camera Movement, and Camera Rotation separately. Use to selectively freeze/unfreeze specific lab components.</description>
+      <examples>
+        <example title="Freeze Pattern">
+          <correct-example title="Proper freeze/unfreeze sequence" conditions="Need to freeze between actions" expected-result="Actions performed with selective freezing" correctness-criteria="Uses freeze between nodes and unfreeze after">Node1 → FreezeLabStep(freeze UI) → Node2 → Node3 → FreezeLabStep(unfreeze UI)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for FreezeLabStep">
+    This node provides the capability to toggle lab freezing for UI, Camera Movement and Camera Rotation control in virtual lab experiments.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Utility/UtilityNodes.mdc" reason="Utility nodes overview">System utility operations and timing control patterns</reference>
+  </references>
+</rule>

@@ -1,0 +1,55 @@
+---
+alwaysApply: false
+description: Display middle screen message with two action buttons for multiple choice dialogs
+---
+
+# MiddleMessageTwoActionsStep Node
+
+## Overview
+Displays a message in the middle of the screen with two action buttons for multiple choice dialogs and decision points.
+
+## Node Details
+
+**Node Type**: MiddleMessageTwoActionsStep
+**Purpose**: Display middle screen message with two action buttons
+**Usage**: Multiple choice dialogs, decision points, option selection
+
+## Basic Prerequisites
+
+1. **Message Content**: Decision or choice message text must be prepared
+2. **Button Text**: Clear, actionable text for both buttons
+3. **Action Logic**: Actions to perform for each button selection
+4. **Choice Handling**: Logic to handle user's choice
+
+## Parameters
+
+- **Message Text**: The content to display
+- **Button One Text**: Text for the first action button
+- **Button Two Text**: Text for the second action button
+- **Button Actions**: Actions to perform for each button
+- **Close Button**: Optional close button functionality
+
+## Critical MiddleMessageTwoActionsStep Rules
+- **Two Actions Only**: Use for binary choices with two options
+- **Middle Screen**: Displays in center of screen with two prominent buttons
+- **NOT Single Action**: Use MiddleMessageOneActionStep for single confirmations
+
+## Common Patterns
+
+### Decision Making Pattern
+```
+MiddleMessageTwoActionsStep (Choose option) → UserSelectsOption → HandleSelection → Continue
+```
+
+### Multi-Action Message Flow
+```
+MiddleMessageTwoActionsStep (Choose scenario) → buttonOne: ExecuteScenarioA → Continue
+                                           → buttonTwo: ExecuteScenarioB → Continue
+                                           → closeButton: ShowDefaultMessage → Continue
+```
+
+### Yes/No Decision Pattern
+```
+MiddleMessageTwoActionsStep (Proceed with experiment?) → Yes: StartExperiment → Continue
+                                                      → No: ShowAlternative → Continue
+```

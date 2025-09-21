@@ -1,0 +1,43 @@
+---
+alwaysApply: false
+description: Parallel execution management node for multiple branches that must execute in any order
+---
+
+# CompositeStep
+
+## Overview
+CompositeStep manages parallel execution in virtual lab experiments. Used when multiple branches must be executed in any order, with all branches required for completion.
+
+## Node Details
+
+**File**: [CompositeStep.cs](mdc:Assets/Scripts/System/xNode/Steps/SelfExecuted/ControlFlow/CompositeStep.cs)
+**Purpose**: Parallel execution management
+**Usage**: Multiple branches that must execute in any order
+
+## Critical CompositeStep Rules
+- **Return Connection**: ALL route completion nodes MUST connect BACK to `CompositeStep.entry`
+- **Exit Connection**: `CompositeStep.exit` ONLY triggers when ALL routes are completed
+- **Completion Tracking**: CompositeStep tracks completion of ALL routes
+
+## Common Patterns
+
+### Parallel User Interactions
+```
+CompositeStep.entry ← Setup
+CompositeStep.routes → ClickStep A → Action A → CompositeStep.entry
+CompositeStep.routes → ClickStep B → Action B → CompositeStep.entry
+CompositeStep.exit → Completion
+```
+
+## When to Use CompositeStep
+
+### **WHEN TO USE COMPOSITESTEP**
+- **Multiple user interactions in any order** (click 4 devices, any order)
+- **Independent setup procedures** (prepare multiple tools simultaneously)
+- **User choice freedom** (complete tasks in preferred sequence)
+
+### **WHEN NOT TO USE COMPOSITESTEP**
+- **Sequential operations** (use normal chain: Node1 → Node2 → Node3)
+- **Single user interaction** (use normal ClickStep → Action → Continue)
+- **Conditional branching** (use IfStatementStep instead)
+- **Single choice scenarios** (use OR Step instead)

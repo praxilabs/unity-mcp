@@ -1,0 +1,36 @@
+---
+alwaysApply: false
+description: Handle object detachment for equipment disassembly and component removal
+---
+
+# DetachStep Node
+
+## Overview
+DetachStep handles object detachment in virtual lab experiments. This node is essential for equipment disassembly, component removal, and interactive object manipulation.
+
+## Description Context.
+The description of the node must contain which object will have the prerequisites, explicitly mention the object name.
+
+## Node Details
+
+**Node Type**: DetachStep
+**Purpose**: Detach one object from another object
+**Usage**: Equipment disassembly, component removal, interactive object manipulation
+
+## Basic Prerequisites
+
+1. Must be attached to another object (executed the Attach Step on it before).
+
+## Parameters
+- **Object 1**: The object to be detached (source object)
+
+
+## Common Patterns
+
+### Detachment after Attachment.
+```
+AttachStep(ObjA, ObjB) → ... → DetachStep(ObjA, ObjB).
+```
+
+## Common Mistakes
+1. **Incomplete detachment flow**: Ensure detachment leads to appropriate actions

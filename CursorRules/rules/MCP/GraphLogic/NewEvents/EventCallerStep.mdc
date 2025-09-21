@@ -1,55 +1,88 @@
 ---
-alwaysApply: false
 description: Event-driven trigger step for invoking registered events within the experiment flow
+alwaysApply: false
 ---
 
-# EventCallerStep Node
-
-## Overview
-Invokes a specifically registered event during graph execution to drive reactive behaviors and cross-graph signaling.
-
-## Node Details
-
-**Node Type**: EventCallerStep
-**Purpose**: Event-driven trigger step for invoking registered events
-**Usage**: Reactive programming, event handling, cross-graph signaling
-
-## Basic Prerequisites
-
-1. **Event Registration**: Event name must be registered in the Event Registry
-2. **Event Name**: Exact event name must be known and valid
-3. **Event Listeners**: Appropriate listeners must be set up to handle the event
-
-## Parameters
-
-- **eventName**: Exact name of the registered event to invoke
-- **payload**: Optional parameters to pass to listeners (key/value or typed list)
-- **delaySeconds**: Optional delay before firing the event
-
-## Common Patterns
-
-### Trigger Event Mid-Sequence
-```
-`...` is a variable number of nodes that have a certain logic.
-
-... → EventCallerStep ("RegisteredEventName") → ...
-```
-
-### Conditional Event Trigger
-```
-`...` is a variable number of nodes that have a certain logic.
-
-IfStatementStep (condition) → True: EventCallerStep ("OnConditionMet") → ...
-                            → False: ...
-```
-
-### Chained Events
-```
-EventCallerStep ("PhaseStarted") → DelayStep → EventCallerStep ("PhaseReady")
-```
-
-## Critical EventCallerStep Rules
-- **Event Registration**: Event must be registered in the Event Registry
-- **Exact Event Names**: Use exact event names to avoid typos
-- **Reactive Programming**: Use for event-driven behaviors and cross-graph communication
-
+<rule>
+  <meta>
+    <title>EventCallerStep</title>
+    <description>Event-driven trigger step for invoking registered events within the experiment flow</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new EventCallerStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <setup-instructions priority="critical">
+      <description>EventCallerStep invokes a specifically registered event during graph execution to drive reactive behaviors and cross-graph signaling in virtual lab experiments. It requires event names to be registered in the Event Registry, exact event names to be known and valid, and appropriate listeners to be set up to handle the events.</description>
+      <step-list>
+        <step>Register event in the Event Registry before experiment creation</step>
+        <step>Set up appropriate listeners to handle the registered event</step>
+        <step>Configure eventName parameter (Exact name of the registered event to invoke)</step>
+      </step-list>
+    </setup-instructions>
+    <requirement priority="critical">
+      <description>Use EventCallerStep for event-driven interactions and reactive programming, cross-graph signaling and communication, triggering registered events during experiment flow, and reactive behaviors based on experiment state. Event must be registered in the Event Registry with exact event names to avoid typos.</description>
+      <examples>
+        <example title="EventCallerStep Usage">
+          <correct-example title="Proper EventCallerStep usage" conditions="Need event-driven interaction" expected-result="Event-driven behavior" correctness-criteria="Uses EventCallerStep for events">EventCallerStep("RegisteredEventName") for cross-graph signaling</correct-example>
+          <incorrect-example title="Improper EventCallerStep usage" conditions="Need direct execution" expected-result="Direct execution" correctness-criteria="Uses EventCallerStep for non-event operations">EventCallerStep for direct method calls (should use FunctionCallStep)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>EventCallerStep parameters include eventName (Exact name of the registered event to invoke), payload (Optional parameters to pass to listeners as key/value or typed list), and delaySeconds (Optional delay before firing the event). Configure parameters for proper event invocation and listener communication.</description>
+      <examples>
+        <example title="EventCallerStep Parameters">
+          <correct-example title="Proper EventCallerStep parameters" conditions="Configuring EventCallerStep parameters" expected-result="Correct event invocation" correctness-criteria="All parameters properly configured">eventName: "OnExperimentComplete", payload: {"result": "success"}, delaySeconds: 1.0</correct-example>
+          <incorrect-example title="Improper EventCallerStep parameters" conditions="Configuring EventCallerStep parameters" expected-result="Correct event invocation" correctness-criteria="Missing or incorrect parameters">eventName: "", payload: null, delaySeconds: -1</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use EventCallerStep for trigger event mid-sequence patterns, conditional event triggers, and chained events. Common patterns include invoking events during experiment flow, conditional event firing based on conditions, and sequential event chains for complex behaviors.</description>
+      <examples>
+        <example title="Event Trigger Patterns">
+          <correct-example title="Proper event trigger pattern" conditions="Implementing event trigger logic" expected-result="Successful event invocation" correctness-criteria="Follows established pattern">IfStatementStep(condition) → True: EventCallerStep("OnConditionMet") → Continue</correct-example>
+          <incorrect-example title="Improper event trigger pattern" conditions="Implementing event trigger logic" expected-result="Successful event invocation" correctness-criteria="Skips required setup">EventCallerStep without proper event registration or listener setup</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use descriptive event names and meaningful payload parameters in EventCallerStep to make the logic clear and maintainable. Event names should clearly indicate the trigger condition and payload should contain relevant data for event handlers.</description>
+      <examples>
+        <example title="Descriptive Event Names and Payloads">
+          <correct-example title="Clear event names and payloads" conditions="Naming events and setting payloads" expected-result="Readable event-driven logic" correctness-criteria="Uses descriptive names and meaningful payloads">eventName: "OnTemperatureReached", payload: {"temperature": 100, "unit": "celsius"}</correct-example>
+          <incorrect-example title="Unclear event names and payloads" conditions="Naming events and setting payloads" expected-result="Readable event-driven logic" incorrectness-criteria="Uses unclear names and empty payloads">eventName: "Event1", payload: {}, eventName: "Trigger", payload: null</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Configure delay and timing parameters appropriately for different event scenarios. Use delaySeconds for timing control, payload for data transmission, and ensure proper event sequencing for complex event chains and reactive behaviors.</description>
+      <examples>
+        <example title="Event Timing and Sequencing">
+          <correct-example title="Proper event timing and sequencing" conditions="Configuring event timing" expected-result="Appropriate event behavior" correctness-criteria="Uses appropriate timing">EventCallerStep("PhaseStarted") → DelayStep → EventCallerStep("PhaseReady")</correct-example>
+          <incorrect-example title="Improper event timing and sequencing" conditions="Configuring event timing" expected-result="Appropriate event behavior" correctness-criteria="Uses inappropriate timing">EventCallerStep("PhaseStarted") → EventCallerStep("PhaseReady") (no delay or sequencing)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <non-negotiable priority="critical">
+      <description>NEVER use EventCallerStep for direct method execution or non-event operations. NEVER use unregistered event names or event names with typos. NEVER use EventCallerStep for linear execution patterns. Always ensure events are properly registered and use exact event names.</description>
+      <examples>
+        <example title="EventCallerStep Restrictions">
+          <correct-example title="Proper EventCallerStep usage" conditions="Selecting EventCallerStep" expected-result="Correct event-driven execution" correctness-criteria="Uses EventCallerStep appropriately">Event-driven interactions with registered events and exact names</correct-example>
+          <incorrect-example title="Improper EventCallerStep usage" conditions="Selecting EventCallerStep" expected-result="Correct event-driven execution" correctness-criteria="Uses EventCallerStep inappropriately">Direct method execution, unregistered events, or linear execution patterns</correct-example>
+        </example>
+      </examples>
+    </non-negotiable>
+  </requirements>
+  <context description="Additional considerations for EventCallerStep">
+    EventCallerStep is designed for event-driven trigger functionality and reactive programming. Always ensure proper event registration, use exact event names, and implement appropriate event listeners. Use for cross-graph signaling and reactive behaviors rather than direct method execution or linear execution patterns.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/FunctionCall/FunctionCallStep.mdc" reason="Direct method execution">FunctionCallStep for direct method calls</reference>
+  </references>
+</rule>

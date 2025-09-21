@@ -1,29 +1,74 @@
 ---
-alwaysApply: false
 description: Logical Or-ing of two or more sequence branches for multiple choice scenarios
+alwaysApply: false
 ---
 
-# ORStep
-
-## Overview
-ORStep provides logical Or-ing of sequence branches for multiple choice scenarios where only one option needs to be selected in virtual lab experiments.
-
-## Node Details
-
-**File**: [ORStep.cs](mdc:Assets/Scripts/System/xNode/Steps/ActionExecuted/ORStep.cs)
-**Purpose**: Logical Or-ing of sequence branches
-**Usage**: Multiple routes where only one must be taken
-
-## Common Patterns
-
-### Multiple Choice Selection
-```
-ORStep (User choice) → Option A: ExecuteOptionA → ...
-                    → Option B: ExecuteOptionB → ...
-                    → Option C: ExecuteOptionC → ...
-```
-
-## Critical ORStep Rules
-- **Single Selection**: Only one option needs to be selected to proceed
-- **Multiple Options**: Provide multiple alternative paths
-- **Clear Options**: Use descriptive option names for user clarity
+<rule>
+  <meta>
+    <title>ORStep</title>
+    <description>Logical Or-ing of two or more sequence branches for multiple choice scenarios</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new ORStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <setup-instructions priority="critical">
+      <description>ORStep provides logical Or-ing of sequence branches for multiple choice scenarios where only one option needs to be selected in virtual lab experiments. Only one option must be taken to proceed, not all options.</description>
+    </setup-instructions>
+    <requirement priority="critical">
+      <description>ORStep provides logical Or-ing of sequence branches for multiple choice scenarios where only one option needs to be selected. Only one option must be taken to proceed, not all options.</description>
+      <examples>
+        <example title="ORStep Implementation">
+          <correct-example title="Proper ORStep with single selection" conditions="Creating multiple choice scenario" expected-result="Single selection logic" correctness-criteria="Only one option required to proceed">ORStep (User choice) → Option A: ExecuteOptionA → Continue, Option B: ExecuteOptionB → Continue, Option C: ExecuteOptionC → Continue</correct-example>
+          <incorrect-example title="Incorrect ORStep usage" conditions="Creating multiple choice scenario" expected-result="Single selection logic" incorrectness-criteria="Requires all options">ORStep (User choice) → Option A: ExecuteOptionA, Option B: ExecuteOptionB, Both required</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Provide multiple alternative paths in ORStep where each path represents a valid choice. All paths should lead to the same continuation point or similar outcomes.</description>
+      <examples>
+        <example title="Alternative Paths">
+          <correct-example title="Proper alternative paths" conditions="Creating choice scenarios" expected-result="Multiple valid options" correctness-criteria="All paths are valid alternatives">Option A: Method A → Result, Option B: Method B → Result, Option C: Method C → Result</correct-example>
+          <incorrect-example title="Inconsistent alternative paths" conditions="Creating choice scenarios" expected-result="Multiple valid options" incorrectness-criteria="Paths lead to different outcomes">Option A: Method A → Result A, Option B: Method B → Result B</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>Use descriptive option names in ORStep to make choices clear to users. Option names should clearly indicate what each choice accomplishes or represents.</description>
+      <examples>
+        <example title="Descriptive Option Names">
+          <correct-example title="Clear option names" conditions="Naming ORStep options" expected-result="User-friendly choices" correctness-criteria="Uses descriptive names">"Use Digital Scale", "Use Analog Scale", "Use Balance Beam"</correct-example>
+          <incorrect-example title="Unclear option names" conditions="Naming ORStep options" expected-result="User-friendly choices" incorrectness-criteria="Uses unclear names">"Option 1", "Option 2", "Option 3"</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Ensure all ORStep branches eventually converge to the same continuation point or provide equivalent outcomes. This maintains logical flow consistency in the experiment.</description>
+      <examples>
+        <example title="Branch Convergence">
+          <correct-example title="Proper branch convergence" conditions="Designing ORStep flow" expected-result="Consistent continuation" correctness-criteria="All branches lead to same point">Option A → Action A → Continue, Option B → Action B → Continue, Option C → Action C → Continue</correct-example>
+          <incorrect-example title="Inconsistent branch flow" conditions="Designing ORStep flow" expected-result="Consistent continuation" incorrectness-criteria="Branches lead to different points">Option A → Action A → Path A, Option B → Action B → Path B</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <non-negotiable priority="critical">
+      <description>NEVER use ORStep when all options must be completed. Use CompositeStep for scenarios where multiple branches must execute in any order. ORStep is ONLY for single-choice scenarios.</description>
+      <examples>
+        <example title="ORStep vs CompositeStep">
+          <correct-example title="Proper ORStep usage" conditions="Single choice scenario" expected-result="One option selection" correctness-criteria="Only one option required">User selects one measurement method from multiple options</correct-example>
+          <incorrect-example title="Incorrect ORStep usage" conditions="Multiple required actions" expected-result="All options required" incorrectness-criteria="Uses ORStep for required multiple actions">User must complete all safety checks (should use CompositeStep)</correct-example>
+        </example>
+      </examples>
+    </non-negotiable>
+  </requirements>
+  <context description="Additional considerations for ORStep">
+    ORStep is ideal for multiple choice scenarios where users can select one option from several alternatives. Each option should be a valid alternative that leads to the same or equivalent outcomes. Use CompositeStep when multiple actions are required, not ORStep.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/ControlFlow/CompositeStep.mdc" reason="Parallel execution">CompositeStep for multiple required actions</reference>
+  </references>
+</rule>

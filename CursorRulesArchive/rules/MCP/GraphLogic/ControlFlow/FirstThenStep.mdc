@@ -1,0 +1,26 @@
+---
+alwaysApply: false
+description: Sequential Execution node of Branches.
+---
+
+# FirstThenStep
+
+## Overview
+FirstThenStep provides Sequential Execution of Branches in the form of "First Execute Branch A then Execute Branch B".
+so Branch A gets executed first then Branch B.
+
+## Node Details
+
+**File**: [FirstThenStep.cs](mdc:Assets/Scripts/System/xNode/Steps/SelfExecuted/ControlFlow/FirstThenStep.cs)
+**Purpose**: Sequential Execution for complex scenarios
+**Usage**: State machines, menu systems, complex decision trees
+
+## Common Patterns
+
+### Sequential Execution Decision Pattern
+```
+FirstThenStep (User choice) → First: Action A → Continue
+                            → Then: Action B → Continue
+
+```
+

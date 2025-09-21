@@ -1,0 +1,38 @@
+---
+alwaysApply: false
+description: Revert the 'passed' status of a stage, marking it as incomplete
+---
+
+# UnsetStagePassedStep Node
+
+## Overview
+Clears the passed/completed status for a stage so it can be retried for error handling and retry flows.
+
+## Node Details
+
+**Node Type**: UnsetStagePassedStep
+**Purpose**: Revert stage completion
+**Usage**: Error handling, retry flows
+
+## Basic Prerequisites
+
+1. **Valid Stage Name**: Target stage must exist in the experiment
+2. **Stage Configuration**: Stage must be properly configured
+3. **Stage Registry**: Stage must be registered in the stage registry
+
+## Parameters
+
+- **stageName**: Target stage identifier
+
+## Common Patterns
+
+### Error Handling with Stage Reset
+```
+ExperimentLogic → IfStatementStep (Success) → SetStagePassedStep (CurrentStage)
+                              → False: UnsetStagePassedStep (CurrentStage) → ShowMessage (Retry) → RetryLogic
+```
+
+## Critical UnsetStagePassedStep Rules
+- **Stage Reset**: Use for reverting stage completion status
+- **Error Handling**: Enables error handling and retry flows
+- **Stage Retry**: Allows stages to be retried after failure

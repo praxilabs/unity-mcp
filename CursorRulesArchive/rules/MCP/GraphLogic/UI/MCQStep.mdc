@@ -1,0 +1,51 @@
+---
+alwaysApply: false
+description: Display multiple choice questions to users for knowledge assessment and decision making
+---
+
+# MCQStep Node
+
+## Overview
+Displays multiple choice questions to users for knowledge assessment, decision making, and educational testing.
+
+## Node Details
+
+**Node Type**: MCQStep
+**Purpose**: Display multiple choice questions to users
+**Usage**: Knowledge assessment, decision making, educational testing
+
+## Basic Prerequisites
+
+1. **Question Content**: Multiple choice question text must be prepared
+2. **Answer Options**: Complete list of possible answers
+3. **Validation Logic**: Answer validation and feedback system
+4. **User Interaction**: User must be able to select answers
+
+## Parameters
+
+- **Question Text**: The question to display
+- **Answer Options**: List of possible answers
+- **Correct Answer**: The correct answer (for assessment)
+- **Feedback**: Feedback to provide after answer selection
+
+## Critical MCQStep Rules
+- **Multiple Choice Only**: Use for questions with multiple answer options
+- **User Selection Required**: User must select an answer to proceed
+- **Assessment Focus**: Use for knowledge testing and decision making
+
+## Common Patterns
+
+### MCQ Assessment Pattern
+```
+MCQStep (Question) → UserSelectsAnswer → ValidateAnswer → ProvideFeedback → Continue
+```
+
+### Sequential Assessment
+```
+MCQStep (Question 1) → UserAnswer → MCQStep (Question 2) → UserAnswer → MCQStep (Question 3) → Continue
+```
+
+### Decision Making
+```
+MCQStep (Choose your approach) → UserSelectsOption → ExecuteSelectedOption → Continue
+```

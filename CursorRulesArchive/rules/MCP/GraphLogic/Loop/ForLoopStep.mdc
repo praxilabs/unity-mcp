@@ -1,0 +1,42 @@
+---
+alwaysApply: false
+description: Fixed iteration control for repeated actions and data collection
+---
+
+# ForLoopStep Node
+
+## Overview
+Executes its body a fixed number of times for repeated measurements and data collection with known iteration count.
+
+## Node Details
+
+**Node Type**: ForLoopStep
+**Purpose**: Fixed iteration control
+**Usage**: Repeated measurements, data collection
+
+## Parameters
+
+- **iterations**: Integer number of times to execute the loop body
+
+## Ports
+
+- **Entry**: the node entry point, and also the port that should be responsible for looping.
+- **continueLoop (Output)**: The continue loop should be connectd to whatever logic is about to execute in the loop then the last node should connect to the entry again.
+- **exit (Output)**: Called after the final iteration completes
+
+## Common Patterns
+
+### Fixed Iteration Pattern
+```
+`...` indicates a variable number of nodes that does a certain logic.
+
+ForLoopStep (iterations: 5) → continueLoop: ... → ForLoopStep.entry
+                            → exit: ...
+```
+
+
+## Critical ForLoopStep Rules
+- **Fixed Iterations**: Use for known, finite iteration counts
+- **Port Connections**: Use `continueLoop` for loop body, `exit` for completion
+- **Finite Execution**: Loop will always terminate after specified iterations
+

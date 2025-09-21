@@ -1,0 +1,29 @@
+---
+alwaysApply: false
+description: Logical Or-ing of two or more sequence branches for multiple choice scenarios
+---
+
+# ORStep
+
+## Overview
+ORStep provides logical Or-ing of sequence branches for multiple choice scenarios where only one option needs to be selected in virtual lab experiments.
+
+## Node Details
+
+**File**: [ORStep.cs](mdc:Assets/Scripts/System/xNode/Steps/ActionExecuted/ORStep.cs)
+**Purpose**: Logical Or-ing of sequence branches
+**Usage**: Multiple routes where only one must be taken
+
+## Common Patterns
+
+### Multiple Choice Selection
+```
+ORStep (User choice) → Option A: ExecuteOptionA → ...
+                    → Option B: ExecuteOptionB → ...
+                    → Option C: ExecuteOptionC → ...
+```
+
+## Critical ORStep Rules
+- **Single Selection**: Only one option needs to be selected to proceed
+- **Multiple Options**: Provide multiple alternative paths
+- **Clear Options**: Use descriptive option names for user clarity

@@ -1,50 +1,68 @@
 ---
-alwaysApply: false
 description: Display side panel messages for instructions and feedback
+alwaysApply: false
 ---
 
-# SideMessageStep Node
-
-## Overview
-Displays messages in a side panel for instructions, feedback, and guidance without blocking the main view.
-
-## Node Details
-
-**Node Type**: SideMessageStep
-**Purpose**: Display side panel messages
-**Usage**: Non-blocking instructions, feedback, guidance messages
-
-## Basic Prerequisites
-
-1. **Message Content**: Instruction or feedback message text must be prepared
-2. **Position Selection**: Choose side panel position (left, right)
-3. **Non-blocking Design**: Message should not interrupt main workflow
-
-## Parameters
-
-- **Message Text**: The content to display
-- **Message Position**: Side panel position (left, right)
-- **Duration**: How long to display (optional)
-- **Auto Close**: Whether to auto-close after duration
-
-## Critical SideMessageStep Rules
-- **Side Panel Only**: Displays in side panel, not center screen
-- **Non-blocking**: Does not interrupt main workflow
-- **NOT Prominent**: Use IntroEndMessageStep for prominent announcements
-
-## Common Patterns
-
-### Message Sequence Pattern
-```
-SideMessageStep (Instructions) → UserAction → SideMessageStep (Feedback) → Continue
-```
-
-### Interactive Tutorial Pattern
-```
-SideMessageStep (Welcome) → HintStep (First step) → UserAction → SideMessageStep (Good job) → HintStep (Next step)
-```
-
-### Progressive Guidance
-```
-SideMessageStep (Step 1 instructions) → UserAction → SideMessageStep (Step 2 instructions) → UserAction → Continue
-```
+<rule>
+  <meta>
+    <title>SideMessageStep</title>
+    <description>Display side panel messages for instructions and feedback</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new SideMessageStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <setup-instructions priority="critical">
+      <description>SideMessageStep displays side panel messages for instructions and feedback in virtual lab experiments. It requires a message ID to be configured for proper message content management and display control.</description>
+      <step-list>
+        <step>Configure Message ID parameter (Unique identifier for the side panel message)</step>
+      </step-list>
+    </setup-instructions>
+    <requirement priority="critical">
+      <description>SideMessageStep displays messages in a side panel for instructions, feedback, and guidance without blocking the main view. Use for non-blocking instructions, feedback, and guidance messages.</description>
+      <examples>
+        <example title="Non-blocking Guidance">
+          <correct-example title="Proper side message usage" conditions="Need non-blocking guidance" expected-result="Non-blocking message displayed in side panel" correctness-criteria="Uses SideMessageStep for non-blocking guidance">SideMessageStep (Guidance message) → User continues workflow</correct-example>
+          <incorrect-example title="Improper side message usage" conditions="Need non-blocking guidance" expected-result="Non-blocking message displayed in side panel" correctness-criteria="Uses IntroEndMessageStep for non-blocking guidance">IntroEndMessageStep (Guidance message) → User continues workflow (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="high">
+      <description>SideMessageStep requires Message Text (the content to display), Message Position (side panel position left or right), Duration (how long to display, optional), and Auto Close (whether to auto-close after duration). Must have instruction or feedback message text prepared, choose side panel position, and ensure non-blocking design.</description>
+      <examples>
+        <example title="Parameter Requirements">
+          <correct-example title="Proper parameter usage" conditions="Using SideMessageStep" expected-result="Side panel message successfully displayed" correctness-criteria="Provides valid message text and position">SideMessageStep (Message Text: "Click the button to continue", Message Position: "right") → Message displayed</correct-example>
+          <incorrect-example title="Improper parameter usage" conditions="Using SideMessageStep" expected-result="Side panel message successfully displayed" correctness-criteria="Missing required message text">SideMessageStep (Message Position: "right") → No message text provided</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use SideMessageStep for side panel display only. Displays in side panel, not center screen. Non-blocking design that does not interrupt main workflow. NOT for prominent announcements - use IntroEndMessageStep for prominent announcements.</description>
+      <examples>
+        <example title="Side Panel vs Center Screen">
+          <correct-example title="Proper side panel usage" conditions="Need non-blocking guidance" expected-result="Message displayed in side panel" correctness-criteria="Uses SideMessageStep for side panel display">SideMessageStep (Instructions) → Side panel display</correct-example>
+          <incorrect-example title="Improper center screen usage" conditions="Need non-blocking guidance" expected-result="Message displayed in side panel" correctness-criteria="Uses center screen for non-blocking guidance">IntroEndMessageStep (Instructions) → Center screen display (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use message sequence pattern for instruction feedback flow, interactive tutorial pattern for step-by-step guidance, and progressive guidance pattern for sequential instructions.</description>
+      <examples>
+        <example title="Message Patterns">
+          <correct-example title="Proper message sequence pattern" conditions="Need instruction feedback flow" expected-result="Sequential messages with user actions" correctness-criteria="Uses message sequence pattern">SideMessageStep (Instructions) → UserAction → SideMessageStep (Feedback) → Continue</correct-example>
+          <incorrect-example title="Improper single message pattern" conditions="Need instruction feedback flow" expected-result="Sequential messages with user actions" correctness-criteria="Uses single message without feedback">SideMessageStep (Instructions) → UserAction → Continue</incorrect-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for SideMessageStep">
+    This node is essential for non-blocking guidance and feedback in virtual lab experiments. It provides the capability to display messages in a side panel for instructions, feedback, and guidance without blocking the main view. The distinction between side panel and center screen display is critical for proper usage.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/UI/UINodes.mdc" reason="UI nodes overview">User interface and messaging patterns</reference>
+  </references>
+</rule>

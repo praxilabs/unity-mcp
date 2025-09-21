@@ -1,67 +1,68 @@
 ---
-alwaysApply: false
 description: Execute other graphs as subroutines for modular experiment design and reusable procedures
+alwaysApply: false
 ---
 
-# SubGraphStep
-
-## Overview
-SubGraphStep executes other graphs as subroutines in virtual lab experiments. Used for modular experiment design, reusable procedures, and breaking complex experiments into manageable components.
-
-## Node Details
-
-**Node Type**: SubGraphStep
-**Purpose**: Execute other graphs as subroutines for modular design
-**Usage**: Modular experiment design, reusable procedures, complex experiment breakdown
-
-## Basic Prerequisites
-
-1. **SubGraph Reference**: Valid reference to another StepsGraph asset
-2. **Entry/Exit Points**: SubGraph must have proper entry and exit points
-3. **Step Number**: Use stepNumber parameter for clear progression (optional)
-4. **No Circular References**: Avoid infinite subgraph loops
-
-## Parameters
-
-- **SubGraph Asset**: Reference to the StepsGraph asset to execute
-- **Step Number**: Sequential step number for progression tracking (optional)
-
-## Critical SubGraphStep Rules
-- **Modular Design**: Use for breaking complex experiments into manageable components
-- **Reusable Procedures**: Create reusable sub-procedures for common operations
-- **No Circular References**: Avoid infinite subgraph loops
-- **Proper Entry/Exit**: Ensure subgraphs have proper entry and exit points
-
-## Common Patterns
-
-### Modular Execution Pattern
-```
-SubGraphStep (Setup procedure) → Main experiment → SubGraphStep (Cleanup procedure) → Continue
-```
-
-### Multi-Phase Experiment Pattern
-```
-SubGraphStep (Phase 1) → SubGraphStep (Phase 2) → SubGraphStep (Phase 3) → Continue
-```
-
-### Sequential SubGraph Execution Pattern
-```
-SubGraphStep (Step_01) → SubGraphStep (Step_01.5) → SubGraphStep (Step_02) → Continue
-```
-
-### Step-Numbered Progression Pattern
-```
-SubGraphStep (Step_01, stepNumber: 1) → SubGraphStep (Step_02, stepNumber: 2) → 
-SubGraphStep (Step_03, stepNumber: 3) → SubGraphStep (Step_04, stepNumber: 4) → Continue
-```
-
-### Hint-Guided Sequential Flow Pattern
-```
-HintStep (stepNumber: 1) → SubGraphStep (Phase 1) → HintStep (stepNumber: 2) → 
-SubGraphStep (Phase 2) → HintStep (stepNumber: 3) → SubGraphStep (Phase 3) → Continue
-```
-
-### SubGraph with Auto Progress Pattern
-```
-SubGraphStep (Complete phase) → ProgressMapAutoNextStep → SubGraphStep (Next phase) → Continue
-```
+<rule>
+  <meta>
+    <title>SubGraphStep</title>
+    <description>Execute other graphs as subroutines for modular experiment design and reusable procedures</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new SubGraphStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <setup-instructions priority="critical">
+      <description>SubGraphStep executes other graphs as subroutines in virtual lab experiments for modular experiment design, reusable procedures, and breaking complex experiments into manageable components. Use for modular experiment design, reusable procedures, and complex experiment breakdown.</description>
+      <step-list>
+        <step>Set SubGraph Asset (reference to the StepsGraph asset to execute)</step>
+      </step-list>
+    </setup-instructions>
+    <requirement priority="critical">
+      <description>SubGraphStep executes other graphs as subroutines in virtual lab experiments for modular experiment design, reusable procedures, and breaking complex experiments into manageable components. Use for modular experiment design, reusable procedures, and complex experiment breakdown.</description>
+      <examples>
+        <example title="Modular Execution">
+          <correct-example title="Proper subgraph usage" conditions="Need modular execution" expected-result="Other graph executed as subroutine" correctness-criteria="Uses SubGraphStep for modular design">SubGraphStep (Setup procedure) → Main experiment → SubGraphStep (Cleanup procedure)</correct-example>
+          <incorrect-example title="Improper subgraph usage" conditions="Need modular execution" expected-result="Other graph executed as subroutine" correctness-criteria="Uses DelayStep for modular execution">DelayStep (5) → Setup procedure (wrong approach)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Use SubGraphStep for modular design and reusable procedures. Break complex experiments into manageable components and create reusable sub-procedures for common operations. Avoid infinite subgraph loops and ensure proper entry/exit points.</description>
+      <examples>
+        <example title="Modular Design vs Direct Execution">
+          <correct-example title="Proper modular design usage" conditions="Need to break complex experiment" expected-result="Complex experiment broken into manageable components" correctness-criteria="Uses SubGraphStep for modular design">SubGraphStep (Phase 1) → SubGraphStep (Phase 2) → SubGraphStep (Phase 3)</correct-example>
+          <incorrect-example title="Improper direct execution usage" conditions="Need to break complex experiment" expected-result="Complex experiment broken into manageable components" correctness-criteria="Uses direct execution instead of modular design">Phase1Logic → Phase2Logic → Phase3Logic</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="critical">
+      <description>Never create circular references in subgraphs. Avoid infinite subgraph loops that could cause system instability. Ensure proper entry and exit points in all subgraphs.</description>
+      <examples>
+        <example title="Circular Reference Prevention">
+          <correct-example title="Proper subgraph structure" conditions="Need subgraph execution" expected-result="Subgraph executed without loops" correctness-criteria="Uses proper subgraph structure without circular references">SubGraphStep (Setup) → MainLogic → SubGraphStep (Cleanup)</correct-example>
+          <incorrect-example title="Improper circular reference" conditions="Need subgraph execution" expected-result="Subgraph executed without loops" correctness-criteria="Creates circular reference">SubGraphStep (GraphA) → SubGraphStep (GraphB) → SubGraphStep (GraphA)</correct-example>
+        </example>
+      </examples>
+    </requirement>
+    <requirement priority="medium">
+      <description>Use modular execution pattern for setup/cleanup workflows. Use multi-phase experiment pattern for complex multi-phase experiments. Use sequential subgraph execution pattern for step-by-step progression.</description>
+      <examples>
+        <example title="SubGraph Patterns">
+          <correct-example title="Proper modular execution pattern" conditions="Need setup and cleanup workflow" expected-result="Setup, main experiment, and cleanup executed" correctness-criteria="Uses modular execution pattern">SubGraphStep (Setup procedure) → Main experiment → SubGraphStep (Cleanup procedure) → Continue</correct-example>
+          <incorrect-example title="Improper direct execution pattern" conditions="Need setup and cleanup workflow" expected-result="Setup, main experiment, and cleanup executed" correctness-criteria="Uses direct execution instead of modular pattern">SetupLogic → MainLogic → CleanupLogic</correct-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for SubGraphStep">
+    This node is essential for modular experiment design and reusable procedures in virtual lab experiments. It provides the capability to execute other graphs as subroutines, enabling complex experiment breakdown and reusable procedure creation. The prevention of circular references is critical for system stability.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Utility/UtilityNodes.mdc" reason="Utility nodes overview">System utility operations and timing control patterns</reference>
+  </references>
+</rule>

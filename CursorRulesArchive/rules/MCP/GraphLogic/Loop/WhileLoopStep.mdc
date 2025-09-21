@@ -1,0 +1,46 @@
+---
+alwaysApply: false
+description: Conditional iteration control for dynamic repetition based on a boolean condition
+---
+
+# WhileLoopStep Node
+
+## Overview
+Repeats its body while a boolean condition remains true for conditional repetition and dynamic loops with unknown iteration count.
+
+## Node Details
+
+**Node Type**: WhileLoopStep
+**Purpose**: Conditional iteration control
+**Usage**: Conditional repetition, dynamic loops
+
+## Parameters
+
+- **condition**: Boolean expression/source determining whether to continue
+- **pollingInterval**: Optional delay between checks (seconds)
+
+## Ports
+
+- **Entry**: the node entry point, and also the port that should be responsible for looping.
+- **continueLoop (Output)**: The continue loop should be connectd to whatever logic is about to execute in the loop then the last node should connect to the entry again.
+- **isTrue**: The node should have a boolean expression or a FunctionCall that returns a boolean expression connected to it.
+- **exit (Output)**: Called after the final iteration completes.
+
+## Common Patterns
+
+###  Pattern
+```
+`...` indicates a variable number of nodes that does a certain logic.
+
+                            
+                     ForLoopStep.entry → ForLoopStep (iterations: 5) → continueLoop: ... → ForLoopStep.entry
+boolean expresison → ForLoopStep.isTrue                              → exit: ...
+```
+
+
+## Critical WhileLoopStep Rules
+- **Conditional Iteration**: Use for unknown iteration count based on changing conditions
+- **Port Connections**: Use `continueLoop` for loop body, `exit` for completion
+- **Condition Safety**: Ensure condition can become false to prevent infinite loops
+
+

@@ -1,0 +1,47 @@
+---
+alwaysApply: false
+description: Execute IEnumerator methods with step control; inherits FunctionCallBase
+---
+
+# FunctionCallCoroutineStep Node
+
+## Overview
+Executes coroutine methods (IEnumerator) on scene objects for asynchronous operations that can proceed without waiting depending on graph design.
+
+## Node Details
+
+**Node Type**: FunctionCallCoroutineStep
+**Menu Path**: "Function Call/Function Call Coroutine"
+**Inherits**: FunctionCallBase
+
+## Basic Prerequisites
+
+1. **Coroutine Method**: Public method that returns IEnumerator
+2. **Object Registration**: Target object must be registered in the registry
+3. **Method Visibility**: Method must be public to be accessible
+
+## Parameters
+
+- **prefabName**: parent.
+- **childName**: child.
+- **selectedComponent**: Component on Child.
+- **selectedFunction**: Function on Component.
+- **parameterValues**: Parameters (if exist).
+
+## Common Patterns
+
+### Background Coroutine
+```
+FunctionCallCoroutineStep(Object) → nextNode   // continues without waiting
+```
+
+### Coroutine with Event Gate
+```
+FunctionCallCoroutineStep (Start coroutine) → Wait for GoToNextStep event → Continue
+```
+
+## Critical FunctionCallCoroutineStep Rules
+- **IEnumerator Methods Only**: Use for methods that return IEnumerator
+- **Asynchronous Operations**: Methods run asynchronously without blocking execution
+- **Scene Objects**: Target specific scene objects, not global methods
+

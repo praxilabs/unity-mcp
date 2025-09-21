@@ -1,62 +1,41 @@
 ---
+description: Enable/disable UI button interactions for a single button using registry data
 alwaysApply: false
-description: Enable/disable UI button interactions for UI control and button state management
 ---
 
-# ToggleUIButtonInteractionStep
-
-## Overview
-ToggleUIButtonInteractionStep enables or disables UI button interactions in virtual lab experiments. Used for UI control, button state management, and controlling user interface interactions.
-
-## Node Details
-
-**Node Type**: ToggleUIButtonInteractionStep
-**Purpose**: Enable/disable UI button interactions for UI control
-**Usage**: UI control, button state management, user interface interaction control
-
-## Basic Prerequisites
-
-1. **Button References**: Valid references to UI buttons
-2. **Button Components**: Buttons must have interaction components
-3. **Button Grouping**: Proper grouping of buttons for operations
-4. **State Management**: System to track button interaction states
-
-## Parameters
-
-- **Button List**: List of UI buttons to toggle interactions on
-- **Interaction State**: Boolean to enable (true) or disable (false) interactions
-- **Button Group**: Optional grouping for button operations
-
-## Critical ToggleUIButtonInteractionStep Rules
-- **UI Button Control**: Use for controlling UI button interactions
-- **Button Grouping**: Properly group buttons for efficient operations
-- **State Management**: Always manage button interaction states properly
-- **UI Safety**: Use for safety systems and UI interaction control
-
-## Common Patterns
-
-### UI Button Control Pattern
-```
-ToggleUIButtonInteractionStep (Button1, Enable) → UserInteraction → ToggleUIButtonInteractionStep (Button1, Disable) → Continue
-```
-
-### UI State Management Pattern
-```
-ToggleUIButtonInteractionStep (All buttons, Disable) → SetupPhase → ToggleUIButtonInteractionStep (Active buttons, Enable) → Continue
-```
-
-### Button Group Management Pattern
-```
-ToggleUIButtonInteractionStep (Group A buttons, Enable) → ToggleUIButtonInteractionStep (Group B buttons, Disable) → Continue
-```
-
-### UI Safety Pattern
-```
-IfStatementStep (Check safety) → True: ToggleUIButtonInteractionStep (All buttons, Enable) → Continue
-                             → False: ToggleUIButtonInteractionStep (All buttons, Disable) → ShowMessage (Safety warning)
-```
-
-### Sequential Button Control Pattern
-```
-ToggleUIButtonInteractionStep (Button1, Button2, Enable) → UserInteraction → ToggleUIButtonInteractionStep (Button1, Button2, Disable) → Continue
-```
+<rule>
+  <meta>
+    <title>ToggleUIButtonInteractionStep</title>
+    <description>Enable/disable UI button interactions for a single button using registry data</description>
+    <created-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</created-at>
+    <last-updated-at utc-timestamp="1744240920">January 8, 2025, 12:00 PM UTC</last-updated-at>
+    <applies-to>
+      <file-matcher glob="">All files that this rule can attach to</file-matcher>
+      <action-matcher action="create-xnode-node">Triggered when creating a new ToggleUIButtonInteractionStep Node using the UnityMCP</action-matcher>
+    </applies-to>
+  </meta>
+  <requirements>
+    <setup-instructions priority="critical">
+      <description>ToggleUIButtonInteractionStep enables or disables UI button interactions for a single button in virtual lab experiments for UI control and button state management. It works with registered buttons from registry data.</description>
+      <step-list>
+        <step>Set Registered Object (button registered in registry data)</step>
+        <step>Set Toggle Boolean (enable/disable button interactions)</step>
+      </step-list>
+    </setup-instructions>
+    <requirement priority="critical">
+      <description>ToggleUIButtonInteractionStep works with a single button only. It enables or disables UI button interactions for ONE button using registered object from registry data and a simple boolean to control interaction state.</description>
+      <examples>
+        <example title="Single Button Control">
+          <correct-example title="Proper single button usage" conditions="Need to control one button's interactions" expected-result="Button interactions controlled" correctness-criteria="Uses ToggleUIButtonInteractionStep for single button">ToggleUIButtonInteractionStep (Button: "StartButton", Toggle: false) → Button interactions disabled</correct-example>
+        </example>
+      </examples>
+    </requirement>
+  </requirements>
+  <context description="Additional considerations for ToggleUIButtonInteractionStep">
+    This node works specifically with a single button that is registered in registry data. It provides simple control over button interactions without complex grouping or multiple button management.
+  </context>
+  <references>
+    <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
+    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Utility/UtilityNodes.mdc" reason="Utility nodes overview">System utility operations and timing control patterns</reference>
+  </references>
+</rule>

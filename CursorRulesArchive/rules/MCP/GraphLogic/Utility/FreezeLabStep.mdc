@@ -1,0 +1,49 @@
+---
+alwaysApply: false
+description: Freeze/unfreeze lab interactions for pause functionality and modal dialogs
+---
+
+# FreezeLabStep
+
+## Overview
+FreezeLabStep controls lab interaction freezing and unfreezing in virtual lab experiments. Used for pause functionality, modal dialogs, and system-wide interaction control.
+
+## Node Details
+
+**Node Type**: FreezeLabStep
+**Purpose**: Freeze/unfreeze lab interactions for system-wide control
+**Usage**: Pause functionality, modal dialogs, system-wide interaction control
+
+## Basic Prerequisites
+
+1. **Freeze State**: Determine whether to freeze or unfreeze interactions
+2. **User Feedback**: Provide clear indication when system is frozen/unfrozen
+3. **Complete Cycle**: Always complete the freeze → action → unfreeze cycle
+4. **System State**: Understand current system interaction state
+
+## Parameters
+
+- **Freeze State**: Boolean to freeze (true) or unfreeze (false) interactions
+- **User Feedback**: Optional message to show when freezing/unfreezing
+
+## Critical FreezeLabStep Rules
+- **System-Wide Control**: Freezes/unfreezes ALL lab interactions
+- **Complete Cycle**: Always complete freeze → action → unfreeze cycle
+- **Never Leave Frozen**: Never leave the system frozen permanently
+
+## Common Patterns
+
+### System Pause Pattern
+```
+FreezeLabStep (freeze) → ShowMessage (System paused) → UserAction → FreezeLabStep (unfreeze) → Continue
+```
+
+### Modal Dialog Pattern
+```
+FreezeLabStep (freeze) → ShowMessage (Modal dialog) → UserAction → FreezeLabStep (unfreeze) → Continue
+```
+
+### Error Handling Pause Pattern
+```
+ErrorOccurs → FreezeLabStep (freeze) → ShowErrorMessage → UserAcknowledges → FreezeLabStep (unfreeze) → Continue
+```

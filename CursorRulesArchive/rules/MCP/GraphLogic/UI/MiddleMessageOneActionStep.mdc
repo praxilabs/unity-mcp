@@ -1,0 +1,50 @@
+---
+alwaysApply: false
+description: Display middle screen message with one action button for confirmation dialogs
+---
+
+# MiddleMessageOneActionStep Node
+
+## Overview
+Displays a message in the middle of the screen with a single action button for confirmation dialogs and simple decisions.
+
+## Node Details
+
+**Node Type**: MiddleMessageOneActionStep
+**Purpose**: Display middle screen message with one action button
+**Usage**: Confirmation dialogs, single-choice prompts, simple decisions
+
+## Basic Prerequisites
+
+1. **Message Content**: Confirmation or decision message text must be prepared
+2. **Button Text**: Clear, actionable button text
+3. **Action Logic**: Action to perform when button is clicked
+
+## Parameters
+
+- **Message Text**: The content to display
+- **Button Text**: Text for the action button
+- **Button Action**: Action to perform when button is clicked
+- **Auto Close**: Whether to auto-close after action
+
+## Critical MiddleMessageOneActionStep Rules
+- **Single Action Only**: Use for one-button confirmations and decisions
+- **Middle Screen**: Displays in center of screen with prominent button
+- **NOT Multiple Choice**: Use MiddleMessageTwoActionsStep for multiple options
+
+## Common Patterns
+
+### Confirmation Dialog Pattern
+```
+MiddleMessageOneActionStep (Confirm action) → UserAction → ExecuteAction → Continue
+```
+
+### Simple Decision Pattern
+```
+MiddleMessageOneActionStep (Proceed with experiment?) → UserClicksYes → StartExperiment → Continue
+```
+
+### Acknowledgment Pattern
+```
+ShowWarning → MiddleMessageOneActionStep (I understand) → UserAcknowledges → Continue
+```
