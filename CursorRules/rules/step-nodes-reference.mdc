@@ -19,13 +19,13 @@ alwaysApply: false
       <description>This is a REFERENCE FILE ONLY. Use this file to identify the appropriate node category, then ALWAYS fetch the specific router rule file for detailed implementation. This file provides quick node selection guidance but contains no implementation details.</description>
       <examples>
         <example title="Reference File Usage">
-          <correct-example title="Proper reference file usage" conditions="Need to implement a node" expected-result="Correct router file accessed" correctness-criteria="Uses this file to identify category then fetches router file">Identify node category here → Fetch specific router rule file → Implement with detailed guidance</correct-example>
+          <correct-example title="Proper reference file usage" conditions="Need to implement a node" expected-result="Correct router file accessed" correctness-criteria="Uses this file to identify category then fetches router file">Follow workflow-steps section: category identification → router fetch → implementation</correct-example>
           <incorrect-example title="Improper reference file usage" conditions="Need to implement a node" expected-result="Correct router file accessed" incorrectness-criteria="Tries to implement using only this reference file">Use only this file for implementation without fetching router files</incorrect-example>
         </example>
       </examples>
     </non-negotiable>
     <requirement priority="high">
-      <description>Quick Node Selection Guide: Attach-Detach for object attachment/detachment, Click for user clicking interactions, Control Flow for execution flow and branching logic, Camera for camera positioning and focus, Function Call for method execution on GameObjects, Loops for iterative operations, Tools for object manipulation and visibility control, UI for user interface and messaging, Utility for system utility operations, NewEvents for event-driven interactions, Table for data table operations, Progress Map for progress tracking and navigation, Animation Step for animation control and playback.</description>
+      <description>Quick Node Selection Guide: Use node-categories section to identify appropriate category based on functionality needed, then fetch corresponding router file from router-files section.</description>
       <examples>
         <example title="Quick Category Identification">
           <correct-example title="Proper category identification" conditions="Need to identify node category" expected-result="Correct category identified" correctness-criteria="Matches need to category then fetches router file">Need equipment assembly → Identify Attach-Detach category → Fetch AttachDetachNodesRouter.mdc</correct-example>
@@ -34,7 +34,7 @@ alwaysApply: false
       </examples>
     </requirement>
     <requirement priority="critical">
-      <description>MANDATORY: Always fetch the specific router rule file after identifying the category. Router files: AttachDetachNodesRouter.mdc, ClickNodesRouter.mdc, ControlFlowNodesRouter.mdc, CameraNodesRouter.mdc, FunctionCallNodesRouter.mdc, LoopNodesRouter.mdc, ToolNodesRouter.mdc, UINodesRouter.mdc, UtilityNodesRouter.mdc, NewEventsNodesRouter.mdc, TableNodesRouter.mdc, ProgressMapNodesRouter.mdc, MiscNodesRouter.mdc. These contain detailed implementation guidance.</description>
+      <description>MANDATORY: Always fetch the specific router rule file after identifying the category using router-files section. These contain detailed implementation guidance.</description>
       <examples>
         <example title="Router File Access">
           <correct-example title="Proper router file access" conditions="Need to implement node" expected-result="Detailed implementation guidance obtained" correctness-criteria="Fetches correct router file with detailed guidance">Identify category → fetch_rules(["MCP/GraphLogic/Click/ClickNodesRouter"]) → Get detailed ClickStep implementation</correct-example>
@@ -43,15 +43,45 @@ alwaysApply: false
       </examples>
     </requirement>
   </requirements>
+  <node-categories>
+    <category name="Attach-Detach" purpose="object attachment/detachment"/>
+    <category name="Click" purpose="user clicking interactions"/>
+    <category name="Control Flow" purpose="execution flow and branching logic"/>
+    <category name="Camera" purpose="camera positioning and focus"/>
+    <category name="Function Call" purpose="method execution on GameObjects"/>
+    <category name="Loops" purpose="iterative operations"/>
+    <category name="Tools" purpose="object manipulation and visibility control"/>
+    <category name="UI" purpose="user interface and messaging"/>
+    <category name="Utility" purpose="system utility operations"/>
+    <category name="NewEvents" purpose="event-driven interactions"/>
+    <category name="Table" purpose="data table operations"/>
+    <category name="Progress Map" purpose="progress tracking and navigation"/>
+    <category name="Animation Step" purpose="animation control and playback"/>
+  </node-categories>
+  <router-files>
+    <router name="AttachDetachNodesRouter" path="MCP/GraphLogic/AttachDetach/AttachDetachNodesRouter.mdc"/>
+    <router name="ClickNodesRouter" path="MCP/GraphLogic/Click/ClickNodesRouter.mdc"/>
+    <router name="ControlFlowNodesRouter" path="MCP/GraphLogic/ControlFlow/ControlFlowNodesRouter.mdc"/>
+    <router name="CameraNodesRouter" path="MCP/GraphLogic/Camera/CameraNodesRouter.mdc"/>
+    <router name="FunctionCallNodesRouter" path="MCP/GraphLogic/FunctionCall/FunctionCallNodesRouter.mdc"/>
+    <router name="LoopNodesRouter" path="MCP/GraphLogic/Loop/LoopNodesRouter.mdc"/>
+    <router name="ToolNodesRouter" path="MCP/GraphLogic/Tool/ToolNodesRouter.mdc"/>
+    <router name="UINodesRouter" path="MCP/GraphLogic/UI/UINodesRouter.mdc"/>
+    <router name="UtilityNodesRouter" path="MCP/GraphLogic/Utility/UtilityNodesRouter.mdc"/>
+    <router name="NewEventsNodesRouter" path="MCP/GraphLogic/NewEvents/NewEventsNodesRouter.mdc"/>
+    <router name="TableNodesRouter" path="MCP/GraphLogic/Table/TableNodesRouter.mdc"/>
+    <router name="ProgressMapNodesRouter" path="MCP/GraphLogic/ProgressMap/ProgressMapNodesRouter.mdc"/>
+    <router name="MiscNodesRouter" path="MCP/GraphLogic/Misc/MiscNodesRouter.mdc"/>
+  </router-files>
+  <workflow-steps>
+    <step name="category-identification" description="Identify node category here"/>
+    <step name="router-fetch" description="Fetch specific router rule file"/>
+    <step name="implementation" description="Implement with detailed guidance"/>
+  </workflow-steps>
   <context description="Reference file purpose and usage">
     This file serves ONLY as a quick reference to identify node categories and direct users to the appropriate router rule files. It contains NO implementation details. Always use this file to identify the category, then immediately fetch the specific router rule file for detailed implementation guidance, component requirements, and usage patterns.
   </context>
   <references>
     <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>
-    <reference as="context" href=".cursor/rules/MCP/GraphLogic/AttachDetach/AttachDetachNodesRouter.mdc" reason="Attachment operations">Object attachment and detachment patterns</reference>
-    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Click/ClickNodesRouter.mdc" reason="User interactions">Clicking and interactive manipulation patterns</reference>
-    <reference as="context" href=".cursor/rules/MCP/GraphLogic/ControlFlow/ControlFlowNodesRouter.mdc" reason="Flow control">Execution flow and branching logic patterns</reference>
-    <reference as="context" href=".cursor/rules/MCP/GraphLogic/Camera/CameraNodesRouter.mdc" reason="Camera operations">Camera positioning and focus control patterns</reference>
-    <reference as="context" href=".cursor/rules/MCP/GraphLogic/FunctionCall/FunctionCallNodesRouter.mdc" reason="Method execution">Function call and system interaction patterns</reference>
   </references>
 </rule>

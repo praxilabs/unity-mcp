@@ -16,44 +16,66 @@ alwaysApply: false
   </meta>
   <requirements>
     <non-negotiable priority="critical">
-      <description>After ANY graph creation or modification, you MUST run complete validation: list_graph_nodes → remove orphaned nodes → verify connections → confirm single entry/multiple exit flow → iterate fix→validate cycle until 100% error-free.</description>
+      <description>After ANY graph creation or modification, you MUST run complete validation following the validation-workflow section until 100% error-free.</description>
       <examples>
         <example title="Complete Validation Workflow">
-          <correct-example title="Proper validation cycle" conditions="After graph creation/modification" expected-result="Fully validated graph" correctness-criteria="Follows complete validation process">list_graph_nodes → remove orphaned nodes → verify connections → confirm flow → fix errors → re-validate → repeat until 0 errors</correct-example>
+          <correct-example title="Proper validation cycle" conditions="After graph creation/modification" expected-result="Fully validated graph" correctness-criteria="Follows complete validation process">Follow validation-workflow section steps until 100% error-free</correct-example>
           <incorrect-example title="Incomplete validation" conditions="After graph creation/modification" expected-result="Fully validated graph" incorrectness-criteria="Skips validation or stops after first fix">Create graph → assume complete without validation</incorrect-example>
         </example>
       </examples>
     </non-negotiable>
     <requirement priority="critical">
-      <description>Remove ALL orphaned nodes using mcp_unityMCP_delete_xnode_node. Orphaned nodes are any disconnected nodes (no input OR no output) except: first node (no input required) and last nodes (no output required). These cause graph execution failures.</description>
+      <description>Remove ALL orphaned nodes using validation-tools section. Orphaned nodes are any disconnected nodes except those defined in flow-structure exceptions. These cause graph execution failures.</description>
       <examples>
         <example title="Orphaned Node Definition">
-          <correct-example title="Proper orphaned node removal" conditions="Finding disconnected nodes" expected-result="Clean graph structure" correctness-criteria="Removes all disconnected nodes except first/last">Node with no connections → delete_xnode_node → removed from graph</correct-example>
+          <correct-example title="Proper orphaned node removal" conditions="Finding disconnected nodes" expected-result="Clean graph structure" correctness-criteria="Removes all disconnected nodes except first/last">Use validation-tools section to remove orphaned nodes</correct-example>
           <incorrect-example title="Incomplete orphaned node removal" conditions="Finding disconnected nodes" expected-result="Clean graph structure" incorrectness-criteria="Leaves orphaned nodes in graph">Node with no connections → left in graph</incorrect-example>
         </example>
       </examples>
     </requirement>
     <requirement priority="critical">
-      <description>Verify execution flow structure: exactly ONE entry point (first node with no input), at least ONE exit point (last nodes with no output), all middle nodes must have both input AND output connections.</description>
+      <description>Verify execution flow structure using flow-structure section rules: entry points, exit points, and middle node connection requirements.</description>
       <examples>
         <example title="Flow Structure Validation">
-          <correct-example title="Proper flow structure" conditions="Validating graph flow" expected-result="Valid execution flow" correctness-criteria="Single entry, multiple exits, complete middle connections">Entry → Middle1 → Middle2 → Exit1, Exit2 (all middle nodes have input+output)</correct-example>
+          <correct-example title="Proper flow structure" conditions="Validating graph flow" expected-result="Valid execution flow" correctness-criteria="Single entry, multiple exits, complete middle connections">Follow flow-structure section rules for proper execution flow</correct-example>
           <incorrect-example title="Invalid flow structure" conditions="Validating graph flow" expected-result="Valid execution flow" incorrectness-criteria="Multiple entries or incomplete middle connections">Entry1, Entry2 → Middle (missing output) → Exit</incorrect-example>
         </example>
       </examples>
     </requirement>
     <requirement priority="high">
-      <description>Complete missing connections using mcp_unityMCP_connect_nodes_by_name. Middle nodes missing input or output connections will cause execution to stop at incomplete nodes.</description>
+      <description>Complete missing connections using validation-tools section. Middle nodes missing input or output connections will cause execution to stop at incomplete nodes.</description>
       <examples>
         <example title="Connection Completion">
-          <correct-example title="Proper connection completion" conditions="Finding incomplete connections" expected-result="All required connections complete" correctness-criteria="Completes all missing connections">Detect missing connection → connect_nodes_by_name → connection established</correct-example>
+          <correct-example title="Proper connection completion" conditions="Finding incomplete connections" expected-result="All required connections complete" correctness-criteria="Completes all missing connections">Use validation-tools section to complete missing connections</correct-example>
           <incorrect-example title="Incomplete connection handling" conditions="Finding incomplete connections" expected-result="All required connections complete" incorrectness-criteria="Leaves connections incomplete">Detect missing connection → leave incomplete</incorrect-example>
         </example>
       </examples>
     </requirement>
   </requirements>
+  <validation-workflow>
+    <step number="1" action="list_graph_nodes" description="Analyze graph structure"/>
+    <step number="2" action="remove_orphaned_nodes" description="Delete disconnected nodes"/>
+    <step number="3" action="verify_connections" description="Check all required connections"/>
+    <step number="4" action="confirm_flow" description="Validate single entry/multiple exit flow"/>
+    <step number="5" action="fix_errors" description="Address any issues found"/>
+    <step number="6" action="re_validate" description="Repeat validation cycle"/>
+    <condition>Repeat until 100% error-free</condition>
+  </validation-workflow>
+  <validation-tools>
+    <error-type name="orphaned-nodes" tool="mcp_unityMCP_delete_xnode_node" description="Remove disconnected nodes"/>
+    <error-type name="missing-connections" tool="mcp_unityMCP_connect_nodes_by_name" description="Complete missing connections"/>
+    <error-type name="invalid-flow" tool="mcp_unityMCP_set_node_as_first_step" description="Establish proper entry point"/>
+    <analysis-tool name="structure-analysis" tool="mcp_unityMCP_list_graph_nodes" description="Analyze graph structure"/>
+  </validation-tools>
+  <flow-structure>
+    <rule type="entry-point" requirement="exactly ONE" condition="first node with no input"/>
+    <rule type="exit-point" requirement="at least ONE" condition="last nodes with no output"/>
+    <rule type="middle-nodes" requirement="both input AND output" condition="all middle nodes"/>
+    <exception type="first-node" condition="no input required"/>
+    <exception type="last-nodes" condition="no output required"/>
+  </flow-structure>
   <context description="Validation error types and tools">
-    Critical errors: orphaned nodes, missing connections, invalid flow structure. Use mcp_unityMCP_list_graph_nodes for structure analysis, mcp_unityMCP_delete_xnode_node for orphaned node removal, mcp_unityMCP_connect_nodes_by_name for missing connections, mcp_unityMCP_set_node_as_first_step for entry point establishment.
+    Use validation-tools section for error handling and validation-workflow section for complete process.
   </context>
   <references>
     <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>

@@ -25,20 +25,20 @@ alwaysApply: false
       </examples>
     </requirement>
     <requirement priority="high">
-      <description>Use standard spacing measurements: 450px horizontal sequential between nodes in same workflow phase, 300px vertical separation between parallel routes or logical levels, 600px stage separation between major experiment stages, and (0,0) start position for first node.</description>
+      <description>Use standard spacing measurements defined in spacing-standards section: horizontal sequential spacing between nodes in same workflow phase, vertical separation between parallel routes or logical levels (use positive Y for downward movement), stage separation between major experiment stages, and start position for first node. Note: Unity's Y-axis - positive Y values move downward, negative Y values move upward.</description>
       <examples>
         <example title="Spacing Standards">
-          <correct-example title="Proper spacing usage" conditions="Positioning nodes" expected-result="Correct spacing between nodes" correctness-criteria="Follows standard measurements">Node1(0,0) → Node2(450,0) → Node3(900,0)</correct-example>
-          <incorrect-example title="Improper spacing usage" conditions="Positioning nodes" expected-result="Correct spacing between nodes" incorrectness-criteria="Uses incorrect spacing">Node1(0,0) → Node2(100,0) → Node3(200,0)</incorrect-example>
+          <correct-example title="Proper spacing usage" conditions="Positioning nodes" expected-result="Correct spacing between nodes" correctness-criteria="Follows spacing-standards section">Use measurements defined in spacing-standards section with correct Y-axis direction</correct-example>
+          <incorrect-example title="Improper spacing usage" conditions="Positioning nodes" expected-result="Correct spacing between nodes" incorrectness-criteria="Uses incorrect spacing or wrong Y-axis">Using insufficient spacing or wrong Y-axis direction for downward flow</incorrect-example>
         </example>
       </examples>
     </requirement>
     <requirement priority="high">
-      <description>Apply strategy selection based on node count and screen distance: Single row layout for ≤5 nodes, 2-3 row hybrid layout for 6-8 nodes, 3-4 row hybrid layout for 9-15 nodes, and multi-row logical grouping for >15 nodes. Choose strategy that keeps layout within reasonable screen distance from center.</description>
+      <description>Apply strategy selection based on node count and screen distance as defined in strategy-selection section. Choose strategy that keeps layout within reasonable screen distance from center.</description>
       <examples>
         <example title="Strategy Selection">
-          <correct-example title="Proper strategy selection" conditions="Choosing layout strategy" expected-result="Appropriate layout for node count" correctness-criteria="Matches node count to strategy">8 nodes → 2-3 row hybrid layout grouped by functionality</correct-example>
-          <incorrect-example title="Improper strategy selection" conditions="Choosing layout strategy" expected-result="Appropriate layout for node count" incorrectness-criteria="Mismatches node count to strategy">20 nodes → Single row layout</incorrect-example>
+          <correct-example title="Proper strategy selection" conditions="Choosing layout strategy" expected-result="Appropriate layout for node count" correctness-criteria="Matches node count to strategy">Use strategy-selection section rules based on node count</correct-example>
+          <incorrect-example title="Improper strategy selection" conditions="Choosing layout strategy" expected-result="Appropriate layout for node count" incorrectness-criteria="Mismatches node count to strategy">Using wrong strategy for node count or ignoring strategy-selection rules</incorrect-example>
         </example>
       </examples>
     </requirement>
@@ -52,26 +52,57 @@ alwaysApply: false
       </examples>
     </requirement>
     <requirement priority="medium">
-      <description>Use flexible positioning to avoid rigid grid patterns and infinite horizontal lines. Center nodes for visual balance within logical groups, adapt spacing per group rather than forcing uniform spacing, and break long sequences into multiple rows to prevent excessive horizontal extension.</description>
+      <description>Use flexible positioning to avoid rigid grid patterns and infinite horizontal lines. Center nodes for visual balance within logical groups, adapt spacing per group rather than forcing uniform spacing, and break long sequences into multiple rows to prevent excessive horizontal extension. Remember: positive Y moves downward, negative Y moves upward.</description>
       <examples>
         <example title="Flexible Positioning">
-          <correct-example title="Proper flexible positioning" conditions="Positioning nodes flexibly" expected-result="Visually balanced layout" correctness-criteria="Uses adaptive centering">Row1: (0,0) → (450,0) → (900,0) Row2: (225,300) → (675,300)</correct-example>
-          <incorrect-example title="Improper rigid positioning" conditions="Positioning nodes flexibly" expected-result="Visually balanced layout" incorrectness-criteria="Forces rigid grid">Row1: (0,0) → (450,0) → (900,0) → (1350,0) → (1800,0) → (2250,0) // Infinite horizontal line</incorrect-example>
+          <correct-example title="Proper flexible positioning" conditions="Positioning nodes flexibly" expected-result="Visually balanced layout" correctness-criteria="Uses adaptive centering with correct Y-axis">Row1: (0,0) → (450,0) → (900,0) Row2: (225,300) → (675,300) // Downward movement</correct-example>
+          <incorrect-example title="Improper rigid positioning" conditions="Positioning nodes flexibly" expected-result="Visually balanced layout" incorrectness-criteria="Forces rigid grid or wrong Y-axis">Row1: (0,0) → (450,0) → (900,0) → (1350,0) → (1800,0) → (2250,0) // Infinite horizontal line
+Row1: (0,0) → (450,0) → (900,0) Row2: (225,-300) → (675,-300) // Wrong Y-axis direction for downward flow</incorrect-example>
         </example>
       </examples>
     </requirement>
     <requirement priority="high">
-      <description>NEVER create infinite horizontal lines (>5 nodes in single row), infinite vertical stacks (>4 nodes in single column), overlapping nodes with insufficient spacing, rigid grid forcing ignoring logical grouping, or layouts that extend too far from screen center.</description>
+      <description>NEVER create patterns defined in forbidden-patterns section. Remember: Unity Y-axis - positive Y moves downward, negative Y moves upward.</description>
       <examples>
         <example title="Forbidden Patterns">
-          <correct-example title="Proper layout patterns" conditions="Avoiding forbidden patterns" expected-result="Valid layout without forbidden patterns" correctness-criteria="Follows layout guidelines">Sequential flow with proper spacing and logical grouping</correct-example>
-          <incorrect-example title="Forbidden layout patterns" conditions="Avoiding forbidden patterns" expected-result="Valid layout without forbidden patterns" incorrectness-criteria="Uses forbidden patterns">(0,0) → (450,0) → (900,0) → (1350,0) → (1800,0) → (2250,0) → (2700,0) → (3150,0) // Infinite horizontal line</incorrect-example>
+          <correct-example title="Proper layout patterns" conditions="Avoiding forbidden patterns" expected-result="Valid layout without forbidden patterns" correctness-criteria="Follows layout guidelines with correct Y-axis">Sequential flow with proper spacing and logical grouping avoiding forbidden-patterns section</correct-example>
+          <incorrect-example title="Forbidden layout patterns" conditions="Avoiding forbidden patterns" expected-result="Valid layout without forbidden patterns" incorrectness-criteria="Uses forbidden patterns or wrong Y-axis">Creating patterns defined in forbidden-patterns section or using wrong Y-axis direction</incorrect-example>
         </example>
       </examples>
     </requirement>
   </requirements>
+  <spacing-standards>
+    <horizontal-sequential>450px</horizontal-sequential>
+    <vertical-separation>300px</vertical-separation>
+    <stage-separation>600px</stage-separation>
+    <start-position>(0,0)</start-position>
+    <coordinate-system>Unity Y-axis: positive Y moves downward, negative Y moves upward</coordinate-system>
+  </spacing-standards>
+  <strategy-selection>
+    <rule node-count="≤5" strategy="Single row layout"/>
+    <rule node-count="6-8" strategy="2-3 row hybrid layout"/>
+    <rule node-count="9-15" strategy="3-4 row hybrid layout"/>
+    <rule node-count=">15" strategy="Multi-row logical grouping"/>
+  </strategy-selection>
+  <forbidden-patterns>
+    <pattern type="infinite-horizontal">>5 nodes in single row</pattern>
+    <pattern type="infinite-vertical">>4 nodes in single column</pattern>
+    <pattern type="overlapping">Insufficient spacing between nodes</pattern>
+    <pattern type="rigid-grid">Forcing uniform spacing ignoring logical grouping</pattern>
+    <pattern type="excessive-extension">Layouts extending too far from screen center</pattern>
+  </forbidden-patterns>
+  <validation-checklist>
+    <criterion>Visual appeal</criterion>
+    <criterion>Logical flow</criterion>
+    <criterion>Adequate spacing</criterion>
+    <criterion>Consistent standards</criterion>
+    <criterion>Flexible positioning</criterion>
+    <criterion>Clear connections</criterion>
+    <criterion>Reasonable canvas size</criterion>
+    <criterion>Minimal scrolling</criterion>
+  </validation-checklist>
   <context description="Additional considerations for node positioning">
-    Before finalizing layout, validate visual appeal, logical flow, adequate spacing, consistent standards, flexible positioning, and clear connections. Consider performance with reasonable canvas size, minimal scrolling, and connection clarity. The goal is to create visually appealing, functionally organized node layouts that enhance user understanding and workflow navigation.
+    Before finalizing layout, validate against the validation checklist. Consider performance with reasonable canvas size, minimal scrolling, and connection clarity. The goal is to create visually appealing, functionally organized node layouts that enhance user understanding and workflow navigation. Remember: Unity's coordinate system - positive Y values move downward, negative Y values move upward.
   </context>
   <references>
     <reference as="dependency" href=".cursor/rules/rules.mdc" reason="Follows standard rule format">Base rule format definition</reference>

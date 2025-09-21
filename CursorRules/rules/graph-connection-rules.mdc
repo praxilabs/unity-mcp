@@ -16,33 +16,58 @@ alwaysApply: false
   </meta>
   <requirements>
     <requirement priority="critical">
-      <description>First step nodes can only have outgoing connections. NEVER connect TO the entry port of a first step node. MUST connect FROM the exit port of a first step node.</description>
+      <description>First step nodes follow connection-rules section: outgoing connections only, connect FROM exit port, never TO entry port.</description>
       <examples>
         <example title="First Step Node Connections">
-          <correct-example title="Proper first step connection" conditions="Connecting from first step node" expected-result="Valid outgoing connection" correctness-criteria="Connects from exit port to next node's entry port">FirstStepNode(exit) → NextNode(entry)</correct-example>
-          <incorrect-example title="Improper first step connection" conditions="Connecting to first step node" expected-result="Valid outgoing connection" incorrectness-criteria="Attempts to connect to entry port of first step">SomeNode(exit) → FirstStepNode(entry)</incorrect-example>
+          <correct-example title="Proper first step connection" conditions="Connecting from first step node" expected-result="Valid outgoing connection" correctness-criteria="Connects from exit port to next node's entry port">Follow connection-patterns section for first-step-correct pattern</correct-example>
+          <incorrect-example title="Improper first step connection" conditions="Connecting to first step node" expected-result="Valid outgoing connection" incorrectness-criteria="Attempts to connect to entry port of first step">Avoid connection-patterns section first-step-incorrect pattern</incorrect-example>
         </example>
       </examples>
     </requirement>
     <requirement priority="critical">
-      <description>End nodes can only have incoming connections. NEVER connect FROM the exit port of an end node. MUST connect TO the entry port of an end node.</description>
+      <description>End nodes follow connection-rules section: incoming connections only, connect TO entry port, never FROM exit port.</description>
       <examples>
         <example title="End Node Connections">
-          <correct-example title="Proper end node connection" conditions="Connecting to end node" expected-result="Valid incoming connection" correctness-criteria="Connects from previous node's exit port to end node's entry port">PreviousNode(exit) → EndNode(entry)</correct-example>
-          <incorrect-example title="Improper end node connection" conditions="Connecting from end node" expected-result="Valid incoming connection" incorrectness-criteria="Attempts to connect from end node's exit port">EndNode(exit) → NextNode(entry)</incorrect-example>
+          <correct-example title="Proper end node connection" conditions="Connecting to end node" expected-result="Valid incoming connection" correctness-criteria="Connects from previous node's exit port to end node's entry port">Follow connection-patterns section for end-node-correct pattern</correct-example>
+          <incorrect-example title="Improper end node connection" conditions="Connecting from end node" expected-result="Valid incoming connection" incorrectness-criteria="Attempts to connect from end node's exit port">Avoid connection-patterns section end-node-incorrect pattern</incorrect-example>
         </example>
       </examples>
     </requirement>
     <requirement priority="critical">
-      <description>ALL middle nodes MUST have BOTH incoming AND outgoing connections. Incoming from previous node's exit port, outgoing to next node's entry port. If a middle node lacks either connection, your logic is 100% incorrect.</description>
+      <description>ALL middle nodes follow connection-rules section: MUST have BOTH incoming AND outgoing connections. If a middle node lacks either connection, your logic is 100% incorrect.</description>
       <examples>
         <example title="Middle Node Connections">
-          <correct-example title="Proper middle node connections" conditions="Connecting middle node" expected-result="Valid bidirectional connections" correctness-criteria="Has both incoming and outgoing connections">PreviousNode(exit) → MiddleNode(entry) → NextNode(entry)</correct-example>
-          <incorrect-example title="Improper middle node connections" conditions="Connecting middle node" expected-result="Valid bidirectional connections" incorrectness-criteria="Missing either incoming or outgoing connection">MiddleNode(entry) → NextNode(entry) // Missing incoming connection</incorrect-example>
+          <correct-example title="Proper middle node connections" conditions="Connecting middle node" expected-result="Valid bidirectional connections" correctness-criteria="Has both incoming and outgoing connections">Follow connection-patterns section for middle-node-correct pattern</correct-example>
+          <incorrect-example title="Improper middle node connections" conditions="Connecting middle node" expected-result="Valid bidirectional connections" incorrectness-criteria="Missing either incoming or outgoing connection">Avoid connection-patterns section middle-node-incorrect pattern</incorrect-example>
         </example>
       </examples>
     </requirement>
   </requirements>
+  <connection-rules>
+    <node-type name="first-step">
+      <allowed-connections>outgoing only</allowed-connections>
+      <required-action>connect FROM exit port</required-action>
+      <forbidden-action>connect TO entry port</forbidden-action>
+    </node-type>
+    <node-type name="end-node">
+      <allowed-connections>incoming only</allowed-connections>
+      <required-action>connect TO entry port</required-action>
+      <forbidden-action>connect FROM exit port</forbidden-action>
+    </node-type>
+    <node-type name="middle-node">
+      <allowed-connections>both incoming AND outgoing</allowed-connections>
+      <required-action>incoming from previous exit, outgoing to next entry</required-action>
+      <forbidden-action>missing either connection</forbidden-action>
+    </node-type>
+  </connection-rules>
+  <connection-patterns>
+    <pattern type="first-step-correct" example="FirstStepNode(exit) → NextNode(entry)"/>
+    <pattern type="first-step-incorrect" example="SomeNode(exit) → FirstStepNode(entry)"/>
+    <pattern type="end-node-correct" example="PreviousNode(exit) → EndNode(entry)"/>
+    <pattern type="end-node-incorrect" example="EndNode(exit) → NextNode(entry)"/>
+    <pattern type="middle-node-correct" example="PreviousNode(exit) → MiddleNode(entry) → NextNode(entry)"/>
+    <pattern type="middle-node-incorrect" example="MiddleNode(entry) → NextNode(entry) // Missing incoming"/>
+  </connection-patterns>
   <context description="Additional considerations for graph connections">
     These rules ensure proper graph execution flow and prevent broken or incomplete graph structures. Violation of these connection rules will result in non-functional experiments.
   </context>
